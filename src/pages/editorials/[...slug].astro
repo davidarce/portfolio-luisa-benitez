@@ -1,18 +1,18 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from "astro:content";
 
-import ContactCTA from '../../components/ContactCTA.astro';
-import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Grid from '../../components/Grid.astro';
+import ContactCTA from "../../components/ContactCTA.astro";
+import Hero from "../../components/Hero.astro";
+import Icon from "../../components/Icon.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Grid from "../../components/Grid.astro";
 
 interface Props {
-	entry: CollectionEntry<'editorials'>;
+	entry: CollectionEntry<"editorials">;
 }
 
 export async function getStaticPaths() {
-	const celebrities = await getCollection('editorials');
+	const celebrities = await getCollection("editorials");
 	return celebrities.map((entry) => ({
 		params: { slug: entry.id },
 		props: { entry },
@@ -27,7 +27,11 @@ const { entry } = Astro.props;
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/editorials"><Icon icon="arrow-left" /> Volver</a>
+					<a
+						class="back-link"
+						href="/portfolio-luisa-benitez/editorials"
+						><Icon icon="arrow-left" /> Volver</a
+					>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
 							<p class="description">{entry.data.description}</p>
@@ -38,11 +42,17 @@ const { entry } = Astro.props;
 			<main class="wrapper">
 				<div class="stack gap-10">
 					<Grid variant="small">
-						{entry.data.images.map((img) => (
-							<li class="gallery-item">
-								<img src={img} alt={`${entry.data.title}`} loading="lazy" />
-							</li>
-						))}
+						{
+							entry.data.images.map((img) => (
+								<li class="gallery-item">
+									<img
+										src={img}
+										alt={`${entry.data.title}`}
+										loading="lazy"
+									/>
+								</li>
+							))
+						}
 					</Grid>
 				</div>
 			</main>
