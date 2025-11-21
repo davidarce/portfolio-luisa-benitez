@@ -1,7 +1,7 @@
 ---
 title: Miguel Herrán
 publishDate: 2025-01-01 00:00:00
-img: /portfolio-luisa-benitez/assets/work/miguel-herran.webp
+img: /assets/work/miguel-herran.webp
 img_alt: Miguel Herrán photographed
 description: |
   I assisted Miguel Herrán

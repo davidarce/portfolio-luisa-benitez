@@ -1,7 +1,7 @@
 ---
 title: Aitana
 publishDate: 2025-02-14 00:00:00
-img: /portfolio-luisa-benitez/assets/work/aitana.webp
+img: /assets/work/aitana.webp
 img_alt: Aitana photographed
 description: |
   I assisted Aitana

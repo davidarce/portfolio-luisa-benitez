@@ -1,7 +1,7 @@
 ---
 title: Zara Larsson
 publishDate: 2025-01-01 00:00:00
-img: /portfolio-luisa-benitez/assets/work/zara.webp
+img: /assets/work/zara.webp
 img_alt: Zara Larsson photographed
 description: |
   I assisted Zara Larsson

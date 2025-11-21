@@ -4,7 +4,7 @@
             "id": "1",
             "title": "Numéro - Miguel Herrán",
             "description": "Editorial Numéro Netherlands - Miguel Herrán",
-            "img": "/portfolio-luisa-benitez/assets/editorials/miguel-herran/index.webp",
+            "img": "/assets/editorials/miguel-herran/index.webp",
             "img_alt": "Editorial Numéro - Miguel Herrán",
             "cardSize": "normal",
             "order": 1
@@ -13,7 +13,7 @@
             "id": "2",
             "title": "Vogue Adria",
             "description": "Editorial Vogue",
-            "img": "/portfolio-luisa-benitez/assets/editorials/vogue/index.webp",
+            "img": "/assets/editorials/vogue/index.webp",
             "img_alt": "Editorial Vogue",
             "cardSize": "normal",
             "order": 2
@@ -22,7 +22,7 @@
             "id": "3",
             "title": "Numéro - Martina Cariddi",
             "description": "Editorial Numéro Netherlands - Martina Cariddi",
-            "img": "/portfolio-luisa-benitez/assets/editorials/martina/index.webp",
+            "img": "/assets/editorials/martina/index.webp",
             "img_alt": "Editorial Numéro - Martina Cariddi",
             "cardSize": "normal",
             "order": 3
@@ -31,7 +31,7 @@
             "id": "4",
             "title": "Numéro - Isabeli Fontana",
             "description": "Editorial Numéro Netherlands - Isabeli Fontana",
-            "img": "/portfolio-luisa-benitez/assets/editorials/isabeli/index.webp",
+            "img": "/assets/editorials/isabeli/index.webp",
             "img_alt": "Editorial Numéro - Isabeli Fontana",
             "cardSize": "normal",
             "order": 4
@@ -40,7 +40,7 @@
             "id": "5",
             "title": "GQ - México",
             "description": "Editorial GQ",
-            "img": "/portfolio-luisa-benitez/assets/editorials/gq/index.webp",
+            "img": "/assets/editorials/gq/index.webp",
             "img_alt": "Editorial GQ",
             "cardSize": "normal",
             "order": 5
@@ -49,7 +49,7 @@
             "id": "6",
             "title": "Aminata Sarr - Mode Magazine",
             "description": "Editorial Aminata Sarr",
-            "img": "/portfolio-luisa-benitez/assets/editorials/aminata/index.webp",
+            "img": "/assets/editorials/aminata/index.webp",
             "img_alt": "Editorial Aminata",
             "cardSize": "normal",
             "order": 6

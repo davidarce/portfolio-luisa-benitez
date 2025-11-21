@@ -1,7 +1,7 @@
 ---
 title: Editorial Vogue Adria
 publishDate: 2025-02-04 00:00:00
-img: /portfolio-luisa-benitez/assets/work/editorial-vogue.mp4
+img: /assets/work/editorial-vogue.mp4
 img_alt: Editorial Vogue Adria
 description: |
   I 

@@ -4,7 +4,7 @@
             "id": "1",
             "title": "Miguel Herrán",
             "description": "Asistiendo a Miguel Herrán en diferentes eventos.",
-            "img": "/portfolio-luisa-benitez/assets/celebrities/miguel-herran/index.webp",
+            "img": "/assets/celebrities/miguel-herran/index.webp",
             "img_alt": "Miguel Herrán",
             "cardSize": "normal",
             "order": 1
@@ -13,7 +13,7 @@
             "id": "2",
             "title": "Aitana",
             "description": "Trabajando con Aitana en sesiones fotográficas y eventos.",
-            "img": "/portfolio-luisa-benitez/assets/celebrities/aitana/index.webp",
+            "img": "/assets/celebrities/aitana/index.webp",
             "img_alt": "Aitana",
             "cardSize": "normal",
             "order": 3
@@ -22,7 +22,7 @@
             "id": "3",
             "title": "Zara Larsson",
             "description": "Colaborando con Zara Larsson en varios proyectos.",
-            "img": "/portfolio-luisa-benitez/assets/celebrities/zara/index.webp",
+            "img": "/assets/celebrities/zara/index.webp",
             "img_alt": "Zara Larsson",
             "cardSize": "normal",
             "order": 2
@@ -31,7 +31,7 @@
             "id": "4",
             "title": "Aron Piper",
             "description": "Asistiendo a Aron Piper",
-            "img": "/portfolio-luisa-benitez/assets/celebrities/aron-piper/index.webp",
+            "img": "/assets/celebrities/aron-piper/index.webp",
             "img_alt": "Aron Piper",
             "cardSize": "normal",
             "order": 4

@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://davidarce.github.io',
-  base: '/portfolio-luisa-benitez',
+  site: 'https://luisabenitez.es',
+  base: '/',
   devToolbar: {
     enabled: false
   },
