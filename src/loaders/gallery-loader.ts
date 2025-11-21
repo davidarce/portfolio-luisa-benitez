@@ -6,6 +6,7 @@ interface GalleryConfig {
   jsonPath: string;
   jsonKey?: string;
   hasSubfolders?: boolean;
+  basePath?: string;
 }
 
 interface GalleryEntry {
@@ -24,7 +25,7 @@ interface GalleryEntry {
 
 export function createGalleryLoader(config: GalleryConfig) {
   return async (): Promise<GalleryEntry[]> => {
-    const { baseDir, jsonPath, jsonKey, hasSubfolders = true } = config;
+    const { baseDir, jsonPath, jsonKey, hasSubfolders = true, basePath = '' } = config;
 
     // Leer datos del JSON
     const jsonContent = readFileSync(jsonPath, 'utf-8');
@@ -43,20 +44,26 @@ export function createGalleryLoader(config: GalleryConfig) {
       const slug = dir.name;
       const imagesDir = join(baseDir, slug);
 
+      // Helper to prepend base path
+      const getPath = (path: string) => {
+        const relativePath = `/assets/${baseDir.split('/assets/')[1]}/${slug}/${path}`;
+        return basePath ? `${basePath}${relativePath}` : relativePath;
+      };
+
       // Obtener todas las imágenes y videos excepto index.*
       const allFiles = readdirSync(imagesDir);
       const images = allFiles
         .filter(f => /\.(jpg|jpeg|png|webp|mp4|webm|mov)$/i.test(f) && !f.startsWith('index.'))
         .sort()
-        .map(f => `/assets/${baseDir.split('/assets/')[1]}/${slug}/${f}`);
+        .map(f => getPath(f));
 
       // Buscar imagen index
       const indexImage = allFiles.find(f => f.startsWith('index.'));
-      const img = indexImage ? `/assets/${baseDir.split('/assets/')[1]}/${slug}/${indexImage}` : images[0];
+      const img = indexImage ? getPath(indexImage) : images[0];
 
       // Buscar video
       const videoFile = allFiles.find(f => /\.(mp4|webm|mov)$/i.test(f));
-      const video = videoFile ? `/assets/${baseDir.split('/assets/')[1]}/${slug}/${videoFile}` : undefined;
+      const video = videoFile ? getPath(videoFile) : undefined;
 
       // Buscar info en el JSON
       const info = Array.isArray(jsonData)

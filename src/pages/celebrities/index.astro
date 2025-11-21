@@ -5,8 +5,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Grid from "../../components/Grid.astro";
 import Card from "../../components/Card.astro";
 
-const celebrities = (await getCollection("celebrities"))
-    .sort((a, b) => a.data.order - b.data.order);
+const celebrities = (await getCollection("celebrities")).sort(
+    (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <BaseLayout
@@ -16,20 +17,22 @@ const celebrities = (await getCollection("celebrities"))
     <div class="stack gap-20 lg:gap-48">
         <main class="wrapper stack gap-20 lg:gap-48">
             <Grid variant="small">
-                {celebrities.map((celebrity) => (
-                    <li>
-                        <Card
-                            id={celebrity.id}
-                            page="celebrities"
-                            title={celebrity.data.title}
-                            img={celebrity.data.img}
-                            img_alt={celebrity.data.img_alt}
-                            cardSize={celebrity.data.cardSize}
-                            aspectRatio={celebrity.data.aspectRatio}
-                            objectPosition={celebrity.data.objectPosition}
-                        />
-                    </li>
-                ))}
+                {
+                    celebrities.map((celebrity) => (
+                        <li>
+                            <Card
+                                id={celebrity.id}
+                                page="celebrities"
+                                title={celebrity.data.title}
+                                img={celebrity.data.img}
+                                img_alt={celebrity.data.img_alt}
+                                cardSize={celebrity.data.cardSize}
+                                aspectRatio={celebrity.data.aspectRatio}
+                                objectPosition={celebrity.data.objectPosition}
+                            />
+                        </li>
+                    ))
+                }
             </Grid>
         </main>
     </div>
