@@ -1,0 +1,215 @@
+---
+interface Props {
+	id: string;
+	page: string;
+	title: string;
+	img: string;
+	img_alt?: string;
+	video?: string;
+	cardSize?: "normal" | "tall" | "wide";
+	aspectRatio?: string;
+	objectPosition?: string;
+	disableLink?: boolean;
+}
+
+const {
+	page,
+	title,
+	img,
+	img_alt,
+	video,
+	cardSize,
+	id,
+	aspectRatio = "3 / 4",
+	objectPosition = "center",
+	disableLink = false,
+} = Astro.props;
+
+const Tag = disableLink ? "div" : "a";
+---
+
+<Tag
+	class:list={["card", cardSize]}
+	href={disableLink ? undefined : `/${page}/${id}`}
+	style={`--aspect-ratio: ${aspectRatio}; --object-position: ${objectPosition};`}
+>
+	<div class="title">
+		<span class="text">{title}</span>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="arrow-icon"
+		>
+			<line x1="7" y1="17" x2="17" y2="7"></line>
+			<polyline points="7 7 17 7 17 17"></polyline>
+		</svg>
+	</div>
+	{
+		video ? (
+			<div class="video-container">
+				<video
+					src={video}
+					autoplay
+					loop
+					muted
+					playsinline
+					poster={img}
+				/>
+				<button class="mute-toggle" aria-label="Toggle mute">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						class="icon-muted"
+					>
+						<path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 101.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 10-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+					</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						class="icon-unmuted"
+						style="display: none;"
+					>
+						<path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+						<path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+					</svg>
+				</button>
+			</div>
+		) : (
+			<img
+				src={img}
+				alt={img_alt || ""}
+				loading="lazy"
+				decoding="async"
+			/>
+		)
+	}
+</Tag>
+
+<script>
+	document.querySelectorAll(".video-container").forEach((container) => {
+		const video = container.querySelector("video");
+		const button = container.querySelector(".mute-toggle");
+		const iconMuted = container.querySelector(".icon-muted") as HTMLElement;
+		const iconUnmuted = container.querySelector(
+			".icon-unmuted",
+		) as HTMLElement;
+
+		if (video && button && iconMuted && iconUnmuted) {
+			button.addEventListener("click", (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				video.muted = !video.muted;
+				if (video.muted) {
+					iconMuted.style.display = "block";
+					iconUnmuted.style.display = "none";
+				} else {
+					iconMuted.style.display = "none";
+					iconUnmuted.style.display = "block";
+				}
+			});
+		}
+	});
+</script>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+		border-radius: 0.5rem;
+		text-decoration: none;
+		font-family: var(--font-brand);
+		font-size: var(--text-md);
+		transition:
+			box-shadow,
+			transform var(--theme-transition);
+		position: relative;
+	}
+
+	.card:hover {
+		box-shadow: var(--shadow-md);
+		transform: scale(1.02);
+	}
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem 1.5rem;
+		background: var(--gray-999);
+		color: var(--gray-0);
+		font-weight: 500;
+		letter-spacing: 0.05em;
+	}
+
+	.text {
+		flex: 1;
+		text-align: center;
+	}
+
+	.arrow-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		color: currentColor;
+		margin-left: 0.5rem;
+	}
+
+	.video-container {
+		position: relative;
+		width: 100%;
+		aspect-ratio: var(--aspect-ratio);
+	}
+
+	img,
+	video {
+		width: 100%;
+		height: 100%;
+		aspect-ratio: var(--aspect-ratio);
+		object-fit: cover;
+		object-position: var(--object-position);
+	}
+
+	.mute-toggle {
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+		background: rgba(0, 0, 0, 0.5);
+		border: none;
+		border-radius: 50%;
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		cursor: pointer;
+		transition: background 0.2s;
+		z-index: 10;
+	}
+
+	.mute-toggle:hover {
+		background: rgba(0, 0, 0, 0.8);
+	}
+
+	.mute-toggle svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	@media (min-width: 50em) {
+		.title {
+			padding: 1.25rem 1.5rem;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

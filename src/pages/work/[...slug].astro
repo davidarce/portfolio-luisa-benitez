@@ -31,7 +31,7 @@ const { Content } = await render(entry);
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
+					<a class="back-link" href="/"><Icon icon="arrow-left" /> Volver</a>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
 							<div class="tags">
@@ -44,7 +44,7 @@ const { Content } = await render(entry);
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10 content">
-					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
+					{entry.data.img && <img transition:name={`img-${entry.id}`} src={entry.data.img} alt={entry.data.img_alt || ''} />}
 					<div class="content">
 						<Content />
 					</div>
@@ -81,11 +81,11 @@ const { Content } = await render(entry);
 
 	.description {
 		font-size: var(--text-lg);
-		max-width: 54ch;
+		max-width: 80ch;
 	}
 
 	.content {
-		max-width: 65ch;
+		max-width: 100ch;
 		margin-inline: auto;
 	}
 

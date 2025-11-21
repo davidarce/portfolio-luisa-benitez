@@ -6,9 +6,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize:images": "node optimize-images.js",
+    "cleanup:originals": "node cleanup-originals.js"
   },
   "dependencies": {
-    "astro": "^5.15.1"
+    "@fontsource/bebas-neue": "^5.2.7",
+    "@fontsource/freehand": "^5.2.8",
+    "@tailwindcss/vite": "^4.1.16",
+    "astro": "^5.15.1",
+    "tailwindcss": "^4.1.16"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

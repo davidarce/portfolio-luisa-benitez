@@ -1,0 +1,40 @@
+{
+    "highlighted": [
+        {
+            "id": "claro-couture",
+            "title": "Desfile Primavera/Verano 26 Rosé Noir - Claro Couture",
+            "description": "Desfile Primavera/Verano 26 Rosé Noir - Claro Couture - Mercedes-Benz Fashion Week Madrid",
+            "img": "/assets/runway/claro-couture/1.webp",
+            "img_alt": "Desfile Primavera/Verano 26 Rosé Noir Claro Couture",
+            "cardSize": "normal",
+            "order": 1
+        },
+        {
+            "id": "angel-schlesser-25-antonte",
+            "title": "Desfile Primavera/Verano 25 Antonte  - Angel Schlesser",
+            "description": "Desfile Primavera/Verano 25 Antonte - Angel Schlesser - Mercedes-Benz Fashion Week Madrid",
+            "img": "/assets/runway/angel-schlesser-2025/1.webp",
+            "img_alt": "Desfile Angel Schlesser Primavera/Verano 25 Antonte",
+            "cardSize": "normal",
+            "order": 2
+        },
+        {
+            "id": "angel-schlesser-24-intersticio",
+            "title": "Colección Primavera/Verano 24 Intersticio - Angel Schlesser",
+            "description": "Colección Primavera/Verano 24 Intersticio - Angel Schlesser - Mercedes-Benz Fashion Week Madrid",
+            "img": "/assets/runway/angel-schlesser-2024/1.webp",
+            "img_alt": "Colección Angel Schlesser Primavera/Verano 24 Intersticio",
+            "cardSize": "normal",
+            "order": 3
+        },
+        {
+            "id": "angel-schlesser-23-femme",
+            "title": "Otoño/Invierno 23.Femme - Angel Schlesser",
+            "description": "Desfile Otoño/Invierno 23.Femme - Angel Schlesser - Mercedes-Benz Fashion Week Madrid",
+            "img": "/assets/runway/angel-schlesser-2023/1.webp",
+            "img_alt": "Desfile Angel Schlesser",
+            "cardSize": "normal",
+            "order": 4
+        }
+    ]
+}

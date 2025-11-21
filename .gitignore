@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# macOS files
+*.DS_Store
+
+# Others
+cleanup-originals.js
+optimize-images.js

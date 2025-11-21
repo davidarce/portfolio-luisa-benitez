@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Grid from "../../components/Grid.astro";
+import Card from "../../components/Card.astro";
+
+const celebrities = (await getCollection("celebrities"))
+    .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+    title="Celebridades | Luisa Benítez"
+    description="Celebridades estiladas por Luisa Benítez"
+>
+    <div class="stack gap-20 lg:gap-48">
+        <main class="wrapper stack gap-20 lg:gap-48">
+            <Grid variant="small">
+                {celebrities.map((celebrity) => (
+                    <li>
+                        <Card
+                            id={celebrity.id}
+                            page="celebrities"
+                            title={celebrity.data.title}
+                            img={celebrity.data.img}
+                            img_alt={celebrity.data.img_alt}
+                            cardSize={celebrity.data.cardSize}
+                            aspectRatio={celebrity.data.aspectRatio}
+                            objectPosition={celebrity.data.objectPosition}
+                        />
+                    </li>
+                ))}
+            </Grid>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+    }
+
+    @media (min-width: 80em) {
+        .wrapper {
+            max-width: fit-content;
+        }
+    }
+</style>
