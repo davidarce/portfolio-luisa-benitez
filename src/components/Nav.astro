@@ -6,9 +6,9 @@ import ThemeToggle from './ThemeToggle.astro';
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Inicio', href: '/' },
-	{ label: 'Celebridades', href: '/celebrities/' },
-	{ label: 'Editoriales', href: '/editorials/' },
+	{ label: 'Editorial', href: '/editorials/' },
 	{ label: 'Publicidad', href: '/publicity/' },
+	{ label: 'Celebridades', href: '/celebrities/' },
 	{ label: 'Runway', href: '/runway/' },
 ];
 
@@ -24,13 +24,21 @@ const isCurrentPage = (href: string) => {
 	if (pathname.at(-1) !== '/') pathname += '/';
 	return pathname === href || (href !== '/' && pathname.startsWith(href));
 };
+const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 ---
 
 <nav>
 	<div class="menu-header">
 		<div class="stack gap-1">
-			<a href="/portfolio-luisa-benitez" class="site-title">
+			<a href="/" class="site-title">
 				Luisa Benítez
+				{
+					activeLink && activeLink.href !== "/" && (
+						<span class="mobile-page-label">
+							| {activeLink.label}
+						</span>
+					)
+				}
 			</a>
 			<p class="tagline font-freehand text-lg">Fashion Stylist</p>
 		</div>
@@ -170,6 +178,13 @@ const isCurrentPage = (href: string) => {
 		font-size: var(--text-xl);
 		font-weight: 500;
 		letter-spacing: 0.05em;
+	}
+
+	.mobile-page-label {
+		font-size: var(--text-md);
+		color: var(--gray-300);
+		font-weight: 400;
+		margin-left: 0.25rem;
 	}
 
 	.menu-button {
@@ -331,6 +346,10 @@ const isCurrentPage = (href: string) => {
 
 		.site-title {
 			font-size: var(--text-3xl);
+		}
+
+		.mobile-page-label {
+			display: none;
 		}
 
 		.menu-content {

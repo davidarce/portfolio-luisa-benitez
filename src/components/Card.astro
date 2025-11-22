@@ -28,26 +28,36 @@ const {
 const Tag = disableLink ? "div" : "a";
 ---
 
-<Tag
+<div
 	class:list={["card", cardSize]}
-	href={disableLink ? undefined : `/${page}/${id}`}
 	style={`--aspect-ratio: ${aspectRatio}; --object-position: ${objectPosition};`}
 >
+	{
+		!disableLink && (
+			<a href={`/${page}/${id}`} class="card-link">
+				<span class="sr-only">{title}</span>
+			</a>
+		)
+	}
 	<div class="title">
 		<span class="text">{title}</span>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			class="arrow-icon"
-		>
-			<line x1="7" y1="17" x2="17" y2="7"></line>
-			<polyline points="7 7 17 7 17 17"></polyline>
-		</svg>
+		{
+			!disableLink && (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="arrow-icon"
+				>
+					<line x1="7" y1="17" x2="17" y2="7" />
+					<polyline points="7 7 17 7 17 17" />
+				</svg>
+			)
+		}
 	</div>
 	{
 		video ? (
@@ -90,31 +100,35 @@ const Tag = disableLink ? "div" : "a";
 			/>
 		)
 	}
-</Tag>
+</div>
 
 <script>
-	document.querySelectorAll(".video-container").forEach((container) => {
-		const video = container.querySelector("video");
-		const button = container.querySelector(".mute-toggle");
-		const iconMuted = container.querySelector(".icon-muted") as HTMLElement;
-		const iconUnmuted = container.querySelector(
-			".icon-unmuted",
-		) as HTMLElement;
+	document.addEventListener("astro:page-load", () => {
+		document.querySelectorAll(".video-container").forEach((container) => {
+			const video = container.querySelector("video");
+			const button = container.querySelector(".mute-toggle");
+			const iconMuted = container.querySelector(
+				".icon-muted",
+			) as HTMLElement;
+			const iconUnmuted = container.querySelector(
+				".icon-unmuted",
+			) as HTMLElement;
 
-		if (video && button && iconMuted && iconUnmuted) {
-			button.addEventListener("click", (e) => {
-				e.preventDefault();
-				e.stopPropagation();
-				video.muted = !video.muted;
-				if (video.muted) {
-					iconMuted.style.display = "block";
-					iconUnmuted.style.display = "none";
-				} else {
-					iconMuted.style.display = "none";
-					iconUnmuted.style.display = "block";
-				}
-			});
-		}
+			if (video && button && iconMuted && iconUnmuted) {
+				button.addEventListener("click", (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					video.muted = !video.muted;
+					if (video.muted) {
+						iconMuted.style.display = "block";
+						iconUnmuted.style.display = "none";
+					} else {
+						iconMuted.style.display = "none";
+						iconUnmuted.style.display = "block";
+					}
+				});
+			}
+		});
 	});
 </script>
 
@@ -194,7 +208,7 @@ const Tag = disableLink ? "div" : "a";
 		color: white;
 		cursor: pointer;
 		transition: background 0.2s;
-		z-index: 10;
+		z-index: 20;
 	}
 
 	.mute-toggle:hover {
@@ -211,5 +225,11 @@ const Tag = disableLink ? "div" : "a";
 			padding: 1.25rem 1.5rem;
 			font-size: var(--text-lg);
 		}
+	}
+
+	.card-link {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
 	}
 </style>

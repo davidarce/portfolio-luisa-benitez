@@ -1,5 +1,5 @@
 ---
-title: Editorial Vogue Adria
+title: Vogue
 publishDate: 2025-02-04 00:00:00
 img: /assets/work/editorial-vogue.mp4
 img_alt: Editorial Vogue Adria
