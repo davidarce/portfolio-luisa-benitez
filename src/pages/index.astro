@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 
+import { Image } from "astro:assets";
+import portrait from "../assets/portrait.webp";
+
 import Hero from "../components/Hero.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Grid from "../components/Grid.astro";
@@ -23,9 +26,11 @@ const projects = (await getCollection("work"))
 					tagline="Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper"
 				>
 					<div class="hero-image-container">
-						<img
-							src="/assets/portrait.webp"
+						<Image
+							src={portrait}
 							alt="Luisa Benítez smiling outdoors reading a fashion magazine"
+							loading="eager"
+							fetchpriority="high"
 						/>
 						<a
 							href="https://instagram.com/luisabeniteza/"
