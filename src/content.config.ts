@@ -72,4 +72,14 @@ export const collections = {
 		}),
 		schema: gallerySchema,
 	}),
+	films: defineCollection({
+		loader: createGalleryLoader({
+			baseDir: './public/assets/films',
+			jsonPath: './src/content/films/films.json',
+			jsonKey: 'highlighted',
+			hasSubfolders: true,
+			basePath: '',
+		}),
+		schema: gallerySchema,
+	}),
 };

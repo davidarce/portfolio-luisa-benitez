@@ -1,0 +1,53 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Grid from "../../components/Grid.astro";
+import Card from "../../components/Card.astro";
+
+const films = (await getCollection("films")).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+    title="Cine | Luisa Benítez"
+    description="Cine estilado por Luisa Benítez"
+>
+    <div class="stack gap-20 lg:gap-48">
+        <main class="wrapper stack gap-20 lg:gap-48">
+            <Grid variant="small">
+                {
+                    films.map((film) => (
+                        <li>
+                            <Card
+                                id={film.id}
+                                page="films"
+                                title={film.data.title}
+                                img={film.data.img}
+                                img_alt={film.data.img_alt}
+                                cardSize={film.data.cardSize}
+                                aspectRatio={film.data.aspectRatio}
+                                objectPosition={film.data.objectPosition}
+                            />
+                        </li>
+                    ))
+                }
+            </Grid>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+    }
+
+    @media (min-width: 80em) {
+        .wrapper {
+            max-width: fit-content;
+        }
+    }
+</style>

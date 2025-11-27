@@ -2,37 +2,37 @@
     "highlighted": [
         {
             "id": "1",
-            "title": "Miguel Herrán",
-            "description": "Asistiendo a Miguel Herrán en diferentes eventos.",
+            "title": "Miguel Herrán - Chaumet",
+            "description": "Estilismo para evento de presentación de colección de joyería de Chaumet by Nature.",
             "img": "/assets/celebrities/miguel-herran/index.webp",
-            "img_alt": "Miguel Herrán",
+            "img_alt": "Miguel Herrán en evento Chaumet",
             "cardSize": "normal",
             "order": 1
         },
         {
             "id": "2",
-            "title": "Aitana",
-            "description": "Trabajando con Aitana en sesiones fotográficas y eventos.",
+            "title": "Aitana - YSL",
+            "description": "Estilismo para Aitana evento YSL Beauty.",
             "img": "/assets/celebrities/aitana/index.webp",
-            "img_alt": "Aitana",
+            "img_alt": "Aitana en evento YSL Beauty",
             "cardSize": "normal",
             "order": 3
         },
         {
             "id": "3",
-            "title": "Zara Larsson",
-            "description": "Colaborando con Zara Larsson en varios proyectos.",
+            "title": "Zara Larsson - Amaze Festival",
+            "description": "Estilismo para concierto de Zara Larsson y sus Bailarinas en Amaze Festival.",
             "img": "/assets/celebrities/zara/index.webp",
-            "img_alt": "Zara Larsson",
+            "img_alt": "Zara Larsson en evento Amaze Festival",
             "cardSize": "normal",
             "order": 2
         },
         {
             "id": "4",
-            "title": "Aron Piper",
-            "description": "Asistiendo a Aron Piper",
+            "title": "Aron Piper - YSL",
+            "description": "Estilismo para Aron Piper evento YSL Beauty.",
             "img": "/assets/celebrities/aron-piper/index.webp",
-            "img_alt": "Aron Piper",
+            "img_alt": "Aron Piper en evento YSL Beauty",
             "cardSize": "normal",
             "order": 4
         }
