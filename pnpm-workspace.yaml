@@ -1,0 +1,11 @@
+# pnpm 11 blocks dependency build scripts by default. esbuild and sharp
+# (used by Astro/Vite and image optimization) ship native binaries via
+# postinstall, so a fresh `pnpm install` exits non-zero until they're
+# approved — which breaks `astro build`'s dependency pre-flight in CI and
+# on clean checkouts. Approving them here keeps installs non-interactive.
+allowBuilds:
+  esbuild: true
+  sharp: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
