@@ -3,4 +3,6 @@
 @theme {
   --font-sans: 'Bebas Neue', sans-serif;
   --font-freehand: 'Freehand', system-ui;
+  --font-brand: 'Bebas Neue', sans-serif;
+  --font-body: system-ui, sans-serif;
 }
