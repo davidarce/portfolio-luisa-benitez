@@ -26,7 +26,11 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout
+	title={`${entry.data.title} — Luisa Benítez`}
+	description={entry.data.description}
+	path={Astro.url.pathname}
+>
 	<div class="stack gap-20">
 		<div class="stack gap-15">
 			<header>

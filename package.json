@@ -8,9 +8,11 @@
     "preview": "astro preview",
     "astro": "astro",
     "optimize:images": "node optimize-images.js",
-    "cleanup:originals": "node cleanup-originals.js"
+    "cleanup:originals": "node cleanup-originals.js",
+    "generate:assets": "node scripts/generate-assets.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
     "@fontsource/bebas-neue": "^5.2.7",
     "@fontsource/freehand": "^5.2.8",
     "@tailwindcss/vite": "^4.1.16",
@@ -18,6 +20,7 @@
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
+    "png-to-ico": "^2.1.8",
     "sharp": "^0.34.5"
   }
 }
