@@ -137,18 +137,20 @@ const details: { label: string; value: string }[] = [
 		object-fit: cover;
 		/* Descentrado a propósito: centrado deja un encuadre de foto de carnet. */
 		object-position: 50% 22%;
+		/* Solo se difumina abajo, donde la foto funde con el texto. Arriba se
+		   quitó: peleaba con el edificio claro del propio encuadre y en modo
+		   claro se leía como niebla sobre la imagen. El borde superior contra
+		   el nav es un límite deliberado. */
 		-webkit-mask-image: linear-gradient(
 			to bottom,
-			transparent 0%,
-			#000 7%,
-			#000 68%,
+			#000 0%,
+			#000 70%,
 			transparent 100%
 		);
 		mask-image: linear-gradient(
 			to bottom,
-			transparent 0%,
-			#000 7%,
-			#000 68%,
+			#000 0%,
+			#000 70%,
 			transparent 100%
 		);
 	}
@@ -168,7 +170,7 @@ const details: { label: string; value: string }[] = [
 		font-size: var(--text-base);
 		letter-spacing: 0.3em;
 		text-transform: uppercase;
-		color: var(--gray-400);
+		color: var(--gray-100);
 	}
 
 	.headline {
@@ -185,7 +187,7 @@ const details: { label: string; value: string }[] = [
 		max-width: 34ch;
 		font-size: var(--text-md);
 		line-height: 1.6;
-		color: var(--gray-300);
+		color: var(--gray-50);
 	}
 
 	.channels {
@@ -210,7 +212,7 @@ const details: { label: string; value: string }[] = [
 		font-size: var(--text-sm);
 		letter-spacing: 0.25em;
 		text-transform: uppercase;
-		color: var(--gray-400);
+		color: var(--gray-100);
 	}
 
 	.channel-value {
@@ -269,14 +271,14 @@ const details: { label: string; value: string }[] = [
 		font-size: var(--text-sm);
 		letter-spacing: 0.25em;
 		text-transform: uppercase;
-		color: var(--gray-400);
+		color: var(--gray-100);
 	}
 
 	.detail-value {
 		margin: 0;
 		font-size: var(--text-base);
 		line-height: 1.4;
-		color: var(--gray-300);
+		color: var(--gray-50);
 	}
 
 	.cv {
