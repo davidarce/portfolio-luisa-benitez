@@ -81,7 +81,7 @@ const { title, description, image, imageAlt, path } = Astro.props;
 		</script>
 	</head>
 	<body>
-		<div class="stack">
+		<div class="stack page-shell">
 			<Nav />
 			<slot />
 			<Footer />
@@ -335,6 +335,17 @@ const { title, description, image, imageAlt, path } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	/*
+	 * Envoltorio de página: alto mínimo del viewport para que el `margin-top:
+	 * auto` del footer haga algo (sin esto no tenía efecto) y para que una
+	 * página pueda pedir `flex: 1` y llenar el alto restante sin tener que
+	 * adivinar cuánto mide el nav.
+	 */
+	.page-shell {
+		min-height: 100vh;
+		min-height: 100svh;
 	}
 
 	.gap-1 {
