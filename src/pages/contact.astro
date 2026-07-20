@@ -1,0 +1,299 @@
+---
+import { Image } from "astro:assets";
+import portrait from "../assets/portrait.webp";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/profile";
+
+/** Los canales son las vías de contacto: mismo bloque, misma jerarquía. */
+const channels: { label: string; value: string; href: string; external?: boolean }[] = [
+	{
+		label: "Email",
+		value: profile.email,
+		href: `mailto:${profile.email}`,
+	},
+	{
+		label: "Instagram",
+		value: profile.instagram.handle,
+		href: profile.instagram.url,
+		external: true,
+	},
+];
+
+if (profile.linkedin) {
+	channels.push({
+		label: "LinkedIn",
+		value: "Perfil profesional",
+		href: profile.linkedin,
+		external: true,
+	});
+}
+
+const details = [
+	`${profile.baseCity}, España`,
+	profile.availableForTravel ? "Disponible para viajar" : null,
+	profile.languages.join(", "),
+].filter(Boolean) as string[];
+---
+
+<BaseLayout
+	title="Contacto — Luisa Benítez"
+	description="Contacta con Luisa Benítez, estilista y asesora de imagen, para encargos editoriales, campañas o vestuario de celebridades."
+	path="/contact/"
+>
+	<main class="contact">
+		<div class="portrait">
+			<Image
+				src={portrait}
+				alt="Luisa Benítez al aire libre, leyendo una revista de moda"
+				widths={[600, 900, 1200]}
+				sizes="(min-width: 50em) 46vw, 100vw"
+				loading="eager"
+				fetchpriority="high"
+			/>
+		</div>
+
+		<div class="panel">
+			<div>
+				<p class="eyebrow">Contacto</p>
+				<h1 class="headline">Hablemos</h1>
+			</div>
+
+			<p class="lead">
+				Para encargos editoriales, campañas o vestuario de celebridades.
+			</p>
+
+			<ul class="channels">
+				{
+					channels.map(({ label, value, href, external }) => (
+						<li>
+							<span class="channel-label">{label}</span>
+							<a
+								class="channel-value"
+								href={href}
+								target={external ? "_blank" : undefined}
+								rel={external ? "noopener noreferrer" : undefined}
+							>
+								{value}
+								{external && (
+									<span class="sr-only"> (se abre en una pestaña nueva)</span>
+								)}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<p class="details">
+				{
+					details.map((detail, index) => (
+						<>
+							{index > 0 && (
+								<span class="sep" aria-hidden="true">
+									·
+								</span>
+							)}
+							<span>{detail}</span>
+						</>
+					))
+				}
+			</p>
+
+			{
+				profile.cvPath && (
+					<a class="cv" href={profile.cvPath.es}>
+						Descargar CV <span class="arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				)
+			}
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	.contact {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	/* El retrato va a sangre: sin bordes ni radios, la foto manda. */
+	.portrait {
+		position: relative;
+		overflow: hidden;
+		background-color: var(--gray-900);
+	}
+
+	.portrait :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		/* Descentrado a propósito: centrado deja un encuadre de foto de carnet. */
+		object-position: 50% 22%;
+	}
+
+	.panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1.5rem;
+		padding: 2.5rem 1.5rem 3.5rem;
+	}
+
+	.eyebrow {
+		font-family: var(--font-brand);
+		font-size: var(--text-base);
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--gray-400);
+	}
+
+	.headline {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: clamp(4rem, 16vw, 8rem);
+		line-height: 0.9;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.lead {
+		max-width: 34ch;
+		font-size: var(--text-md);
+		line-height: 1.6;
+		color: var(--gray-300);
+	}
+
+	.channels {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.channels li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+	}
+
+	/* La etiqueta susurra; el dato es lo que se lee y se copia. */
+	.channel-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-400);
+	}
+
+	.channel-value {
+		align-self: flex-start;
+		max-width: 100%;
+		font-size: clamp(1.0625rem, 4vw, 1.375rem);
+		line-height: 1.35;
+		color: var(--gray-0);
+		text-decoration: none;
+		overflow-wrap: break-word;
+		background-image: linear-gradient(
+			var(--accent-regular),
+			var(--accent-regular)
+		);
+		background-repeat: no-repeat;
+		background-size: 100% 1px;
+		background-position: 0 100%;
+		padding-bottom: 0.15em;
+		transition:
+			background-size var(--theme-transition),
+			color var(--theme-transition);
+	}
+
+	:global(.theme-dark) .channel-value {
+		background-image: linear-gradient(
+			var(--accent-dark),
+			var(--accent-dark)
+		);
+	}
+
+	.channel-value:hover,
+	.channel-value:focus-visible {
+		color: var(--link-color);
+		background-size: 100% 2px;
+	}
+
+	/* Tres datos cortos no merecen una rejilla con etiquetas: una línea basta. */
+	.details {
+		font-size: var(--text-sm);
+		line-height: 1.7;
+		color: var(--gray-400);
+	}
+
+	.details span {
+		white-space: nowrap;
+	}
+
+	.details .sep {
+		margin: 0 0.5rem;
+		color: var(--gray-700);
+	}
+
+	.cv {
+		display: inline-flex;
+		align-items: baseline;
+		align-self: flex-start;
+		gap: 0.5rem;
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+		text-decoration: none;
+		transition: color var(--theme-transition);
+	}
+
+	.cv .arrow {
+		display: inline-block;
+		transition: transform var(--theme-transition);
+	}
+
+	.cv:hover,
+	.cv:focus-visible {
+		color: var(--link-color);
+	}
+
+	.cv:hover .arrow,
+	.cv:focus-visible .arrow {
+		transform: translateX(0.3rem);
+	}
+
+	@media (min-width: 50em) {
+		.contact {
+			grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+			align-items: stretch;
+			min-height: 34rem;
+		}
+
+		.portrait :global(img) {
+			position: absolute;
+			inset: 0;
+			aspect-ratio: auto;
+		}
+
+		.panel {
+			gap: 2rem;
+			padding: 4rem 3rem 4rem 4rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.channel-value,
+		.cv,
+		.cv .arrow {
+			transition: none;
+		}
+	}
+</style>

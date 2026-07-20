@@ -10,7 +10,7 @@
 export const profile = {
 	name: 'Luisa Benítez',
 	role: 'Fashion Stylist',
-	baseCity: 'Madrid',
+	baseCity: 'A Coruña',
 	availableForTravel: true,
 	languages: ['Español (nativo)', 'Inglés'],
 
@@ -25,11 +25,13 @@ export const profile = {
 	/** TODO(H-2 / #9): rellenar si Luisa confirma perfil de LinkedIn. */
 	linkedin: undefined as string | undefined,
 
-	/** TODO(H-3 / #10): los PDFs aún no existen en public/cv/. */
-	cvPath: {
-		es: '/cv/luisa-benitez-cv-es.pdf',
-		en: '/cv/luisa-benitez-cv-en.pdf',
-	},
+	/**
+	 * TODO(H-3 / #10): los PDFs aún no existen en public/cv/. Se deja a
+	 * `undefined` a propósito para que las páginas oculten el enlace en vez de
+	 * prometer una descarga que daría 404. Al añadir los ficheros, rellenar:
+	 *   { es: '/cv/luisa-benitez-cv-es.pdf', en: '/cv/luisa-benitez-cv-en.pdf' }
+	 */
+	cvPath: undefined as { es: string; en: string } | undefined,
 
 	services: [
 		'Estilismo editorial',
