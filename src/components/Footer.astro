@@ -1,8 +1,16 @@
 ---
-import Icon from './Icon.astro';
 import { profile } from '../data/profile';
 
 const currentYear = new Date().getFullYear();
+
+/** Vías de contacto del footer, todas desde profile.ts. LinkedIn solo si existe. */
+const links: { label: string; href: string; external?: boolean }[] = [
+	{ label: 'Email', href: `mailto:${profile.email}` },
+	{ label: 'Instagram', href: profile.instagram.url, external: true },
+	...(profile.linkedin
+		? [{ label: 'LinkedIn', href: profile.linkedin, external: true }]
+		: []),
+];
 ---
 
 <footer>
@@ -10,7 +18,18 @@ const currentYear = new Date().getFullYear();
 		<p>&copy; {currentYear} {profile.name}</p>
 	</div>
 	<p class="socials">
-		<a href={profile.instagram.url} target="_blank" rel="noopener noreferrer">Instagram <span class="sr-only">(se abre en una pestaña nueva)</span></a>
+		{
+			links.map(({ label, href, external }) => (
+				<a
+					href={href}
+					target={external ? '_blank' : undefined}
+					rel={external ? 'noopener noreferrer' : undefined}
+				>
+					{label}
+					{external && <span class="sr-only"> (se abre en una pestaña nueva)</span>}
+				</a>
+			))
+		}
 	</p>
 </footer>
 <style>
