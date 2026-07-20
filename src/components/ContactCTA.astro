@@ -1,11 +1,12 @@
 ---
 import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
+import { profile } from '../data/profile';
 ---
 
 <aside>
 	<h2>¿Interesado en trabajar juntos?</h2>
-	<CallToAction href="mailto:luisafernandabenitezariza@gmail.com">
+	<CallToAction href={`mailto:${profile.email}`}>
 		Envíame un mensaje
 		<Icon icon="paper-plane-tilt" size="1.2em" />
 	</CallToAction>

@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 import ThemeToggle from './ThemeToggle.astro';
+import { profile } from '../data/profile';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -13,9 +14,9 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'Runway', href: '/runway/' },
 ];
 
-/** Icon links to social media — edit these with links to your profiles! */
+/** Icon links to social media — sourced from src/data/profile.ts */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
-	{ label: 'Instagram', href: 'https://instagram.com/luisabeniteza/', icon: 'instagram-logo' },
+	{ label: 'Instagram', href: profile.instagram.url, icon: 'instagram-logo' },
 ];
 
 /** Test if a link is pointing to the current page. */
@@ -32,7 +33,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	<div class="menu-header">
 		<div class="stack gap-1">
 			<a href="/" class="site-title">
-				Luisa Benítez
+				{profile.name}
 				{
 					activeLink && activeLink.href !== "/" && (
 						<span class="mobile-page-label">
@@ -41,7 +42,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 					)
 				}
 			</a>
-			<p class="tagline font-freehand text-lg">Fashion Stylist</p>
+			<p class="tagline font-freehand text-lg">{profile.role}</p>
 		</div>
 		<menu-button>
 			<template>
