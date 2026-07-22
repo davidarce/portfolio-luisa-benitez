@@ -8,6 +8,21 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://luisabenitez.es',
   base: '/',
+  // Cimientos de i18n (P4-1). El español vive en la raíz y el inglés vivirá
+  // bajo /en/. Mientras no existan páginas en src/pages/en/, esta config es
+  // inerte: no genera ni cambia ninguna ruta.
+  //
+  // El `fallback: { en: 'es' }` del handoff se deja para MÁS ADELANTE (P4-5,
+  // las páginas espejo): habilitarlo ahora, sin ninguna página EN, hace que
+  // Astro genere 39 stubs de redirect /en/* → / que se indexarían sin aportar
+  // nada. El fallback solo tiene sentido cuando ya hay páginas EN de las que caer.
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false, // ES en la raíz, EN en /en/
+    },
+  },
   integrations: [sitemap()],
   devToolbar: {
     enabled: false
