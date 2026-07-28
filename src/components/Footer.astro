@@ -2,6 +2,9 @@
 import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 import { profile } from '../data/profile';
+import { getLocaleFromUrl, getTranslation } from '../i18n';
+
+const t = getTranslation(getLocaleFromUrl(Astro.url));
 
 const currentYear = new Date().getFullYear();
 
@@ -30,7 +33,7 @@ const socials: { label: string; href: string; icon: keyof typeof iconPaths; exte
 				>
 					<span class="sr-only">
 						{label}
-						{external && ' (se abre en una pestaña nueva)'}
+						{external && ` ${t.common.newWindowHint}`}
 					</span>
 					<Icon icon={icon} />
 				</a>

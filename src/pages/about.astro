@@ -5,21 +5,24 @@ import portrait from "../assets/portrait.webp";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CvDownloadLink from "../components/CvDownloadLink.astro";
 import { profile } from "../data/profile";
-import { about } from "../data/about";
+import { getLocaleFromUrl, getTranslation } from "../i18n";
 
-const baseValue = `${profile.baseCity}, ${profile.baseRegion}`;
-const languagesValue = profile.languages.join(", ");
+const t = getTranslation(getLocaleFromUrl(Astro.url));
+const about = t.about;
 
-/** Tres pares fijos + "Disponibilidad" solo si el dato existe (ver plan.md C3). */
+const baseValue = `${profile.baseCity}, ${t.profile.country}`;
+const languagesValue = t.profile.languages.join(", ");
+
+/** Dos pares fijos + "Disponibilidad" solo si el dato existe (ver plan.md C3). */
 const details: { label: string; value: string }[] = [
-	{ label: about.details.base, value: baseValue },
-	{ label: about.details.languages, value: languagesValue },
+	{ label: t.details.base, value: baseValue },
+	{ label: t.details.languages, value: languagesValue },
 ];
 
 if (profile.availableForTravel) {
 	details.push({
-		label: about.details.availability,
-		value: about.travelNote,
+		label: t.details.availability,
+		value: t.profile.travelNote,
 	});
 }
 ---
@@ -33,7 +36,7 @@ if (profile.availableForTravel) {
 		<div class="portrait">
 			<Image
 				src={portrait}
-				alt={about.portraitAlt}
+				alt={t.common.portraitAlt}
 				widths={[600, 900, 1200]}
 				sizes="(min-width: 50em) 34rem, 100vw"
 				loading="eager"
@@ -52,7 +55,7 @@ if (profile.availableForTravel) {
 			<section class="rule">
 				<h2 class="section-label">{about.sections.services}</h2>
 				<ul class="services" role="list">
-					{profile.services.map((service) => <li>{service}</li>)}
+					{t.profile.services.map((service) => <li>{service}</li>)}
 				</ul>
 			</section>
 
@@ -87,7 +90,7 @@ if (profile.availableForTravel) {
 					rel="noopener noreferrer"
 				>
 					{about.cta.instagram}
-					<span class="sr-only"> (se abre en una pestaña nueva)</span>{" "}
+					<span class="sr-only"> {t.common.newWindowHint}</span>{" "}
 					<span class="arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>

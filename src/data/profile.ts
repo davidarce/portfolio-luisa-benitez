@@ -1,24 +1,22 @@
 /**
  * Fuente única de verdad para los datos personales de Luisa.
  *
- * Cualquier dato de contacto, redes, servicios o medios debe vivir aquí y
- * consumirse desde los componentes/páginas — nunca hardcodearse en el markup.
+ * Cualquier dato de contacto, redes o medios debe vivir aquí y consumirse desde
+ * los componentes/páginas — nunca hardcodearse en el markup.
  *
- * Nota i18n: los textos de cara al usuario (`role`, `languages`, `services`)
- * están en español. Cuando entre la Fase 4 (#38) se moverán a `src/i18n/`.
+ * REPARTO CON i18n (cerrado en la Fase 4): aquí solo van los datos que NO
+ * cambian con el idioma. Todo lo que sea prosa traducible vive en
+ * `src/i18n/es.ts` bajo la clave `profile`. Por eso `baseCity` ('A Coruña') está
+ * aquí y el país ('España' / 'Spain') no; y por eso `featuredIn` está aquí —son
+ * nombres propios de publicaciones— pero `services` no.
+ *
+ * Las páginas componen la base como `${profile.baseCity}, ${t.profile.country}`.
  */
 export const profile = {
 	name: 'Luisa Benítez',
 	role: 'Fashion Stylist',
 	baseCity: 'A Coruña',
-	/**
-	 * Región/país mostrado junto a `baseCity`. Antes vivía hardcodeado en
-	 * contact.astro; las páginas deben componerlo como
-	 * `${profile.baseCity}, ${profile.baseRegion}`.
-	 */
-	baseRegion: 'España',
 	availableForTravel: true,
-	languages: ['Español (nativo)', 'Inglés'],
 
 	/** TODO(#17): cambiar a hello@luisabenitez.es cuando H-7 (#14) resuelva el backend de email. */
 	email: 'luisafernandabenitezariza@gmail.com',
@@ -38,15 +36,6 @@ export const profile = {
 	 *   { es: '/cv/luisa-benitez-cv-es.pdf', en: '/cv/luisa-benitez-cv-en.pdf' }
 	 */
 	cvPath: undefined as { es: string; en: string } | undefined,
-
-	/** Redacción cerrada en plan/03-content-pages/about-copy-final-es.md. */
-	services: [
-		'Estilismo editorial',
-		'Estilismo de campaña y colaboraciones de marca',
-		'Estilismo para celebridades y eventos',
-		'Asesoría de imagen',
-		'Personal shopper',
-	],
 
 	/**
 	 * TODO(H-5 / #12): "Fucking Young" fuera — es el único de la lista sin
