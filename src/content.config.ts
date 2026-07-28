@@ -14,6 +14,32 @@ const gallerySchema = z.object({
 	images: z.array(z.string()),
 	hasGallery: z.boolean().default(true),
 	order: z.number().default(0),
+
+	// Atribución (requisito nº1 de la Fase 2, ver plan/02-information-architecture/REVISION-v2.md)
+	role: z.enum(['lead-stylist', 'assistant-stylist', 'wardrobe-assistant', 'co-stylist']),
+	roleDetail: z.string().optional(),
+	leadStylist: z.string().optional(),
+
+	// Metadatos
+	year: z.number().optional(),
+	season: z.string().optional(),
+	client: z.string().optional(),
+	publication: z.string().optional(),
+	format: z.enum(['editorial', 'campaign', 'social', 'runway', 'event', 'film', 'model-test']).optional(),
+
+	// Créditos — sin placeholders: si el dato no existe todavía, el campo se omite y no se pinta.
+	credits: z
+		.object({
+			photographer: z.string().optional(),
+			director: z.string().optional(),
+			muah: z.string().optional(),
+			talent: z.string().optional(),
+			talentAgency: z.string().optional(),
+			artDirection: z.string().optional(),
+			production: z.string().optional(),
+			location: z.string().optional(),
+		})
+		.optional(),
 });
 
 export const collections = {

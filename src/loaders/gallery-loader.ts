@@ -21,6 +21,16 @@ interface GalleryEntry {
   objectPosition?: string;
   images: string[];
   hasGallery: boolean;
+  order: number;
+  role?: string;
+  roleDetail?: string;
+  leadStylist?: string;
+  year?: number;
+  season?: string;
+  client?: string;
+  publication?: string;
+  format?: string;
+  credits?: Record<string, string>;
 }
 
 export function createGalleryLoader(config: GalleryConfig) {
@@ -54,7 +64,10 @@ export function createGalleryLoader(config: GalleryConfig) {
       const allFiles = readdirSync(imagesDir);
       const images = allFiles
         .filter(f => /\.(jpg|jpeg|png|webp|mp4|webm|mov)$/i.test(f) && !f.startsWith('index.'))
-        .sort()
+        // Orden natural (1, 2, ..., 10, 11) en vez de lexicográfico ('1', '10', '11', '2', ...):
+        // las galerías de más de 9 fotos numeradas como 1.webp, 2.webp... quedarían desordenadas
+        // con un .sort() por defecto, que compara los nombres carácter a carácter.
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
         .map(f => getPath(f));
 
       // Buscar imagen index
@@ -76,6 +89,16 @@ export function createGalleryLoader(config: GalleryConfig) {
       // If it has 1 item and that item is used as the preview video, then it's just that video.
       const hasGallery = images.length > 1;
 
+      // Aviso temporal (REVISION-v2.md pide que esto sea un error de build cuando
+      // haya rol de asistencia sin `leadStylist`; hoy ese dato todavía no existe,
+      // así que un error dejaría el build roto por diseño). Pasar a error en cuanto
+      // llegue el dato de leadStylist para los proyectos de asistencia.
+      if (info?.role && info.role !== 'lead-stylist' && !info?.leadStylist) {
+        console.warn(
+          `[gallery-loader] Falta "leadStylist" en proyecto de asistencia: slug="${slug}", role="${info.role}" (${jsonPath})`
+        );
+      }
+
       return {
         id: slug,
         title: info?.title || slug,
@@ -89,6 +112,15 @@ export function createGalleryLoader(config: GalleryConfig) {
         images,
         hasGallery,
         order: info?.order || 0,
+        role: info?.role,
+        roleDetail: info?.roleDetail,
+        leadStylist: info?.leadStylist,
+        year: info?.year,
+        season: info?.season,
+        client: info?.client,
+        publication: info?.publication,
+        format: info?.format,
+        credits: info?.credits,
       };
     }).filter(entry => entry.img || entry.video);
   };

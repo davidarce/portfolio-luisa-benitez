@@ -8,9 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "optimize:images": "node optimize-images.js",
-    "cleanup:originals": "node cleanup-originals.js",
-    "generate:assets": "node scripts/generate-assets.mjs"
+    "generate:assets": "node scripts/generate-assets.mjs",
+    "optimize:gallery": "node scripts/optimize-gallery.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",

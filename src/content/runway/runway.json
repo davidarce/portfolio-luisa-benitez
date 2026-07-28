@@ -7,7 +7,8 @@
             "img": "/assets/runway/claro-couture/1.webp",
             "img_alt": "Desfile Primavera/Verano 26 Rosé Noir Claro Couture",
             "cardSize": "normal",
-            "order": 1
+            "order": 1,
+            "role": "wardrobe-assistant"
         },
         {
             "id": "angel-schlesser-25-antonte",
@@ -16,7 +17,8 @@
             "img": "/assets/runway/angel-schlesser-2025/1.webp",
             "img_alt": "Desfile Angel Schlesser Primavera/Verano 25 Antonte",
             "cardSize": "normal",
-            "order": 2
+            "order": 2,
+            "role": "wardrobe-assistant"
         },
         {
             "id": "angel-schlesser-24-intersticio",
@@ -25,7 +27,8 @@
             "img": "/assets/runway/angel-schlesser-2024/1.webp",
             "img_alt": "Colección Angel Schlesser Primavera/Verano 24 Intersticio",
             "cardSize": "normal",
-            "order": 3
+            "order": 3,
+            "role": "wardrobe-assistant"
         },
         {
             "id": "angel-schlesser-23-femme",
@@ -34,7 +37,8 @@
             "img": "/assets/runway/angel-schlesser-2023/1.webp",
             "img_alt": "Desfile Angel Schlesser",
             "cardSize": "normal",
-            "order": 4
+            "order": 4,
+            "role": "wardrobe-assistant"
         }
     ]
 }
