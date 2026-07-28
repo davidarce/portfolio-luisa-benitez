@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 import ContactCTA from "../../components/ContactCTA.astro";
+import CreditsBlock from "../../components/CreditsBlock.astro";
 import Hero from "../../components/Hero.astro";
 import Icon from "../../components/Icon.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -43,17 +44,41 @@ const { entry } = Astro.props;
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10">
+					<CreditsBlock
+						role={entry.data.role}
+						roleDetail={entry.data.roleDetail}
+						leadStylist={entry.data.leadStylist}
+						year={entry.data.year}
+						client={entry.data.client}
+						publication={entry.data.publication}
+						format={entry.data.format}
+						credits={entry.data.credits}
+					/>
 					<Grid variant="small">
 						{
-							entry.data.images.map((img) => (
-								<li class="gallery-item">
-									<img
-										src={img}
-										alt={`${entry.data.title}`}
-										loading="lazy"
-									/>
-								</li>
-							))
+							entry.data.images.map((img) => {
+								const isVideo = /\.(mp4|webm|mov)$/i.test(img);
+								return (
+									<li class="gallery-item">
+										{isVideo ? (
+											<video
+												src={img}
+												autoplay
+												loop
+												muted
+												playsinline
+												controls
+											/>
+										) : (
+											<img
+												src={img}
+												alt={`${entry.data.title}`}
+												loading="lazy"
+											/>
+										)}
+									</li>
+								);
+							})
 						}
 					</Grid>
 				</div>
@@ -118,12 +143,24 @@ const { entry } = Astro.props;
 		border: 1px solid var(--gray-800);
 	}
 
+	/*
+	 * aspect-ratio reserva la altura del ítem ANTES de que la imagen cargue.
+	 * Sin esto, .gallery-item no tiene altura propia (solo la marca `img`
+	 * con height:100%, que es 100% de un contenedor sin altura -> colapsa a
+	 * ~0). El grid entero se comprime a una fracción de su alto real, así que
+	 * el navegador "ve" casi todas las imágenes cerca del viewport y el
+	 * loading="lazy" nativo deja de tener efecto: las pide todas de golpe.
+	 * Con la altura reservada, la página mide su alto real desde el primer
+	 * render y el lazy-load nativo sí difiere las imágenes fuera de rango.
+	 */
 	.gallery-item {
 		overflow: hidden;
 		border-radius: 1.5rem;
+		aspect-ratio: 3 / 4;
 	}
 
-	.gallery-item img {
+	.gallery-item img,
+	.gallery-item video {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -134,7 +171,8 @@ const { entry } = Astro.props;
 		transition: transform var(--theme-transition);
 	}
 
-	.gallery-item img:hover {
+	.gallery-item img:hover,
+	.gallery-item video:hover {
 		transform: scale(1.02);
 	}
 

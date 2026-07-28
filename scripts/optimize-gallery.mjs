@@ -10,18 +10,29 @@
 //   index.webp          - copia de la primera foto (portada por defecto; se
 //                          puede sustituir a mano más adelante)
 //
+// Modo «in situ» (mismo origen y destino, sustituye ficheros sin renombrar):
+//   node scripts/optimize-gallery.mjs --in-place <directorio>
+//
+// Recorre <directorio> (sin recursión) y reconvierte cada imagen jpg/png/webp
+// que encuentre, conservando el nombre base exacto (solo cambia la extensión
+// a .webp si hacía falta) y el orden de los ficheros ya existentes. Los
+// vídeos (.mp4/.mov/.webm) se ignoran: sharp no los toca. Pensado para
+// galerías que ya tienen la convención de nombres correcta (1.webp, 2.webp,
+// index.webp, ...) pero nunca pasaron por la conversión/redimensionado.
+//
 // Convención de tamaño (igual que scripts/generate-assets.mjs y las galerías
 // ya existentes en public/assets/): máximo 2048px en el lado largo, sin
 // agrandar imágenes menores, calidad webp 80. Idempotente: se puede volver a
 // ejecutar y sobrescribe el mismo destino sin duplicar ficheros.
 
-import { mkdir, readdir, stat } from "node:fs/promises";
+import { mkdir, readdir, rename, stat, unlink } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
 const MAX_DIMENSION = 2048;
 const WEBP_QUALITY = 80;
 const SOURCE_EXTENSIONS = /\.(jpe?g|png)$/i;
+const IN_PLACE_EXTENSIONS = /\.(jpe?g|png|webp)$/i;
 
 function formatBytes(bytes) {
 	if (bytes < 1024) return `${bytes} B`;
@@ -45,8 +56,68 @@ async function convertOne(sourcePath, destPath) {
 		.toFile(destPath);
 }
 
+async function runInPlace(dirArg) {
+	const dir = path.resolve(dirArg);
+
+	const entries = await readdir(dir, { withFileTypes: true });
+	const files = entries
+		.filter((e) => e.isFile() && IN_PLACE_EXTENSIONS.test(e.name))
+		.map((e) => e.name)
+		.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+	if (files.length === 0) {
+		console.error(`No se encontraron imágenes jpg/png/webp en ${dir}`);
+		process.exit(1);
+	}
+
+	let totalBefore = 0;
+	let totalAfter = 0;
+
+	for (const fileName of files) {
+		const sourcePath = path.join(dir, fileName);
+		const sourceStat = await stat(sourcePath);
+		totalBefore += sourceStat.size;
+
+		const baseName = fileName.replace(/\.[^.]+$/, "");
+		const outName = `${baseName}.webp`;
+		const outPath = path.join(dir, outName);
+		// Fichero temporal: convertir a un nombre distinto y luego renombrar,
+		// para poder sustituir un .webp por sí mismo sin que sharp intente
+		// leer y escribir el mismo fichero a la vez.
+		const tmpPath = path.join(dir, `.${outName}.tmp`);
+
+		await convertOne(sourcePath, tmpPath);
+
+		if (outPath !== sourcePath) {
+			await unlink(sourcePath);
+		}
+		await rename(tmpPath, outPath);
+
+		const outStat = await stat(outPath);
+		totalAfter += outStat.size;
+		console.log(`${fileName} -> ${outName} (${formatBytes(outStat.size)})`);
+	}
+
+	console.log("");
+	console.log(`Ficheros convertidos: ${files.length}`);
+	console.log(`Peso total origen:   ${formatBytes(totalBefore)}`);
+	console.log(`Peso total destino:  ${formatBytes(totalAfter)}`);
+}
+
 async function main() {
-	const [, , sourceDirArg, destDirArg] = process.argv;
+	const [, , first, second] = process.argv;
+
+	if (first === "--in-place") {
+		if (!second) {
+			console.error("Uso: node scripts/optimize-gallery.mjs --in-place <directorio>");
+			process.exit(1);
+		}
+		await runInPlace(second);
+		return;
+	}
+
+	const sourceDirArg = first;
+	const destDirArg = second;
 
 	if (!sourceDirArg || !destDirArg) {
 		console.error(

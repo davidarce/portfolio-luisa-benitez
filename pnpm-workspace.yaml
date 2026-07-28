@@ -5,6 +5,8 @@
 # on clean checkouts. Approving them here keeps installs non-interactive.
 allowBuilds:
   esbuild: true
+  # Herramienta puntual para transcodificar vídeo, no hace falta en el build.
+  ffmpeg-static: false
   sharp: true
 onlyBuiltDependencies:
   - esbuild

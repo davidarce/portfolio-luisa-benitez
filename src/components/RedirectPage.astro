@@ -1,0 +1,43 @@
+---
+/**
+ * Página de redirección estática, para las rutas viejas de la Fase 2 (rename
+ * /publicity → /campaigns, /celebrities → /celebrity-events; ver
+ * plan/02-information-architecture/REVISION-v2.md §4).
+ *
+ * LIMITACIÓN IMPORTANTE: el sitio se despliega en GitHub Pages, que es
+ * hosting estático y no puede devolver un 301 real (eso requiere lógica de
+ * servidor). Tampoco sirve la opción `redirects` de astro.config.mjs para
+ * rutas dinámicas de colección en modo `output: 'static'`: Astro exige que el
+ * destino tenga páginas ya generadas y no reconstruye automáticamente cada
+ * slug del origen a partir del `getStaticPaths` del destino. Por eso esta
+ * página combina `<meta http-equiv="refresh">` (funciona sin servidor y sin
+ * JS) con `rel="canonical"` apuntando al destino, que es la señal más fuerte
+ * que puede dar un sitio estático de que la URL "de verdad" es la nueva. No
+ * es un 301: a efectos de SEO es más débil, pero es lo mejor disponible bajo
+ * GitHub Pages.
+ *
+ * Estas páginas se excluyen explícitamente del sitemap (ver el `filter` de
+ * `sitemap()` en astro.config.mjs) para no anunciar las rutas viejas como
+ * contenido indexable.
+ */
+interface Props {
+	to: string;
+	title?: string;
+}
+
+const { to, title = 'Redirigiendo…' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<title>{title}</title>
+		<meta http-equiv="refresh" content={`0;url=${to}`} />
+		<link rel="canonical" href={to} />
+		<meta name="robots" content="noindex" />
+	</head>
+	<body>
+		<p>Esta página se ha movido. Si no rediriges automáticamente, <a href={to}>sigue este enlace</a>.</p>
+	</body>
+</html>

@@ -3,8 +3,10 @@ import type { Translation } from './es';
 /**
  * Strings en inglés. El tipo `Translation` obliga a tener EXACTAMENTE las
  * mismas claves que es.ts: si falta una, o sobra, TypeScript falla. Los
- * valores son libres (es una traducción). La prosa larga y las categorías de
- * la Fase 2 se traducirán cuando el contenido en español esté cerrado.
+ * valores son libres (es una traducción). Las etiquetas de nav renombradas de
+ * la Fase 2 ya están traducidas ("Campaigns" / "Celebrity & Events"); la
+ * prosa larga de proyecto se traducirá cuando el contenido en español esté
+ * cerrado.
  */
 export const en: Translation = {
 	meta: {
@@ -15,8 +17,8 @@ export const en: Translation = {
 	nav: {
 		home: 'Home',
 		editorial: 'Editorial',
-		publicity: 'Campaigns',
-		celebrities: 'Celebrities',
+		campaigns: 'Campaigns',
+		celebrityEvents: 'Celebrity & Events',
 		films: 'Film & TV',
 		runway: 'Runway',
 		about: 'About',
@@ -80,5 +82,27 @@ export const en: Translation = {
 		downloadCv: 'Download CV',
 		newWindowHint: '(opens in a new tab)',
 		portraitAlt: 'Luisa Benítez outdoors, reading a fashion magazine',
+	},
+	credits: {
+		role: {
+			'lead-stylist': 'Lead Stylist',
+			'assistant-stylist': 'Assistant Stylist',
+			'wardrobe-assistant': 'Wardrobe Assistant',
+			'co-stylist': 'Co-Stylist',
+		},
+		leadStylistLabel: 'Lead Stylist:',
+		labels: {
+			photographer: 'Photography',
+			director: 'Direction',
+			muah: 'Hair & Makeup',
+			talent: 'Talent',
+			talentAgency: 'Agency',
+			artDirection: 'Art Direction',
+			production: 'Production',
+			location: 'Location',
+		},
+		format: {
+			'model-test': 'Model test',
+		},
 	},
 };

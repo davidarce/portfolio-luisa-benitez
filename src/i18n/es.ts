@@ -7,9 +7,10 @@
  * inglés. Los VALORES pueden diferir (para eso es una traducción); lo que se
  * comparte es la estructura.
  *
- * Alcance actual (P4-2 + P4-3 + P4-4): los strings de UI, la parte traducible
- * del perfil y la prosa del About. Quedan fuera las descripciones de proyecto y
- * las categorías renombradas de la Fase 2, que llegan cuando ese contenido esté
+ * Alcance actual (P4-2 + P4-3 + P4-4 + rename Fase 2 §4): los strings de UI
+ * —incluidas las etiquetas de nav renombradas "Campañas" / "Celebridades y
+ * eventos"—, la parte traducible del perfil y la prosa del About. Quedan
+ * fuera las descripciones de proyecto, que llegan cuando ese contenido esté
  * cerrado.
  */
 export const es = {
@@ -21,8 +22,8 @@ export const es = {
 	nav: {
 		home: 'Inicio',
 		editorial: 'Editorial',
-		publicity: 'Publicidad',
-		celebrities: 'Celebridades',
+		campaigns: 'Campañas',
+		celebrityEvents: 'Celebridades y eventos',
 		films: 'Cine',
 		runway: 'Runway',
 		about: 'Sobre mí',
@@ -92,6 +93,35 @@ export const es = {
 		newWindowHint: '(se abre en una pestaña nueva)',
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
 		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
+	},
+	/**
+	 * Bloque de créditos de las páginas de detalle (requisito nº1 de la Fase 2,
+	 * ver plan/02-information-architecture/REVISION-v2.md §2). `role` cubre los
+	 * 4 valores del enum de `gallerySchema` en src/content.config.ts; `labels`
+	 * cubre los campos opcionales de `credits`. `format` solo traduce
+	 * `model-test`: el resto de valores del enum no se pintan en el bloque.
+	 */
+	credits: {
+		role: {
+			'lead-stylist': 'Estilista principal',
+			'assistant-stylist': 'Asistente de estilismo',
+			'wardrobe-assistant': 'Asistente de vestuario',
+			'co-stylist': 'Co-estilista',
+		},
+		leadStylistLabel: 'Estilista principal:',
+		labels: {
+			photographer: 'Fotografía',
+			director: 'Dirección',
+			muah: 'Maquillaje y peluquería',
+			talent: 'Talento',
+			talentAgency: 'Agencia',
+			artDirection: 'Dirección de arte',
+			production: 'Producción',
+			location: 'Localización',
+		},
+		format: {
+			'model-test': 'Model test',
+		},
 	},
 } as const;
 

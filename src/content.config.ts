@@ -58,7 +58,15 @@ export const collections = {
 			order: z.number().default(0),
 		}),
 	}),
-	celebrities: defineCollection({
+	// Colección renombrada: "celebrities" → "celebrity-events" (ruta pública
+	// /celebrity-events/, ver plan/02-information-architecture/REVISION-v2.md
+	// §4). El directorio de datos y de assets se queda con el nombre viejo
+	// ("celebrities") a propósito: otro agente está trabajando en paralelo en
+	// `public/assets/celebrities/` y `src/content/celebrities/*.json`, y
+	// moverlos ahora provocaría un conflicto. `baseDir`/`jsonPath` ya apuntan
+	// explícitamente al directorio, así que basta con cambiar la clave de la
+	// colección — no hace falta que coincida con el nombre de carpeta.
+	'celebrity-events': defineCollection({
 		loader: createGalleryLoader({
 			baseDir: './public/assets/celebrities',
 			jsonPath: './src/content/celebrities/celebrities.json',
@@ -78,7 +86,11 @@ export const collections = {
 		}),
 		schema: gallerySchema,
 	}),
-	publicity: defineCollection({
+	// Colección renombrada: "publicity" → "campaigns" (ruta pública
+	// /campaigns/). Misma asimetría que "celebrity-events" arriba: el
+	// directorio de datos/assets se queda como "publicity" para no chocar con
+	// el otro agente que está trabajando en esos ficheros.
+	campaigns: defineCollection({
 		loader: createGalleryLoader({
 			baseDir: './public/assets/publicity',
 			jsonPath: './src/content/publicity/publicity.json',

@@ -23,7 +23,15 @@ export default defineConfig({
       prefixDefaultLocale: false, // ES en la raíz, EN en /en/
     },
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Excluye las rutas viejas del rename de Fase 2 (§4): son páginas de
+      // redirección estática (meta-refresh + canonical, ver
+      // src/components/RedirectPage.astro), no contenido indexable. El
+      // sitemap solo debe listar /campaigns/ y /celebrity-events/.
+      filter: (page) => !page.includes('/publicity/') && !page.includes('/celebrities/'),
+    }),
+  ],
   devToolbar: {
     enabled: false
   },

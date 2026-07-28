@@ -3,17 +3,26 @@ import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 import ThemeToggle from './ThemeToggle.astro';
 import { profile } from '../data/profile';
+import { getLocaleFromUrl, getTranslation } from '../i18n';
 
-/** Main menu items */
+const t = getTranslation(getLocaleFromUrl(Astro.url));
+
+/**
+ * Main menu items. Etiquetas por i18n (t.nav.*), no escritas a mano — ver
+ * plan/02-information-architecture/REVISION-v2.md §4 para el rename de
+ * "Publicidad" → "Campañas" y "Celebridades" → "Celebridades y eventos". El
+ * nav va en español aunque exista traducción EN: el resto del menú comparte
+ * idioma con la página actual, no se mezcla.
+ */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Inicio', href: '/' },
-	{ label: 'Editorial', href: '/editorials/' },
-	{ label: 'Publicidad', href: '/publicity/' },
-	{ label: 'Celebridades', href: '/celebrities/' },
-	{ label: 'Cine', href: '/films/' },
-	{ label: 'Runway', href: '/runway/' },
-	{ label: 'Sobre mí', href: '/about/' },
-	{ label: 'Contacto', href: '/contact/' },
+	{ label: t.nav.home, href: '/' },
+	{ label: t.nav.editorial, href: '/editorials/' },
+	{ label: t.nav.campaigns, href: '/campaigns/' },
+	{ label: t.nav.celebrityEvents, href: '/celebrity-events/' },
+	{ label: t.nav.films, href: '/films/' },
+	{ label: t.nav.runway, href: '/runway/' },
+	{ label: t.nav.about, href: '/about/' },
+	{ label: t.nav.contact, href: '/contact/' },
 ];
 
 /** Icon links to social media — sourced from src/data/profile.ts */

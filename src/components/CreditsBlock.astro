@@ -1,0 +1,210 @@
+---
+/**
+ * Bloque de créditos — requisito nº1 del rediseño (plan/02-information-architecture/REVISION-v2.md §2).
+ *
+ * El rol de Luisa en cada proyecto es el dato más importante de la ficha: debe
+ * leerse antes que nada, no quedar como letra pequeña al pie. Por eso el rol
+ * (y, si aplica, el nombre del estilista principal) es lo primero que pinta
+ * este componente, con la misma jerarquía tipográfica que el resto del sitio
+ * (font-brand + mayúsculas para etiquetas, cuerpo para valores — ver /about).
+ *
+ * Regla innegociable: si `role !== 'lead-stylist'`, el rol se pinta SIEMPRE, y
+ * si existe `leadStylist` también se pinta SIEMPRE. No hay caso en que se omita.
+ *
+ * Campos ausentes no se pintan: nada de placeholders ni relleno.
+ */
+import { getLocaleFromUrl, getTranslation } from "../i18n";
+
+interface Credits {
+	photographer?: string;
+	director?: string;
+	muah?: string;
+	talent?: string;
+	talentAgency?: string;
+	artDirection?: string;
+	production?: string;
+	location?: string;
+}
+
+interface Props {
+	role: "lead-stylist" | "assistant-stylist" | "wardrobe-assistant" | "co-stylist";
+	roleDetail?: string;
+	leadStylist?: string;
+	year?: number;
+	client?: string;
+	publication?: string;
+	format?:
+		| "editorial"
+		| "campaign"
+		| "social"
+		| "runway"
+		| "event"
+		| "film"
+		| "model-test";
+	credits?: Credits;
+}
+
+const { role, roleDetail, leadStylist, year, client, publication, format, credits } =
+	Astro.props;
+
+const t = getTranslation(getLocaleFromUrl(Astro.url));
+const c = t.credits;
+
+const roleLabel = c.role[role];
+const formatLabel = format === "model-test" ? c.format["model-test"] : undefined;
+
+const contextLine = [publication, client, year ? String(year) : undefined]
+	.filter((part): part is string => Boolean(part))
+	.join(" · ");
+
+const creditOrder: (keyof Credits)[] = [
+	"photographer",
+	"director",
+	"muah",
+	"talent",
+	"talentAgency",
+	"artDirection",
+	"production",
+	"location",
+];
+
+const creditRows = creditOrder
+	.map((key) => ({ key, label: c.labels[key], value: credits?.[key] }))
+	.filter(
+		(row): row is { key: keyof Credits; label: string; value: string } =>
+			Boolean(row.value),
+	);
+---
+
+<section class="credits-block" aria-label={roleLabel}>
+	<p class="role-line">
+		<span class="role-label">{roleLabel}</span>
+		{roleDetail && <span class="role-detail"> — {roleDetail}</span>}
+		{formatLabel && <span class="format-tag">{formatLabel}</span>}
+	</p>
+
+	{
+		leadStylist && (
+			<p class="lead-line">
+				<span class="lead-label">{c.leadStylistLabel}</span> {leadStylist}
+			</p>
+		)
+	}
+
+	{contextLine && <p class="context-line">{contextLine}</p>}
+
+	{
+		creditRows.length > 0 && (
+			<dl class="credits-list">
+				{creditRows.map(({ key, label, value }) => (
+					<div class="credit-row">
+						<dt class="credit-label">{label}</dt>
+						<dd class="credit-value">{value}</dd>
+					</div>
+				))}
+			</dl>
+		)
+	}
+</section>
+
+<style>
+	.credits-block {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+	}
+
+	.role-line {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		column-gap: 0.75rem;
+		row-gap: 0.25rem;
+	}
+
+	/* El rol es el dato más importante del bloque: se lee primero y a mayor
+	   tamaño que cualquier otra cosa aquí, incluida la descripción del proyecto. */
+	.role-label {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: var(--text-xl);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.role-detail {
+		font-size: var(--text-md);
+		color: var(--gray-50);
+	}
+
+	.format-tag {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.lead-line {
+		font-size: var(--text-base);
+		color: var(--gray-50);
+	}
+
+	.lead-label {
+		font-family: var(--font-brand);
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.context-line {
+		font-size: var(--text-base);
+		color: var(--gray-50);
+	}
+
+	.credits-list {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem 2rem;
+		margin: 0.5rem 0 0;
+		padding-top: 1rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.credit-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+		margin: 0;
+	}
+
+	.credit-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.credit-value {
+		margin: 0;
+		font-size: var(--text-base);
+		line-height: 1.4;
+		color: var(--gray-50);
+	}
+
+	@media (min-width: 50em) {
+		.role-label {
+			font-size: var(--text-2xl);
+		}
+
+		.credits-list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>
