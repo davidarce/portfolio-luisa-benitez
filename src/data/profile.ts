@@ -11,6 +11,12 @@ export const profile = {
 	name: 'Luisa Benítez',
 	role: 'Fashion Stylist',
 	baseCity: 'A Coruña',
+	/**
+	 * Región/país mostrado junto a `baseCity`. Antes vivía hardcodeado en
+	 * contact.astro; las páginas deben componerlo como
+	 * `${profile.baseCity}, ${profile.baseRegion}`.
+	 */
+	baseRegion: 'España',
 	availableForTravel: true,
 	languages: ['Español (nativo)', 'Inglés'],
 
@@ -33,20 +39,24 @@ export const profile = {
 	 */
 	cvPath: undefined as { es: string; en: string } | undefined,
 
+	/** Redacción cerrada en plan/03-content-pages/about-copy-final-es.md. */
 	services: [
 		'Estilismo editorial',
-		'Estilismo de campaña y lookbook',
-		'Vestuario de celebridades',
+		'Estilismo de campaña y colaboraciones de marca',
+		'Estilismo para celebridades y eventos',
 		'Asesoría de imagen',
-		'Personal shopping',
+		'Personal shopper',
 	],
 
-	/** TODO(H-5 / #12): confirmar lista definitiva con Luisa. */
+	/**
+	 * TODO(H-5 / #12): "Fucking Young" fuera — es el único de la lista sin
+	 * proyecto que lo respalde en src/content/. Si se confirma la
+	 * colaboración y el rol, se restaura junto con el proyecto, no antes.
+	 */
 	featuredIn: [
+		'Numéro Netherlands',
 		'Vogue Adria',
-		'Numéro',
 		'GQ México',
 		'Mode Magazine',
-		'Fucking Young',
 	],
 } as const;
