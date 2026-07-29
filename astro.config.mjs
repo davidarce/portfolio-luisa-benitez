@@ -25,14 +25,23 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Excluye las rutas viejas del rename de Fase 2 (§4), la colección
-      // "work" retirada en Fase 2 (§3, ver .sdd/phase2-projects/plan.md
-      // T003-T004) y /about/, que la home unificada (T004, ver
-      // .sdd/home-unificada/plan.md) convirtió en redirección a /#sobre-mi:
-      // página de redirección estática (meta-refresh + canonical, ver
-      // src/components/RedirectPage.astro), no contenido indexable.
-      // /contact/ vuelve a ser página propia (plan-v2.md T004) y ya no está
-      // excluida: vuelve a indexarse.
+      // El sitemap es la lista que le damos a Google diciendo "estas son mis
+      // páginas de verdad". Las rutas de aquí abajo siguen existiendo, pero
+      // como páginas de redirección (meta-refresh + canonical, ver
+      // src/components/RedirectPage.astro), no como contenido. Listarlas sería
+      // pedirle a Google que indexe un cartel de "nos hemos mudado".
+      //
+      // Qué es cada una:
+      //   /publicity/ y /celebrities/  rename de la Fase 2 (REVISION-v2 §4)
+      //   /work/                       colección de la plantilla, retirada
+      //   /about/                      fusionada en la home (/#sobre-mi)
+      //
+      // /contact/ NO está excluida: volvió a ser página propia y se indexa.
+      //
+      // CADUCIDAD: estas exclusiones desaparecen cuando se retiren las
+      // redirecciones. Revisar a partir de agosto de 2027 — el porqué, el
+      // plazo y cómo comprobar si ya sobran están documentados en la cabecera
+      // de src/components/RedirectPage.astro.
       filter: (page) =>
         !page.includes('/publicity/') &&
         !page.includes('/celebrities/') &&

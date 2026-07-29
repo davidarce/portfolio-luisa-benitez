@@ -19,6 +19,29 @@
  * Estas páginas se excluyen explícitamente del sitemap (ver el `filter` de
  * `sitemap()` en astro.config.mjs) para no anunciar las rutas viejas como
  * contenido indexable.
+ *
+ * ¿POR QUÉ MANTENER RUTAS QUE YA NO EXISTEN? No han dejado de existir: siguen
+ * generándose, pero como señal en vez de como contenido. El sitio lleva tiempo
+ * publicado en luisabenitez.es, así que esas URLs son públicas y pueden estar
+ * indexadas, guardadas en marcadores o compartidas por correo. Sin esta página,
+ * quien siga uno de esos enlaces recibe un 404 y Google pierde el
+ * posicionamiento en vez de trasladarlo a la ruta nueva.
+ *
+ * El argumento que más pesa no es el SEO: si Luisa mandó a una marca un enlace
+ * a /publicity/bruno-magli/, ese enlace tiene que seguir funcionando. Eso no
+ * caduca con el índice de Google.
+ *
+ * CADUCIDAD — creadas en julio de 2026. Revisar a partir de AGOSTO DE 2027 (un
+ * año, que es lo que recomienda Google, y aquí conviene alargarlo porque un
+ * meta-refresh es una señal más débil y más lenta que un 301 de verdad).
+ * Ver el issue de seguimiento en GitHub.
+ *
+ * Cómo comprobar si ya sobran, antes de quitarlas:
+ *   1. En Search Console, que las rutas viejas ya no aparezcan como indexadas
+ *      y que las nuevas sí.
+ *   2. Que no lleguen visitas a las rutas viejas (analítica, ver #48).
+ *   3. Buscar enlaces externos vivos hacia ellas (bio de Instagram, correos,
+ *      prensa). Este es el que suele decidir: mientras exista uno, se quedan.
  */
 interface Props {
 	to: string;
