@@ -98,7 +98,6 @@ export const es = {
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
-		cta: { contact: 'Contacto', instagram: 'Instagram' },
 	},
 	common: {
 		downloadCv: 'Descargar CV',

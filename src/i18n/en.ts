@@ -80,7 +80,6 @@ export const en: Translation = {
 			"Every brief asks for something different, and I don't treat them the same. An editorial can take maximalism — layers, texture, accessories with weight; a campaign asks for the product to lead and for the styling to step back. I enjoy the freedom of editorial more, but I respect the craft of commercial work and I know when to keep quiet. In both cases I'm after the same thing: that the look reads as the wearer's own, not as a costume.",
 		],
 		sections: { services: 'Services', featuredIn: 'Featured in' },
-		cta: { contact: 'Contact', instagram: 'Instagram' },
 	},
 	common: {
 		downloadCv: 'Download CV',
