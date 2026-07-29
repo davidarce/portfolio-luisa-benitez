@@ -4,18 +4,17 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Grid from "../../components/Grid.astro";
 import Card from "../../components/Card.astro";
+import { sortProjects } from "../../lib/sort-projects";
 
-const editorials = (await getCollection("editorials")).sort(
-    (a, b) => a.data.order - b.data.order,
-);
+const editorials = sortProjects(await getCollection("editorials"));
 ---
 
 <BaseLayout
     title="Editoriales | Luisa Benítez"
     description="Editoriales asistidas por Luisa Benítez"
 >
-    <div class="stack gap-20 lg:gap-48 px-10">
-        <main class="stack gap-20 lg:gap-48">
+    <div class="stack gap-20 lg:gap-48">
+        <main class="wrapper stack gap-20 lg:gap-48">
             <Grid variant="small">
                 {
                     editorials.map((editorial) => {

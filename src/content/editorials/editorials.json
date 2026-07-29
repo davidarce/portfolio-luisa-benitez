@@ -7,7 +7,9 @@
             "img": "/assets/editorials/miguel-herran/index.webp",
             "img_alt": "Editorial Numéro - Miguel Herrán",
             "cardSize": "normal",
-            "order": 1
+            "order": 1,
+            "role": "assistant-stylist",
+            "format": "editorial"
         },
         {
             "id": "2",
@@ -16,7 +18,9 @@
             "img": "/assets/editorials/vogue/index.webp",
             "img_alt": "Editorial Vogue",
             "cardSize": "normal",
-            "order": 2
+            "order": 2,
+            "role": "assistant-stylist",
+            "format": "editorial"
         },
         {
             "id": "3",
@@ -25,7 +29,9 @@
             "img": "/assets/editorials/martina/index.webp",
             "img_alt": "Editorial Numéro - Martina Cariddi",
             "cardSize": "normal",
-            "order": 3
+            "order": 3,
+            "role": "assistant-stylist",
+            "format": "editorial"
         },
         {
             "id": "4",
@@ -34,7 +40,9 @@
             "img": "/assets/editorials/isabeli/index.webp",
             "img_alt": "Editorial Numéro - Isabeli Fontana",
             "cardSize": "normal",
-            "order": 4
+            "order": 4,
+            "role": "assistant-stylist",
+            "format": "editorial"
         },
         {
             "id": "5",
@@ -43,7 +51,9 @@
             "img": "/assets/editorials/gq/index.webp",
             "img_alt": "Editorial GQ",
             "cardSize": "normal",
-            "order": 5
+            "order": 5,
+            "role": "assistant-stylist",
+            "format": "editorial"
         },
         {
             "id": "6",
@@ -52,7 +62,64 @@
             "img": "/assets/editorials/aminata/index.webp",
             "img_alt": "Editorial Aminata",
             "cardSize": "normal",
-            "order": 6
+            "order": 6,
+            "role": "lead-stylist",
+            "format": "editorial"
+        },
+        {
+            "id": "7",
+            "title": "Artego Magazine - Color Pop Garden",
+            "description": "Editorial Artego Magazine - Color Pop Garden",
+            "img": "/assets/editorials/artego-color-pop-garden/index.webp",
+            "img_alt": "Editorial Artego Magazine - Color Pop Garden",
+            "cardSize": "normal",
+            "order": 7,
+            "role": "lead-stylist",
+            "format": "editorial"
+        },
+        {
+            "id": "8",
+            "title": "pap magazine - The New Dandy",
+            "description": "Editorial pap magazine - The New Dandy",
+            "img": "/assets/editorials/pap-the-new-dandy/index.webp",
+            "img_alt": "Editorial pap magazine - The New Dandy",
+            "cardSize": "normal",
+            "order": 8,
+            "role": "lead-stylist",
+            "format": "editorial"
+        },
+        {
+            "id": "9",
+            "title": "Folie Magazine - Always Love",
+            "description": "Editorial Folie Magazine - Always Love",
+            "img": "/assets/editorials/folie-always-love/index.webp",
+            "img_alt": "Editorial Folie Magazine - Always Love",
+            "cardSize": "normal",
+            "order": 9,
+            "role": "lead-stylist",
+            "format": "editorial"
+        },
+        {
+            "id": "10",
+            "title": "Folie Magazine - Soft Tension",
+            "description": "Editorial Folie Magazine - Soft Tension",
+            "img": "/assets/editorials/folie-soft-tension/index.webp",
+            "img_alt": "Editorial Folie Magazine - Soft Tension",
+            "cardSize": "normal",
+            "order": 10,
+            "role": "lead-stylist",
+            "format": "editorial"
+        },
+        {
+            "id": "11",
+            "title": "Model Test - Isabel Arbós",
+            "description": "Model test con Isabel Arbós.",
+            "img": "/assets/editorials/isabel-arbos-model-test/index.webp",
+            "img_alt": "Model test con Isabel Arbós",
+            "cardSize": "normal",
+            "order": 11,
+            "role": "lead-stylist",
+            "format": "model-test"
         }
     ]
 }

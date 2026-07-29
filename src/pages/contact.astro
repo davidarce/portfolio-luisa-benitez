@@ -1,4 +1,10 @@
 ---
+// Página propia de contacto (plan-v2.md T004): vuelve a serlo tras la home
+// unificada. Diseño recuperado de git (feac143..db2353f, previo a c25cfb5,
+// donde /contact pasó a ser redirección) porque ya estaba validado por David
+// tras varias iteraciones — ver comentarios de .portrait/.panel abajo, que
+// documentan los desbordes concretos que arreglaron. La sección "Contacto"
+// sale de index.astro (T004) para no duplicar canales/datos en dos sitios.
 import { Image } from "astro:assets";
 import portrait from "../assets/portrait.webp";
 
@@ -130,8 +136,14 @@ const details: { label: string; value: string }[] = [
 
 	/* En móvil el alto va atado al viewport, no a una proporción fija: con 4/5
 	   el retrato se comía la pantalla y empujaba el email bajo el pliegue.
-	   Y en vez de cortarse en seco contra el fondo, se disuelve en él con una
-	   máscara: así la foto puede ser más alta sin dejar un borde duro. */
+	   Antes el borde inferior se disolvía en el fondo con un mask-image (en
+	   vez de cortarse en seco). Se quita: medido en Chromium, en tema claro
+	   la parte del seto (verde oscuro) y la portada de la revista bajo la
+	   máscara quedaban a media opacidad sobre blanco y se leían como un
+	   manchurrón gris sucio — el mismo defecto reportado en el borde de
+	   escritorio, solo que aquí ni siquiera hacía falta cruzar dos máscaras
+	   para que apareciera. En oscuro fundía limpio con el negro. Borde
+	   recto en ambos temas. */
 	.portrait :global(img) {
 		display: block;
 		width: 100%;
@@ -142,22 +154,6 @@ const details: { label: string; value: string }[] = [
 		object-fit: cover;
 		/* Descentrado a propósito: centrado deja un encuadre de foto de carnet. */
 		object-position: 50% 22%;
-		/* Solo se difumina abajo, donde la foto funde con el texto. Arriba se
-		   quitó: peleaba con el edificio claro del propio encuadre y en modo
-		   claro se leía como niebla sobre la imagen. El borde superior contra
-		   el nav es un límite deliberado. */
-		-webkit-mask-image: linear-gradient(
-			to bottom,
-			#000 0%,
-			#000 70%,
-			transparent 100%
-		);
-		mask-image: linear-gradient(
-			to bottom,
-			#000 0%,
-			#000 70%,
-			transparent 100%
-		);
 	}
 
 	.panel {
@@ -306,25 +302,22 @@ const details: { label: string; value: string }[] = [
 		}
 
 		/* Izquierda y abajo sangran contra el viewport: eso no es un corte, es
-		   sangrado. Se difuminan solo los bordes INTERNOS —arriba contra el nav
-		   y a la derecha contra el panel—, que sí son líneas duras dentro de la
-		   página. Dos máscaras cruzadas con `intersect`. */
+		   sangrado. Arriba (nav) y a la derecha (panel) el borde es limpio, sin
+		   máscara.
+		   Antes había dos máscaras cruzadas (`mask-composite: intersect`) para
+		   disolver esos dos bordes internos contra el fondo. En tema oscuro
+		   fundía bien con el negro, pero en tema claro los píxeles oscuros del
+		   retrato a media opacidad sobre blanco dejaban un halo gris sucio
+		   (parecía una sombra mal hecha, no un fundido) — reportado por David
+		   tras revisar en claro. Se quita: un borde recto entre foto y panel es
+		   un patrón habitual en layouts de dos columnas y aquí no hace falta el
+		   efecto para que se lea limpio en ningún tema. */
 		.portrait :global(img) {
 			position: absolute;
 			inset: 0;
 			height: 100%;
 			min-height: 0;
 			max-height: none;
-			-webkit-mask-image: linear-gradient(
-					to right,
-					#000 90%,
-					transparent 100%
-				),
-				linear-gradient(to bottom, transparent 0%, #000 5%);
-			mask-image: linear-gradient(to right, #000 90%, transparent 100%),
-				linear-gradient(to bottom, transparent 0%, #000 5%);
-			-webkit-mask-composite: source-in;
-			mask-composite: intersect;
 		}
 
 		.panel {

@@ -4,10 +4,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Grid from "../../components/Grid.astro";
 import Card from "../../components/Card.astro";
+import { sortProjects } from "../../lib/sort-projects";
 
-const films = (await getCollection("films")).sort(
-    (a, b) => a.data.order - b.data.order,
-);
+const films = sortProjects(await getCollection("films"));
 ---
 
 <BaseLayout
@@ -37,17 +36,3 @@ const films = (await getCollection("films")).sort(
         </main>
     </div>
 </BaseLayout>
-
-<style>
-    .wrapper {
-        width: 100%;
-        margin-inline: auto;
-        padding-inline: 1.5rem;
-    }
-
-    @media (min-width: 80em) {
-        .wrapper {
-            max-width: fit-content;
-        }
-    }
-</style>

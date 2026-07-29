@@ -2,103 +2,349 @@
 import { getCollection } from "astro:content";
 
 import { Image } from "astro:assets";
-import portrait from "../assets/portrait.webp";
+import heroPap from "../assets/hero/pap-the-new-dandy.webp";
+import heroArtego from "../assets/hero/artego-color-pop-garden.webp";
+import heroIsabelArbos from "../assets/hero/isabel-arbos-model-test.webp";
+import heroAitana from "../assets/hero/aitana-ysl.webp";
 
-import Hero from "../components/Hero.astro";
-import ContactCTA from "../components/ContactCTA.astro";
 import Grid from "../components/Grid.astro";
 import Icon from "../components/Icon.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+import Card from "../components/Card.astro";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/profile";
+import { sortProjects } from "../lib/sort-projects";
+import { getLocaleFromUrl, getTranslation } from "../i18n";
 
-const projects = (await getCollection("work"))
-	.sort((a, b) => a.data.order - b.data.order)
-	.slice(0, 4);
+const t = getTranslation(getLocaleFromUrl(Astro.url));
+
+/**
+ * Portada (T001, plan-v2.md). Rejilla de 4 fotos de sesión reales en vez de
+ * una sola imagen o un retrato — enseña rango en vez de convertir una foto
+ * en la única "voz" de la portada. Elegidas mirando las galerías (no por
+ * nombre de fichero), buscando variedad de color y de tipo de encargo:
+ *   - pap-the-new-dandy: editorial, monocromo rojo/burdeos.
+ *   - artego-color-pop-garden: editorial, verde jardín, tono pastel.
+ *   - isabel-arbos-model-test: model test, estudio gris neutro.
+ *   - aitana-ysl: estilismo de evento (YSL Beauty), fondo lila.
+ * Se descarta tania-deniz-coachella (candidata en heroes.md): su
+ * "index.webp" y el resto de fotos de esa sesión llevan un icono de
+ * altavoz/mute quemado en la esquina (son fotogramas de vídeo), justo el
+ * problema que heroes.md pedía evitar.
+ *
+ * Copiadas a src/assets/hero/ (no importadas desde public/) para que pasen
+ * por astro:assets: la variante de mosaico que se descartó en la
+ * comparación pesaba 632 KB porque sus imágenes vivían en public/ y se
+ * saltaban el procesado — ver T002 en plan-v2.md.
+ *
+ * El nombre y el rol NO se superponen a las fotos (ver <div class="hero-panel">
+ * más abajo): así el contraste no depende de qué imagen caiga detrás y no
+ * hace falta velo. Ese fue el fallo medido de la variante A (10,5:1 a costa
+ * de tapar el 85% de la imagen con un velo al 90%).
+ */
+const heroTiles = [
+	{
+		src: heroPap,
+		alt: "Editorial PAP Magazine — The New Dandy",
+		position: "50% 8%",
+		// Zoom leve: en la rejilla de escritorio (celda alta y estrecha) el
+		// wordmark "PAP" impreso abajo en la imagen (crédito de la propia
+		// editorial) queda dentro del encuadre con object-position solo. Un
+		// zoom moderado lo empuja fuera sin recortar la pose — misma técnica
+		// que en la Variante A/C de heroes.md, pero sin necesitar tapar nada
+		// con velo porque aquí el texto no vive sobre la imagen.
+		zoom: 1.2,
+	},
+	{ src: heroArtego, alt: "Editorial Artego — Color Pop Garden", position: "50% 10%", zoom: 1 },
+	{ src: heroIsabelArbos, alt: "Model test — Isabel Arbós", position: "50% 15%", zoom: 1 },
+	{
+		src: heroAitana,
+		alt: "Estilismo de evento — Aitana, YSL Beauty",
+		position: "50% 15%",
+		zoom: 1,
+	},
+] as const;
+
+// La colección "work" (plantilla de Astro, lorem ipsum) se retiró en la
+// Fase 2 — ver plan/02-information-architecture/REVISION-v2.md §3 y
+// .sdd/phase2-projects/plan.md T005. La home destaca ahora proyectos reales,
+// combinando los 5 listados y aplicando el mismo criterio de orden que ellos
+// (T001): principal antes que asistencia. Se mantienen 4 destacados, como
+// antes.
+const featuredCollections = [
+	"editorials",
+	"campaigns",
+	"celebrity-events",
+	"runway",
+	"films",
+] as const;
+
+const allProjects = (
+	await Promise.all(featuredCollections.map((collection) => getCollection(collection)))
+).flat();
+
+const featuredProjects = sortProjects(allProjects).slice(0, 4);
+
+// Home unificada (.sdd/home-unificada/plan.md) + recuperación de /contact
+// (plan-v2.md T004): la home mantiene portada, trabajos y "sobre mí", pero la
+// sección de contacto vuelve a vivir solo en src/pages/contact.astro — aquí
+// ya no se repiten canales ni datos de contacto. La copy de "sobre mí" sale
+// literal de t.about y t.profile, igual que antes.
+
+/** Idéntico a about.astro: dos pares fijos + "Disponibilidad" si el dato existe. */
+const aboutDetails: { label: string; value: string }[] = [
+	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
+	{ label: t.details.languages, value: t.profile.languages.join(", ") },
+];
+
+if (profile.availableForTravel) {
+	aboutDetails.push({
+		label: t.details.availability,
+		value: t.profile.travelNote,
+	});
+}
 ---
 
 <BaseLayout
-	title="Luisa Benítez — Estilista y Asesora de Imagen"
-	description="Portfolio de Luisa Benítez, estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper. Descubre sus trabajos en editoriales, publicidad, pasarela y cine."
+	title={t.meta.siteTitle}
+	description={t.meta.siteDescription}
 	path="/"
 >
 	<div class="stack gap-20">
-		<main class="wrapper stack gap-20">
-			<section class="wrapper about">
-				<Hero
-					title="Sobre Mí"
-					tagline="Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper"
-				>
-					<div class="hero-image-container">
-						<Image
-							src={portrait}
-							alt="Luisa Benítez smiling outdoors reading a fashion magazine"
-							loading="eager"
-							fetchpriority="high"
-						/>
-						<a
-							href={profile.instagram.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="instagram-link"
-						>
-							<Icon icon="instagram-logo" size="1.5em" />
-							{profile.instagram.handle}
-						</a>
-					</div>
-				</Hero>
-			</section>
+		<!--
+			Portada (T001, plan-v2.md). Sustituye al <Hero title="Sobre Mí"> y a
+			la variante de retrato único: el <h1> es el nombre, no "Sobre Mí", y
+			la imagen es una rejilla de 4 fotos (ver heroTiles arriba), no una
+			sola. El nombre/rol viven en su propio panel, aparte de las fotos —
+			nada de texto superpuesto ni velo. Ver heroTiles para la elección de
+			imágenes y el porqué de no repetir el fallo de la variante A.
 
+			Alineación unificada (post plan-v2): la sección lleva también la
+			clase .wrapper (mismo max-width/gutter que "Trabajos destacados" y
+			"Sobre mí" más abajo) para que .hero-grid arranque en el mismo borde
+			izquierdo que el resto de la página, en vez de sangrar a left: 0.
+			Antes la home tenía cuatro bordes izquierdos distintos medidos
+			(hero-grid, h2 "Trabajos destacados", h2 "Sobre mí", h1 del nombre);
+			ahora hero-grid, los h2 y el contenido de "Sobre mí" comparten uno
+			solo. El panel de texto (eyebrow/h1/tagline/instagram) sigue sin
+			alinearse a esa vertical a propósito: vive a la derecha de la
+			rejilla, no encima ni forzado al mismo margen.
+		-->
+		<section class="hero wrapper">
+			<div class="hero-grid">
+				{
+					heroTiles.map((tile) => (
+						<div class="hero-tile">
+							<Image
+								src={tile.src}
+								alt={tile.alt}
+								widths={[280, 420, 600, 800]}
+								sizes="(min-width: 50em) 23vw, 50vw"
+								loading="eager"
+								fetchpriority="high"
+								style={`object-position: ${tile.position}; transform: scale(${tile.zoom});`}
+							/>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="hero-panel">
+				<p class="eyebrow">{profile.role}</p>
+				<h1 class="headline">{profile.name}</h1>
+				<p class="tagline">
+					Estilista y asistente de moda, Diseñadora de Modas, Asesora de
+					Imagen y Personal Shopper
+				</p>
+				<a
+					href={profile.instagram.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="instagram-link"
+				>
+					<Icon icon="instagram-logo" size="1.5em" />
+					{profile.instagram.handle}
+					<span class="sr-only"> {t.common.newWindowHint}</span>
+				</a>
+			</div>
+		</section>
+
+		<main class="wrapper stack gap-20">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Alguno de mis trabajos como asistente</h3>
+					<h2>{t.home.featuredWorkTitle}</h2>
 				</header>
 
 				<div class="gallery">
 					<Grid variant="offset">
 						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
+							featuredProjects.map((project) => {
+								const { id, collection, data } = project;
+								const {
+									title,
+									img,
+									img_alt,
+									video,
+									cardSize,
+									aspectRatio,
+									objectPosition,
+									hasGallery,
+								} = data;
+
+								return (
+									<li>
+										<Card
+											id={id}
+											page={collection}
+											title={title}
+											img={img}
+											img_alt={img_alt}
+											video={video}
+											cardSize={cardSize}
+											aspectRatio={aspectRatio}
+											objectPosition={objectPosition}
+											disableLink={!hasGallery}
+										/>
+									</li>
+								);
+							})
 						}
 					</Grid>
 				</div>
 			</section>
-		</main>
 
-		<ContactCTA />
+			<!--
+				Sobre mí (T003, plan-v2.md; reorganizada a dos columnas en
+				escritorio). Sin retrato: el actual (calle, gafas de sol, sin
+				mirar a cámara) no da para acompañar la bio y su sitio natural es
+				/contact (T004). Todo el texto sale de t.about y t.profile — no se
+				escribe copy nueva.
+
+				En móvil (sin tocar) sigue siendo una sola columna: bio, luego
+				servicios, publicaciones y datos, en ese orden de DOM = orden
+				visual. A partir de 64em (ver .about-grid) la bio pasa a la
+				izquierda con su medida de 42rem intacta (no se ensancha: a 1280px
+				de contenido daría ~140 caracteres por línea, muy por encima del
+				rango legible 45-85) y .about-aside ocupa la columna derecha en
+				vez de quedar debajo, así se llena el hueco que antes quedaba
+				vacío junto a la bio.
+			-->
+			<section id="sobre-mi" class="about">
+				<div class="about-grid">
+					<div class="about-content">
+						<h2 class="section-heading">{t.about.eyebrow}</h2>
+
+						<div class="bio">
+							{t.about.bio.map((paragraph) => <p>{paragraph}</p>)}
+						</div>
+					</div>
+
+					<aside class="about-aside">
+						<section class="rule">
+							<h3 class="section-label">{t.about.sections.services}</h3>
+							<ul class="services" role="list">
+								{t.profile.services.map((service) => <li>{service}</li>)}
+							</ul>
+						</section>
+
+						<section class="rule">
+							<h3 class="section-label">{t.about.sections.featuredIn}</h3>
+							<ul class="wordmarks" role="list">
+								{profile.featuredIn.map((outlet) => <li>{outlet}</li>)}
+							</ul>
+						</section>
+
+						<dl class="details rule">
+							{
+								aboutDetails.map(({ label, value }) => (
+									<div>
+										<dt class="detail-label">{label}</dt>
+										<dd class="detail-value">{value}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</aside>
+				</div>
+			</section>
+		</main>
 	</div>
 </BaseLayout>
 
 <style>
-	.about {
+	/* ====================== Portada (hero) ====================== */
+
+	.hero {
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
 	}
 
-	img {
-		aspect-ratio: 1 / 1;
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
+	/*
+	 * Rejilla de 4 fotos (T001, plan-v2.md), no un retrato único. Sin
+	 * degradado de máscara ni velo: el nombre/rol viven en .hero-panel,
+	 * aparte de las imágenes, así que el contraste no depende de la foto.
+	 */
+	.hero-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 2px;
+		height: 42vh;
+		height: 42svh;
+		min-height: 18rem;
+		max-height: 28rem;
+		min-width: 0;
+	}
+
+	.hero-tile {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-tile :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
-		object-position: center;
-		box-shadow: var(--shadow-md);
 	}
 
-	.hero-image-container {
+	.hero-panel {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
+		gap: 1.25rem;
+		padding: 0.5rem 1.5rem 3rem;
+		min-width: 0;
+	}
+
+	.hero .eyebrow {
+		font-family: var(--font-brand);
+		font-size: var(--text-base);
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.hero .headline {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: clamp(3.5rem, 15vw, 8rem);
+		line-height: 0.9;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.hero .tagline {
+		max-width: 34ch;
+		font-size: var(--text-md);
+		line-height: 1.6;
+		color: var(--gray-50);
 	}
 
 	.instagram-link {
 		display: flex;
 		align-items: center;
+		align-self: flex-start;
 		gap: 0.5rem;
 		color: var(--gray-0);
 		text-decoration: none;
@@ -111,89 +357,47 @@ const projects = (await getCollection("work"))
 		color: var(--accent-regular);
 	}
 
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-50);
-	}
-
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
-
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
-
-	.roles {
-		display: none;
-	}
-
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: center;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
 	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 90% 1fr;
+		.hero {
+			flex-direction: row;
 		}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
+		.hero-grid {
+			/*
+			 * Se mantiene la rejilla 2×2 también en escritorio (no pasa a 4×1):
+			 * medido, 4 columnas dentro de un `flex: 5` que convive con un panel
+			 * de texto `flex: 6` dejaba cada foto en ~11% del ancho del viewport
+			 * pero estirada al alto completo del panel — lonchas verticales
+			 * altísimas donde no se reconocía nada. Con 2×2, cada celda es ~23%
+			 * del ancho y una altura propia (no heredada del panel de texto), lo
+			 * que da una proporción de foto de moda razonable en vez de una tira.
+			 * `height` escala con el ancho del viewport (58vw), así la
+			 * proporción de cada celda se mantiene constante entre breakpoints;
+			 * el `clamp` evita que crezca sin límite en pantallas muy anchas
+			 * (a 1920 ya toca el máximo y las celdas se acercan a cuadradas en
+			 * vez de seguir alargándose).
+			 */
+			flex: 5;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			height: clamp(26rem, 58vw, 44rem);
+			min-height: 0;
+			max-height: none;
 		}
 
-		section {
-			display: contents;
+		.hero-panel {
+			flex: 6;
+			justify-content: center;
+			gap: 1.75rem;
+			padding: 3rem 3rem 3rem 4rem;
+		}
+
+		.hero .tagline {
 			font-size: var(--text-lg);
 		}
-
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
-
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
-
-		.hero img {
-			aspect-ratio: 5 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
 	}
 
-	/* ====================================================== */
+	/* ====================== Trabajos destacados ====================== */
 
 	.section {
 		display: grid;
@@ -220,10 +424,6 @@ const projects = (await getCollection("work"))
 		z-index: -1;
 	}
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
-
 	.section-header {
 		justify-self: center;
 		text-align: center;
@@ -232,7 +432,7 @@ const projects = (await getCollection("work"))
 		color: var(--gray-0);
 	}
 
-	.section-header h3 {
+	.section-header h2 {
 		font-size: var(--text-2xl);
 	}
 
@@ -243,16 +443,12 @@ const projects = (await getCollection("work"))
 			gap: 5rem;
 		}
 
-		.section.with-cta {
-			grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
-		}
-
 		.section-header {
 			grid-area: header;
 			font-size: var(--text-lg);
 		}
 
-		.section-header h3 {
+		.section-header h2 {
 			font-size: var(--text-4xl);
 		}
 
@@ -264,31 +460,227 @@ const projects = (await getCollection("work"))
 		.gallery {
 			grid-area: gallery;
 		}
-
-		.cta {
-			grid-area: cta;
-		}
 	}
 
-	/* ====================================================== */
-
-	.mention-card {
+	/*
+	 * Sobre mí (T003, plan-v2.md; alineación revisada post plan-v2; a dos
+	 * columnas en escritorio). Sin retrato: columna estrecha, tratamiento
+	 * editorial, en vez de las dos columnas de la página /about original.
+	 *
+	 * Antes .about-content llevaba `margin-inline: auto` (columna centrada en
+	 * el ancho de .wrapper), tercer borde izquierdo distinto de la home. Se
+	 * alinea a la izquierda —igual que "Trabajos destacados" y .hero-grid—
+	 * conservando el max-width estrecho: columna angosta es correcto para la
+	 * legibilidad de la prosa, pero centrada no es lo mismo que alineada a la
+	 * izquierda.
+	 */
+	.about {
 		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	/*
+	 * En móvil y tablet (<64em) es una sola columna: .about-content
+	 * (eyebrow+bio) seguido de .about-aside (servicios/publicaciones/datos),
+	 * cada uno con su propio `gap: 2rem` interno y `gap: 2rem` entre ambos en
+	 * .about-grid — la misma separación vertical que había antes con todo en
+	 * un único contenedor. A partir de 64em .about-grid pasa a fila (ver
+	 * media query más abajo) y .about-content/.about-aside se convierten en
+	 * las dos columnas.
+	 */
+	.about-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.about-content {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 100%;
+		max-width: 42rem;
+		min-width: 0;
+	}
+
+	.about-aside {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 100%;
+		max-width: 42rem;
+		min-width: 0;
+	}
+
+	.section-heading {
+		font-family: var(--font-brand);
+		color: var(--gray-0);
+	}
+
+	.bio {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.bio p {
+		font-size: var(--text-md);
+		line-height: 1.75;
+		color: var(--gray-50);
+	}
+
+	/* Sustituye al <hr>: el filete pasa a border-top del bloque siguiente. */
+	.rule {
+		border-top: 1px solid var(--gray-700);
+		padding-block-start: 2rem;
+	}
+
+	.section-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+		margin-bottom: 1rem;
+	}
+
+	.services {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.services li {
+		font-size: var(--text-md);
+		line-height: 1.5;
+		color: var(--gray-50);
+	}
+
+	.wordmarks {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.wordmarks li {
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.details {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem 2rem;
+	}
+
+	.details div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+	}
+
+	.detail-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.detail-value {
+		margin: 0;
+		font-size: var(--text-base);
+		line-height: 1.4;
+		color: var(--gray-50);
 	}
 
 	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
+		.bio p {
+			font-size: var(--text-lg);
+			line-height: 1.7;
+		}
+
+		.details,
+		.wordmarks {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.section-label,
+		.detail-label {
+			font-size: var(--text-base);
+		}
+
+		.detail-value {
+			font-size: var(--text-md);
+		}
+	}
+
+	/*
+	 * Bio a la izquierda, servicios/publicaciones/datos a la derecha, en vez
+	 * de debajo: en escritorio la bio sola dejaba un hueco vacío enorme a su
+	 * derecha (columna acotada a 42rem dentro de un .wrapper de hasta
+	 * 83rem). La medida de la bio NO cambia aquí — .about-content conserva su
+	 * max-width: 42rem intacto vía `flex-basis`; lo único que cambia es que
+	 * .about-aside ocupa el espacio sobrante en vez de apilarse debajo.
+	 *
+	 * 64em (1024px) es el primer punto donde la fila cabe sin apretar: a esa
+	 * anchura el contenido de .wrapper mide 976px (1024 - 2×24px de
+	 * padding-inline), y 42rem (672px) + 3rem de gap (48px) deja 256px para
+	 * .about-aside — suficiente para una lista de una columna, no para dos,
+	 * así que aquí se fuerza `.details`/`.wordmarks` de vuelta a una sola
+	 * columna (la regla de 50em más arriba las pone a dos, pensada para el
+	 * tramo intermedio 50-64em donde todavía es una sola columna vertical).
+	 */
+	@media (min-width: 64em) {
+		.about-grid {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 3rem;
+		}
+
+		.about-content {
+			flex: 0 0 42rem;
+			width: auto;
+		}
+
+		.about-aside {
+			flex: 1;
+			width: auto;
+			max-width: none;
+		}
+
+		.details,
+		.wordmarks {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/*
+	 * Anillo de foco propio y tokenizado, igual que about.astro/contact.astro:
+	 * el único cue de foco de estos enlaces era el cambio de color, y en tema
+	 * claro --link-color contra --gray-0 da 1,12:1 (indistinguible). --gray-0
+	 * sobre --gray-999 es el máximo contraste posible en ambos temas.
+	 */
+	a:focus-visible {
+		outline: 2px solid var(--gray-0);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.instagram-link {
+			transition: none;
 		}
 	}
 </style>

@@ -7,7 +7,9 @@
             "img": "/assets/celebrities/miguel-herran/index.webp",
             "img_alt": "Miguel Herrán en evento Chaumet",
             "cardSize": "normal",
-            "order": 1
+            "order": 1,
+            "role": "assistant-stylist",
+            "format": "event"
         },
         {
             "id": "2",
@@ -16,7 +18,9 @@
             "img": "/assets/celebrities/aitana/index.webp",
             "img_alt": "Aitana en evento YSL Beauty",
             "cardSize": "normal",
-            "order": 3
+            "order": 3,
+            "role": "assistant-stylist",
+            "format": "event"
         },
         {
             "id": "3",
@@ -25,7 +29,9 @@
             "img": "/assets/celebrities/zara/index.webp",
             "img_alt": "Zara Larsson en evento Amaze Festival",
             "cardSize": "normal",
-            "order": 2
+            "order": 2,
+            "role": "assistant-stylist",
+            "format": "event"
         },
         {
             "id": "4",
@@ -34,7 +40,64 @@
             "img": "/assets/celebrities/aron-piper/index.webp",
             "img_alt": "Aron Piper en evento YSL Beauty",
             "cardSize": "normal",
-            "order": 4
+            "order": 4,
+            "role": "assistant-stylist",
+            "format": "event"
+        },
+        {
+            "id": "5",
+            "title": "Maica Benedicto - Supervivientes",
+            "description": "Estilismo para Maica Benedicto en su paso por el plató de Supervivientes.",
+            "img": "/assets/celebrities/maica-supervivientes/index.webp",
+            "img_alt": "Maica Benedicto en plató de Supervivientes",
+            "cardSize": "normal",
+            "order": 5,
+            "role": "lead-stylist",
+            "format": "event"
+        },
+        {
+            "id": "6",
+            "title": "Tania Deniz - Coachella",
+            "description": "Estilismo para Tania Deniz durante Coachella.",
+            "img": "/assets/celebrities/tania-deniz-coachella/index.webp",
+            "img_alt": "Tania Deniz en Coachella",
+            "cardSize": "normal",
+            "order": 6,
+            "role": "lead-stylist",
+            "format": "event"
+        },
+        {
+            "id": "7",
+            "title": "Ruth Basauri - Coachella",
+            "description": "Estilismo para Ruth Basauri durante Coachella.",
+            "img": "/assets/celebrities/ruth-basauri-coachella/index.webp",
+            "img_alt": "Ruth Basauri en Coachella",
+            "cardSize": "normal",
+            "order": 7,
+            "role": "lead-stylist",
+            "format": "event"
+        },
+        {
+            "id": "8",
+            "title": "Maica Benedicto - Premios Influencers Awards",
+            "description": "Estilismo para Maica Benedicto en los Premios Influencers Awards.",
+            "img": "/assets/celebrities/maica-premios-influencers/index.webp",
+            "img_alt": "Maica Benedicto en los Premios Influencers Awards",
+            "cardSize": "normal",
+            "order": 8,
+            "role": "lead-stylist",
+            "format": "event"
+        },
+        {
+            "id": "9",
+            "title": "Alex Saint - Festival de Málaga",
+            "description": "Estilismo para Alex Saint en el Festival de Málaga.",
+            "img": "/assets/celebrities/alex-saint-malaga/index.webp",
+            "img_alt": "Alex Saint en el Festival de Málaga",
+            "cardSize": "normal",
+            "order": 9,
+            "role": "lead-stylist",
+            "format": "event"
         }
     ]
 }

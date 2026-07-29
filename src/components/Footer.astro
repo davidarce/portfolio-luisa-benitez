@@ -19,39 +19,50 @@ const socials: { label: string; href: string; icon: keyof typeof iconPaths; exte
 ---
 
 <footer>
-	<div class="group">
-		<p>&copy; {currentYear} {profile.name}</p>
-	</div>
-	<div class="socials">
-		{
-			socials.map(({ label, href, icon, external }) => (
-				<a
-					href={href}
-					class="social"
-					target={external ? '_blank' : undefined}
-					rel={external ? 'noopener noreferrer' : undefined}
-				>
-					<span class="sr-only">
-						{label}
-						{external && ` ${t.common.newWindowHint}`}
-					</span>
-					<Icon icon={icon} />
-				</a>
-			))
-		}
+	<div class="wrapper footer-inner">
+		<div class="group">
+			<p>&copy; {currentYear} {profile.name}</p>
+		</div>
+		<div class="socials">
+			{
+				socials.map(({ label, href, icon, external }) => (
+					<a
+						href={href}
+						class="social"
+						target={external ? '_blank' : undefined}
+						rel={external ? 'noopener noreferrer' : undefined}
+					>
+						<span class="sr-only">
+							{label}
+							{external && ` ${t.common.newWindowHint}`}
+						</span>
+						<Icon icon={icon} />
+					</a>
+				))
+			}
+		</div>
 	</div>
 </footer>
 <style>
 	footer {
+		margin-top: auto;
+		padding-block: 3rem;
+		color: var(--gray-0);
+		font-size: var(--text-sm);
+	}
+
+	/*
+	 * El margen lateral del pie usa la misma clase .wrapper que el resto del
+	 * sitio (definida en BaseLayout.astro como `is:global`), para que el
+	 * borde izquierdo coincida con el de la home y las páginas de categoría
+	 * en cualquier viewport.
+	 */
+	.footer-inner {
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
-		margin-top: auto;
-		padding: 3rem 2rem 3rem;
 		align-items: center;
 		text-align: center;
-		color: var(--gray-0);
-		font-size: var(--text-sm);
 	}
 
 	.group {
@@ -90,10 +101,13 @@ const socials: { label: string; href: string; icon: keyof typeof iconPaths; exte
 
 	@media (min-width: 50em) {
 		footer {
+			padding-block: 2.5rem;
+		}
+
+		.footer-inner {
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			padding: 2.5rem 5rem;
 		}
 
 		.group {

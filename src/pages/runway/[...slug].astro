@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 import ContactCTA from "../../components/ContactCTA.astro";
+import CreditsBlock from "../../components/CreditsBlock.astro";
 import Hero from "../../components/Hero.astro";
 import Icon from "../../components/Icon.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -43,6 +44,16 @@ const { entry } = Astro.props;
             </header>
             <main class="wrapper">
                 <div class="stack gap-10">
+                    <CreditsBlock
+                        role={entry.data.role}
+                        roleDetail={entry.data.roleDetail}
+                        leadStylist={entry.data.leadStylist}
+                        year={entry.data.year}
+                        client={entry.data.client}
+                        publication={entry.data.publication}
+                        format={entry.data.format}
+                        credits={entry.data.credits}
+                    />
                     <Grid variant="small">
                         {
                             entry.data.images.map((img) => {
@@ -132,9 +143,13 @@ const { entry } = Astro.props;
         border: 1px solid var(--gray-800);
     }
 
+    /* aspect-ratio reserva la altura del ítem antes de que la imagen (o vídeo)
+       cargue. Ver editorials/[...slug].astro para el diagnóstico completo del
+       bug de lazy-loading que arregla. */
     .gallery-item {
         overflow: hidden;
         border-radius: 1.5rem;
+        aspect-ratio: 3 / 4;
     }
 
     .gallery-item img,

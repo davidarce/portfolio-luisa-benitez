@@ -7,7 +7,8 @@
             "img": "/assets/films/la-mitad-de-ana/index.webp",
             "img_alt": "La Mitad de Ana",
             "cardSize": "normal",
-            "order": 1
+            "order": 1,
+            "role": "assistant-stylist"
         }
     ]
 }

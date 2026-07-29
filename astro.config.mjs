@@ -23,7 +23,32 @@ export default defineConfig({
       prefixDefaultLocale: false, // ES en la raíz, EN en /en/
     },
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // El sitemap es la lista que le damos a Google diciendo "estas son mis
+      // páginas de verdad". Las rutas de aquí abajo siguen existiendo, pero
+      // como páginas de redirección (meta-refresh + canonical, ver
+      // src/components/RedirectPage.astro), no como contenido. Listarlas sería
+      // pedirle a Google que indexe un cartel de "nos hemos mudado".
+      //
+      // Qué es cada una:
+      //   /publicity/ y /celebrities/  rename de la Fase 2 (REVISION-v2 §4)
+      //   /work/                       colección de la plantilla, retirada
+      //   /about/                      fusionada en la home (/#sobre-mi)
+      //
+      // /contact/ NO está excluida: volvió a ser página propia y se indexa.
+      //
+      // CADUCIDAD: estas exclusiones desaparecen cuando se retiren las
+      // redirecciones. Revisar a partir de agosto de 2027 — el porqué, el
+      // plazo y cómo comprobar si ya sobran están documentados en la cabecera
+      // de src/components/RedirectPage.astro.
+      filter: (page) =>
+        !page.includes('/publicity/') &&
+        !page.includes('/celebrities/') &&
+        !page.includes('/work/') &&
+        !page.endsWith('/about/'),
+    }),
+  ],
   devToolbar: {
     enabled: false
   },

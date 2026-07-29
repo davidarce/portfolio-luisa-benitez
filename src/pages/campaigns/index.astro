@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Grid from "../../components/Grid.astro";
+import Card from "../../components/Card.astro";
+import { sortProjects } from "../../lib/sort-projects";
+
+const campaigns = sortProjects(await getCollection("campaigns"));
+---
+
+<BaseLayout
+    title="Campañas | Luisa Benítez"
+    description="Campañas y colaboraciones de marca asistidas por Luisa Benítez"
+>
+    <div class="stack gap-20 lg:gap-48">
+        <main class="wrapper stack gap-20 lg:gap-48">
+            <Grid variant="small">
+                {
+                    campaigns.map((campaign) => {
+                        const { id, data } = campaign;
+                        const {
+                            title,
+                            img,
+                            img_alt,
+                            video,
+                            cardSize,
+                            aspectRatio,
+                            objectPosition,
+                            hasGallery,
+                        } = data;
+
+                        return (
+                            <li>
+                                <Card
+                                    id={id}
+                                    page="campaigns"
+                                    title={title}
+                                    img={img}
+                                    img_alt={img_alt}
+                                    video={video}
+                                    cardSize={cardSize}
+                                    aspectRatio={aspectRatio}
+                                    objectPosition={objectPosition}
+                                    disableLink={!hasGallery}
+                                />
+                            </li>
+                        );
+                    })
+                }
+            </Grid>
+        </main>
+    </div>
+</BaseLayout>

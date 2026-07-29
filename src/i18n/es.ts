@@ -7,9 +7,10 @@
  * inglés. Los VALORES pueden diferir (para eso es una traducción); lo que se
  * comparte es la estructura.
  *
- * Alcance actual (P4-2 + P4-3 + P4-4): los strings de UI, la parte traducible
- * del perfil y la prosa del About. Quedan fuera las descripciones de proyecto y
- * las categorías renombradas de la Fase 2, que llegan cuando ese contenido esté
+ * Alcance actual (P4-2 + P4-3 + P4-4 + rename Fase 2 §4): los strings de UI
+ * —incluidas las etiquetas de nav renombradas "Campañas" / "Celebridades y
+ * eventos"—, la parte traducible del perfil y la prosa del About. Quedan
+ * fuera las descripciones de proyecto, que llegan cuando ese contenido esté
  * cerrado.
  */
 export const es = {
@@ -21,12 +22,24 @@ export const es = {
 	nav: {
 		home: 'Inicio',
 		editorial: 'Editorial',
-		publicity: 'Publicidad',
-		celebrities: 'Celebridades',
+		campaigns: 'Campañas',
+		celebrityEvents: 'Celebridades y eventos',
 		films: 'Cine',
 		runway: 'Runway',
 		about: 'Sobre mí',
 		contact: 'Contacto',
+	},
+	/**
+	 * Home (/). Alcance mínimo a propósito (ver .sdd/phase2-projects/plan.md
+	 * T006, no-objetivos): el resto del texto de la home sigue escrito a mano
+	 * en src/pages/index.astro, solo este titular pasa por i18n porque es el
+	 * que cambia con la Fase 2. PENDIENTE DE APROBACIÓN DE DAVID: el texto es
+	 * un cierre neutro y honesto ("alguno de mis trabajos como asistente" deja
+	 * de ser cierto en cuanto la home destaca primero el trabajo como
+	 * principal), pero no es copy final aprobada.
+	 */
+	home: {
+		featuredWorkTitle: 'Trabajos destacados',
 	},
 	contact: {
 		/** Título de la pestaña. Distinto de `title`, que es el titular de la página. */
@@ -85,13 +98,41 @@ export const es = {
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
-		cta: { contact: 'Contacto', instagram: 'Instagram' },
 	},
 	common: {
 		downloadCv: 'Descargar CV',
 		newWindowHint: '(se abre en una pestaña nueva)',
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
 		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
+	},
+	/**
+	 * Bloque de créditos de las páginas de detalle (requisito nº1 de la Fase 2,
+	 * ver plan/02-information-architecture/REVISION-v2.md §2). `role` cubre los
+	 * 4 valores del enum de `gallerySchema` en src/content.config.ts; `labels`
+	 * cubre los campos opcionales de `credits`. `format` solo traduce
+	 * `model-test`: el resto de valores del enum no se pintan en el bloque.
+	 */
+	credits: {
+		role: {
+			'lead-stylist': 'Estilista principal',
+			'assistant-stylist': 'Asistente de estilismo',
+			'wardrobe-assistant': 'Asistente de vestuario',
+			'co-stylist': 'Co-estilista',
+		},
+		leadStylistLabel: 'Estilista principal:',
+		labels: {
+			photographer: 'Fotografía',
+			director: 'Dirección',
+			muah: 'Maquillaje y peluquería',
+			talent: 'Talento',
+			talentAgency: 'Agencia',
+			artDirection: 'Dirección de arte',
+			production: 'Producción',
+			location: 'Localización',
+		},
+		format: {
+			'model-test': 'Model test',
+		},
 	},
 } as const;
 
