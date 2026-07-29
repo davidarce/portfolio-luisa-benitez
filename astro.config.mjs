@@ -27,17 +27,17 @@ export default defineConfig({
     sitemap({
       // Excluye las rutas viejas del rename de Fase 2 (§4), la colección
       // "work" retirada en Fase 2 (§3, ver .sdd/phase2-projects/plan.md
-      // T003-T004) y /about//contact/, que la home unificada (T004, ver
-      // .sdd/home-unificada/plan.md) convirtió en redirecciones a /#sobre-mi
-      // y /#contacto: todas son páginas de redirección estática
-      // (meta-refresh + canonical, ver src/components/RedirectPage.astro),
-      // no contenido indexable.
+      // T003-T004) y /about/, que la home unificada (T004, ver
+      // .sdd/home-unificada/plan.md) convirtió en redirección a /#sobre-mi:
+      // página de redirección estática (meta-refresh + canonical, ver
+      // src/components/RedirectPage.astro), no contenido indexable.
+      // /contact/ vuelve a ser página propia (plan-v2.md T004) y ya no está
+      // excluida: vuelve a indexarse.
       filter: (page) =>
         !page.includes('/publicity/') &&
         !page.includes('/celebrities/') &&
         !page.includes('/work/') &&
-        !page.endsWith('/about/') &&
-        !page.endsWith('/contact/'),
+        !page.endsWith('/about/'),
     }),
   ],
   devToolbar: {

@@ -2,9 +2,11 @@
 import { getCollection } from "astro:content";
 
 import { Image } from "astro:assets";
-import portrait from "../assets/portrait.webp";
+import heroPap from "../assets/hero/pap-the-new-dandy.webp";
+import heroArtego from "../assets/hero/artego-color-pop-garden.webp";
+import heroIsabelArbos from "../assets/hero/isabel-arbos-model-test.webp";
+import heroAitana from "../assets/hero/aitana-ysl.webp";
 
-import CvDownloadLink from "../components/CvDownloadLink.astro";
 import Grid from "../components/Grid.astro";
 import Icon from "../components/Icon.astro";
 import Card from "../components/Card.astro";
@@ -15,6 +17,53 @@ import { sortProjects } from "../lib/sort-projects";
 import { getLocaleFromUrl, getTranslation } from "../i18n";
 
 const t = getTranslation(getLocaleFromUrl(Astro.url));
+
+/**
+ * Portada (T001, plan-v2.md). Rejilla de 4 fotos de sesión reales en vez de
+ * una sola imagen o un retrato — enseña rango en vez de convertir una foto
+ * en la única "voz" de la portada. Elegidas mirando las galerías (no por
+ * nombre de fichero), buscando variedad de color y de tipo de encargo:
+ *   - pap-the-new-dandy: editorial, monocromo rojo/burdeos.
+ *   - artego-color-pop-garden: editorial, verde jardín, tono pastel.
+ *   - isabel-arbos-model-test: model test, estudio gris neutro.
+ *   - aitana-ysl: estilismo de evento (YSL Beauty), fondo lila.
+ * Se descarta tania-deniz-coachella (candidata en heroes.md): su
+ * "index.webp" y el resto de fotos de esa sesión llevan un icono de
+ * altavoz/mute quemado en la esquina (son fotogramas de vídeo), justo el
+ * problema que heroes.md pedía evitar.
+ *
+ * Copiadas a src/assets/hero/ (no importadas desde public/) para que pasen
+ * por astro:assets: la variante de mosaico que se descartó en la
+ * comparación pesaba 632 KB porque sus imágenes vivían en public/ y se
+ * saltaban el procesado — ver T002 en plan-v2.md.
+ *
+ * El nombre y el rol NO se superponen a las fotos (ver <div class="hero-panel">
+ * más abajo): así el contraste no depende de qué imagen caiga detrás y no
+ * hace falta velo. Ese fue el fallo medido de la variante A (10,5:1 a costa
+ * de tapar el 85% de la imagen con un velo al 90%).
+ */
+const heroTiles = [
+	{
+		src: heroPap,
+		alt: "Editorial PAP Magazine — The New Dandy",
+		position: "50% 8%",
+		// Zoom leve: en la rejilla de escritorio (celda alta y estrecha) el
+		// wordmark "PAP" impreso abajo en la imagen (crédito de la propia
+		// editorial) queda dentro del encuadre con object-position solo. Un
+		// zoom moderado lo empuja fuera sin recortar la pose — misma técnica
+		// que en la Variante A/C de heroes.md, pero sin necesitar tapar nada
+		// con velo porque aquí el texto no vive sobre la imagen.
+		zoom: 1.2,
+	},
+	{ src: heroArtego, alt: "Editorial Artego — Color Pop Garden", position: "50% 10%", zoom: 1 },
+	{ src: heroIsabelArbos, alt: "Model test — Isabel Arbós", position: "50% 15%", zoom: 1 },
+	{
+		src: heroAitana,
+		alt: "Estilismo de evento — Aitana, YSL Beauty",
+		position: "50% 15%",
+		zoom: 1,
+	},
+] as const;
 
 // La colección "work" (plantilla de Astro, lorem ipsum) se retiró en la
 // Fase 2 — ver plan/02-information-architecture/REVISION-v2.md §3 y
@@ -36,11 +85,11 @@ const allProjects = (
 
 const featuredProjects = sortProjects(allProjects).slice(0, 4);
 
-// Home unificada (.sdd/home-unificada/plan.md): antes /, /about/ y /contact/
-// eran tres páginas que repetían bio, servicios y canales. Ahora es una sola
-// página — portada → trabajos → sobre mí → contacto — y esos bloques solo
-// existen aquí. La copy sale literal de t.about y t.profile (about.astro) y
-// t.contact/t.channels/t.details (contact.astro); no se escribe texto nuevo.
+// Home unificada (.sdd/home-unificada/plan.md) + recuperación de /contact
+// (plan-v2.md T004): la home mantiene portada, trabajos y "sobre mí", pero la
+// sección de contacto vuelve a vivir solo en src/pages/contact.astro — aquí
+// ya no se repiten canales ni datos de contacto. La copy de "sobre mí" sale
+// literal de t.about y t.profile, igual que antes.
 
 /** Idéntico a about.astro: dos pares fijos + "Disponibilidad" si el dato existe. */
 const aboutDetails: { label: string; value: string }[] = [
@@ -54,35 +103,6 @@ if (profile.availableForTravel) {
 		value: t.profile.travelNote,
 	});
 }
-
-/** Idéntico a contact.astro. */
-const channels: { label: string; value: string; href: string; external?: boolean }[] = [
-	{
-		label: t.channels.email,
-		value: profile.email,
-		href: `mailto:${profile.email}`,
-	},
-	{
-		label: t.channels.instagram,
-		value: profile.instagram.handle,
-		href: profile.instagram.url,
-		external: true,
-	},
-];
-
-if (profile.linkedin) {
-	channels.push({
-		label: t.channels.linkedin,
-		value: t.channels.linkedinValue,
-		href: profile.linkedin,
-		external: true,
-	});
-}
-
-const contactDetails: { label: string; value: string }[] = [
-	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
-	{ label: t.details.languages, value: t.profile.languages.join(", ") },
-];
 ---
 
 <BaseLayout
@@ -92,21 +112,41 @@ const contactDetails: { label: string; value: string }[] = [
 >
 	<div class="stack gap-20">
 		<!--
-			Portada (T001). Sustituye al <Hero title="Sobre Mí">: el <h1> pasa a
-			ser el nombre, no "Sobre Mí". Reutiliza el lenguaje visual de
-			/contact.astro (eyebrow, titular en --font-brand, retrato a sangre con
-			máscara) para que se lea como parte del mismo sitio.
+			Portada (T001, plan-v2.md). Sustituye al <Hero title="Sobre Mí"> y a
+			la variante de retrato único: el <h1> es el nombre, no "Sobre Mí", y
+			la imagen es una rejilla de 4 fotos (ver heroTiles arriba), no una
+			sola. El nombre/rol viven en su propio panel, aparte de las fotos —
+			nada de texto superpuesto ni velo. Ver heroTiles para la elección de
+			imágenes y el porqué de no repetir el fallo de la variante A.
+
+			Alineación unificada (post plan-v2): la sección lleva también la
+			clase .wrapper (mismo max-width/gutter que "Trabajos destacados" y
+			"Sobre mí" más abajo) para que .hero-grid arranque en el mismo borde
+			izquierdo que el resto de la página, en vez de sangrar a left: 0.
+			Antes la home tenía cuatro bordes izquierdos distintos medidos
+			(hero-grid, h2 "Trabajos destacados", h2 "Sobre mí", h1 del nombre);
+			ahora hero-grid, los h2 y el contenido de "Sobre mí" comparten uno
+			solo. El panel de texto (eyebrow/h1/tagline/instagram) sigue sin
+			alinearse a esa vertical a propósito: vive a la derecha de la
+			rejilla, no encima ni forzado al mismo margen.
 		-->
-		<section class="hero">
-			<div class="hero-portrait">
-				<Image
-					src={portrait}
-					alt={t.common.portraitAlt}
-					widths={[600, 900, 1200]}
-					sizes="(min-width: 50em) 46vw, 100vw"
-					loading="eager"
-					fetchpriority="high"
-				/>
+		<section class="hero wrapper">
+			<div class="hero-grid">
+				{
+					heroTiles.map((tile) => (
+						<div class="hero-tile">
+							<Image
+								src={tile.src}
+								alt={tile.alt}
+								widths={[280, 420, 600, 800]}
+								sizes="(min-width: 50em) 23vw, 50vw"
+								loading="eager"
+								fetchpriority="high"
+								style={`object-position: ${tile.position}; transform: scale(${tile.zoom});`}
+							/>
+						</div>
+					))
+				}
 			</div>
 
 			<div class="hero-panel">
@@ -174,99 +214,58 @@ const contactDetails: { label: string; value: string }[] = [
 			</section>
 
 			<!--
-				Sobre mí (T002). Dos columnas a partir de 50em: retrato a la
-				izquierda, los tres párrafos a la derecha; en móvil, una columna.
-				Debajo: servicios, publicaciones y datos. Todo el texto sale de
-				t.about y t.profile — no se escribe copy nueva.
+				Sobre mí (T003, plan-v2.md; reorganizada a dos columnas en
+				escritorio). Sin retrato: el actual (calle, gafas de sol, sin
+				mirar a cámara) no da para acompañar la bio y su sitio natural es
+				/contact (T004). Todo el texto sale de t.about y t.profile — no se
+				escribe copy nueva.
+
+				En móvil (sin tocar) sigue siendo una sola columna: bio, luego
+				servicios, publicaciones y datos, en ese orden de DOM = orden
+				visual. A partir de 64em (ver .about-grid) la bio pasa a la
+				izquierda con su medida de 42rem intacta (no se ensancha: a 1280px
+				de contenido daría ~140 caracteres por línea, muy por encima del
+				rango legible 45-85) y .about-aside ocupa la columna derecha en
+				vez de quedar debajo, así se llena el hueco que antes quedaba
+				vacío junto a la bio.
 			-->
 			<section id="sobre-mi" class="about">
-				<div class="about-portrait">
-					<Image
-						src={portrait}
-						alt={t.common.portraitAlt}
-						widths={[400, 600, 800]}
-						sizes="(min-width: 50em) 34vw, 100vw"
-						loading="lazy"
-					/>
-				</div>
+				<div class="about-grid">
+					<div class="about-content">
+						<h2 class="section-heading">{t.about.eyebrow}</h2>
 
-				<div class="about-content">
-					<h2 class="section-heading">{t.about.eyebrow}</h2>
-
-					<div class="bio">
-						{t.about.bio.map((paragraph) => <p>{paragraph}</p>)}
+						<div class="bio">
+							{t.about.bio.map((paragraph) => <p>{paragraph}</p>)}
+						</div>
 					</div>
 
-					<section class="rule">
-						<h3 class="section-label">{t.about.sections.services}</h3>
-						<ul class="services" role="list">
-							{t.profile.services.map((service) => <li>{service}</li>)}
-						</ul>
-					</section>
+					<aside class="about-aside">
+						<section class="rule">
+							<h3 class="section-label">{t.about.sections.services}</h3>
+							<ul class="services" role="list">
+								{t.profile.services.map((service) => <li>{service}</li>)}
+							</ul>
+						</section>
 
-					<section class="rule">
-						<h3 class="section-label">{t.about.sections.featuredIn}</h3>
-						<ul class="wordmarks" role="list">
-							{profile.featuredIn.map((outlet) => <li>{outlet}</li>)}
-						</ul>
-					</section>
+						<section class="rule">
+							<h3 class="section-label">{t.about.sections.featuredIn}</h3>
+							<ul class="wordmarks" role="list">
+								{profile.featuredIn.map((outlet) => <li>{outlet}</li>)}
+							</ul>
+						</section>
 
-					<dl class="details rule">
-						{
-							aboutDetails.map(({ label, value }) => (
-								<div>
-									<dt class="detail-label">{label}</dt>
-									<dd class="detail-value">{value}</dd>
-								</div>
-							))
-						}
-					</dl>
+						<dl class="details rule">
+							{
+								aboutDetails.map(({ label, value }) => (
+									<div>
+										<dt class="detail-label">{label}</dt>
+										<dd class="detail-value">{value}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</aside>
 				</div>
-			</section>
-
-			<!--
-				Contacto (T003). Reutiliza lo que hoy hace contact.astro: canales y
-				datos, con CvDownloadLink (se oculta solo mientras cvPath sea
-				undefined). Sin retrato propio: ya hay dos en la página.
-			-->
-			<section id="contacto" class="contact">
-				<p class="eyebrow">{t.contact.eyebrow}</p>
-				<h2 class="headline">{t.contact.title}</h2>
-				<p class="lead">{t.contact.lead}</p>
-
-				<ul class="channels">
-					{
-						channels.map(({ label, value, href, external }) => (
-							<li>
-								<span class="channel-label">{label}</span>
-								<a
-									class="channel-value"
-									href={href}
-									target={external ? "_blank" : undefined}
-									rel={external ? "noopener noreferrer" : undefined}
-								>
-									{value}
-									{external && (
-										<span class="sr-only"> {t.common.newWindowHint}</span>
-									)}
-								</a>
-							</li>
-						))
-					}
-				</ul>
-
-				<dl class="details">
-					{
-						contactDetails.map(({ label, value }) => (
-							<div>
-								<dt class="detail-label">{label}</dt>
-								<dd class="detail-value">{value}</dd>
-							</div>
-						))
-					}
-				</dl>
-
-				<CvDownloadLink />
 			</section>
 		</main>
 	</div>
@@ -280,33 +279,33 @@ const contactDetails: { label: string; value: string }[] = [
 		flex-direction: column;
 	}
 
-	.hero-portrait {
-		position: relative;
-		overflow: hidden;
+	/*
+	 * Rejilla de 4 fotos (T001, plan-v2.md), no un retrato único. Sin
+	 * degradado de máscara ni velo: el nombre/rol viven en .hero-panel,
+	 * aparte de las imágenes, así que el contraste no depende de la foto.
+	 */
+	.hero-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 2px;
+		height: 42vh;
+		height: 42svh;
+		min-height: 18rem;
+		max-height: 28rem;
 		min-width: 0;
 	}
 
-	.hero-portrait :global(img) {
+	.hero-tile {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-tile :global(img) {
 		display: block;
 		width: 100%;
-		height: 38vh;
-		height: 38svh;
-		min-height: 16rem;
-		max-height: 26rem;
+		height: 100%;
 		object-fit: cover;
-		object-position: 50% 22%;
-		-webkit-mask-image: linear-gradient(
-			to bottom,
-			#000 0%,
-			#000 70%,
-			transparent 100%
-		);
-		mask-image: linear-gradient(
-			to bottom,
-			#000 0%,
-			#000 70%,
-			transparent 100%
-		);
 	}
 
 	.hero-panel {
@@ -363,27 +362,27 @@ const contactDetails: { label: string; value: string }[] = [
 			flex-direction: row;
 		}
 
-		.hero-portrait {
+		.hero-grid {
+			/*
+			 * Se mantiene la rejilla 2×2 también en escritorio (no pasa a 4×1):
+			 * medido, 4 columnas dentro de un `flex: 5` que convive con un panel
+			 * de texto `flex: 6` dejaba cada foto en ~11% del ancho del viewport
+			 * pero estirada al alto completo del panel — lonchas verticales
+			 * altísimas donde no se reconocía nada. Con 2×2, cada celda es ~23%
+			 * del ancho y una altura propia (no heredada del panel de texto), lo
+			 * que da una proporción de foto de moda razonable en vez de una tira.
+			 * `height` escala con el ancho del viewport (58vw), así la
+			 * proporción de cada celda se mantiene constante entre breakpoints;
+			 * el `clamp` evita que crezca sin límite en pantallas muy anchas
+			 * (a 1920 ya toca el máximo y las celdas se acercan a cuadradas en
+			 * vez de seguir alargándose).
+			 */
 			flex: 5;
-			min-height: 0;
-		}
-
-		.hero-portrait :global(img) {
-			position: absolute;
-			inset: 0;
-			height: 100%;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			height: clamp(26rem, 58vw, 44rem);
 			min-height: 0;
 			max-height: none;
-			-webkit-mask-image: linear-gradient(
-					to right,
-					#000 90%,
-					transparent 100%
-				),
-				linear-gradient(to bottom, transparent 0%, #000 5%);
-			mask-image: linear-gradient(to right, #000 90%, transparent 100%),
-				linear-gradient(to bottom, transparent 0%, #000 5%);
-			-webkit-mask-composite: source-in;
-			mask-composite: intersect;
 		}
 
 		.hero-panel {
@@ -463,27 +462,54 @@ const contactDetails: { label: string; value: string }[] = [
 		}
 	}
 
-	/* ====================== Sobre mí ====================== */
-
+	/*
+	 * Sobre mí (T003, plan-v2.md; alineación revisada post plan-v2; a dos
+	 * columnas en escritorio). Sin retrato: columna estrecha, tratamiento
+	 * editorial, en vez de las dos columnas de la página /about original.
+	 *
+	 * Antes .about-content llevaba `margin-inline: auto` (columna centrada en
+	 * el ancho de .wrapper), tercer borde izquierdo distinto de la home. Se
+	 * alinea a la izquierda —igual que "Trabajos destacados" y .hero-grid—
+	 * conservando el max-width estrecho: columna angosta es correcto para la
+	 * legibilidad de la prosa, pero centrada no es lo mismo que alineada a la
+	 * izquierda.
+	 */
 	.about {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 	}
 
-	.about-portrait :global(img) {
-		width: 100%;
-		aspect-ratio: 4 / 5;
-		object-fit: cover;
-		object-position: center;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
+	/*
+	 * En móvil y tablet (<64em) es una sola columna: .about-content
+	 * (eyebrow+bio) seguido de .about-aside (servicios/publicaciones/datos),
+	 * cada uno con su propio `gap: 2rem` interno y `gap: 2rem` entre ambos en
+	 * .about-grid — la misma separación vertical que había antes con todo en
+	 * un único contenedor. A partir de 64em .about-grid pasa a fila (ver
+	 * media query más abajo) y .about-content/.about-aside se convierten en
+	 * las dos columnas.
+	 */
+	.about-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 
 	.about-content {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
+		width: 100%;
+		max-width: 42rem;
+		min-width: 0;
+	}
+
+	.about-aside {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 100%;
+		max-width: 42rem;
 		min-width: 0;
 	}
 
@@ -580,13 +606,6 @@ const contactDetails: { label: string; value: string }[] = [
 	}
 
 	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 5fr 7fr;
-			gap: 3.75rem;
-			align-items: start;
-		}
-
 		.bio p {
 			font-size: var(--text-lg);
 			line-height: 1.7;
@@ -607,126 +626,43 @@ const contactDetails: { label: string; value: string }[] = [
 		}
 	}
 
-	/* ====================== Contacto ====================== */
-
-	.contact {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-		max-width: 34rem;
-	}
-
-	.contact .eyebrow {
-		font-family: var(--font-brand);
-		font-size: var(--text-base);
-		letter-spacing: 0.3em;
-		text-transform: uppercase;
-		color: var(--gray-100);
-	}
-
-	.contact .headline {
-		font-family: var(--font-brand);
-		font-weight: 400;
-		font-size: clamp(2.625rem, 10vw, 4.5rem);
-		line-height: 1;
-		letter-spacing: 0.02em;
-		text-transform: uppercase;
-		color: var(--gray-0);
-	}
-
-	.contact .lead {
-		max-width: 34ch;
-		font-size: var(--text-md);
-		line-height: 1.6;
-		color: var(--gray-50);
-	}
-
-	.channels {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.channels li {
-		display: flex;
-		flex-direction: column;
-		gap: 0.1rem;
-		min-width: 0;
-	}
-
-	.channel-label {
-		font-family: var(--font-brand);
-		font-size: var(--text-sm);
-		letter-spacing: 0.25em;
-		text-transform: uppercase;
-		color: var(--gray-100);
-	}
-
-	.channel-value {
-		align-self: flex-start;
-		max-width: 100%;
-		font-size: clamp(1.0625rem, 4vw, 1.375rem);
-		line-height: 1.35;
-		color: var(--gray-0);
-		text-decoration: none;
-		overflow-wrap: break-word;
-		background-image: linear-gradient(
-			var(--accent-regular),
-			var(--accent-regular)
-		);
-		background-repeat: no-repeat;
-		background-size: 100% 1px;
-		background-position: 0 100%;
-		padding-bottom: 0.15em;
-		transition:
-			background-size var(--theme-transition),
-			color var(--theme-transition);
-	}
-
-	:global(.theme-dark) .channel-value {
-		background-image: linear-gradient(
-			var(--accent-dark),
-			var(--accent-dark)
-		);
-	}
-
-	.channel-value:hover,
-	.channel-value:focus-visible {
-		color: var(--link-color);
-		background-size: 100% 2px;
-	}
-
-	.contact .details {
-		margin: 0;
-	}
-
-	.contact :global(.cv) {
-		margin-top: 0.5rem;
-	}
-
-	@media (min-width: 50em) {
-		.contact .lead {
-			font-size: var(--text-lg);
+	/*
+	 * Bio a la izquierda, servicios/publicaciones/datos a la derecha, en vez
+	 * de debajo: en escritorio la bio sola dejaba un hueco vacío enorme a su
+	 * derecha (columna acotada a 42rem dentro de un .wrapper de hasta
+	 * 83rem). La medida de la bio NO cambia aquí — .about-content conserva su
+	 * max-width: 42rem intacto vía `flex-basis`; lo único que cambia es que
+	 * .about-aside ocupa el espacio sobrante en vez de apilarse debajo.
+	 *
+	 * 64em (1024px) es el primer punto donde la fila cabe sin apretar: a esa
+	 * anchura el contenido de .wrapper mide 976px (1024 - 2×24px de
+	 * padding-inline), y 42rem (672px) + 3rem de gap (48px) deja 256px para
+	 * .about-aside — suficiente para una lista de una columna, no para dos,
+	 * así que aquí se fuerza `.details`/`.wordmarks` de vuelta a una sola
+	 * columna (la regla de 50em más arriba las pone a dos, pensada para el
+	 * tramo intermedio 50-64em donde todavía es una sola columna vertical).
+	 */
+	@media (min-width: 64em) {
+		.about-grid {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 3rem;
 		}
 
-		.contact .channel-value {
-			font-size: clamp(1.0625rem, 1.55vw, 1.5rem);
+		.about-content {
+			flex: 0 0 42rem;
+			width: auto;
 		}
 
-		.contact .channel-label,
-		.contact .detail-label {
-			font-size: var(--text-base);
+		.about-aside {
+			flex: 1;
+			width: auto;
+			max-width: none;
 		}
 
-		.contact .detail-value {
-			font-size: var(--text-md);
-		}
-
-		.contact .details {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+		.details,
+		.wordmarks {
+			grid-template-columns: 1fr;
 		}
 	}
 
@@ -743,8 +679,7 @@ const contactDetails: { label: string; value: string }[] = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.instagram-link,
-		.channel-value {
+		.instagram-link {
 			transition: none;
 		}
 	}

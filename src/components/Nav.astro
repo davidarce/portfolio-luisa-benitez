@@ -21,15 +21,15 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: t.nav.celebrityEvents, href: '/celebrity-events/' },
 	{ label: t.nav.films, href: '/films/' },
 	{ label: t.nav.runway, href: '/runway/' },
+	{ label: t.nav.contact, href: '/contact/' },
 ];
 
 /*
- * Home unificada (.sdd/home-unificada/plan.md T005): "Sobre mí" y "Contacto"
- * salen del menú porque ya no son páginas propias, son anclajes de la home
- * (#sobre-mi y #contacto). `t.nav.about` / `t.nav.contact` NO se borran de
- * i18n: siguen vivas como título de las páginas de redirección en
- * about.astro y contact.astro, así que borrarlas aquí solo movería el string
- * duplicado, no lo eliminaría.
+ * plan-v2.md T005: "Contacto" vuelve al menú porque /contact/ vuelve a ser
+ * página propia (T004). "Sobre mí" NO vuelve: sigue siendo un ancla de la
+ * home (#sobre-mi), así que `t.nav.about` sigue sin usarse aquí — se
+ * conserva en i18n solo como título de la página de redirección en
+ * about.astro.
  */
 
 /** Icon links to social media — sourced from src/data/profile.ts */
@@ -166,7 +166,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 				btn.hidden = e.matches;
 			};
 			// Debe coincidir con el @media del nav en los estilos de abajo.
-			const mediaQueries = window.matchMedia('(min-width: 80em)');
+			const mediaQueries = window.matchMedia('(min-width: 88em)');
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -365,8 +365,8 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	}
 
 	/*
-	 * 80em, no 50em: a 50em la columna central de la rejilla (que no encoge)
-	 * empujaba el conmutador de tema fuera del viewport. Por debajo de 80em se
+	 * 88em, no 50em: a 50em la columna central de la rejilla (que no encoge)
+	 * empujaba el conmutador de tema fuera del viewport. Por debajo de 88em se
 	 * usa el menú hamburguesa.
 	 *
 	 * Historial medido con 8 enlaces (T009 añadió "Sobre mí", ya retirado):
@@ -381,26 +381,40 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	 *     peor caso (`/contact/`), suficiente para absorber esa diferencia de
 	 *     ancho entre etiquetas de `aria-current`.
 	 *
-	 * Home unificada (.sdd/home-unificada/plan.md T006): "Sobre mí" y
-	 * "Contacto" salieron del nav (T005), que baja de 8 a 6 enlaces. Medido en
-	 * Chromium (rect.right de `.menu-footer` contra `window.innerWidth`,
-	 * nunca `scrollWidth` — `body` lleva `overflow-x: hidden` y el desborde
-	 * recorta en silencio) en home, `/campaigns/` y una ficha de detalle, el
-	 * ancho natural del nav de 6 enlaces ya no requiere 1344px:
-	 *   - Sin WCAG 1.4.12: deja de desbordar a partir de ~1105px, en las tres
-	 *     páginas por igual.
+	 * Home unificada (.sdd/home-unificada/plan.md T006, 6 enlaces): "Sobre mí"
+	 * y "Contacto" salieron del nav (T005). Medido en home, `/campaigns/` y una
+	 * ficha de detalle, el ancho natural del nav de 6 enlaces ya no requería
+	 * 1344px: sin WCAG 1.4.12 dejaba de desbordar a partir de ~1105px, y con
+	 * WCAG 1.4.12 forzado el peor caso subía a ~1194px. Se eligió 80em
+	 * (1280px): ~86px de margen sobre ese peor caso teórico. CERRABA LA DEUDA
+	 * DE #53.
+	 *
+	 * plan-v2.md T006 (vuelta a 7 enlaces: "Contacto" vuelve en T005, "Sobre
+	 * mí" sigue sin volver). Remedido igual que arriba (rect.right de
+	 * `.menu-footer` contra `window.innerWidth`, nunca `scrollWidth` — `body`
+	 * lleva `overflow-x: hidden` y el desborde recorta en silencio) en las 7
+	 * páginas de destino del nav (una por enlace: `/`, `/editorials/`,
+	 * `/campaigns/`, `/celebrity-events/`, `/films/`, `/runway/`,
+	 * `/contact/`), porque la etiqueta activa (`aria-current`, peso 800) tiene
+	 * ancho distinto en cada una:
+	 *   - Sin WCAG 1.4.12: no se registró ningún desborde en el rango medido
+	 *     (≥1300px); el nav de 7 enlaces ya cabe muy por debajo de eso.
 	 *   - Con WCAG 1.4.12 forzado (letter-spacing 0.12em, word-spacing
-	 *     0.16em, line-height 1.5 — la franja estrecha que quedaba como
-	 *     deuda conocida con 8 enlaces): el peor caso sube a ~1194px.
-	 * 80em (1280px) deja ~86px de margen sobre ese peor caso teórico, y en la
-	 * práctica ~48px medidos en `.menu-footer` mismo (no en el punto de
-	 * cruce) en home/categoría/detalle, con y sin WCAG 1.4.12 — no se eligió
-	 * el borde exacto, lección de la pasada a 81.25em. CIERRA LA DEUDA DE
-	 * #53: con 6 enlaces, WCAG 1.4.12 ya no desborda en ningún ancho ≥80em.
+	 *     0.16em, line-height 1.5): el peor caso es `/celebrity-events/`
+	 *     ("Celebridades y eventos", la etiqueta activa más larga), que deja
+	 *     de desbordar a partir de ~1320px (82,5em) — el resto de páginas
+	 *     cruza antes.
+	 * 88em (1408px) deja ~88px de margen sobre ese cruce medido, no el borde
+	 * exacto — lección de la pasada a 81.25em, que si se repitiera aquí
+	 * (82.5em clavado) volvería a fallar en cuanto cambiara la página activa.
+	 * A 88em las 7 páginas ya están en el estado estable sin desbordar
+	 * (`.menu-footer` con 48px de margen real), con y sin WCAG 1.4.12.
+	 * Con 7 enlaces WCAG 1.4.12 SIGUE sin desbordar en ningún ancho ≥88em:
+	 * la deuda de #53 se mantiene cerrada.
 	 *
 	 * IMPORTANTE: este valor debe coincidir con el `matchMedia` del script.
 	 */
-	@media (min-width: 80em) {
+	@media (min-width: 88em) {
 		nav {
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
