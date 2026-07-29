@@ -63,11 +63,15 @@ const { entry } = Astro.props;
 										{isVideo ? (
 											<video
 												src={img}
-												autoplay
+												poster={img.replace(
+													/\/([^/]+)\.(mp4|webm|mov)$/i,
+													"/posters/$1.webp",
+												)}
 												loop
 												muted
 												playsinline
 												controls
+												preload="none"
 											/>
 										) : (
 											<img
@@ -87,6 +91,39 @@ const { entry } = Astro.props;
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<script>
+	// Mismo patrón que Card.astro (P1): con `preload="none"` los vídeos de la
+	// galería no se descargan hasta que entran en viewport, y se pausan al
+	// salir. Si el usuario prefiere menos movimiento, no arrancan solos.
+	document.addEventListener("astro:page-load", () => {
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		if (prefersReducedMotion) return;
+
+		document
+			.querySelectorAll<HTMLVideoElement>(".gallery-item video")
+			.forEach((video) => {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								// play() devuelve una promesa que puede rechazarse
+								// (p. ej. si el usuario navega antes de que arranque).
+								video.play().catch(() => {});
+							} else {
+								video.pause();
+							}
+						}
+					},
+					{ threshold: 0.25 },
+				);
+				observer.observe(video);
+			});
+	});
+</script>
 
 <style>
 	header {
