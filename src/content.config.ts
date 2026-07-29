@@ -1,5 +1,4 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
 import { createGalleryLoader } from './loaders/gallery-loader';
 
 const gallerySchema = z.object({
@@ -43,21 +42,6 @@ const gallerySchema = z.object({
 });
 
 export const collections = {
-	work: defineCollection({
-		loader: glob({ base: './src/content/work', pattern: '**/*.md' }),
-		schema: z.object({
-			title: z.string(),
-			description: z.string(),
-			publishDate: z.coerce.date(),
-			tags: z.array(z.string()),
-			img: z.string(),
-			img_alt: z.string().optional(),
-			cardSize: z.enum(['normal', 'tall', 'wide']).default('normal'),
-			aspectRatio: z.string().default('3 / 4'),
-			objectPosition: z.string().optional(),
-			order: z.number().default(0),
-		}),
-	}),
 	// Colección renombrada: "celebrities" → "celebrity-events" (ruta pública
 	// /celebrity-events/, ver plan/02-information-architecture/REVISION-v2.md
 	// §4). El directorio de datos y de assets se queda con el nombre viejo

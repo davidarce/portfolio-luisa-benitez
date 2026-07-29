@@ -24,6 +24,10 @@ export const en: Translation = {
 		about: 'About',
 		contact: 'Contact',
 	},
+	/** PENDIENTE DE APROBACIÓN DE DAVID — ver la nota en es.ts. */
+	home: {
+		featuredWorkTitle: 'Featured work',
+	},
 	contact: {
 		pageTitle: 'Contact — Luisa Benítez',
 		eyebrow: 'Contact',

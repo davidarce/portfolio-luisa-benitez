@@ -25,11 +25,13 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Excluye las rutas viejas del rename de Fase 2 (§4): son páginas de
-      // redirección estática (meta-refresh + canonical, ver
-      // src/components/RedirectPage.astro), no contenido indexable. El
-      // sitemap solo debe listar /campaigns/ y /celebrity-events/.
-      filter: (page) => !page.includes('/publicity/') && !page.includes('/celebrities/'),
+      // Excluye las rutas viejas del rename de Fase 2 (§4) y la colección
+      // "work" retirada en Fase 2 (§3, ver .sdd/phase2-projects/plan.md
+      // T003-T004): todas son páginas de redirección estática (meta-refresh
+      // + canonical, ver src/components/RedirectPage.astro), no contenido
+      // indexable.
+      filter: (page) =>
+        !page.includes('/publicity/') && !page.includes('/celebrities/') && !page.includes('/work/'),
     }),
   ],
   devToolbar: {

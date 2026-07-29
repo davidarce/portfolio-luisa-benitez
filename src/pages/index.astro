@@ -8,14 +8,34 @@ import Hero from "../components/Hero.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Grid from "../components/Grid.astro";
 import Icon from "../components/Icon.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+import Card from "../components/Card.astro";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/profile";
+import { sortProjects } from "../lib/sort-projects";
+import { getLocaleFromUrl, getTranslation } from "../i18n";
 
-const projects = (await getCollection("work"))
-	.sort((a, b) => a.data.order - b.data.order)
-	.slice(0, 4);
+const t = getTranslation(getLocaleFromUrl(Astro.url));
+
+// La colección "work" (plantilla de Astro, lorem ipsum) se retiró en la
+// Fase 2 — ver plan/02-information-architecture/REVISION-v2.md §3 y
+// .sdd/phase2-projects/plan.md T005. La home destaca ahora proyectos reales,
+// combinando los 5 listados y aplicando el mismo criterio de orden que ellos
+// (T001): principal antes que asistencia. Se mantienen 4 destacados, como
+// antes.
+const featuredCollections = [
+	"editorials",
+	"campaigns",
+	"celebrity-events",
+	"runway",
+	"films",
+] as const;
+
+const allProjects = (
+	await Promise.all(featuredCollections.map((collection) => getCollection(collection)))
+).flat();
+
+const featuredProjects = sortProjects(allProjects).slice(0, 4);
 ---
 
 <BaseLayout
@@ -52,17 +72,42 @@ const projects = (await getCollection("work"))
 
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Alguno de mis trabajos como asistente</h3>
+					<h3>{t.home.featuredWorkTitle}</h3>
 				</header>
 
 				<div class="gallery">
 					<Grid variant="offset">
 						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
+							featuredProjects.map((project) => {
+								const { id, collection, data } = project;
+								const {
+									title,
+									img,
+									img_alt,
+									video,
+									cardSize,
+									aspectRatio,
+									objectPosition,
+									hasGallery,
+								} = data;
+
+								return (
+									<li>
+										<Card
+											id={id}
+											page={collection}
+											title={title}
+											img={img}
+											img_alt={img_alt}
+											video={video}
+											cardSize={cardSize}
+											aspectRatio={aspectRatio}
+											objectPosition={objectPosition}
+											disableLink={!hasGallery}
+										/>
+									</li>
+								);
+							})
 						}
 					</Grid>
 				</div>

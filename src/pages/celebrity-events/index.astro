@@ -4,10 +4,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Grid from "../../components/Grid.astro";
 import Card from "../../components/Card.astro";
+import { sortProjects } from "../../lib/sort-projects";
 
-const celebrityEvents = (await getCollection("celebrity-events")).sort(
-    (a, b) => a.data.order - b.data.order,
-);
+const celebrityEvents = sortProjects(await getCollection("celebrity-events"));
 ---
 
 <BaseLayout

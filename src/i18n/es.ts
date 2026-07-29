@@ -29,6 +29,18 @@ export const es = {
 		about: 'Sobre mí',
 		contact: 'Contacto',
 	},
+	/**
+	 * Home (/). Alcance mínimo a propósito (ver .sdd/phase2-projects/plan.md
+	 * T006, no-objetivos): el resto del texto de la home sigue escrito a mano
+	 * en src/pages/index.astro, solo este titular pasa por i18n porque es el
+	 * que cambia con la Fase 2. PENDIENTE DE APROBACIÓN DE DAVID: el texto es
+	 * un cierre neutro y honesto ("alguno de mis trabajos como asistente" deja
+	 * de ser cierto en cuanto la home destaca primero el trabajo como
+	 * principal), pero no es copy final aprobada.
+	 */
+	home: {
+		featuredWorkTitle: 'Trabajos destacados',
+	},
 	contact: {
 		/** Título de la pestaña. Distinto de `title`, que es el titular de la página. */
 		pageTitle: 'Contacto — Luisa Benítez',
