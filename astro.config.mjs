@@ -25,13 +25,19 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Excluye las rutas viejas del rename de Fase 2 (§4) y la colección
+      // Excluye las rutas viejas del rename de Fase 2 (§4), la colección
       // "work" retirada en Fase 2 (§3, ver .sdd/phase2-projects/plan.md
-      // T003-T004): todas son páginas de redirección estática (meta-refresh
-      // + canonical, ver src/components/RedirectPage.astro), no contenido
-      // indexable.
+      // T003-T004) y /about//contact/, que la home unificada (T004, ver
+      // .sdd/home-unificada/plan.md) convirtió en redirecciones a /#sobre-mi
+      // y /#contacto: todas son páginas de redirección estática
+      // (meta-refresh + canonical, ver src/components/RedirectPage.astro),
+      // no contenido indexable.
       filter: (page) =>
-        !page.includes('/publicity/') && !page.includes('/celebrities/') && !page.includes('/work/'),
+        !page.includes('/publicity/') &&
+        !page.includes('/celebrities/') &&
+        !page.includes('/work/') &&
+        !page.endsWith('/about/') &&
+        !page.endsWith('/contact/'),
     }),
   ],
   devToolbar: {

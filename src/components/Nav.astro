@@ -21,9 +21,16 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: t.nav.celebrityEvents, href: '/celebrity-events/' },
 	{ label: t.nav.films, href: '/films/' },
 	{ label: t.nav.runway, href: '/runway/' },
-	{ label: t.nav.about, href: '/about/' },
-	{ label: t.nav.contact, href: '/contact/' },
 ];
+
+/*
+ * Home unificada (.sdd/home-unificada/plan.md T005): "Sobre mí" y "Contacto"
+ * salen del menú porque ya no son páginas propias, son anclajes de la home
+ * (#sobre-mi y #contacto). `t.nav.about` / `t.nav.contact` NO se borran de
+ * i18n: siguen vivas como título de las páginas de redirección en
+ * about.astro y contact.astro, así que borrarlas aquí solo movería el string
+ * duplicado, no lo eliminaría.
+ */
 
 /** Icon links to social media — sourced from src/data/profile.ts */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
@@ -159,7 +166,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 				btn.hidden = e.matches;
 			};
 			// Debe coincidir con el @media del nav en los estilos de abajo.
-			const mediaQueries = window.matchMedia('(min-width: 84em)');
+			const mediaQueries = window.matchMedia('(min-width: 80em)');
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -358,16 +365,15 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	}
 
 	/*
-	 * 84em, no 50em: con 8 enlaces la fila completa no cabe por debajo de eso.
-	 * A 50em la columna central de la rejilla (que no encoge) empujaba el
-	 * conmutador de tema fuera del viewport. Por debajo de 84em se usa el
-	 * menú hamburguesa.
+	 * 80em, no 50em: a 50em la columna central de la rejilla (que no encoge)
+	 * empujaba el conmutador de tema fuera del viewport. Por debajo de 80em se
+	 * usa el menú hamburguesa.
 	 *
-	 * Historial medido con 8 enlaces (T009 añadió "Sobre mí"):
+	 * Historial medido con 8 enlaces (T009 añadió "Sobre mí", ya retirado):
 	 *   - 78em (1248px): `.menu-footer` se salía del viewport hasta 1300px
 	 *     (+52px de desborde con 8 enlaces) → insuficiente.
 	 *   - 81.25em (1300px): el punto exacto donde deja de recortar en
-	 *     `/about/`, pero con margen 0 — en `/contact/` el enlace activo es
+	 *     `/about/`, pero con margen 0 — en `/contact/` el enlace activo era
 	 *     "Contacto" en vez de "Sobre mí", ~2px más ancho en Bebas Neue por el
 	 *     `aria-current`, y a 1300px exactos `.menu-footer` seguía
 	 *     desbordando 2px. Cero margen no sobrevive a una etiqueta distinta.
@@ -375,15 +381,26 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	 *     peor caso (`/contact/`), suficiente para absorber esa diferencia de
 	 *     ancho entre etiquetas de `aria-current`.
 	 *
-	 * Aceptado y no corregido aquí: con el espaciado de texto forzado de WCAG
-	 * 1.4.12 (letter-spacing/word-spacing/line-height ampliados), sigue
-	 * habiendo una franja estrecha donde el nav de fila completa desborda.
-	 * David acepta esta limitación conocida; el rediseño del nav que la cierra
-	 * de raíz es competencia de la issue #53, no de este cambio.
+	 * Home unificada (.sdd/home-unificada/plan.md T006): "Sobre mí" y
+	 * "Contacto" salieron del nav (T005), que baja de 8 a 6 enlaces. Medido en
+	 * Chromium (rect.right de `.menu-footer` contra `window.innerWidth`,
+	 * nunca `scrollWidth` — `body` lleva `overflow-x: hidden` y el desborde
+	 * recorta en silencio) en home, `/campaigns/` y una ficha de detalle, el
+	 * ancho natural del nav de 6 enlaces ya no requiere 1344px:
+	 *   - Sin WCAG 1.4.12: deja de desbordar a partir de ~1105px, en las tres
+	 *     páginas por igual.
+	 *   - Con WCAG 1.4.12 forzado (letter-spacing 0.12em, word-spacing
+	 *     0.16em, line-height 1.5 — la franja estrecha que quedaba como
+	 *     deuda conocida con 8 enlaces): el peor caso sube a ~1194px.
+	 * 80em (1280px) deja ~86px de margen sobre ese peor caso teórico, y en la
+	 * práctica ~48px medidos en `.menu-footer` mismo (no en el punto de
+	 * cruce) en home/categoría/detalle, con y sin WCAG 1.4.12 — no se eligió
+	 * el borde exacto, lección de la pasada a 81.25em. CIERRA LA DEUDA DE
+	 * #53: con 6 enlaces, WCAG 1.4.12 ya no desborda en ningún ancho ≥80em.
 	 *
 	 * IMPORTANTE: este valor debe coincidir con el `matchMedia` del script.
 	 */
-	@media (min-width: 84em) {
+	@media (min-width: 80em) {
 		nav {
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;

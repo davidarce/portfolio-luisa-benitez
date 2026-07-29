@@ -4,8 +4,7 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import portrait from "../assets/portrait.webp";
 
-import Hero from "../components/Hero.astro";
-import ContactCTA from "../components/ContactCTA.astro";
+import CvDownloadLink from "../components/CvDownloadLink.astro";
 import Grid from "../components/Grid.astro";
 import Icon from "../components/Icon.astro";
 import Card from "../components/Card.astro";
@@ -36,6 +35,54 @@ const allProjects = (
 ).flat();
 
 const featuredProjects = sortProjects(allProjects).slice(0, 4);
+
+// Home unificada (.sdd/home-unificada/plan.md): antes /, /about/ y /contact/
+// eran tres páginas que repetían bio, servicios y canales. Ahora es una sola
+// página — portada → trabajos → sobre mí → contacto — y esos bloques solo
+// existen aquí. La copy sale literal de t.about y t.profile (about.astro) y
+// t.contact/t.channels/t.details (contact.astro); no se escribe texto nuevo.
+
+/** Idéntico a about.astro: dos pares fijos + "Disponibilidad" si el dato existe. */
+const aboutDetails: { label: string; value: string }[] = [
+	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
+	{ label: t.details.languages, value: t.profile.languages.join(", ") },
+];
+
+if (profile.availableForTravel) {
+	aboutDetails.push({
+		label: t.details.availability,
+		value: t.profile.travelNote,
+	});
+}
+
+/** Idéntico a contact.astro. */
+const channels: { label: string; value: string; href: string; external?: boolean }[] = [
+	{
+		label: t.channels.email,
+		value: profile.email,
+		href: `mailto:${profile.email}`,
+	},
+	{
+		label: t.channels.instagram,
+		value: profile.instagram.handle,
+		href: profile.instagram.url,
+		external: true,
+	},
+];
+
+if (profile.linkedin) {
+	channels.push({
+		label: t.channels.linkedin,
+		value: t.channels.linkedinValue,
+		href: profile.linkedin,
+		external: true,
+	});
+}
+
+const contactDetails: { label: string; value: string }[] = [
+	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
+	{ label: t.details.languages, value: t.profile.languages.join(", ") },
+];
 ---
 
 <BaseLayout
@@ -44,35 +91,48 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 	path="/"
 >
 	<div class="stack gap-20">
-		<main class="wrapper stack gap-20">
-			<section class="wrapper about">
-				<Hero
-					title="Sobre Mí"
-					tagline="Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper"
-				>
-					<div class="hero-image-container">
-						<Image
-							src={portrait}
-							alt="Luisa Benítez smiling outdoors reading a fashion magazine"
-							loading="eager"
-							fetchpriority="high"
-						/>
-						<a
-							href={profile.instagram.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="instagram-link"
-						>
-							<Icon icon="instagram-logo" size="1.5em" />
-							{profile.instagram.handle}
-						</a>
-					</div>
-				</Hero>
-			</section>
+		<!--
+			Portada (T001). Sustituye al <Hero title="Sobre Mí">: el <h1> pasa a
+			ser el nombre, no "Sobre Mí". Reutiliza el lenguaje visual de
+			/contact.astro (eyebrow, titular en --font-brand, retrato a sangre con
+			máscara) para que se lea como parte del mismo sitio.
+		-->
+		<section class="hero">
+			<div class="hero-portrait">
+				<Image
+					src={portrait}
+					alt={t.common.portraitAlt}
+					widths={[600, 900, 1200]}
+					sizes="(min-width: 50em) 46vw, 100vw"
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
 
+			<div class="hero-panel">
+				<p class="eyebrow">{profile.role}</p>
+				<h1 class="headline">{profile.name}</h1>
+				<p class="tagline">
+					Estilista y asistente de moda, Diseñadora de Modas, Asesora de
+					Imagen y Personal Shopper
+				</p>
+				<a
+					href={profile.instagram.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="instagram-link"
+				>
+					<Icon icon="instagram-logo" size="1.5em" />
+					{profile.instagram.handle}
+					<span class="sr-only"> {t.common.newWindowHint}</span>
+				</a>
+			</div>
+		</section>
+
+		<main class="wrapper stack gap-20">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>{t.home.featuredWorkTitle}</h3>
+					<h2>{t.home.featuredWorkTitle}</h2>
 				</header>
 
 				<div class="gallery">
@@ -112,38 +172,180 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 					</Grid>
 				</div>
 			</section>
-		</main>
 
-		<ContactCTA />
+			<!--
+				Sobre mí (T002). Dos columnas a partir de 50em: retrato a la
+				izquierda, los tres párrafos a la derecha; en móvil, una columna.
+				Debajo: servicios, publicaciones y datos. Todo el texto sale de
+				t.about y t.profile — no se escribe copy nueva.
+			-->
+			<section id="sobre-mi" class="about">
+				<div class="about-portrait">
+					<Image
+						src={portrait}
+						alt={t.common.portraitAlt}
+						widths={[400, 600, 800]}
+						sizes="(min-width: 50em) 34vw, 100vw"
+						loading="lazy"
+					/>
+				</div>
+
+				<div class="about-content">
+					<h2 class="section-heading">{t.about.eyebrow}</h2>
+
+					<div class="bio">
+						{t.about.bio.map((paragraph) => <p>{paragraph}</p>)}
+					</div>
+
+					<section class="rule">
+						<h3 class="section-label">{t.about.sections.services}</h3>
+						<ul class="services" role="list">
+							{t.profile.services.map((service) => <li>{service}</li>)}
+						</ul>
+					</section>
+
+					<section class="rule">
+						<h3 class="section-label">{t.about.sections.featuredIn}</h3>
+						<ul class="wordmarks" role="list">
+							{profile.featuredIn.map((outlet) => <li>{outlet}</li>)}
+						</ul>
+					</section>
+
+					<dl class="details rule">
+						{
+							aboutDetails.map(({ label, value }) => (
+								<div>
+									<dt class="detail-label">{label}</dt>
+									<dd class="detail-value">{value}</dd>
+								</div>
+							))
+						}
+					</dl>
+				</div>
+			</section>
+
+			<!--
+				Contacto (T003). Reutiliza lo que hoy hace contact.astro: canales y
+				datos, con CvDownloadLink (se oculta solo mientras cvPath sea
+				undefined). Sin retrato propio: ya hay dos en la página.
+			-->
+			<section id="contacto" class="contact">
+				<p class="eyebrow">{t.contact.eyebrow}</p>
+				<h2 class="headline">{t.contact.title}</h2>
+				<p class="lead">{t.contact.lead}</p>
+
+				<ul class="channels">
+					{
+						channels.map(({ label, value, href, external }) => (
+							<li>
+								<span class="channel-label">{label}</span>
+								<a
+									class="channel-value"
+									href={href}
+									target={external ? "_blank" : undefined}
+									rel={external ? "noopener noreferrer" : undefined}
+								>
+									{value}
+									{external && (
+										<span class="sr-only"> {t.common.newWindowHint}</span>
+									)}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+
+				<dl class="details">
+					{
+						contactDetails.map(({ label, value }) => (
+							<div>
+								<dt class="detail-label">{label}</dt>
+								<dd class="detail-value">{value}</dd>
+							</div>
+						))
+					}
+				</dl>
+
+				<CvDownloadLink />
+			</section>
+		</main>
 	</div>
 </BaseLayout>
 
 <style>
-	.about {
+	/* ====================== Portada (hero) ====================== */
+
+	.hero {
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
 	}
 
-	img {
-		aspect-ratio: 1 / 1;
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
+	.hero-portrait {
+		position: relative;
+		overflow: hidden;
+		min-width: 0;
+	}
+
+	.hero-portrait :global(img) {
+		display: block;
+		width: 100%;
+		height: 38vh;
+		height: 38svh;
+		min-height: 16rem;
+		max-height: 26rem;
 		object-fit: cover;
-		object-position: center;
-		box-shadow: var(--shadow-md);
+		object-position: 50% 22%;
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			#000 0%,
+			#000 70%,
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to bottom,
+			#000 0%,
+			#000 70%,
+			transparent 100%
+		);
 	}
 
-	.hero-image-container {
+	.hero-panel {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
+		gap: 1.25rem;
+		padding: 0.5rem 1.5rem 3rem;
+		min-width: 0;
+	}
+
+	.hero .eyebrow {
+		font-family: var(--font-brand);
+		font-size: var(--text-base);
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.hero .headline {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: clamp(3.5rem, 15vw, 8rem);
+		line-height: 0.9;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.hero .tagline {
+		max-width: 34ch;
+		font-size: var(--text-md);
+		line-height: 1.6;
+		color: var(--gray-50);
 	}
 
 	.instagram-link {
 		display: flex;
 		align-items: center;
+		align-self: flex-start;
 		gap: 0.5rem;
 		color: var(--gray-0);
 		text-decoration: none;
@@ -156,89 +358,47 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 		color: var(--accent-regular);
 	}
 
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-50);
-	}
-
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
-
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
-
-	.roles {
-		display: none;
-	}
-
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: center;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
 	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 90% 1fr;
+		.hero {
+			flex-direction: row;
 		}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
+		.hero-portrait {
+			flex: 5;
+			min-height: 0;
 		}
 
-		section {
-			display: contents;
+		.hero-portrait :global(img) {
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			min-height: 0;
+			max-height: none;
+			-webkit-mask-image: linear-gradient(
+					to right,
+					#000 90%,
+					transparent 100%
+				),
+				linear-gradient(to bottom, transparent 0%, #000 5%);
+			mask-image: linear-gradient(to right, #000 90%, transparent 100%),
+				linear-gradient(to bottom, transparent 0%, #000 5%);
+			-webkit-mask-composite: source-in;
+			mask-composite: intersect;
+		}
+
+		.hero-panel {
+			flex: 6;
+			justify-content: center;
+			gap: 1.75rem;
+			padding: 3rem 3rem 3rem 4rem;
+		}
+
+		.hero .tagline {
 			font-size: var(--text-lg);
 		}
-
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
-
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
-
-		.hero img {
-			aspect-ratio: 5 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
 	}
 
-	/* ====================================================== */
+	/* ====================== Trabajos destacados ====================== */
 
 	.section {
 		display: grid;
@@ -265,10 +425,6 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 		z-index: -1;
 	}
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
-
 	.section-header {
 		justify-self: center;
 		text-align: center;
@@ -277,7 +433,7 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 		color: var(--gray-0);
 	}
 
-	.section-header h3 {
+	.section-header h2 {
 		font-size: var(--text-2xl);
 	}
 
@@ -288,16 +444,12 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 			gap: 5rem;
 		}
 
-		.section.with-cta {
-			grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
-		}
-
 		.section-header {
 			grid-area: header;
 			font-size: var(--text-lg);
 		}
 
-		.section-header h3 {
+		.section-header h2 {
 			font-size: var(--text-4xl);
 		}
 
@@ -309,31 +461,291 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 		.gallery {
 			grid-area: gallery;
 		}
-
-		.cta {
-			grid-area: cta;
-		}
 	}
 
-	/* ====================================================== */
+	/* ====================== Sobre mí ====================== */
 
-	.mention-card {
+	.about {
 		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.about-portrait :global(img) {
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		object-position: center;
 		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow-md);
+	}
+
+	.about-content {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		min-width: 0;
+	}
+
+	.section-heading {
+		font-family: var(--font-brand);
+		color: var(--gray-0);
+	}
+
+	.bio {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.bio p {
+		font-size: var(--text-md);
+		line-height: 1.75;
+		color: var(--gray-50);
+	}
+
+	/* Sustituye al <hr>: el filete pasa a border-top del bloque siguiente. */
+	.rule {
+		border-top: 1px solid var(--gray-700);
+		padding-block-start: 2rem;
+	}
+
+	.section-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+		margin-bottom: 1rem;
+	}
+
+	.services {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.services li {
+		font-size: var(--text-md);
+		line-height: 1.5;
+		color: var(--gray-50);
+	}
+
+	.wordmarks {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.wordmarks li {
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.details {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem 2rem;
+	}
+
+	.details div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+	}
+
+	.detail-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.detail-value {
+		margin: 0;
+		font-size: var(--text-base);
+		line-height: 1.4;
+		color: var(--gray-50);
 	}
 
 	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
+		.about {
+			display: grid;
+			grid-template-columns: 5fr 7fr;
+			gap: 3.75rem;
+			align-items: start;
+		}
+
+		.bio p {
+			font-size: var(--text-lg);
+			line-height: 1.7;
+		}
+
+		.details,
+		.wordmarks {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.section-label,
+		.detail-label {
+			font-size: var(--text-base);
+		}
+
+		.detail-value {
+			font-size: var(--text-md);
+		}
+	}
+
+	/* ====================== Contacto ====================== */
+
+	.contact {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		max-width: 34rem;
+	}
+
+	.contact .eyebrow {
+		font-family: var(--font-brand);
+		font-size: var(--text-base);
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.contact .headline {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: clamp(2.625rem, 10vw, 4.5rem);
+		line-height: 1;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--gray-0);
+	}
+
+	.contact .lead {
+		max-width: 34ch;
+		font-size: var(--text-md);
+		line-height: 1.6;
+		color: var(--gray-50);
+	}
+
+	.channels {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.channels li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+	}
+
+	.channel-label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+	}
+
+	.channel-value {
+		align-self: flex-start;
+		max-width: 100%;
+		font-size: clamp(1.0625rem, 4vw, 1.375rem);
+		line-height: 1.35;
+		color: var(--gray-0);
+		text-decoration: none;
+		overflow-wrap: break-word;
+		background-image: linear-gradient(
+			var(--accent-regular),
+			var(--accent-regular)
+		);
+		background-repeat: no-repeat;
+		background-size: 100% 1px;
+		background-position: 0 100%;
+		padding-bottom: 0.15em;
+		transition:
+			background-size var(--theme-transition),
+			color var(--theme-transition);
+	}
+
+	:global(.theme-dark) .channel-value {
+		background-image: linear-gradient(
+			var(--accent-dark),
+			var(--accent-dark)
+		);
+	}
+
+	.channel-value:hover,
+	.channel-value:focus-visible {
+		color: var(--link-color);
+		background-size: 100% 2px;
+	}
+
+	.contact .details {
+		margin: 0;
+	}
+
+	.contact :global(.cv) {
+		margin-top: 0.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.contact .lead {
+			font-size: var(--text-lg);
+		}
+
+		.contact .channel-value {
+			font-size: clamp(1.0625rem, 1.55vw, 1.5rem);
+		}
+
+		.contact .channel-label,
+		.contact .detail-label {
+			font-size: var(--text-base);
+		}
+
+		.contact .detail-value {
+			font-size: var(--text-md);
+		}
+
+		.contact .details {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	/*
+	 * Anillo de foco propio y tokenizado, igual que about.astro/contact.astro:
+	 * el único cue de foco de estos enlaces era el cambio de color, y en tema
+	 * claro --link-color contra --gray-0 da 1,12:1 (indistinguible). --gray-0
+	 * sobre --gray-999 es el máximo contraste posible en ambos temas.
+	 */
+	a:focus-visible {
+		outline: 2px solid var(--gray-0);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.instagram-link,
+		.channel-value {
+			transition: none;
 		}
 	}
 </style>
