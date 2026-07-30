@@ -6,7 +6,7 @@ export const es = {
 	meta: {
 		siteTitle: 'Luisa Benítez, estilista y asesora de imagen',
 		siteDescription:
-			'Portfolio de Luisa Benítez, estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper. Descubre sus trabajos en editoriales, publicidad, pasarela y cine.',
+			'Portfolio de Luisa Benítez, estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper. Descubre sus trabajos en editoriales, campañas, celebridades, pasarela y cine.',
 	},
 	nav: {
 		home: 'Inicio',
@@ -20,7 +20,7 @@ export const es = {
 	},
 	home: {
 		featuredWorkTitle: 'Trabajos destacados',
-		tagline: 'Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper',
+		tagline: 'Estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper',
 	},
 	contact: {
 		/** Título de la pestaña, distinto de `title` (el titular de la página). */
@@ -105,7 +105,7 @@ export const es = {
 			'lead-stylist': 'Estilista principal',
 			'assistant-stylist': 'Asistente de estilismo',
 			'wardrobe-assistant': 'Asistente de vestuario',
-			'co-stylist': 'Co-estilista',
+			'co-stylist': 'Coestilista',
 		},
 		leadStylistLabel: 'Estilista principal:',
 		labels: {
