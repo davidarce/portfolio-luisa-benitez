@@ -89,16 +89,6 @@ export function createGalleryLoader(config: GalleryConfig) {
       // If it has 1 item and that item is used as the preview video, then it's just that video.
       const hasGallery = images.length > 1;
 
-      // Aviso temporal (REVISION-v2.md pide que esto sea un error de build cuando
-      // haya rol de asistencia sin `leadStylist`; hoy ese dato todavía no existe,
-      // así que un error dejaría el build roto por diseño). Pasar a error en cuanto
-      // llegue el dato de leadStylist para los proyectos de asistencia.
-      if (info?.role && info.role !== 'lead-stylist' && !info?.leadStylist) {
-        console.warn(
-          `[gallery-loader] Falta "leadStylist" en proyecto de asistencia: slug="${slug}", role="${info.role}" (${jsonPath})`
-        );
-      }
-
       return {
         id: slug,
         title: info?.title || slug,
