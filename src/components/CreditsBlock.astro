@@ -1,9 +1,10 @@
 ---
 /**
- * Regla innegociable: si `role !== 'lead-stylist'`, el rol se pinta SIEMPRE, y
- * si existe `leadStylist` también se pinta SIEMPRE. No hay caso en que se omita.
+ * Regla innegociable: el rol de Luisa se pinta SIEMPRE, y si existe
+ * `leadStylist` también. No hay caso en que se omita.
  */
 import { getLocaleFromUrl, getTranslation } from "../i18n";
+import { profile } from "../data/profile";
 
 interface Credits {
 	photographer?: string;
@@ -43,6 +44,13 @@ const c = t.credits;
 const roleLabel = c.role[role];
 const formatLabel = format === "model-test" ? c.format["model-test"] : undefined;
 
+// El estilismo se lee de arriba abajo: primero quien lo firma, después quien
+// asiste. Cuando Luisa firma no hay `leadStylist` y queda una sola línea.
+const stylistRows = [
+	...(leadStylist ? [{ label: c.role["lead-stylist"], value: leadStylist }] : []),
+	{ label: roleLabel, value: profile.name },
+];
+
 const contextLine = [publication, client, year ? String(year) : undefined]
 	.filter((part): part is string => Boolean(part))
 	.join(" · ");
@@ -67,19 +75,16 @@ const creditRows = creditOrder
 ---
 
 <section class="credits-block" aria-label={roleLabel}>
-	<p class="role-line">
-		<span class="role-label">{roleLabel}</span>
-		{roleDetail && <span class="role-detail"> — {roleDetail}</span>}
-		{formatLabel && <span class="format-tag">{formatLabel}</span>}
-	</p>
-
 	{
-		leadStylist && (
-			<p class="lead-line">
-				<span class="lead-label">{c.leadStylistLabel}</span> {leadStylist}
+		stylistRows.map(({ label, value }) => (
+			<p class="stylist-line">
+				<span class="stylist-label">{label}:</span> {value}
 			</p>
-		)
+		))
 	}
+
+	{roleDetail && <p class="role-detail">{roleDetail}</p>}
+	{formatLabel && <p class="format-tag">{formatLabel}</p>}
 
 	{contextLine && <p class="context-line">{contextLine}</p>}
 
@@ -107,25 +112,20 @@ const creditRows = creditOrder
 		border-radius: 1rem;
 	}
 
-	.role-line {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		column-gap: 0.75rem;
-		row-gap: 0.25rem;
+	.stylist-line {
+		font-size: var(--text-base);
+		color: var(--gray-50);
 	}
 
-	.role-label {
+	.stylist-label {
 		font-family: var(--font-brand);
-		font-weight: 400;
-		font-size: var(--text-xl);
-		letter-spacing: 0.06em;
+		letter-spacing: 0.15em;
 		text-transform: uppercase;
-		color: var(--gray-0);
+		color: var(--gray-100);
 	}
 
 	.role-detail {
-		font-size: var(--text-md);
+		font-size: var(--text-base);
 		color: var(--gray-50);
 	}
 
@@ -133,18 +133,6 @@ const creditRows = creditOrder
 		font-family: var(--font-brand);
 		font-size: var(--text-sm);
 		letter-spacing: 0.2em;
-		text-transform: uppercase;
-		color: var(--gray-100);
-	}
-
-	.lead-line {
-		font-size: var(--text-base);
-		color: var(--gray-50);
-	}
-
-	.lead-label {
-		font-family: var(--font-brand);
-		letter-spacing: 0.15em;
 		text-transform: uppercase;
 		color: var(--gray-100);
 	}
@@ -187,10 +175,6 @@ const creditRows = creditOrder
 	}
 
 	@media (min-width: 50em) {
-		.role-label {
-			font-size: var(--text-2xl);
-		}
-
 		.credits-list {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}

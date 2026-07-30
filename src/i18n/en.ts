@@ -96,12 +96,11 @@ export const en: Translation = {
 	},
 	credits: {
 		role: {
-			'lead-stylist': 'Lead Stylist',
-			'assistant-stylist': 'Assistant Stylist',
+			'lead-stylist': 'Stylist',
+			'assistant-stylist': 'Styling Assistant',
 			'wardrobe-assistant': 'Wardrobe Assistant',
 			'co-stylist': 'Co-Stylist',
 		},
-		leadStylistLabel: 'Lead Stylist:',
 		labels: {
 			photographer: 'Photography',
 			director: 'Direction',
