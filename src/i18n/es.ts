@@ -15,7 +15,7 @@
  */
 export const es = {
 	meta: {
-		siteTitle: 'Luisa Benítez — Estilista y Asesora de Imagen',
+		siteTitle: 'Luisa Benítez, estilista y asesora de imagen',
 		siteDescription:
 			'Portfolio de Luisa Benítez, estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper. Descubre sus trabajos en editoriales, publicidad, pasarela y cine.',
 	},
@@ -50,7 +50,7 @@ export const es = {
 	},
 	contact: {
 		/** Título de la pestaña. Distinto de `title`, que es el titular de la página. */
-		pageTitle: 'Contacto — Luisa Benítez',
+		pageTitle: 'Contacto | Luisa Benítez',
 		eyebrow: 'Contacto',
 		title: 'Hablemos',
 		lead: 'Para encargos editoriales, campañas o vestuario de celebridades.',
@@ -95,13 +95,13 @@ export const es = {
 	 * exactamente 3 párrafos, ni uno más ni uno menos.
 	 */
 	about: {
-		title: 'Sobre mí — Luisa Benítez',
+		title: 'Sobre mí | Luisa Benítez',
 		metaDescription:
 			'Luisa Benítez, estilista de moda en A Coruña. Editoriales para Numéro Netherlands, Vogue Adria y GQ México, campañas de marca, celebridades y asesoría de imagen.',
 		eyebrow: 'Sobre mí',
 		bio: [
 			'Si no encuentro la prenda que tengo en la cabeza, la fabrico. He hecho guantes cortando medias y he puesto prendas del revés porque el corte original no caía como yo lo veía. Lo que imagino lo quiero ver, y busco la forma.',
-			'Vengo del diseño de modas —me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España— y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cuatro años trabajando en moda, primero en cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
+			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cuatro años trabajando en moda, primero en cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
