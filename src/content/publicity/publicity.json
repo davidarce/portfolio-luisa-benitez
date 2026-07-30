@@ -99,8 +99,8 @@
         {
             "id": "vogue-spain-maria-pombo",
             "title": "Vogue Spain - María Pombo",
-            "description": "Editorial para Vogue Spain con María Pombo.",
-            "img_alt": "Editorial Vogue Spain María Pombo",
+            "description": "Campaña de Clarins con María Pombo para Vogue Spain.",
+            "img_alt": "Campaña Clarins con María Pombo para Vogue Spain",
             "cardSize": "normal",
             "order": 11,
             "role": "assistant-stylist"
