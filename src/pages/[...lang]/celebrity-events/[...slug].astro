@@ -29,6 +29,8 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 <BaseLayout
 	title={`${entry.data.title} | Luisa Benítez`}
 	description={description ?? entry.data.title}
+	image={`/assets/og/celebrity-events/${entry.id}.jpg`}
+	imageAlt={entry.data.img_alt ?? entry.data.title}
 >
 	<div class="stack gap-20">
 		<div class="stack gap-15">
