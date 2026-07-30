@@ -1,17 +1,24 @@
 ---
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Grid from "../../components/Grid.astro";
-import Card from "../../components/Card.astro";
-import { sortProjects } from "../../lib/sort-projects";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Grid from "../../../components/Grid.astro";
+import Card from "../../../components/Card.astro";
+import { sortProjects } from "../../../lib/sort-projects";
+import { getTranslation } from "../../../i18n";
+import { localeStaticPaths } from "../../../i18n/routing";
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props;
+const t = getTranslation(locale);
 
 const celebrityEvents = sortProjects(await getCollection("celebrity-events"));
 ---
 
 <BaseLayout
-    title="Celebridades y eventos | Luisa Benítez"
-    description="Celebridades y eventos estilados por Luisa Benítez"
+    title={t.collections.celebrityEvents.title}
+    description={t.collections.celebrityEvents.description}
 >
     <div class="stack gap-20 lg:gap-48">
         <main class="wrapper stack gap-20 lg:gap-48">

@@ -1,7 +1,7 @@
 ---
 // Redirección estática: /about/ → /#sobre-mi (home unificada, T004). El
 // contenido de esta página vive ahora en la sección "Sobre mí" de
-// src/pages/index.astro; ver src/components/RedirectPage.astro para la
+// src/pages/[...lang]/index.astro; ver src/components/RedirectPage.astro para la
 // limitación de GitHub Pages (sin 301 real) y por qué es meta-refresh +
 // canonical en vez de la opción `redirects` de astro.config.mjs. El título
 // reutiliza t.nav.about — igual que en el resto del sitio, se conserva esa
@@ -16,5 +16,5 @@ const t = getTranslation(getLocaleFromUrl(Astro.url));
 
 <RedirectPage
 	to="/#sobre-mi"
-	title={`${t.nav.about} — ${profile.name}`}
+	title={`${t.nav.about} | ${profile.name}`}
 />

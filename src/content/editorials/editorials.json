@@ -3,7 +3,7 @@
         {
             "id": "1",
             "title": "Numéro - Miguel Herrán",
-            "description": "Editorial Numéro Netherlands - Miguel Herrán",
+            "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
             "img": "/assets/editorials/miguel-herran/index.webp",
             "img_alt": "Editorial Numéro - Miguel Herrán",
             "cardSize": "normal",
@@ -14,9 +14,9 @@
         {
             "id": "2",
             "title": "Vogue Adria",
-            "description": "Editorial Vogue",
+            "description": "Editorial para Vogue Adria.",
             "img": "/assets/editorials/vogue/index.webp",
-            "img_alt": "Editorial Vogue",
+            "img_alt": "Editorial Vogue Adria",
             "cardSize": "normal",
             "order": 2,
             "role": "assistant-stylist",
@@ -25,7 +25,7 @@
         {
             "id": "3",
             "title": "Numéro - Martina Cariddi",
-            "description": "Editorial Numéro Netherlands - Martina Cariddi",
+            "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
             "img": "/assets/editorials/martina/index.webp",
             "img_alt": "Editorial Numéro - Martina Cariddi",
             "cardSize": "normal",
@@ -36,7 +36,7 @@
         {
             "id": "4",
             "title": "Numéro - Isabeli Fontana",
-            "description": "Editorial Numéro Netherlands - Isabeli Fontana",
+            "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
             "img": "/assets/editorials/isabeli/index.webp",
             "img_alt": "Editorial Numéro - Isabeli Fontana",
             "cardSize": "normal",
@@ -47,9 +47,9 @@
         {
             "id": "5",
             "title": "GQ - México",
-            "description": "Editorial GQ",
+            "description": "Editorial para GQ México.",
             "img": "/assets/editorials/gq/index.webp",
-            "img_alt": "Editorial GQ",
+            "img_alt": "Editorial GQ México",
             "cardSize": "normal",
             "order": 5,
             "role": "assistant-stylist",
@@ -58,9 +58,9 @@
         {
             "id": "6",
             "title": "Mode Magazine - Aminata Sarr",
-            "description": "Editorial Aminata Sarr",
+            "description": "Editorial para Mode Magazine con Aminata Sarr.",
             "img": "/assets/editorials/aminata/index.webp",
-            "img_alt": "Editorial Aminata",
+            "img_alt": "Editorial Mode Magazine con Aminata Sarr",
             "cardSize": "normal",
             "order": 6,
             "role": "lead-stylist",
@@ -69,7 +69,7 @@
         {
             "id": "7",
             "title": "Artego Magazine - Color Pop Garden",
-            "description": "Editorial Artego Magazine - Color Pop Garden",
+            "description": "Editorial «Color Pop Garden» para Artego Magazine.",
             "img": "/assets/editorials/artego-color-pop-garden/index.webp",
             "img_alt": "Editorial Artego Magazine - Color Pop Garden",
             "cardSize": "normal",
@@ -80,7 +80,7 @@
         {
             "id": "8",
             "title": "pap magazine - The New Dandy",
-            "description": "Editorial pap magazine - The New Dandy",
+            "description": "Editorial «The New Dandy» para pap magazine.",
             "img": "/assets/editorials/pap-the-new-dandy/index.webp",
             "img_alt": "Editorial pap magazine - The New Dandy",
             "cardSize": "normal",
@@ -91,7 +91,7 @@
         {
             "id": "9",
             "title": "Folie Magazine - Always Love",
-            "description": "Editorial Folie Magazine - Always Love",
+            "description": "Editorial «Always Love» para Folie Magazine.",
             "img": "/assets/editorials/folie-always-love/index.webp",
             "img_alt": "Editorial Folie Magazine - Always Love",
             "cardSize": "normal",
@@ -102,7 +102,7 @@
         {
             "id": "10",
             "title": "Folie Magazine - Soft Tension",
-            "description": "Editorial Folie Magazine - Soft Tension",
+            "description": "Editorial «Soft Tension» para Folie Magazine.",
             "img": "/assets/editorials/folie-soft-tension/index.webp",
             "img_alt": "Editorial Folie Magazine - Soft Tension",
             "cardSize": "normal",

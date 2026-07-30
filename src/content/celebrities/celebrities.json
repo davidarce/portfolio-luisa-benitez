@@ -25,7 +25,7 @@
         {
             "id": "3",
             "title": "Zara Larsson - Amaze Festival",
-            "description": "Estilismo para concierto de Zara Larsson y sus Bailarinas en Amaze Festival.",
+            "description": "Estilismo para concierto de Zara Larsson y sus bailarinas en Amaze Festival.",
             "img": "/assets/celebrities/zara/index.webp",
             "img_alt": "Zara Larsson en evento Amaze Festival",
             "cardSize": "normal",
@@ -79,10 +79,10 @@
         },
         {
             "id": "8",
-            "title": "Maica Benedicto - Premios Influencers Awards",
-            "description": "Estilismo para Maica Benedicto en los Premios Influencers Awards.",
+            "title": "Maica Benedicto - Influencers Awards",
+            "description": "Estilismo para Maica Benedicto en los Influencers Awards.",
             "img": "/assets/celebrities/maica-premios-influencers/index.webp",
-            "img_alt": "Maica Benedicto en los Premios Influencers Awards",
+            "img_alt": "Maica Benedicto en los Influencers Awards",
             "cardSize": "normal",
             "order": 8,
             "role": "lead-stylist",

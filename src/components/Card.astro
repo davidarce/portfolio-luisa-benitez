@@ -1,4 +1,7 @@
 ---
+import { getLocaleFromUrl } from "../i18n";
+import { localizedPath } from "../i18n/routing";
+
 interface Props {
 	id: string;
 	page: string;
@@ -26,6 +29,10 @@ const {
 } = Astro.props;
 
 const Tag = disableLink ? "div" : "a";
+
+// El idioma se deduce de la URL para no tener que pasar `locale` por prop a los seis sitios donde se instancia Card.
+const locale = getLocaleFromUrl(Astro.url);
+const href = localizedPath(locale, `/${page}/${id}`);
 ---
 
 <div
@@ -34,7 +41,7 @@ const Tag = disableLink ? "div" : "a";
 >
 	{
 		!disableLink && (
-			<a href={`/${page}/${id}`} class="card-link">
+			<a href={href} class="card-link">
 				<span class="sr-only">{title}</span>
 			</a>
 		)
@@ -135,9 +142,7 @@ const Tag = disableLink ? "div" : "a";
 				});
 			}
 
-			// Reproducir el vídeo solo cuando la tarjeta entra en viewport,
-			// para no descargar los 11+ vídeos de un listado a la vez.
-			// Si el usuario prefiere menos movimiento, no lo arrancamos solo.
+			// Solo se reproduce en viewport para no descargar los 11+ vídeos de un listado a la vez.
 			const prefersReducedMotion = window.matchMedia(
 				"(prefers-reduced-motion: reduce)",
 			).matches;
@@ -147,8 +152,7 @@ const Tag = disableLink ? "div" : "a";
 					(entries) => {
 						for (const entry of entries) {
 							if (entry.isIntersecting) {
-								// play() devuelve una promesa que puede rechazarse
-								// (p. ej. si el usuario navega antes de que arranque).
+								// play() puede rechazar (p. ej. si el usuario navega antes de que arranque).
 								video.play().catch(() => {});
 							} else {
 								video.pause();

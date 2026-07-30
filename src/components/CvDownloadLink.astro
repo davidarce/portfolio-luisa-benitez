@@ -1,32 +1,22 @@
 ---
-// Sin props. El enlace es el mismo en todas las páginas; lo que decide si existe es el dato.
-//
-// Por qué vive aquí y no inline en cada página: `cvPath.es` fija el LOCALE del PDF en el punto
-// de uso. En la Fase 4 (#39) habrá que elegir el fichero según el idioma de la ruta; con la
-// selección centralizada eso es un cambio en un solo fichero.
-// (No es por #10: cerrar #10 es rellenar `profile.cvPath`, sin tocar ninguna página.)
+// Vive en un componente propio (no inline por página) para centralizar `cvPath[locale]` (#39, no #10).
 import { profile } from "../data/profile";
 import { getLocaleFromUrl, getTranslation } from "../i18n";
 
-const t = getTranslation(getLocaleFromUrl(Astro.url));
+const locale = getLocaleFromUrl(Astro.url);
+const t = getTranslation(locale);
 ---
 
 {
 	profile.cvPath && (
-		<a class="cv" href={profile.cvPath.es}>
+		<a class="cv" href={profile.cvPath[locale]}>
 			{t.common.downloadCv} <span class="arrow" aria-hidden="true">&rarr;</span>
 		</a>
 	)
 }
 
 <style>
-	/*
-	 * Ámbito de Astro: estas reglas NO cruzan el límite del componente. Si otra
-	 * página reutiliza class="cv" para sus propios enlaces, tiene que redeclarar
-	 * este bloque en su propio <style> o saldrán sin estilos — y el fallo no se ve
-	 * en revisión, porque mientras `cvPath` sea undefined este enlace no se pinta.
-	 * Copiado verbatim de contact.astro, salvo el anillo de foco tokenizado.
-	 */
+	/* Ámbito de Astro: si otra página reutiliza class="cv" debe redeclarar este bloque o saldrá sin estilos. */
 	.cv {
 		display: inline-flex;
 		align-items: baseline;
@@ -56,12 +46,7 @@ const t = getTranslation(getLocaleFromUrl(Astro.url));
 		transform: translateX(0.3rem);
 	}
 
-	/*
-	 * Anillo de foco propio y tokenizado (C4): el único cue de foco de .cv era el
-	 * cambio de color, y en tema claro --link-color contra --gray-0 da 1,12:1
-	 * (indistinguible). --gray-0 sobre --gray-999 es el máximo contraste posible
-	 * en ambos temas y se invierte solo con el tema; no se toca --link-color.
-	 */
+	/* Anillo de foco propio (C4): el único cue previo era el color, y en tema claro daba 1,12:1 (indistinguible). */
 	a:focus-visible {
 		outline: 2px solid var(--gray-0);
 		outline-offset: 3px;

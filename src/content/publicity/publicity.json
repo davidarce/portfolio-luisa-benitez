@@ -3,7 +3,7 @@
         {
             "id": "alaniz-maria-pombo",
             "title": "Alaniz - María Pombo",
-            "description": "Campaña Publicidad Alaniz con María Pombo",
+            "description": "Campaña para Alaniz con María Pombo.",
             "img": "/assets/publicity/alaniz-maria-pombo/1.webp",
             "img_alt": "Campaña Alaniz María Pombo",
             "cardSize": "normal",
@@ -14,7 +14,7 @@
         {
             "id": "bruno-magli",
             "title": "Bruno Magli",
-            "description": "Campaña Publicidad Bruno Magli",
+            "description": "Campaña para Bruno Magli.",
             "img": "/assets/publicity/bruno-magli/1.webp",
             "img_alt": "Campaña Bruno Magli",
             "cardSize": "normal",
@@ -24,7 +24,7 @@
         {
             "id": "prime-video-zara-larsson",
             "title": "Prime Video - Zara Larsson",
-            "description": "Campaña Prime Video con Zara Larsson",
+            "description": "Campaña para Prime Video con Zara Larsson.",
             "img": "/assets/publicity/prime-video-zara-larsson/1.webp",
             "img_alt": "Campaña Prime Video Zara Larsson",
             "cardSize": "normal",
@@ -34,7 +34,7 @@
         {
             "id": "ysl-aitana",
             "title": "YSL - Aitana",
-            "description": "Campaña YSL con Aitana",
+            "description": "Campaña para YSL con Aitana.",
             "img_alt": "Campaña YSL Aitana",
             "cardSize": "normal",
             "order": 4,
@@ -43,7 +43,7 @@
         {
             "id": "agatha-paris-maria-pombo",
             "title": "Agatha Paris - María Pombo",
-            "description": "Campaña Agatha Paris con María Pombo",
+            "description": "Campaña para Agatha Paris con María Pombo.",
             "img": "/assets/publicity/agatha-paris-maria-pombo/1.webp",
             "img_alt": "Campaña Agatha Paris María Pombo",
             "cardSize": "normal",
@@ -53,7 +53,7 @@
         {
             "id": "gdh-jesus-de-paula",
             "title": "GHD - Jesús de Paula",
-            "description": "Campaña GHD con Jesús de Paula",
+            "description": "Campaña para GHD con Jesús de Paula.",
             "img": "/assets/publicity/gdh-jesus-de-paula/index.webp",
             "img_alt": "Campaña GHD Jesús de Paula",
             "cardSize": "normal",
@@ -63,7 +63,7 @@
         {
             "id": "kerastase",
             "title": "Kérastase",
-            "description": "Campaña Kérastase",
+            "description": "Campaña para Kérastase.",
             "img_alt": "Campaña Kérastase",
             "cardSize": "normal",
             "order": 7,
@@ -72,7 +72,7 @@
         {
             "id": "kerastase-lola-lolita",
             "title": "Kérastase - Lola Lolita",
-            "description": "Campaña Kérastase con Lola Lolita",
+            "description": "Campaña para Kérastase con Lola Lolita.",
             "img_alt": "Campaña Kérastase Lola Lolita",
             "cardSize": "normal",
             "order": 8,
@@ -81,7 +81,7 @@
         {
             "id": "kerastase-nicole-wallace",
             "title": "Kérastase - Nicole Wallace",
-            "description": "Campaña Kérastase con Nicole Wallace",
+            "description": "Campaña para Kérastase con Nicole Wallace.",
             "img_alt": "Campaña Kérastase Nicole Wallace",
             "cardSize": "normal",
             "order": 9,
@@ -90,7 +90,7 @@
         {
             "id": "redken-marina-reche",
             "title": "Redken - Marina Reche",
-            "description": "Campaña Redken con Marina Reche",
+            "description": "Campaña para Redken con Marina Reche.",
             "img_alt": "Campaña Redken Marina Reche",
             "cardSize": "normal",
             "order": 10,
@@ -99,8 +99,8 @@
         {
             "id": "vogue-spain-maria-pombo",
             "title": "Vogue Spain - María Pombo",
-            "description": "Editorial Vogue Spain con María Pombo",
-            "img_alt": "Editorial Vogue Spain María Pombo",
+            "description": "Campaña de Clarins con María Pombo para Vogue Spain.",
+            "img_alt": "Campaña Clarins con María Pombo para Vogue Spain",
             "cardSize": "normal",
             "order": 11,
             "role": "assistant-stylist"

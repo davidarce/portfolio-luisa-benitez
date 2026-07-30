@@ -1,43 +1,45 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 
-import ContactCTA from "../../components/ContactCTA.astro";
-import CreditsBlock from "../../components/CreditsBlock.astro";
-import Hero from "../../components/Hero.astro";
-import Icon from "../../components/Icon.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Grid from "../../components/Grid.astro";
+import ContactCTA from "../../../components/ContactCTA.astro";
+import CreditsBlock from "../../../components/CreditsBlock.astro";
+import Hero from "../../../components/Hero.astro";
+import Icon from "../../../components/Icon.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Grid from "../../../components/Grid.astro";
+import { getTranslation } from "../../../i18n";
+import { collectionLocalePaths, localizedPath } from "../../../i18n/routing";
 
 interface Props {
-	entry: CollectionEntry<"editorials">;
+	entry: CollectionEntry<"celebrity-events">;
+	locale: import("../../../i18n").Locale;
 }
 
 export async function getStaticPaths() {
-	const celebrities = await getCollection("editorials");
-	return celebrities.map((entry) => ({
-		params: { slug: entry.id },
-		props: { entry },
-	}));
+	const celebrityEvents = await getCollection("celebrity-events");
+	return collectionLocalePaths(celebrityEvents);
 }
 
-const { entry } = Astro.props;
+const { entry, locale } = Astro.props;
+const t = getTranslation(locale);
+const description = entry.data.descriptionEn ?? entry.data.description;
+const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 ---
 
 <BaseLayout
-	title={`${entry.data.title} — Luisa Benítez`}
-	description={entry.data.description ?? entry.data.title}
-	path={Astro.url.pathname}
+	title={`${entry.data.title} | Luisa Benítez`}
+	description={description ?? entry.data.title}
 >
 	<div class="stack gap-20">
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/editorials"
-						><Icon icon="arrow-left" /> Volver</a
+					<a class="back-link" href={localizedPath(locale, "/celebrity-events")}
+						><Icon icon="arrow-left" /> {t.common.back}</a
 					>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
-							<p class="description">{entry.data.description}</p>
+							<p class="description" lang={descriptionIsSpanish ? "es" : undefined}>{description}</p>
 						</div>
 					</Hero>
 				</div>
@@ -93,9 +95,7 @@ const { entry } = Astro.props;
 </BaseLayout>
 
 <script>
-	// Mismo patrón que Card.astro (P1): con `preload="none"` los vídeos de la
-	// galería no se descargan hasta que entran en viewport, y se pausan al
-	// salir. Si el usuario prefiere menos movimiento, no arrancan solos.
+	// Mismo patrón que Card.astro (P1): preload="none" + reproducción solo en viewport.
 	document.addEventListener("astro:page-load", () => {
 		const prefersReducedMotion = window.matchMedia(
 			"(prefers-reduced-motion: reduce)",
@@ -110,8 +110,7 @@ const { entry } = Astro.props;
 					(entries) => {
 						for (const entry of entries) {
 							if (entry.isIntersecting) {
-								// play() devuelve una promesa que puede rechazarse
-								// (p. ej. si el usuario navega antes de que arranque).
+								// play() puede rechazar (p. ej. si el usuario navega antes de que arranque).
 								video.play().catch(() => {});
 							} else {
 								video.pause();
@@ -132,9 +131,7 @@ const { entry } = Astro.props;
 	}
 
 	.back-link {
-		display: block;
-		color: var(--gray-0);
-		text-decoration: none;
+		display: none;
 	}
 
 	.details {
@@ -180,16 +177,9 @@ const { entry } = Astro.props;
 		border: 1px solid var(--gray-800);
 	}
 
-	/*
-	 * aspect-ratio reserva la altura del ítem ANTES de que la imagen cargue.
-	 * Sin esto, .gallery-item no tiene altura propia (solo la marca `img`
-	 * con height:100%, que es 100% de un contenedor sin altura -> colapsa a
-	 * ~0). El grid entero se comprime a una fracción de su alto real, así que
-	 * el navegador "ve" casi todas las imágenes cerca del viewport y el
-	 * loading="lazy" nativo deja de tener efecto: las pide todas de golpe.
-	 * Con la altura reservada, la página mide su alto real desde el primer
-	 * render y el lazy-load nativo sí difiere las imágenes fuera de rango.
-	 */
+	/* aspect-ratio reserva la altura del ítem antes de que la imagen cargue.
+	   Ver editorials/[...slug].astro para el diagnóstico completo del bug de
+	   lazy-loading que arregla. */
 	.gallery-item {
 		overflow: hidden;
 		border-radius: 1.5rem;
