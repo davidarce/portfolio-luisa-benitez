@@ -32,7 +32,7 @@ export const es = {
 	/**
 	 * Home (/). Alcance mínimo a propósito (ver .sdd/phase2-projects/plan.md
 	 * T006, no-objetivos): el resto del texto de la home sigue escrito a mano
-	 * en src/pages/index.astro, solo este titular pasa por i18n porque es el
+	 * en src/pages/[...lang]/index.astro, solo este titular pasa por i18n porque es el
 	 * que cambia con la Fase 2. PENDIENTE DE APROBACIÓN DE DAVID: el texto es
 	 * un cierre neutro y honesto ("alguno de mis trabajos como asistente" deja
 	 * de ser cierto en cuanto la home destaca primero el trabajo como
@@ -40,6 +40,13 @@ export const es = {
 	 */
 	home: {
 		featuredWorkTitle: 'Trabajos destacados',
+		/**
+		 * Titular bajo el nombre en la home. Copiado VERBATIM del literal que
+		 * hoy vive a mano en src/pages/[...lang]/index.astro (línea ~157) — no se
+		 * reescribe la copy aprobada de Luisa, solo se traslada a i18n para
+		 * que la home en inglés no muestre español (issue #40).
+		 */
+		tagline: 'Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper',
 	},
 	contact: {
 		/** Título de la pestaña. Distinto de `title`, que es el titular de la página. */
@@ -104,6 +111,37 @@ export const es = {
 		newWindowHint: '(se abre en una pestaña nueva)',
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
 		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
+		/** Enlace de vuelta en las fichas de detalle de las 5 colecciones. */
+		back: 'Volver',
+		/** Nombre accesible (aria-label) del conmutador de idioma ES/EN del nav. */
+		languageLabel: 'Cambiar de idioma',
+	},
+	/**
+	 * Título y descripción de los 5 índices de colección. Valores ES copiados
+	 * LITERALMENTE de los literales que hoy están escritos a mano en cada
+	 * `{coleccion}/index.astro`; no se reescribe copy existente.
+	 */
+	collections: {
+		campaigns: {
+			title: 'Campañas | Luisa Benítez',
+			description: 'Campañas y colaboraciones de marca asistidas por Luisa Benítez',
+		},
+		celebrityEvents: {
+			title: 'Celebridades y eventos | Luisa Benítez',
+			description: 'Celebridades y eventos estilados por Luisa Benítez',
+		},
+		editorials: {
+			title: 'Editoriales | Luisa Benítez',
+			description: 'Editoriales asistidas por Luisa Benítez',
+		},
+		films: {
+			title: 'Cine | Luisa Benítez',
+			description: 'Cine estilado por Luisa Benítez',
+		},
+		runway: {
+			title: 'Runway | Luisa Benítez',
+			description: 'Runway asistida por Luisa Benítez',
+		},
 	},
 	/**
 	 * Bloque de créditos de las páginas de detalle (requisito nº1 de la Fase 2,

@@ -1,19 +1,20 @@
 ---
 // Sin props. El enlace es el mismo en todas las páginas; lo que decide si existe es el dato.
 //
-// Por qué vive aquí y no inline en cada página: `cvPath.es` fija el LOCALE del PDF en el punto
-// de uso. En la Fase 4 (#39) habrá que elegir el fichero según el idioma de la ruta; con la
-// selección centralizada eso es un cambio en un solo fichero.
+// Por qué vive aquí y no inline en cada página: `cvPath[locale]` fija el LOCALE del PDF en el
+// punto de uso. Esta es la Fase 4 (#39): el fichero se elige según el idioma de la ruta, y con
+// la selección centralizada aquí eso queda en un solo sitio.
 // (No es por #10: cerrar #10 es rellenar `profile.cvPath`, sin tocar ninguna página.)
 import { profile } from "../data/profile";
 import { getLocaleFromUrl, getTranslation } from "../i18n";
 
-const t = getTranslation(getLocaleFromUrl(Astro.url));
+const locale = getLocaleFromUrl(Astro.url);
+const t = getTranslation(locale);
 ---
 
 {
 	profile.cvPath && (
-		<a class="cv" href={profile.cvPath.es}>
+		<a class="cv" href={profile.cvPath[locale]}>
 			{t.common.downloadCv} <span class="arrow" aria-hidden="true">&rarr;</span>
 		</a>
 	)

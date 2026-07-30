@@ -8,14 +8,19 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://luisabenitez.es',
   base: '/',
-  // Cimientos de i18n (P4-1). El español vive en la raíz y el inglés vivirá
-  // bajo /en/. Mientras no existan páginas en src/pages/en/, esta config es
-  // inerte: no genera ni cambia ninguna ruta.
+  // Cimientos de i18n (P4-1, extendido en i18n-paginas-en). El español vive
+  // en la raíz y el inglés vive bajo /en/. Las páginas EN salen de
+  // src/pages/[...lang]/ (un parámetro rest en la raíz de src/pages/, NO de
+  // un árbol duplicado src/pages/en/): un mismo fichero emite las dos
+  // variantes vía getStaticPaths, así que esta config ya no es inerte.
   //
-  // El `fallback: { en: 'es' }` del handoff se deja para MÁS ADELANTE (P4-5,
-  // las páginas espejo): habilitarlo ahora, sin ninguna página EN, hace que
-  // Astro genere 39 stubs de redirect /en/* → / que se indexarían sin aportar
-  // nada. El fallback solo tiene sentido cuando ya hay páginas EN de las que caer.
+  // `fallback` SIGUE DESACTIVADO, pero ya no por falta de páginas EN (esa
+  // razón dejó de ser cierta): con `[...lang]`, cada ruta EN es una página
+  // real generada en build, no hay ningún 404 del que Astro tenga que "caer"
+  // a español. Medido en el prototipo: 115 páginas (72 ES + 43 EN) sin
+  // `fallback`. Activarlo solo añadiría stubs de redirect para las rutas que
+  // deliberadamente se dejan sin variante EN (Decisión E del plan:
+  // /publicity/, /celebrities/, /work/, /about/, 404).
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
@@ -37,6 +42,13 @@ export default defineConfig({
       //   /about/                      fusionada en la home (/#sobre-mi)
       //
       // /contact/ NO está excluida: volvió a ser página propia y se indexa.
+      //
+      // Rutas /en/*: la lógica de este filtro NO cambia con i18n-paginas-en.
+      // Medido en el prototipo: el sitemap pasó de 43 a 86 URLs (43 ES + 43
+      // EN) sin tocar el filter — las rutas /en/* entran solas. Y como estos
+      // `includes` comprueban el sufijo de ruta sin fijar el idioma,
+      // cubrirían también un hipotético /en/publicity/ si algún día
+      // existiera (Decisión E: hoy no existe, esos stubs se quedan solo-ES).
       //
       // CADUCIDAD: estas exclusiones desaparecen cuando se retiren las
       // redirecciones. Revisar a partir de agosto de 2027 — el porqué, el

@@ -27,6 +27,14 @@ export const en: Translation = {
 	/** PENDIENTE DE APROBACIÓN DE DAVID — ver la nota en es.ts. */
 	home: {
 		featuredWorkTitle: 'Featured work',
+		/**
+		 * PENDIENTE DE APROBACIÓN DE DAVID (Decisión D del plan). Traducción
+		 * candidata del tagline español ("Estilista y asistente de moda,
+		 * Diseñadora de Modas, Asesora de Imagen y Personal Shopper"), inglés
+		 * británico coherente con el resto de en.ts. No publicar como copy
+		 * final sin que David la apruebe antes del merge.
+		 */
+		tagline: 'Fashion stylist and assistant, fashion designer, image consultant and personal shopper',
 	},
 	contact: {
 		pageTitle: 'Contact — Luisa Benítez',
@@ -85,6 +93,30 @@ export const en: Translation = {
 		downloadCv: 'Download CV',
 		newWindowHint: '(opens in a new tab)',
 		portraitAlt: 'Luisa Benítez outdoors, reading a fashion magazine',
+		back: 'Back',
+		languageLabel: 'Switch language',
+	},
+	collections: {
+		campaigns: {
+			title: 'Campaigns | Luisa Benítez',
+			description: 'Brand campaigns and collaborations styled by Luisa Benítez',
+		},
+		celebrityEvents: {
+			title: 'Celebrity & Events | Luisa Benítez',
+			description: 'Celebrity and event styling by Luisa Benítez',
+		},
+		editorials: {
+			title: 'Editorials | Luisa Benítez',
+			description: 'Editorials styled by Luisa Benítez',
+		},
+		films: {
+			title: 'Film & TV | Luisa Benítez',
+			description: 'Film and TV styling by Luisa Benítez',
+		},
+		runway: {
+			title: 'Runway | Luisa Benítez',
+			description: 'Runway styling by Luisa Benítez',
+		},
 	},
 	credits: {
 		role: {

@@ -4,6 +4,14 @@ import { createGalleryLoader } from './loaders/gallery-loader';
 const gallerySchema = z.object({
 	title: z.string(),
 	description: z.string().optional(),
+	/**
+	 * Traducción inglesa de `description`. Opcional y HOY VACÍA a propósito en
+	 * las 36 fichas: la copy de proyecto es de Luisa y no se inventa. Las
+	 * plantillas hacen `descriptionEn ?? description` y marcan `lang="es"`
+	 * cuando caen al español, así que rellenar esto más adelante es un cambio
+	 * de datos, no de código.
+	 */
+	descriptionEn: z.string().optional(),
 	img: z.string(),
 	img_alt: z.string().optional(),
 	video: z.string().optional(),

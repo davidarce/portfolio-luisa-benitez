@@ -2,21 +2,25 @@
 import { getCollection } from "astro:content";
 
 import { Image } from "astro:assets";
-import heroPap from "../assets/hero/pap-the-new-dandy.webp";
-import heroArtego from "../assets/hero/artego-color-pop-garden.webp";
-import heroIsabelArbos from "../assets/hero/isabel-arbos-model-test.webp";
-import heroAitana from "../assets/hero/aitana-ysl.webp";
+import heroPap from "../../assets/hero/pap-the-new-dandy.webp";
+import heroArtego from "../../assets/hero/artego-color-pop-garden.webp";
+import heroIsabelArbos from "../../assets/hero/isabel-arbos-model-test.webp";
+import heroAitana from "../../assets/hero/aitana-ysl.webp";
 
-import Grid from "../components/Grid.astro";
-import Icon from "../components/Icon.astro";
-import Card from "../components/Card.astro";
+import Grid from "../../components/Grid.astro";
+import Icon from "../../components/Icon.astro";
+import Card from "../../components/Card.astro";
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { profile } from "../data/profile";
-import { sortProjects } from "../lib/sort-projects";
-import { getLocaleFromUrl, getTranslation } from "../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { profile } from "../../data/profile";
+import { sortProjects } from "../../lib/sort-projects";
+import { getTranslation } from "../../i18n";
+import { localeStaticPaths } from "../../i18n/routing";
 
-const t = getTranslation(getLocaleFromUrl(Astro.url));
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props;
+const t = getTranslation(locale);
 
 /**
  * Portada (T001, plan-v2.md). Rejilla de 4 fotos de sesión reales en vez de
@@ -87,7 +91,7 @@ const featuredProjects = sortProjects(allProjects).slice(0, 4);
 
 // Home unificada (.sdd/home-unificada/plan.md) + recuperación de /contact
 // (plan-v2.md T004): la home mantiene portada, trabajos y "sobre mí", pero la
-// sección de contacto vuelve a vivir solo en src/pages/contact.astro — aquí
+// sección de contacto vuelve a vivir solo en src/pages/[...lang]/contact.astro — aquí
 // ya no se repiten canales ni datos de contacto. La copy de "sobre mí" sale
 // literal de t.about y t.profile, igual que antes.
 
@@ -108,7 +112,6 @@ if (profile.availableForTravel) {
 <BaseLayout
 	title={t.meta.siteTitle}
 	description={t.meta.siteDescription}
-	path="/"
 >
 	<div class="stack gap-20">
 		<!--
@@ -152,10 +155,7 @@ if (profile.availableForTravel) {
 			<div class="hero-panel">
 				<p class="eyebrow">{profile.role}</p>
 				<h1 class="headline">{profile.name}</h1>
-				<p class="tagline">
-					Estilista y asistente de moda, Diseñadora de Modas, Asesora de
-					Imagen y Personal Shopper
-				</p>
+				<p class="tagline">{t.home.tagline}</p>
 				<a
 					href={profile.instagram.url}
 					target="_blank"

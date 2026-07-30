@@ -3,9 +3,26 @@ import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 import ThemeToggle from './ThemeToggle.astro';
 import { profile } from '../data/profile';
-import { getLocaleFromUrl, getTranslation } from '../i18n';
+import { getLocaleFromUrl, getTranslation, locales } from '../i18n';
+import { localizedPath, stripLocale } from '../i18n/routing';
 
-const t = getTranslation(getLocaleFromUrl(Astro.url));
+interface Props {
+	/**
+	 * `false` cuando la página actual no tiene contraparte real en el otro
+	 * idioma (p.ej. 404.astro). Viene de BaseLayout, que ya conoce este dato
+	 * porque lo usa para decidir el hreflang alternate — ver BaseLayout.astro.
+	 * Por defecto `true`: la inmensa mayoría de páginas sí tienen las dos
+	 * variantes y el conmutador puede apuntar a la ruta real del otro idioma.
+	 */
+	hasTranslation?: boolean | undefined;
+}
+
+const { hasTranslation = true } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = getTranslation(locale);
+
+/** Construye una ruta interna en el idioma actual — ver src/i18n/routing.ts. */
+const L = (path: string) => localizedPath(locale, path);
 
 /**
  * Main menu items. Etiquetas por i18n (t.nav.*), no escritas a mano — ver
@@ -13,16 +30,34 @@ const t = getTranslation(getLocaleFromUrl(Astro.url));
  * "Publicidad" → "Campañas" y "Celebridades" → "Celebridades y eventos". El
  * nav va en español aunque exista traducción EN: el resto del menú comparte
  * idioma con la página actual, no se mezcla.
+ *
+ * Hrefs pasados por `L()` (i18n-paginas-en T008): en inglés cada uno sale
+ * prefijado con `/en`; en español `L()` es la identidad, así que las URLs
+ * publicadas no cambian.
  */
 const textLinks: { label: string; href: string }[] = [
-	{ label: t.nav.home, href: '/' },
-	{ label: t.nav.editorial, href: '/editorials/' },
-	{ label: t.nav.campaigns, href: '/campaigns/' },
-	{ label: t.nav.celebrityEvents, href: '/celebrity-events/' },
-	{ label: t.nav.films, href: '/films/' },
-	{ label: t.nav.runway, href: '/runway/' },
-	{ label: t.nav.contact, href: '/contact/' },
+	{ label: t.nav.home, href: L('/') },
+	{ label: t.nav.editorial, href: L('/editorials/') },
+	{ label: t.nav.campaigns, href: L('/campaigns/') },
+	{ label: t.nav.celebrityEvents, href: L('/celebrity-events/') },
+	{ label: t.nav.films, href: L('/films/') },
+	{ label: t.nav.runway, href: L('/runway/') },
+	{ label: t.nav.contact, href: L('/contact/') },
 ];
+
+/**
+ * Ruta española canónica de la página actual, para el conmutador de idioma.
+ *
+ * Si la página no tiene contraparte en el otro idioma (`hasTranslation`
+ * false, p.ej. 404.astro), `stripLocale` seguiría produciendo una URL que
+ * Astro nunca generó — dist/404.html es el único fichero para cualquier ruta
+ * no encontrada, así que no existe `dist/404/` ni `dist/en/404/`. Apuntar
+ * ahí dejaría un enlace muerto justo en la página de error, que es peor que
+ * el propio error. En ese caso el conmutador cae a la raíz de cada idioma
+ * (`/` y `/en/`), que sí existen siempre: un visitante perdido en un 404
+ * conserva una salida real hacia el sitio en su idioma.
+ */
+const here = hasTranslation ? stripLocale(Astro.url.pathname) : '/';
 
 /*
  * plan-v2.md T005: "Contacto" vuelve al menú porque /contact/ vuelve a ser
@@ -37,12 +72,24 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'Instagram', href: profile.instagram.url, icon: 'instagram-logo' },
 ];
 
-/** Test if a link is pointing to the current page. */
+/** Href de Home en el idioma actual — único caso que necesita comparación exacta. */
+const homeHref = L('/');
+
+/**
+ * Test if a link is pointing to the current page.
+ *
+ * Bug corregido (i18n-paginas-en T008, ver plan Before/After §1): el guard
+ * original comparaba contra el literal `'/'`. Con los hrefs ya localizados,
+ * el enlace de Home en inglés es `/en/`, y `pathname.startsWith('/en/')` es
+ * cierto en TODAS las páginas inglesas — "Inicio" saldría marcado como
+ * página actual en todo el sitio EN. Por eso el guard compara contra
+ * `homeHref` (que ya incluye el prefijo de idioma), no contra `'/'`.
+ */
 const isCurrentPage = (href: string) => {
 	let pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 	if (pathname.at(0) !== '/') pathname = '/' + pathname;
 	if (pathname.at(-1) !== '/') pathname += '/';
-	return pathname === href || (href !== '/' && pathname.startsWith(href));
+	return pathname === href || (href !== homeHref && pathname.startsWith(href));
 };
 const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 ---
@@ -50,10 +97,10 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 <nav>
 	<div class="menu-header">
 		<div class="stack gap-1">
-			<a href="/" class="site-title">
+			<a href={homeHref} class="site-title">
 				{profile.name}
 				{
-					activeLink && activeLink.href !== "/" && (
+					activeLink && activeLink.href !== homeHref && (
 						<span class="mobile-page-label">
 							| {activeLink.label}
 						</span>
@@ -103,6 +150,21 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 					))
 				}
 			</div>
+			<nav class="lang-switch" aria-label={t.common.languageLabel}>
+				{
+					locales.map((l) => (
+						<a
+							href={localizedPath(l, here)}
+							lang={l}
+							hreflang={l}
+							class="lang-link"
+							aria-current={l === locale ? 'page' : null}
+						>
+							{l.toUpperCase()}
+						</a>
+					))
+				}
+			</nav>
 		</div>
 	</noscript>
 	<div id="menu-content" hidden>
@@ -128,6 +190,22 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 					))
 				}
 			</div>
+
+			<nav class="lang-switch" aria-label={t.common.languageLabel}>
+				{
+					locales.map((l) => (
+						<a
+							href={localizedPath(l, here)}
+							lang={l}
+							hreflang={l}
+							class="lang-link"
+							aria-current={l === locale ? 'page' : null}
+						>
+							{l.toUpperCase()}
+						</a>
+					))
+				}
+			</nav>
 
 			<div class="theme-toggle">
 				<ThemeToggle />
@@ -362,6 +440,44 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 		display: flex;
 		align-items: center;
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
+	}
+
+	/*
+	 * Conmutador de idioma ES/EN (i18n-paginas-en T009, issue #41). Estilos
+	 * con ámbito de este componente a propósito: Astro no los deja cruzar el
+	 * límite de Nav.astro, así que viven aquí y en ningún otro sitio.
+	 */
+	.lang-switch {
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		letter-spacing: 0.05em;
+	}
+
+	.lang-link {
+		display: flex;
+		align-items: center;
+		padding: 0.25rem 0.4375rem;
+		border-radius: 999rem;
+		color: var(--gray-300);
+		text-decoration: none;
+		transition:
+			color var(--theme-transition),
+			background-color var(--theme-transition);
+	}
+
+	.lang-link:hover,
+	.lang-link:focus-visible {
+		color: var(--gray-0);
+		outline: 2px solid var(--gray-0);
+		outline-offset: 2px;
+	}
+
+	.lang-link[aria-current='page'] {
+		color: var(--gray-0);
+		background-color: var(--gray-800);
 	}
 
 	/*

@@ -6,14 +6,18 @@
 // documentan los desbordes concretos que arreglaron. La sección "Contacto"
 // sale de index.astro (T004) para no duplicar canales/datos en dos sitios.
 import { Image } from "astro:assets";
-import portrait from "../assets/portrait.webp";
+import portrait from "../../assets/portrait.webp";
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-import CvDownloadLink from "../components/CvDownloadLink.astro";
-import { profile } from "../data/profile";
-import { getLocaleFromUrl, getTranslation } from "../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CvDownloadLink from "../../components/CvDownloadLink.astro";
+import { profile } from "../../data/profile";
+import { getTranslation } from "../../i18n";
+import { localeStaticPaths } from "../../i18n/routing";
 
-const t = getTranslation(getLocaleFromUrl(Astro.url));
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props;
+const t = getTranslation(locale);
 
 /** Los canales son las vías de contacto: mismo bloque, misma jerarquía. */
 const channels: { label: string; value: string; href: string; external?: boolean }[] = [
@@ -54,7 +58,6 @@ const details: { label: string; value: string }[] = [
 <BaseLayout
 	title={t.contact.pageTitle}
 	description={t.contact.metaDescription}
-	path="/contact/"
 >
 	<main class="contact">
 		<div class="portrait">

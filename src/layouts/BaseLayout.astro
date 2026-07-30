@@ -10,6 +10,8 @@ import Footer from "../components/Footer.astro";
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import SEO from "../components/SEO.astro";
+import { getLocaleFromUrl } from "../i18n";
+import { alternatePaths, stripLocale } from "../i18n/routing";
 
 interface Props {
 	title?: string | undefined;
@@ -17,12 +19,27 @@ interface Props {
 	image?: string | undefined;
 	imageAlt?: string | undefined;
 	path?: string | undefined;
+	/**
+	 * `false` cuando la página NO tiene una contraparte real en el otro
+	 * idioma — p.ej. 404.astro, que vive fuera de `[...lang]` y no genera
+	 * `/en/404/`. Por defecto `true`: la inmensa mayoría de páginas del sitio
+	 * sí tienen las dos variantes. La regla general es "solo se anuncia un
+	 * hreflang alternate cuando esa URL existe de verdad" — anunciar una que
+	 * no existe es una afirmación falsa en HTML publicado, aunque hoy sea
+	 * inocua porque GitHub Pages sirve el mismo 404.html para cualquier ruta.
+	 */
+	hasTranslation?: boolean | undefined;
 }
 
-const { title, description, image, imageAlt, path } = Astro.props;
+const { title, description, image, imageAlt, path, hasTranslation = true } =
+	Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const alternates = hasTranslation
+	? alternatePaths(stripLocale(path ?? Astro.url.pathname))
+	: undefined;
 ---
 
-<html lang="es">
+<html lang={locale}>
 	<head>
 		<MainHead />
 		<SEO
@@ -31,6 +48,8 @@ const { title, description, image, imageAlt, path } = Astro.props;
 			image={image}
 			imageAlt={imageAlt}
 			path={path}
+			locale={locale}
+			alternates={alternates}
 		/>
 		<ClientRouter />
 		<script is:inline>
@@ -82,7 +101,7 @@ const { title, description, image, imageAlt, path } = Astro.props;
 	</head>
 	<body>
 		<div class="stack page-shell">
-			<Nav />
+			<Nav hasTranslation={hasTranslation} />
 			<slot />
 			<Footer />
 		</div>

@@ -1,4 +1,7 @@
 ---
+import { getLocaleFromUrl } from "../i18n";
+import { localizedPath } from "../i18n/routing";
+
 interface Props {
 	id: string;
 	page: string;
@@ -26,6 +29,12 @@ const {
 } = Astro.props;
 
 const Tag = disableLink ? "div" : "a";
+
+// El idioma se deduce de la URL propia del componente (igual que hoy hace el
+// resto de la plomería i18n) para no tener que pasar `locale` por prop a los
+// seis sitios donde se instancia Card.
+const locale = getLocaleFromUrl(Astro.url);
+const href = localizedPath(locale, `/${page}/${id}`);
 ---
 
 <div
@@ -34,7 +43,7 @@ const Tag = disableLink ? "div" : "a";
 >
 	{
 		!disableLink && (
-			<a href={`/${page}/${id}`} class="card-link">
+			<a href={href} class="card-link">
 				<span class="sr-only">{title}</span>
 			</a>
 		)
