@@ -102,12 +102,11 @@ export const es = {
 	/** `role` cubre los 4 valores del enum `gallerySchema` en src/content.config.ts. */
 	credits: {
 		role: {
-			'lead-stylist': 'Estilista principal',
-			'assistant-stylist': 'Asistente de estilismo',
-			'wardrobe-assistant': 'Asistente de vestuario',
+			'lead-stylist': 'Estilista',
+			'assistant-stylist': 'Asistente Estilismo',
+			'wardrobe-assistant': 'Asistente de Vestuario',
 			'co-stylist': 'Coestilista',
 		},
-		leadStylistLabel: 'Estilista principal:',
 		labels: {
 			photographer: 'Fotografía',
 			director: 'Dirección',
