@@ -18,7 +18,6 @@ export const es = {
 		about: 'Sobre mí',
 		contact: 'Contacto',
 	},
-	/** PENDIENTE DE APROBACIÓN DE DAVID: `tagline` no es copy final aprobada. */
 	home: {
 		featuredWorkTitle: 'Trabajos destacados',
 		tagline: 'Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper',

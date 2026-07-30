@@ -17,10 +17,8 @@ export const en: Translation = {
 		about: 'About',
 		contact: 'Contact',
 	},
-	/** PENDIENTE DE APROBACIÓN DE DAVID — ver la nota en es.ts. */
 	home: {
 		featuredWorkTitle: 'Featured work',
-		/** PENDIENTE DE APROBACIÓN DE DAVID: no publicar como copy final sin que David la apruebe antes del merge. */
 		tagline: 'Fashion stylist and assistant, fashion designer, image consultant and personal shopper',
 	},
 	contact: {
