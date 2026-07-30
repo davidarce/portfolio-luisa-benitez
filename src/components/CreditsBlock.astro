@@ -1,17 +1,7 @@
 ---
 /**
- * Bloque de créditos — requisito nº1 del rediseño (plan/02-information-architecture/REVISION-v2.md §2).
- *
- * El rol de Luisa en cada proyecto es el dato más importante de la ficha: debe
- * leerse antes que nada, no quedar como letra pequeña al pie. Por eso el rol
- * (y, si aplica, el nombre del estilista principal) es lo primero que pinta
- * este componente, con la misma jerarquía tipográfica que el resto del sitio
- * (font-brand + mayúsculas para etiquetas, cuerpo para valores — ver /about).
- *
  * Regla innegociable: si `role !== 'lead-stylist'`, el rol se pinta SIEMPRE, y
  * si existe `leadStylist` también se pinta SIEMPRE. No hay caso en que se omita.
- *
- * Campos ausentes no se pintan: nada de placeholders ni relleno.
  */
 import { getLocaleFromUrl, getTranslation } from "../i18n";
 
@@ -125,8 +115,6 @@ const creditRows = creditOrder
 		row-gap: 0.25rem;
 	}
 
-	/* El rol es el dato más importante del bloque: se lee primero y a mayor
-	   tamaño que cualquier otra cosa aquí, incluida la descripción del proyecto. */
 	.role-label {
 		font-family: var(--font-brand);
 		font-weight: 400;

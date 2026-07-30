@@ -30,9 +30,7 @@ const {
 
 const Tag = disableLink ? "div" : "a";
 
-// El idioma se deduce de la URL propia del componente (igual que hoy hace el
-// resto de la plomería i18n) para no tener que pasar `locale` por prop a los
-// seis sitios donde se instancia Card.
+// El idioma se deduce de la URL para no tener que pasar `locale` por prop a los seis sitios donde se instancia Card.
 const locale = getLocaleFromUrl(Astro.url);
 const href = localizedPath(locale, `/${page}/${id}`);
 ---
@@ -144,9 +142,7 @@ const href = localizedPath(locale, `/${page}/${id}`);
 				});
 			}
 
-			// Reproducir el vídeo solo cuando la tarjeta entra en viewport,
-			// para no descargar los 11+ vídeos de un listado a la vez.
-			// Si el usuario prefiere menos movimiento, no lo arrancamos solo.
+			// Solo se reproduce en viewport para no descargar los 11+ vídeos de un listado a la vez.
 			const prefersReducedMotion = window.matchMedia(
 				"(prefers-reduced-motion: reduce)",
 			).matches;
@@ -156,8 +152,7 @@ const href = localizedPath(locale, `/${page}/${id}`);
 					(entries) => {
 						for (const entry of entries) {
 							if (entry.isIntersecting) {
-								// play() devuelve una promesa que puede rechazarse
-								// (p. ej. si el usuario navega antes de que arranque).
+								// play() puede rechazar (p. ej. si el usuario navega antes de que arranque).
 								video.play().catch(() => {});
 							} else {
 								video.pause();

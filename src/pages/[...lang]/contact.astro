@@ -1,10 +1,6 @@
 ---
-// Página propia de contacto (plan-v2.md T004): vuelve a serlo tras la home
-// unificada. Diseño recuperado de git (feac143..db2353f, previo a c25cfb5,
-// donde /contact pasó a ser redirección) porque ya estaba validado por David
-// tras varias iteraciones — ver comentarios de .portrait/.panel abajo, que
-// documentan los desbordes concretos que arreglaron. La sección "Contacto"
-// sale de index.astro (T004) para no duplicar canales/datos en dos sitios.
+// Diseño recuperado de git (feac143..db2353f) porque ya estaba validado por
+// David — ver comentarios de .portrait/.panel, que documentan los desbordes que arreglaron.
 import { Image } from "astro:assets";
 import portrait from "../../assets/portrait.webp";
 
@@ -43,12 +39,7 @@ if (profile.linkedin) {
 	});
 }
 
-/**
- * Sin "disponibilidad" a propósito: es un estado que cambia y este sitio es
- * estático, así que quedaría desactualizado sin que nadie se dé cuenta. Además
- * anunciar disponibilidad en un portfolio se lee a menudo como "sin trabajo".
- * `profile.availableForTravel` sigue existiendo por si /about lo necesita.
- */
+/** Sin "disponibilidad" a propósito: es un estado cambiante en un sitio estático, quedaría desactualizado. */
 const details: { label: string; value: string }[] = [
 	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
 	{ label: t.details.languages, value: t.profile.languages.join(", ") },
@@ -126,27 +117,15 @@ const details: { label: string; value: string }[] = [
 	.portrait {
 		position: relative;
 		overflow: hidden;
-		/* `.contact` es un grid de una columna (`1fr`) y el `min-width` por
-		   defecto de un item de grid es `auto`, no `0`: la pista no se encoge
-		   por debajo del contenido mínimo del <img>, cuyo ratio intrínseco
-		   compite con el `width: 100%` de abajo. Resultado medido a 360px:
-		   .portrait y .panel se salen 14px del viewport en silencio (`body`
-		   lleva `overflow-x: hidden`, así que no hay barra de scroll que lo
-		   delate). A ≥50em esto no hace falta: las pistas ya son
-		   `minmax(0, …)`, que fija min-width en 0 por su cuenta. */
+		/* Grid item con min-width: auto por defecto no se encoge bajo el ratio
+		   intrínseco del <img>: medido a 360px, .portrait y .panel se salían
+		   14px del viewport en silencio. A ≥50em ya no hace falta (minmax(0,…)). */
 		min-width: 0;
 	}
 
-	/* En móvil el alto va atado al viewport, no a una proporción fija: con 4/5
-	   el retrato se comía la pantalla y empujaba el email bajo el pliegue.
-	   Antes el borde inferior se disolvía en el fondo con un mask-image (en
-	   vez de cortarse en seco). Se quita: medido en Chromium, en tema claro
-	   la parte del seto (verde oscuro) y la portada de la revista bajo la
-	   máscara quedaban a media opacidad sobre blanco y se leían como un
-	   manchurrón gris sucio — el mismo defecto reportado en el borde de
-	   escritorio, solo que aquí ni siquiera hacía falta cruzar dos máscaras
-	   para que apareciera. En oscuro fundía limpio con el negro. Borde
-	   recto en ambos temas. */
+	/* Alto atado al viewport, no a una proporción fija: con 4/5 el retrato se
+	   comía la pantalla. Sin mask-image en el borde inferior: en tema claro
+	   dejaba un manchurrón gris sucio (medido en Chromium) donde debía fundir. */
 	.portrait :global(img) {
 		display: block;
 		width: 100%;
@@ -164,15 +143,9 @@ const details: { label: string; value: string }[] = [
 		flex-direction: column;
 		justify-content: center;
 		gap: 1.25rem;
-		/* Sin solape con la foto: el texto sobre una imagen a la que le queda
-		   opacidad no se lee, y el eyebrow en gris apagado era ilegible. */
+		/* Sin solape con la foto: el eyebrow en gris apagado quedaba ilegible sobre ella. */
 		padding: 0.5rem 1.5rem 3rem;
-		/* Mismo motivo que en .portrait: item de grid con min-width: auto por
-		   defecto. Aquí el contenido mínimo lo marcaba el titular/eyebrow, y
-		   con la pasada de text-spacing (WCAG 1.4.12) el desborde llegaba a
-		   61px. No es redundante con el `min-height: 0` de ≥50em: aquel evita
-		   que .contact se pase del alto disponible como flex item; este evita
-		   que .panel se pase del ancho disponible como grid item. */
+		/* Mismo motivo que en .portrait: con WCAG 1.4.12 el desborde llegaba a 61px sin esto. */
 		min-width: 0;
 	}
 
@@ -293,10 +266,8 @@ const details: { label: string; value: string }[] = [
 	}
 
 	@media (min-width: 50em) {
-		/* Llena el alto que sobra dentro de .page-shell. Antes esto era
-		   `calc(100svh - 13rem)` con la altura del nav estimada a ojo, y se
-		   rompía en cuanto el nav crecía (p. ej. al partirse el wordmark en dos
-		   líneas): la suma se pasaba del viewport y aparecía scroll. */
+		/* Llena el alto que sobra en .page-shell. Antes era `calc(100svh - 13rem)`
+		   con la altura del nav estimada a ojo: se rompía en cuanto el nav crecía. */
 		.contact {
 			grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
 			align-items: stretch;
@@ -304,17 +275,8 @@ const details: { label: string; value: string }[] = [
 			min-height: 0;
 		}
 
-		/* Izquierda y abajo sangran contra el viewport: eso no es un corte, es
-		   sangrado. Arriba (nav) y a la derecha (panel) el borde es limpio, sin
-		   máscara.
-		   Antes había dos máscaras cruzadas (`mask-composite: intersect`) para
-		   disolver esos dos bordes internos contra el fondo. En tema oscuro
-		   fundía bien con el negro, pero en tema claro los píxeles oscuros del
-		   retrato a media opacidad sobre blanco dejaban un halo gris sucio
-		   (parecía una sombra mal hecha, no un fundido) — reportado por David
-		   tras revisar en claro. Se quita: un borde recto entre foto y panel es
-		   un patrón habitual en layouts de dos columnas y aquí no hace falta el
-		   efecto para que se lea limpio en ningún tema. */
+		/* Borde recto entre foto y panel, sin máscara: la máscara cruzada
+		   anterior dejaba un halo gris sucio en tema claro (reportado por David). */
 		.portrait :global(img) {
 			position: absolute;
 			inset: 0;
@@ -329,15 +291,9 @@ const details: { label: string; value: string }[] = [
 			padding: 3rem 3rem 3rem 4rem;
 		}
 
-		/* Acota el bloque de contenido: sin esto el texto se desparrama por más
-		   de 1000px y BASE/IDIOMAS acaban en extremos opuestos, que es lo que
-		   se lee como hueco vacío.
-		   Nota (plan.md, coste adicional de la extracción de CvDownloadLink):
-		   esta regla NO alcanza al enlace de descarga que ahora vive dentro de
-		   <CvDownloadLink />, porque el ámbito de Astro va por hash de
-		   componente y ese hijo lleva el suyo propio. Impacto medido en T013:
-		   nulo, porque ese enlace usa `inline-flex` con `align-self: flex-start`
-		   y no depende de heredar `width`/`max-width` del padre. */
+		/* Acota el bloque de contenido: sin esto el texto se desparrama por más de 1000px.
+		   No alcanza al enlace de <CvDownloadLink /> (ámbito de Astro por componente),
+		   pero ese enlace no depende de heredar width/max-width del padre. */
 		.panel > * {
 			width: 100%;
 			max-width: 34rem;

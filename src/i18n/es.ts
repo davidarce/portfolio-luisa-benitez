@@ -1,17 +1,6 @@
 /**
- * Strings en español — el idioma por defecto del sitio.
- *
  * `es.ts` es la fuente de la verdad: define la FORMA del diccionario. El tipo
- * `Translation` (derivado de aquí) obliga a que en.ts tenga exactamente las
- * mismas claves, así que al añadir una aquí TypeScript la exige también en
- * inglés. Los VALORES pueden diferir (para eso es una traducción); lo que se
- * comparte es la estructura.
- *
- * Alcance actual (P4-2 + P4-3 + P4-4 + rename Fase 2 §4): los strings de UI
- * —incluidas las etiquetas de nav renombradas "Campañas" / "Celebridades y
- * eventos"—, la parte traducible del perfil y la prosa del About. Quedan
- * fuera las descripciones de proyecto, que llegan cuando ese contenido esté
- * cerrado.
+ * `Translation` (derivado de aquí) obliga a que en.ts tenga exactamente las mismas claves.
  */
 export const es = {
 	meta: {
@@ -29,27 +18,13 @@ export const es = {
 		about: 'Sobre mí',
 		contact: 'Contacto',
 	},
-	/**
-	 * Home (/). Alcance mínimo a propósito (ver .sdd/phase2-projects/plan.md
-	 * T006, no-objetivos): el resto del texto de la home sigue escrito a mano
-	 * en src/pages/[...lang]/index.astro, solo este titular pasa por i18n porque es el
-	 * que cambia con la Fase 2. PENDIENTE DE APROBACIÓN DE DAVID: el texto es
-	 * un cierre neutro y honesto ("alguno de mis trabajos como asistente" deja
-	 * de ser cierto en cuanto la home destaca primero el trabajo como
-	 * principal), pero no es copy final aprobada.
-	 */
+	/** PENDIENTE DE APROBACIÓN DE DAVID: `tagline` no es copy final aprobada. */
 	home: {
 		featuredWorkTitle: 'Trabajos destacados',
-		/**
-		 * Titular bajo el nombre en la home. Copiado VERBATIM del literal que
-		 * hoy vive a mano en src/pages/[...lang]/index.astro (línea ~157) — no se
-		 * reescribe la copy aprobada de Luisa, solo se traslada a i18n para
-		 * que la home en inglés no muestre español (issue #40).
-		 */
 		tagline: 'Estilista y asistente de moda, Diseñadora de Modas, Asesora de Imagen y Personal Shopper',
 	},
 	contact: {
-		/** Título de la pestaña. Distinto de `title`, que es el titular de la página. */
+		/** Título de la pestaña, distinto de `title` (el titular de la página). */
 		pageTitle: 'Contacto | Luisa Benítez',
 		eyebrow: 'Contacto',
 		title: 'Hablemos',
@@ -69,12 +44,7 @@ export const es = {
 		languages: 'Idiomas',
 		availability: 'Disponibilidad',
 	},
-	/**
-	 * La parte traducible de `src/data/profile.ts`. El reparto: profile.ts guarda
-	 * los datos que NO cambian con el idioma (nombre, ciudad, email, redes) y aquí
-	 * viven los que sí. Por eso el país está aquí y la ciudad no: «A Coruña» se
-	 * escribe igual en inglés, «España» no.
-	 */
+	/** Parte traducible de `src/data/profile.ts`. Por eso el país está aquí y la ciudad no: «A Coruña» se escribe igual en inglés, «España» no. */
 	profile: {
 		country: 'España',
 		languages: ['Español (nativo)', 'Inglés'],
@@ -87,13 +57,7 @@ export const es = {
 		],
 		travelNote: 'Disponible para viajar',
 	},
-	/**
-	 * Copy de /about. Fuente: plan/03-content-pages/about-copy-final-es.md (aprobada).
-	 * No editar aquí sin actualizar ese documento: es el contrato de contenido.
-	 *
-	 * `bio` es una tupla de 3: el tipo `Translation` obliga a que en.ts tenga
-	 * exactamente 3 párrafos, ni uno más ni uno menos.
-	 */
+	/** Copy de /about. Fuente: plan/03-content-pages/about-copy-final-es.md (aprobada) — no editar aquí sin actualizar ese documento. */
 	about: {
 		title: 'Sobre mí | Luisa Benítez',
 		metaDescription:
@@ -111,45 +75,32 @@ export const es = {
 		newWindowHint: '(se abre en una pestaña nueva)',
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
 		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
-		/** Enlace de vuelta en las fichas de detalle de las 5 colecciones. */
 		back: 'Volver',
-		/** Nombre accesible (aria-label) del conmutador de idioma ES/EN del nav. */
 		languageLabel: 'Cambiar de idioma',
 	},
-	/**
-	 * Título y descripción de los 5 índices de colección. Valores ES copiados
-	 * LITERALMENTE de los literales que hoy están escritos a mano en cada
-	 * `{coleccion}/index.astro`; no se reescribe copy existente.
-	 */
 	collections: {
 		campaigns: {
 			title: 'Campañas | Luisa Benítez',
-			description: 'Campañas y colaboraciones de marca asistidas por Luisa Benítez',
+			description: 'Campañas y colaboraciones de marca en las que ha trabajado Luisa Benítez',
 		},
 		celebrityEvents: {
 			title: 'Celebridades y eventos | Luisa Benítez',
-			description: 'Celebridades y eventos estilados por Luisa Benítez',
+			description: 'Celebridades y eventos en los que ha trabajado Luisa Benítez',
 		},
 		editorials: {
 			title: 'Editoriales | Luisa Benítez',
-			description: 'Editoriales asistidas por Luisa Benítez',
+			description: 'Editoriales en las que ha trabajado Luisa Benítez',
 		},
 		films: {
 			title: 'Cine | Luisa Benítez',
-			description: 'Cine estilado por Luisa Benítez',
+			description: 'Cine en el que ha trabajado Luisa Benítez',
 		},
 		runway: {
 			title: 'Runway | Luisa Benítez',
-			description: 'Runway asistida por Luisa Benítez',
+			description: 'Desfiles en los que ha trabajado Luisa Benítez',
 		},
 	},
-	/**
-	 * Bloque de créditos de las páginas de detalle (requisito nº1 de la Fase 2,
-	 * ver plan/02-information-architecture/REVISION-v2.md §2). `role` cubre los
-	 * 4 valores del enum de `gallerySchema` en src/content.config.ts; `labels`
-	 * cubre los campos opcionales de `credits`. `format` solo traduce
-	 * `model-test`: el resto de valores del enum no se pintan en el bloque.
-	 */
+	/** `role` cubre los 4 valores del enum `gallerySchema` en src/content.config.ts. */
 	credits: {
 		role: {
 			'lead-stylist': 'Estilista principal',
@@ -174,12 +125,7 @@ export const es = {
 	},
 } as const;
 
-/**
- * Ensancha los literales a su primitivo, de forma recursiva. Así el tipo del
- * diccionario describe la estructura ("cada hoja es un string") sin clavar el
- * valor español. es.ts (con `as const`) encaja porque un literal es asignable
- * a su primitivo; en.ts debe tener las mismas claves con valores string.
- */
+/** Ensancha los literales a su primitivo para que el tipo describa la estructura sin clavar el valor español. */
 type Widen<T> = T extends string
 	? string
 	: T extends number
@@ -188,5 +134,4 @@ type Widen<T> = T extends string
 			? boolean
 			: { [K in keyof T]: Widen<T[K]> };
 
-/** Forma que deben cumplir todos los diccionarios de idioma. */
 export type Translation = Widen<typeof es>;

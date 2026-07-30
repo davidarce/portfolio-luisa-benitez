@@ -184,13 +184,9 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 
 	/*
 	 * aspect-ratio reserva la altura del ítem ANTES de que la imagen cargue.
-	 * Sin esto, .gallery-item no tiene altura propia (solo la marca `img`
-	 * con height:100%, que es 100% de un contenedor sin altura -> colapsa a
-	 * ~0). El grid entero se comprime a una fracción de su alto real, así que
-	 * el navegador "ve" casi todas las imágenes cerca del viewport y el
-	 * loading="lazy" nativo deja de tener efecto: las pide todas de golpe.
-	 * Con la altura reservada, la página mide su alto real desde el primer
-	 * render y el lazy-load nativo sí difiere las imágenes fuera de rango.
+	 * Sin esto, .gallery-item colapsa a ~0 de alto, el grid se comprime, el
+	 * navegador "ve" casi todas las imágenes cerca del viewport y
+	 * loading="lazy" deja de tener efecto: las pide todas de golpe.
 	 */
 	.gallery-item {
 		overflow: hidden;

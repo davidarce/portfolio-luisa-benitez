@@ -95,9 +95,7 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 </BaseLayout>
 
 <script>
-	// Mismo patrón que Card.astro (P1): con `preload="none"` los vídeos de la
-	// galería no se descargan hasta que entran en viewport, y se pausan al
-	// salir. Si el usuario prefiere menos movimiento, no arrancan solos.
+	// Mismo patrón que Card.astro (P1): preload="none" + reproducción solo en viewport.
 	document.addEventListener("astro:page-load", () => {
 		const prefersReducedMotion = window.matchMedia(
 			"(prefers-reduced-motion: reduce)",
@@ -112,8 +110,7 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 					(entries) => {
 						for (const entry of entries) {
 							if (entry.isIntersecting) {
-								// play() devuelve una promesa que puede rechazarse
-								// (p. ej. si el usuario navega antes de que arranque).
+								// play() puede rechazar (p. ej. si el usuario navega antes de que arranque).
 								video.play().catch(() => {});
 							} else {
 								video.pause();
