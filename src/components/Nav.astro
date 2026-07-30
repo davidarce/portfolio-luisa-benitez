@@ -159,6 +159,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 							hreflang={l}
 							class="lang-link"
 							aria-current={l === locale ? 'page' : null}
+							data-astro-reload
 						>
 							{l.toUpperCase()}
 						</a>
@@ -200,6 +201,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 							hreflang={l}
 							class="lang-link"
 							aria-current={l === locale ? 'page' : null}
+							data-astro-reload
 						>
 							{l.toUpperCase()}
 						</a>
