@@ -9,7 +9,8 @@
             "cardSize": "normal",
             "order": 1,
             "role": "assistant-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "2",
@@ -20,7 +21,8 @@
             "cardSize": "normal",
             "order": 2,
             "role": "assistant-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "3",
@@ -31,7 +33,8 @@
             "cardSize": "normal",
             "order": 3,
             "role": "assistant-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "4",
@@ -42,7 +45,8 @@
             "cardSize": "normal",
             "order": 4,
             "role": "assistant-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "5",
@@ -53,7 +57,8 @@
             "cardSize": "normal",
             "order": 5,
             "role": "assistant-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "6",
