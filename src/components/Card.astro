@@ -64,10 +64,10 @@ const Tag = disableLink ? "div" : "a";
 			<div class="video-container">
 				<video
 					src={video}
-					autoplay
 					loop
 					muted
 					playsinline
+					preload="none"
 					poster={img}
 				/>
 				<button class="mute-toggle" aria-label="Toggle mute">
@@ -133,6 +133,31 @@ const Tag = disableLink ? "div" : "a";
 						iconUnmuted.style.display = "block";
 					}
 				});
+			}
+
+			// Reproducir el vídeo solo cuando la tarjeta entra en viewport,
+			// para no descargar los 11+ vídeos de un listado a la vez.
+			// Si el usuario prefiere menos movimiento, no lo arrancamos solo.
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
+
+			if (video && !prefersReducedMotion) {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								// play() devuelve una promesa que puede rechazarse
+								// (p. ej. si el usuario navega antes de que arranque).
+								video.play().catch(() => {});
+							} else {
+								video.pause();
+							}
+						}
+					},
+					{ threshold: 0.25 },
+				);
+				observer.observe(video);
 			}
 		});
 	});
