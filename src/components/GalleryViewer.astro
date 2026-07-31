@@ -1,0 +1,335 @@
+---
+import Icon from "./Icon.astro";
+import { getMediaSize, posterPath } from "../lib/mediaDimensions";
+import { getTranslation, type Locale } from "../i18n";
+
+interface Props {
+	images: string[];
+	title: string;
+	locale: Locale;
+}
+
+const { images, title, locale } = Astro.props;
+const t = getTranslation(locale);
+
+const fill = (tpl: string, i: number) =>
+	tpl
+		.replace("{n}", String(i + 1))
+		.replace("{total}", String(images.length))
+		.replace("{title}", title);
+
+const media = await Promise.all(
+	images.map(async (src) => ({
+		src,
+		isVideo: /\.(mp4|webm|mov)$/i.test(src),
+		size: await getMediaSize(src),
+	})),
+);
+---
+
+<dialog data-gallery-viewer aria-label={t.viewer.label} data-position-template={t.viewer.position}>
+	<ul class="viewer-rail" role="list" tabindex="0" autofocus aria-label={t.viewer.rail}>
+		{
+			media.map((m, i) => (
+				<li class="viewer-slide">
+					{m.isVideo ? (
+						<video
+							src={`${m.src}#t=1`}
+							poster={posterPath(m.src)}
+							aria-label={fill(t.viewer.altVideo, i)}
+							width={m.size?.width}
+							height={m.size?.height}
+							loop
+							muted
+							playsinline
+							controls
+							preload="none"
+						/>
+					) : (
+						<img
+							src={m.src}
+							alt={fill(t.viewer.altImage, i)}
+							loading="lazy"
+							width={m.size?.width}
+							height={m.size?.height}
+						/>
+					)}
+				</li>
+			))
+		}
+	</ul>
+	<div class="viewer-bar">
+		<p class="viewer-counter" aria-hidden="true"></p>
+		<p class="viewer-announcer sr-only" role="status"></p>
+		<button type="button" class="viewer-prev" aria-label={t.viewer.previous}>
+			<Icon icon="arrow-left" />
+		</button>
+		<button type="button" class="viewer-next" aria-label={t.viewer.next}>
+			<Icon icon="arrow-right" />
+		</button>
+		<button type="button" class="viewer-close" aria-label={t.viewer.close}>
+			<Icon icon="x-mark" />
+		</button>
+	</div>
+</dialog>
+
+<style>
+	dialog[data-gallery-viewer] {
+		/* El UA da width/height: fit-content, margin: auto, border y padding. Todo fuera. */
+		inset: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		max-width: none;
+		max-height: none;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
+		background: var(--gray-999);
+		color: var(--gray-0);
+		overflow: hidden;
+		/* En los DOS ejes y en el diálogo, no sólo en el carril: un arrastre vertical
+		   se encadena al fondo en iOS si sólo se contiene el eje x. */
+		overscroll-behavior: contain;
+	}
+
+	dialog[data-gallery-viewer]::backdrop {
+		background: #000;
+	}
+
+	/* PROHIBIDO en todo este bloque: touch-action: pan-x | none, y user-scalable=no.
+	   Matan el pinch-zoom nativo, que es la única ampliación disponible para baja
+	   visión (WCAG 1.4.4 AA). Si el arrastre vertical se siente raro, NO es aquí. */
+	.viewer-rail {
+		display: flex;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow-x: auto;
+		overflow-y: hidden;
+		overscroll-behavior: contain;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		scroll-behavior: smooth;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.viewer-rail {
+			scroll-behavior: auto;
+		}
+	}
+
+	.viewer-rail::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* El offset NEGATIVO es obligatorio: el `overflow: hidden` del <dialog> recorta
+	   cualquier contorno dibujado por fuera y el foco quedaría invisible. */
+	.viewer-rail:focus-visible {
+		outline: 3px solid var(--gray-0);
+		outline-offset: -3px;
+	}
+
+	.viewer-slide {
+		flex: 0 0 100%;
+		scroll-snap-align: center;
+		scroll-snap-stop: always;
+		/* flex, no grid: en un grid de una sola fila `auto` la fila queda indefinida y
+		   `max-height: 100%` del hijo no resuelve nada — se pinta a tamaño natural y
+		   el <dialog> lo recorta. Con flex y block-size definido el eje transversal
+		   sí es definido y el porcentaje funciona en los dos ejes. */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 0;
+		height: 100%;
+		padding: 0.75rem;
+	}
+
+	/* La regla de no-upscale: `auto` deja el tamaño intrínseco y los `max-*` sólo lo encogen. */
+	.viewer-slide :is(img, video) {
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+		border-radius: 0.75rem;
+	}
+
+	.viewer-bar {
+		position: absolute;
+		inset-inline: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		padding: 1rem;
+		padding-bottom: max(1rem, env(safe-area-inset-bottom));
+		background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0));
+		color: #fff;
+	}
+
+	.viewer-counter {
+		margin-inline-end: auto;
+	}
+
+	.viewer-bar button {
+		min-width: 44px;
+		min-height: 44px;
+		display: grid;
+		place-items: center;
+		border: 0;
+		border-radius: 50%;
+		background: none;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.viewer-prev,
+	.viewer-next {
+		display: none;
+	}
+
+	@media (min-width: 50em) {
+		.viewer-prev,
+		.viewer-next {
+			display: grid;
+		}
+	}
+</style>
+
+<style is:global>
+	/* La clase la limpia `astro:before-swap` porque <html> sobrevive al swap del
+	   ClientRouter; si se quedara, la página siguiente cargaría sin poder hacer scroll. */
+	html.viewer-open {
+		overflow: hidden;
+	}
+</style>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const dialog = document.querySelector<HTMLDialogElement>("[data-gallery-viewer]");
+		if (!dialog) return;
+
+		const rail = dialog.querySelector<HTMLElement>(".viewer-rail")!;
+		const slides = [...dialog.querySelectorAll<HTMLElement>(".viewer-slide")];
+		const counter = dialog.querySelector<HTMLElement>(".viewer-counter")!;
+		const announcer = dialog.querySelector<HTMLElement>(".viewer-announcer")!;
+		const prev = dialog.querySelector<HTMLButtonElement>(".viewer-prev")!;
+		const next = dialog.querySelector<HTMLButtonElement>(".viewer-next")!;
+		const template = dialog.dataset.positionTemplate ?? "{current} / {total}";
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		let index = 0;
+
+		function paint() {
+			counter.textContent = template
+				.replace("{current}", String(index + 1))
+				.replace("{total}", String(slides.length));
+			prev.setAttribute("aria-disabled", String(index === 0));
+			next.setAttribute("aria-disabled", String(index === slides.length - 1));
+		}
+
+		function announce() {
+			announcer.textContent = counter.textContent;
+		}
+
+		function open(startIndex: number) {
+			index = startIndex;
+			document.querySelectorAll<HTMLVideoElement>(".gallery-item video").forEach((v) => v.pause());
+			document.documentElement.classList.add("viewer-open");
+			// El contador se rellena ANTES de showModal(): si se rellena después, la región
+			// live dispara encima del anuncio del propio diálogo y se pisan.
+			paint();
+			dialog.showModal();
+			// El scroll va DESPUÉS de showModal(): con el diálogo cerrado, clientWidth vale 0
+			// y el carril se posicionaría siempre en la primera foto.
+			rail.scrollTo({ left: startIndex * rail.clientWidth, behavior: "instant" });
+		}
+
+		document.querySelectorAll<HTMLButtonElement>(".gallery-open").forEach((btn) => {
+			btn.addEventListener("click", () => open(Number(btn.dataset.viewerIndex)));
+		});
+
+		function goTo(target: number) {
+			const clamped = Math.min(slides.length - 1, Math.max(0, target));
+			rail.scrollTo({ left: clamped * rail.clientWidth });
+		}
+
+		dialog.addEventListener("keydown", (e) => {
+			// Con el foco dentro de un <video controls>, las flechas ya rebobinan y ajustan
+			// volumen. Sin estas dos guardas, ArrowRight busca EN el vídeo y además pasa de
+			// diapositiva: dos acciones con una tecla.
+			if (e.defaultPrevented) return;
+			if ((e.target as HTMLElement)?.closest("video")) return;
+			if (e.key === "ArrowRight") goTo(index + 1);
+			else if (e.key === "ArrowLeft") goTo(index - 1);
+			else if (e.key === "Home") goTo(0);
+			else if (e.key === "End") goTo(slides.length - 1);
+			else return;
+			e.preventDefault();
+		});
+
+		prev.addEventListener("click", () => goTo(index - 1));
+		next.addEventListener("click", () => goTo(index + 1));
+
+		dialog.addEventListener("close", () => {
+			document.documentElement.classList.remove("viewer-open");
+			dialog.querySelectorAll("video").forEach((v) => v.pause());
+			if (reducedMotion) return;
+			// Reanudar los vídeos del grid que siguen a la vista: su IntersectionObserver
+			// no volverá a dispararse hasta que el usuario haga scroll.
+			document.querySelectorAll<HTMLVideoElement>(".gallery-item video").forEach((v) => {
+				const r = v.getBoundingClientRect();
+				if (r.top < window.innerHeight && r.bottom > 0) v.play().catch(() => {});
+			});
+		});
+		dialog.querySelector(".viewer-close")!.addEventListener("click", () => dialog.close());
+
+		// `scrollend` no existe en iOS < 17.4; el temporizador es el respaldo, no un extra.
+		let idle: number;
+		const settle = () => {
+			clearTimeout(idle);
+			idle = window.setTimeout(announce, 200);
+		};
+		rail.addEventListener("scrollend", () => {
+			// Si no se limpia el temporizador pendiente, `settle()` dispara su propio
+			// `announce()` 200ms después y la región `role="status"` anuncia dos veces.
+			clearTimeout(idle);
+			announce();
+		});
+		rail.addEventListener("scroll", settle, { passive: true });
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				let active: { i: number; ratio: number } | null = null;
+				for (const entry of entries) {
+					const i = slides.indexOf(entry.target as HTMLElement);
+					const video = entry.target.querySelector("video");
+					if (entry.isIntersecting) {
+						if (!active || entry.intersectionRatio > active.ratio) {
+							active = { i, ratio: entry.intersectionRatio };
+						}
+						if (video && !reducedMotion) video.play().catch(() => {});
+					} else {
+						video?.pause();
+					}
+				}
+				if (active) {
+					index = active.i;
+					paint();
+				}
+			},
+			{ root: rail, threshold: 0.6 },
+		);
+		slides.forEach((s) => observer.observe(s));
+	});
+
+	document.addEventListener("astro:before-swap", () => {
+		// <html> NO se reemplaza en el swap: si la clase se queda, la página
+		// siguiente carga sin poder hacer scroll.
+		document.documentElement.classList.remove("viewer-open");
+		document.querySelector<HTMLDialogElement>("[data-gallery-viewer]")?.close();
+	});
+</script>

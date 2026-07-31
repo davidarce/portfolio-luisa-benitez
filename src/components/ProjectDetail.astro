@@ -3,12 +3,14 @@ import type { CollectionEntry } from "astro:content";
 
 import ContactCTA from "./ContactCTA.astro";
 import CreditsBlock from "./CreditsBlock.astro";
+import GalleryViewer from "./GalleryViewer.astro";
 import Hero from "./Hero.astro";
 import Icon from "./Icon.astro";
 import Grid from "./Grid.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getTranslation, type Locale } from "../i18n";
 import { localizedPath } from "../i18n/routing";
+import { posterPath } from "../lib/mediaDimensions";
 
 type ProjectCollection =
 	| "campaigns"
@@ -27,6 +29,14 @@ const { entry, collection, locale } = Astro.props;
 const t = getTranslation(locale);
 const description = entry.data.descriptionEn ?? entry.data.description;
 const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
+
+const total = entry.data.images.length;
+const hasVideo = entry.data.images.some((img) => /\.(mp4|webm|mov)$/i.test(img));
+const fill = (tpl: string, i: number) =>
+	tpl
+		.replace("{n}", String(i + 1))
+		.replace("{total}", String(total))
+		.replace("{title}", entry.data.title);
 ---
 
 <BaseLayout
@@ -61,33 +71,48 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 						format={entry.data.format}
 						credits={entry.data.credits}
 					/>
+					{hasVideo && (
+						<button
+							type="button"
+							class="pause-videos"
+							data-pause-videos
+							data-label-pause={t.viewer.pauseVideos}
+							data-label-play={t.viewer.playVideos}
+						>
+							{t.viewer.pauseVideos}
+						</button>
+					)}
 					<Grid variant="small">
 						{
 							entry.data.images.map((img, i) => {
 								const isVideo = /\.(mp4|webm|mov)$/i.test(img);
 								return (
 									<li class="gallery-item">
-										{isVideo ? (
-											<video
-												src={`${img}#t=1`}
-												poster={img.replace(
-													/\/([^/]+)\.(mp4|webm|mov)$/i,
-													"/posters/$1.webp",
-												)}
-												loop
-												muted
-												playsinline
-												controls
-												preload="none"
-											/>
-										) : (
-											<img
-												src={img}
-												alt={`${entry.data.title}`}
-												loading={i === 0 ? "eager" : "lazy"}
-												fetchpriority={i === 0 ? "high" : undefined}
-											/>
-										)}
+										<button
+											type="button"
+											class="gallery-open"
+											data-viewer-index={i}
+											aria-label={fill(isVideo ? t.viewer.openVideo : t.viewer.openImage, i)}
+										>
+											{isVideo ? (
+												<video
+													src={`${img}#t=1`}
+													poster={posterPath(img)}
+													aria-label={fill(t.viewer.altVideo, i)}
+													loop
+													muted
+													playsinline
+													preload="none"
+												/>
+											) : (
+												<img
+													src={img}
+													alt={fill(t.viewer.altImage, i)}
+													loading={i === 0 ? "eager" : "lazy"}
+													fetchpriority={i === 0 ? "high" : undefined}
+												/>
+											)}
+										</button>
 									</li>
 								);
 							})
@@ -98,6 +123,7 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 		</div>
 		<ContactCTA />
 	</div>
+	<GalleryViewer images={entry.data.images} title={entry.data.title} locale={locale} />
 </BaseLayout>
 
 <script>
@@ -106,11 +132,13 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 			"(prefers-reduced-motion: reduce)",
 		).matches;
 
-		if (prefersReducedMotion) return;
+		const videos = document.querySelectorAll<HTMLVideoElement>(".gallery-item video");
+		const pauseBtn = document.querySelector<HTMLButtonElement>("[data-pause-videos]");
+		let observers: IntersectionObserver[] = [];
 
-		document
-			.querySelectorAll<HTMLVideoElement>(".gallery-item video")
-			.forEach((video) => {
+		function rebuildObservers() {
+			if (prefersReducedMotion) return;
+			observers = [...videos].map((video) => {
 				const observer = new IntersectionObserver(
 					(entries) => {
 						for (const entry of entries) {
@@ -124,7 +152,28 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 					{ threshold: 0.25 },
 				);
 				observer.observe(video);
+				return observer;
 			});
+		}
+
+		rebuildObservers();
+
+		// Mitigación de WCAG 2.2.2: pausar sin desconectar deja un control que el
+		// observador deshace en el siguiente scroll, así que hay que hacer las dos cosas.
+		pauseBtn?.addEventListener("click", () => {
+			const paused = pauseBtn.dataset.state === "paused";
+			if (paused) {
+				rebuildObservers();
+			} else {
+				observers.forEach((o) => o.disconnect());
+				observers = [];
+				videos.forEach((v) => v.pause());
+			}
+			pauseBtn.dataset.state = paused ? "" : "paused";
+			pauseBtn.textContent = paused
+				? pauseBtn.dataset.labelPause!
+				: pauseBtn.dataset.labelPlay!;
+		});
 	});
 </script>
 
@@ -185,6 +234,37 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 	.gallery-item img:hover,
 	.gallery-item video:hover {
 		transform: scale(1.02);
+	}
+
+	.gallery-open {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: zoom-in;
+	}
+
+	.gallery-open:focus-visible {
+		outline: 2px solid var(--gray-0);
+		outline-offset: 3px;
+	}
+
+	.pause-videos {
+		align-self: flex-start;
+		min-height: 44px;
+		padding: 0.5rem 1rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 2rem;
+		background: none;
+		color: var(--gray-0);
+		cursor: pointer;
+	}
+
+	.pause-videos:focus-visible {
+		outline: 2px solid var(--gray-0);
+		outline-offset: 3px;
 	}
 
 	@media (min-width: 50em) {

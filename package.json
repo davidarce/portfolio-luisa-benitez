@@ -12,7 +12,8 @@
     "generate:assets": "node scripts/generate-assets.mjs",
     "optimize:gallery": "node scripts/optimize-gallery.mjs",
     "optimize:video": "node scripts/optimize-video.mjs",
-    "og": "node scripts/generate-og-images.mjs"
+    "og": "node scripts/generate-og-images.mjs",
+    "verify:viewer": "node scripts/verify-viewer.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
