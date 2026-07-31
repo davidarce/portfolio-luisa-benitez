@@ -9,7 +9,7 @@ import Footer from "../components/Footer.astro";
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import SEO from "../components/SEO.astro";
-import { getLocaleFromUrl } from "../i18n";
+import { getLocaleFromUrl, getTranslation } from "../i18n";
 import { alternatePaths, stripLocale } from "../i18n/routing";
 
 interface Props {
@@ -30,6 +30,7 @@ interface Props {
 const { title, description, image, imageAlt, path, hasTranslation = true } =
 	Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
+const t = getTranslation(locale);
 const alternates = hasTranslation
 	? alternatePaths(stripLocale(path ?? Astro.url.pathname))
 	: undefined;
@@ -95,6 +96,7 @@ const alternates = hasTranslation
 		</script>
 	</head>
 	<body>
+		<a class="skip-link" href="#contenido">{t.common.skipToContent}</a>
 		<div class="stack page-shell">
 			<Nav hasTranslation={hasTranslation} />
 			<slot />
@@ -110,6 +112,33 @@ const alternates = hasTranslation
 </html>
 
 <style is:global>
+
+	.skip-link {
+		position: absolute;
+		left: 0.5rem;
+		top: -4rem;
+		z-index: 10000;
+		padding: 0.75rem 1.25rem;
+		border-radius: 0.5rem;
+		background: var(--gray-999);
+		color: var(--gray-0);
+		font-family: var(--font-brand);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		text-decoration: none;
+		outline: 2px solid var(--gray-0);
+		transition: top 0.15s ease-in-out;
+	}
+
+	.skip-link:focus {
+		top: 0.5rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.skip-link {
+			transition: none;
+		}
+	}
 	:root {
 		--gray-0: #090b11;
 		--gray-50: #141925;

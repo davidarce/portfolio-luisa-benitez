@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Grid from "../../../components/Grid.astro";
 import Card from "../../../components/Card.astro";
+import Hero from "../../../components/Hero.astro";
 import { sortProjects } from "../../../lib/sort-projects";
 import { getTranslation } from "../../../i18n";
 import { localeStaticPaths } from "../../../i18n/routing";
@@ -21,10 +22,13 @@ const films = sortProjects(await getCollection("films"));
     description={t.collections.films.description}
 >
     <div class="stack gap-20 lg:gap-48">
-        <main class="wrapper stack gap-20 lg:gap-48">
+        <header class="wrapper">
+        	<Hero title={t.collections.films.heading} align="start" />
+        </header>
+        <main id="contenido" class="wrapper stack gap-20 lg:gap-48">
             <Grid variant="small">
                 {
-                    films.map((film) => (
+                    films.map((film, i) => (
                         <li>
                             <Card
                                 id={film.id}
@@ -35,6 +39,7 @@ const films = sortProjects(await getCollection("films"));
                                 cardSize={film.data.cardSize}
                                 aspectRatio={film.data.aspectRatio}
                                 objectPosition={film.data.objectPosition}
+                                priority={i === 0}
                             />
                         </li>
                     ))

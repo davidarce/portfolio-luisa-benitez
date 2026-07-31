@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Grid from "../../../components/Grid.astro";
 import Card from "../../../components/Card.astro";
+import Hero from "../../../components/Hero.astro";
 import { sortProjects } from "../../../lib/sort-projects";
 import { getTranslation } from "../../../i18n";
 import { localeStaticPaths } from "../../../i18n/routing";
@@ -21,10 +22,13 @@ const celebrityEvents = sortProjects(await getCollection("celebrity-events"));
     description={t.collections.celebrityEvents.description}
 >
     <div class="stack gap-20 lg:gap-48">
-        <main class="wrapper stack gap-20 lg:gap-48">
+        <header class="wrapper">
+        	<Hero title={t.collections.celebrityEvents.heading} align="start" />
+        </header>
+        <main id="contenido" class="wrapper stack gap-20 lg:gap-48">
             <Grid variant="small">
                 {
-                    celebrityEvents.map((celebrity) => (
+                    celebrityEvents.map((celebrity, i) => (
                         <li>
                             <Card
                                 id={celebrity.id}
@@ -35,6 +39,7 @@ const celebrityEvents = sortProjects(await getCollection("celebrity-events"));
                                 cardSize={celebrity.data.cardSize}
                                 aspectRatio={celebrity.data.aspectRatio}
                                 objectPosition={celebrity.data.objectPosition}
+                                priority={i === 0}
                             />
                         </li>
                     ))
