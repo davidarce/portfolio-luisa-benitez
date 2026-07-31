@@ -79,6 +79,8 @@ Para ejecutar este script, una de estas dos:
 	process.exit(1);
 }
 
+export const POSTER_SECOND = 1;
+
 const FFMPEG = resolveFfmpeg();
 
 const mb = (bytes) => (bytes / 1e6).toFixed(1) + ' MB';
@@ -178,42 +180,22 @@ function transcodeDir(dir) {
 }
 
 async function extractPoster(videoPath, destPath) {
-	// Nunca en el segundo 0: el primer fotograma suele ser negro o un fundido.
-	let chosen = null;
-	let chosenBrightness = -1;
-
-	for (const seconds of [1, 2, 4]) {
-		const tmpPng = `${destPath}.tmp-${seconds}.png`;
-		try {
-			execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', String(seconds), '-i', videoPath, '-frames:v', '1', tmpPng], {
-				stdio: ['ignore', 'ignore', 'pipe'],
-			});
-		} catch {
-			continue; // el vídeo puede ser más corto que ese instante
-		}
-		const stats = await sharp(tmpPng).stats();
-		const brightness = stats.channels.slice(0, 3).reduce((s, c) => s + c.mean, 0) / 3;
-		if (brightness > chosenBrightness) {
-			if (chosen && existsSync(chosen)) unlinkSync(chosen);
-			chosen = tmpPng;
-			chosenBrightness = brightness;
-		} else {
-			unlinkSync(tmpPng);
-		}
-		if (brightness >= BRIGHTNESS_THRESHOLD) break;
+	// Siempre en POSTER_SECOND, nunca en el 0: el primer fotograma suele ser
+	// negro o un fundido. El <video> arranca en ese mismo instante (#t= en el
+	// src), así que al reproducirse no salta a otra imagen.
+	const tmpPng = `${destPath}.tmp.png`;
+	try {
+		execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', String(POSTER_SECOND), '-i', videoPath, '-frames:v', '1', tmpPng], {
+			stdio: ['ignore', 'ignore', 'pipe'],
+		});
+	} catch {
+		execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', videoPath, '-frames:v', '1', tmpPng], {
+			stdio: ['ignore', 'ignore', 'pipe'],
+		});
 	}
-
-	if (!chosen) {
-		console.error(`No se pudo extraer ningún fotograma de ${videoPath}`);
-		process.exit(1);
-	}
-
-	await sharp(chosen)
-		.resize(POSTER_MAX_DIMENSION, POSTER_MAX_DIMENSION, { fit: 'inside', withoutEnlargement: true })
-		.webp({ quality: POSTER_QUALITY })
-		.toFile(destPath);
-	unlinkSync(chosen);
-	console.log(`✓ ${destPath} (brillo ${chosenBrightness.toFixed(1)})`);
+	await sharp(tmpPng).webp({ quality: 80 }).toFile(destPath);
+	unlinkSync(tmpPng);
+	return destPath;
 }
 
 const [mode, a, b] = process.argv.slice(2);

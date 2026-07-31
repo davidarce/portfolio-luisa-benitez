@@ -69,7 +69,7 @@ const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
 									<li class="gallery-item">
 										{isVideo ? (
 											<video
-												src={img}
+												src={`${img}#t=1`}
 												poster={img.replace(
 													/\/([^/]+)\.(mp4|webm|mov)$/i,
 													"/posters/$1.webp",
