@@ -75,26 +75,32 @@ export const es = {
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
 		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
 		back: 'Volver',
+		skipToContent: 'Saltar al contenido',
 		languageLabel: 'Cambiar de idioma',
 	},
 	collections: {
 		campaigns: {
+			heading: 'Campañas',
 			title: 'Campañas | Luisa Benítez',
 			description: 'Campañas y colaboraciones de marca en las que ha trabajado Luisa Benítez',
 		},
 		celebrityEvents: {
+			heading: 'Celebridades y eventos',
 			title: 'Celebridades y eventos | Luisa Benítez',
 			description: 'Celebridades y eventos en los que ha trabajado Luisa Benítez',
 		},
 		editorials: {
+			heading: 'Editoriales',
 			title: 'Editoriales | Luisa Benítez',
 			description: 'Editoriales en las que ha trabajado Luisa Benítez',
 		},
 		films: {
+			heading: 'Cine',
 			title: 'Cine | Luisa Benítez',
 			description: 'Cine en el que ha trabajado Luisa Benítez',
 		},
 		runway: {
+			heading: 'Runway',
 			title: 'Runway | Luisa Benítez',
 			description: 'Desfiles en los que ha trabajado Luisa Benítez',
 		},

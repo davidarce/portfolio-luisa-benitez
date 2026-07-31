@@ -70,26 +70,32 @@ export const en: Translation = {
 		newWindowHint: '(opens in a new tab)',
 		portraitAlt: 'Luisa Benítez outdoors, reading a fashion magazine',
 		back: 'Back',
+		skipToContent: 'Skip to content',
 		languageLabel: 'Switch language',
 	},
 	collections: {
 		campaigns: {
+			heading: 'Campaigns',
 			title: 'Campaigns | Luisa Benítez',
 			description: 'Brand campaigns and collaborations Luisa Benítez has worked on',
 		},
 		celebrityEvents: {
+			heading: 'Celebrity & Events',
 			title: 'Celebrity & Events | Luisa Benítez',
 			description: 'Celebrity and event projects Luisa Benítez has worked on',
 		},
 		editorials: {
+			heading: 'Editorials',
 			title: 'Editorials | Luisa Benítez',
 			description: 'Editorials Luisa Benítez has worked on',
 		},
 		films: {
+			heading: 'Film & TV',
 			title: 'Film & TV | Luisa Benítez',
 			description: 'Film and TV projects Luisa Benítez has worked on',
 		},
 		runway: {
+			heading: 'Runway',
 			title: 'Runway | Luisa Benítez',
 			description: 'Runway shows Luisa Benítez has worked on',
 		},

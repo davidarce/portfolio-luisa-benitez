@@ -87,15 +87,6 @@ if (profile.availableForTravel) {
 	description={t.meta.siteDescription}
 >
 	<div class="stack gap-20">
-		<!--
-			El <h1> es el nombre, no "Sobre Mí"; nada de texto superpuesto ni velo (ver heroTiles arriba).
-
-			La sección lleva class .wrapper (mismo max-width/gutter que el resto
-			de la página) para que .hero-grid comparta borde izquierdo con las
-			demás secciones, en vez de sangrar a left: 0. El panel de texto
-			(eyebrow/h1/tagline/instagram) sigue sin alinearse a esa vertical a
-			propósito: vive a la derecha de la rejilla.
-		-->
 		<section class="hero wrapper">
 			<div class="hero-grid">
 				{
@@ -132,7 +123,7 @@ if (profile.availableForTravel) {
 			</div>
 		</section>
 
-		<main class="wrapper stack gap-20">
+		<main id="contenido" class="wrapper stack gap-20">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h2>{t.home.featuredWorkTitle}</h2>
@@ -147,7 +138,6 @@ if (profile.availableForTravel) {
 									title,
 									img,
 									img_alt,
-									video,
 									cardSize,
 									aspectRatio,
 									objectPosition,
@@ -162,7 +152,6 @@ if (profile.availableForTravel) {
 											title={title}
 											img={img}
 											img_alt={img_alt}
-											video={video}
 											cardSize={cardSize}
 											aspectRatio={aspectRatio}
 											objectPosition={objectPosition}
@@ -175,11 +164,6 @@ if (profile.availableForTravel) {
 					</Grid>
 				</div>
 			</section>
-
-			<!--
-				Sin retrato: el actual no da para acompañar la bio y su sitio
-				natural es /contact. Todo el texto sale de t.about y t.profile.
-			-->
 			<section id="sobre-mi" class="about">
 				<div class="about-grid">
 					<div class="about-content">

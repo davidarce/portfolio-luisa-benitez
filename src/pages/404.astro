@@ -4,9 +4,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-	title="Not Found"
-	description="404 Error — this page was not found"
+	title="Página no encontrada | Luisa Benítez"
+	description="La página que buscas no existe o se ha movido."
 	hasTranslation={false}
 >
-	<Hero title="Page Not Found" tagline="Not found" />
+	<main id="contenido" class="wrapper stack gap-8">
+		<Hero title="Página no encontrada" />
+		<p class="lead">
+			La página que buscas no existe o ha cambiado de dirección.
+			<a href="/">Volver al inicio</a>
+		</p>
+		<p class="lead" lang="en">
+			This page doesn’t exist or has moved.
+			<a href="/en/">Back to home</a>
+		</p>
+	</main>
 </BaseLayout>
+
+<style>
+	.lead {
+		font-size: var(--text-lg);
+		text-align: center;
+	}
+</style>
