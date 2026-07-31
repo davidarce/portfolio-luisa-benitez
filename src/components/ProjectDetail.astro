@@ -1,0 +1,199 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import ContactCTA from "./ContactCTA.astro";
+import CreditsBlock from "./CreditsBlock.astro";
+import Hero from "./Hero.astro";
+import Icon from "./Icon.astro";
+import Grid from "./Grid.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getTranslation, type Locale } from "../i18n";
+import { localizedPath } from "../i18n/routing";
+
+type ProjectCollection =
+	| "campaigns"
+	| "celebrity-events"
+	| "editorials"
+	| "films"
+	| "runway";
+
+interface Props {
+	entry: CollectionEntry<ProjectCollection>;
+	collection: ProjectCollection;
+	locale: Locale;
+}
+
+const { entry, collection, locale } = Astro.props;
+const t = getTranslation(locale);
+const description = entry.data.descriptionEn ?? entry.data.description;
+const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
+---
+
+<BaseLayout
+	title={`${entry.data.title} | Luisa Benítez`}
+	description={description ?? entry.data.title}
+	image={`/assets/og/${collection}/${entry.id}.jpg`}
+	imageAlt={entry.data.img_alt ?? entry.data.title}
+>
+	<div class="stack gap-20">
+		<div class="stack gap-15">
+			<header>
+				<div class="wrapper stack gap-2">
+					<a class="back-link" href={localizedPath(locale, `/${collection}`)}
+						><Icon icon="arrow-left" /> {t.common.back}</a
+					>
+					<Hero title={entry.data.title} align="start">
+						<div class="details">
+							<p class="description" lang={descriptionIsSpanish ? "es" : undefined}>{description}</p>
+						</div>
+					</Hero>
+				</div>
+			</header>
+			<main class="wrapper">
+				<div class="stack gap-10">
+					<CreditsBlock
+						role={entry.data.role}
+						roleDetail={entry.data.roleDetail}
+						leadStylist={entry.data.leadStylist}
+						year={entry.data.year}
+						client={entry.data.client}
+						publication={entry.data.publication}
+						format={entry.data.format}
+						credits={entry.data.credits}
+					/>
+					<Grid variant="small">
+						{
+							entry.data.images.map((img) => {
+								const isVideo = /\.(mp4|webm|mov)$/i.test(img);
+								return (
+									<li class="gallery-item">
+										{isVideo ? (
+											<video
+												src={img}
+												poster={img.replace(
+													/\/([^/]+)\.(mp4|webm|mov)$/i,
+													"/posters/$1.webp",
+												)}
+												loop
+												muted
+												playsinline
+												controls
+												preload="none"
+											/>
+										) : (
+											<img
+												src={img}
+												alt={`${entry.data.title}`}
+												loading="lazy"
+											/>
+										)}
+									</li>
+								);
+							})
+						}
+					</Grid>
+				</div>
+			</main>
+		</div>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		if (prefersReducedMotion) return;
+
+		document
+			.querySelectorAll<HTMLVideoElement>(".gallery-item video")
+			.forEach((video) => {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								video.play().catch(() => {});
+							} else {
+								video.pause();
+							}
+						}
+					},
+					{ threshold: 0.25 },
+				);
+				observer.observe(video);
+			});
+	});
+</script>
+
+<style>
+	header {
+		padding-bottom: 2.5rem;
+		border-bottom: 1px solid var(--gray-800);
+	}
+
+	.back-link {
+		display: block;
+		color: var(--gray-0);
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.back-link:hover,
+	.back-link:focus {
+		text-decoration-color: currentColor;
+	}
+
+	.details {
+		display: flex;
+		flex-direction: column;
+		padding: 0.5rem;
+		gap: 1.5rem;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.description {
+		font-size: var(--text-lg);
+		max-width: 80ch;
+	}
+
+	/* aspect-ratio reserva la altura del ítem antes de que la imagen o el vídeo
+	   carguen; sin esto el lazy-loading colapsa la galería y dispara la carga de
+	   todas las imágenes a la vez. */
+	.gallery-item {
+		overflow: hidden;
+		border-radius: 1.5rem;
+		aspect-ratio: 3 / 4;
+	}
+
+	.gallery-item img,
+	.gallery-item video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-sm);
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		transition: transform var(--theme-transition);
+	}
+
+	.gallery-item img:hover,
+	.gallery-item video:hover {
+		transform: scale(1.02);
+	}
+
+	@media (min-width: 50em) {
+		.back-link {
+			align-self: flex-start;
+		}
+
+		.details {
+			flex-direction: row;
+			gap: 2.5rem;
+		}
+	}
+</style>
