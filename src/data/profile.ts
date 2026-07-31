@@ -18,8 +18,7 @@ export const profile = {
 	baseCity: 'A Coruña',
 	availableForTravel: true,
 
-	/** TODO(#17): cambiar a hello@luisabenitez.es cuando H-7 (#14) resuelva el backend de email. */
-	email: 'luisafernandabenitezariza@gmail.com',
+	email: 'luisa@luisabenitez.es',
 
 	instagram: {
 		handle: '@luisabeniteza',
