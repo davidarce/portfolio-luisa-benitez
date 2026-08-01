@@ -81,6 +81,7 @@ export const es = {
 	viewer: {
 		label: 'Visor de galería',
 		/** Distinta de `label`: con el mismo texto en las dos, VoiceOver lo lee dos veces seguidas al entrar. */
+		sound: 'Activar o silenciar el sonido',
 		rail: 'Fotos y vídeos del proyecto',
 		close: 'Cerrar el visor',
 		previous: 'Anterior',
