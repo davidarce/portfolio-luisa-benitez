@@ -256,7 +256,83 @@ const media = await Promise.all(
 			// El scroll va DESPUÉS de showModal(): con el diálogo cerrado, clientWidth vale 0
 			// y el carril se posicionaría siempre en la primera foto.
 			rail.scrollTo({ left: startIndex * rail.clientWidth, behavior: "instant" });
+			reproducirActivo();
 		}
+
+
+		// En móvil los mandos nativos de iOS tapan el vídeo y compiten con los del
+		// visor. Se sustituyen por: toque para pausar y un icono de sonido.
+		const movil = window.matchMedia("(max-width: 49.99em)");
+		const sonido = dialog.querySelector<HTMLButtonElement>("[data-viewer-sound]");
+
+		function aplicarModo() {
+			const videos = dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]");
+			videos.forEach((v) => {
+				if (movil.matches) v.removeAttribute("controls");
+				else v.setAttribute("controls", "");
+			});
+			if (sonido) sonido.hidden = !movil.matches || !videos.length;
+			dialog.classList.toggle("movil", movil.matches);
+		}
+		aplicarModo();
+		movil.addEventListener("change", aplicarModo);
+
+		function videoActivo() {
+			return slides[index]?.querySelector<HTMLVideoElement>("[data-viewer-video]") ?? null;
+		}
+
+		function reproducirActivo() {
+			dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]").forEach((v) => {
+				if (v !== videoActivo()) v.pause();
+			});
+			if (!movil.matches) return;
+			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+			videoActivo()?.play().catch(() => {});
+		}
+
+		rail.addEventListener("click", (e) => {
+			if (!movil.matches) return;
+			if ((e.target as HTMLElement).closest("button")) return;
+			const v = videoActivo();
+			if (!v) return;
+			v.paused ? v.play().catch(() => {}) : v.pause();
+		});
+
+		sonido?.addEventListener("click", () => {
+			const v = videoActivo();
+			if (!v) return;
+			v.muted = !v.muted;
+			sonido.querySelector<HTMLElement>('[data-icono="mudo"]')!.hidden = !v.muted;
+			sonido.querySelector<HTMLElement>('[data-icono="suena"]')!.hidden = v.muted;
+		});
+
+		// Cerrar deslizando hacia abajo. Solo se toma el gesto cuando es claramente
+		// vertical: si no, se lo queda el carril, que desliza en horizontal.
+		let y0 = 0, x0 = 0, arrastrando = false;
+		rail.addEventListener("touchstart", (e) => {
+			if (!movil.matches || e.touches.length !== 1) return;
+			y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; arrastrando = false;
+		}, { passive: true });
+
+		rail.addEventListener("touchmove", (e) => {
+			if (!movil.matches || e.touches.length !== 1) return;
+			const dy = e.touches[0].clientY - y0;
+			const dx = e.touches[0].clientX - x0;
+			if (!arrastrando && dy > 12 && Math.abs(dy) > Math.abs(dx) * 1.5) arrastrando = true;
+			if (!arrastrando) return;
+			e.preventDefault();
+			dialog.style.transform = `translateY(${Math.max(0, dy)}px)`;
+			dialog.style.opacity = String(Math.max(0.3, 1 - dy / 500));
+		}, { passive: false });
+
+		rail.addEventListener("touchend", (e) => {
+			if (!arrastrando) return;
+			const dy = e.changedTouches[0].clientY - y0;
+			dialog.style.transform = "";
+			dialog.style.opacity = "";
+			arrastrando = false;
+			if (dy > 110) dialog.close();
+		});
 
 		document.querySelectorAll<HTMLButtonElement>(".gallery-open").forEach((btn) => {
 			btn.addEventListener("click", () => open(Number(btn.dataset.viewerIndex)));
@@ -329,6 +405,7 @@ const media = await Promise.all(
 				if (active) {
 					index = active.i;
 					paint();
+					reproducirActivo();
 				}
 			},
 			{ root: rail, threshold: 0.6 },
