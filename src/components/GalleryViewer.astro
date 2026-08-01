@@ -44,7 +44,17 @@ const media = await Promise.all(
 							playsinline
 							controls
 							preload="none"
+							data-viewer-video
 						/>
+						<button type="button" class="viewer-sound" data-viewer-sound aria-label={t.viewer.sound} hidden>
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" data-icono="mudo">
+								<path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 101.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 10-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+							</svg>
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" data-icono="suena" hidden>
+								<path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+								<path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+							</svg>
+						</button>
 					) : (
 						<img
 							src={m.src}
@@ -246,7 +256,83 @@ const media = await Promise.all(
 			// El scroll va DESPUÉS de showModal(): con el diálogo cerrado, clientWidth vale 0
 			// y el carril se posicionaría siempre en la primera foto.
 			rail.scrollTo({ left: startIndex * rail.clientWidth, behavior: "instant" });
+			reproducirActivo();
 		}
+
+
+		// En móvil los mandos nativos de iOS tapan el vídeo y compiten con los del
+		// visor. Se sustituyen por: toque para pausar y un icono de sonido.
+		const movil = window.matchMedia("(max-width: 49.99em)");
+		const sonido = dialog.querySelector<HTMLButtonElement>("[data-viewer-sound]");
+
+		function aplicarModo() {
+			const videos = dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]");
+			videos.forEach((v) => {
+				if (movil.matches) v.removeAttribute("controls");
+				else v.setAttribute("controls", "");
+			});
+			if (sonido) sonido.hidden = !movil.matches || !videos.length;
+			dialog.classList.toggle("movil", movil.matches);
+		}
+		aplicarModo();
+		movil.addEventListener("change", aplicarModo);
+
+		function videoActivo() {
+			return slides[index]?.querySelector<HTMLVideoElement>("[data-viewer-video]") ?? null;
+		}
+
+		function reproducirActivo() {
+			dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]").forEach((v) => {
+				if (v !== videoActivo()) v.pause();
+			});
+			if (!movil.matches) return;
+			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+			videoActivo()?.play().catch(() => {});
+		}
+
+		rail.addEventListener("click", (e) => {
+			if (!movil.matches) return;
+			if ((e.target as HTMLElement).closest("button")) return;
+			const v = videoActivo();
+			if (!v) return;
+			v.paused ? v.play().catch(() => {}) : v.pause();
+		});
+
+		sonido?.addEventListener("click", () => {
+			const v = videoActivo();
+			if (!v) return;
+			v.muted = !v.muted;
+			sonido.querySelector<HTMLElement>('[data-icono="mudo"]')!.hidden = !v.muted;
+			sonido.querySelector<HTMLElement>('[data-icono="suena"]')!.hidden = v.muted;
+		});
+
+		// Cerrar deslizando hacia abajo. Solo se toma el gesto cuando es claramente
+		// vertical: si no, se lo queda el carril, que desliza en horizontal.
+		let y0 = 0, x0 = 0, arrastrando = false;
+		rail.addEventListener("touchstart", (e) => {
+			if (!movil.matches || e.touches.length !== 1) return;
+			y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; arrastrando = false;
+		}, { passive: true });
+
+		rail.addEventListener("touchmove", (e) => {
+			if (!movil.matches || e.touches.length !== 1) return;
+			const dy = e.touches[0].clientY - y0;
+			const dx = e.touches[0].clientX - x0;
+			if (!arrastrando && dy > 12 && Math.abs(dy) > Math.abs(dx) * 1.5) arrastrando = true;
+			if (!arrastrando) return;
+			e.preventDefault();
+			dialog.style.transform = `translateY(${Math.max(0, dy)}px)`;
+			dialog.style.opacity = String(Math.max(0.3, 1 - dy / 500));
+		}, { passive: false });
+
+		rail.addEventListener("touchend", (e) => {
+			if (!arrastrando) return;
+			const dy = e.changedTouches[0].clientY - y0;
+			dialog.style.transform = "";
+			dialog.style.opacity = "";
+			arrastrando = false;
+			if (dy > 110) dialog.close();
+		});
 
 		document.querySelectorAll<HTMLButtonElement>(".gallery-open").forEach((btn) => {
 			btn.addEventListener("click", () => open(Number(btn.dataset.viewerIndex)));
@@ -319,6 +405,7 @@ const media = await Promise.all(
 				if (active) {
 					index = active.i;
 					paint();
+					reproducirActivo();
 				}
 			},
 			{ root: rail, threshold: 0.6 },

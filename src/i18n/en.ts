@@ -75,6 +75,7 @@ export const en: Translation = {
 	},
 	viewer: {
 		label: 'Gallery viewer',
+		sound: 'Toggle sound',
 		rail: 'Project photos and videos',
 		close: 'Close the viewer',
 		previous: 'Previous',

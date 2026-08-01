@@ -1,0 +1,226 @@
+{
+  "overflow": [],
+  "ariaCurrent": [
+    {
+      "theme": "light",
+      "url": "/en/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/en/campaigns/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/en/campaigns/bruno-magli/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/en/contact/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/campaigns/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/campaigns/bruno-magli/",
+      "count": 1
+    },
+    {
+      "theme": "light",
+      "url": "/contact/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/en/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/en/campaigns/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/en/campaigns/bruno-magli/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/en/contact/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/campaigns/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/campaigns/bruno-magli/",
+      "count": 1
+    },
+    {
+      "theme": "dark",
+      "url": "/contact/",
+      "count": 1
+    }
+  ],
+  "langSwitch": [
+    {
+      "url": "/en/campaigns/bruno-magli/",
+      "hrefs": [
+        {
+          "href": "/campaigns/bruno-magli/",
+          "text": "ES",
+          "ariaCurrent": null
+        },
+        {
+          "href": "/en/campaigns/bruno-magli/",
+          "text": "EN",
+          "ariaCurrent": "true"
+        }
+      ]
+    },
+    {
+      "url": "/en/campaigns/",
+      "hrefs": [
+        {
+          "href": "/campaigns/",
+          "text": "ES",
+          "ariaCurrent": null
+        },
+        {
+          "href": "/en/campaigns/",
+          "text": "EN",
+          "ariaCurrent": "true"
+        }
+      ]
+    },
+    {
+      "url": "/en/",
+      "hrefs": [
+        {
+          "href": "/",
+          "text": "ES",
+          "ariaCurrent": null
+        },
+        {
+          "href": "/en/",
+          "text": "EN",
+          "ariaCurrent": "true"
+        }
+      ]
+    }
+  ],
+  "hamburger": [
+    {
+      "url": "/en/",
+      "width": 1407,
+      "info": {
+        "found": true,
+        "visible": true,
+        "id": "",
+        "cls": "menu-button"
+      }
+    },
+    {
+      "url": "/en/",
+      "width": 1408,
+      "info": {
+        "found": true,
+        "visible": false,
+        "id": "",
+        "cls": "menu-button"
+      }
+    },
+    {
+      "url": "/en/",
+      "width": 1409,
+      "info": {
+        "found": true,
+        "visible": false,
+        "id": "",
+        "cls": "menu-button"
+      }
+    },
+    {
+      "url": "/",
+      "width": 1407,
+      "info": {
+        "found": true,
+        "visible": true,
+        "id": "",
+        "cls": "menu-button"
+      }
+    },
+    {
+      "url": "/",
+      "width": 1408,
+      "info": {
+        "found": true,
+        "visible": false,
+        "id": "",
+        "cls": "menu-button"
+      }
+    },
+    {
+      "url": "/",
+      "width": 1409,
+      "info": {
+        "found": true,
+        "visible": false,
+        "id": "",
+        "cls": "menu-button"
+      }
+    }
+  ],
+  "nav": [],
+  "navFlow": [
+    {
+      "step": "goto",
+      "url": "http://localhost:8931/en/campaigns/"
+    },
+    {
+      "step": "card href from /en/campaigns/",
+      "cardHref": "/en/campaigns/alaniz-maria-pombo"
+    },
+    {
+      "step": "goto detail",
+      "url": "http://localhost:8931/en/campaigns/alaniz-maria-pombo/"
+    },
+    {
+      "step": "back-link",
+      "backHref": "/en/campaigns",
+      "backText": "Back"
+    },
+    {
+      "step": "goto back",
+      "url": "http://localhost:8931/en/campaigns/"
+    },
+    {
+      "step": "nav home href",
+      "navHomeHref": "/en/"
+    },
+    {
+      "step": "contact link href",
+      "contactHref": "/en/contact/"
+    }
+  ]
+}
