@@ -213,10 +213,35 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	customElements.define('menu-button', MenuButton);
 </script>
 
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const nav = document.querySelector<HTMLElement>("nav");
+		const menu = document.getElementById("menu-content");
+		if (!nav) return;
+
+		let ultimo = window.scrollY;
+
+		function alDesplazar() {
+			const y = window.scrollY;
+			const bajando = y > ultimo;
+			// Con el menú desplegado la cabecera no se esconde: sería tirar de la
+			// alfombra a quien acaba de abrirlo.
+			const menuAbierto = menu ? !menu.hidden : false;
+			if (y < nav!.offsetHeight || menuAbierto) nav!.removeAttribute("data-oculta");
+			else if (bajando && y - ultimo > 4) nav!.setAttribute("data-oculta", "");
+			else if (!bajando && ultimo - y > 4) nav!.removeAttribute("data-oculta");
+			ultimo = y;
+		}
+
+		window.addEventListener("scroll", alDesplazar, { passive: true });
+	});
+</script>
+
 <style>
 	nav {
 		z-index: 9999;
 		position: relative;
+		background-color: var(--gray-999);
 		font-weight: 500;
 		margin-bottom: 2rem;
 	}
@@ -529,6 +554,24 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 	@media (forced-colors: active) {
 		.link[aria-current='page'] {
 			color: SelectedItem;
+		}
+	}
+
+	@media (max-width: 87.99em) {
+		nav {
+			position: sticky;
+			top: 0;
+			transition: transform 0.25s ease-in-out;
+		}
+
+		nav[data-oculta] {
+			transform: translateY(-100%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		nav {
+			transition: none;
 		}
 	}
 </style>
