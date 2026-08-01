@@ -1,6 +1,7 @@
 ---
 import { getLocaleFromUrl } from "../i18n";
 import { localizedPath } from "../i18n/routing";
+import { CARD_SIZES, cardSrcset } from "../lib/card-srcset";
 
 interface Props {
 	id: string;
@@ -29,6 +30,7 @@ const {
 } = Astro.props;
 
 const Tag = disableLink ? "div" : "a";
+const srcset = await cardSrcset(img);
 
 // El idioma se deduce de la URL para no tener que pasar `locale` por prop a los seis sitios donde se instancia Card.
 const locale = getLocaleFromUrl(Astro.url);
@@ -68,6 +70,8 @@ const href = localizedPath(locale, `/${page}/${id}`);
 	</div>
 	<img
 		src={img}
+		srcset={srcset}
+		sizes={srcset ? CARD_SIZES : undefined}
 		alt={img_alt || ""}
 		loading={priority ? "eager" : "lazy"}
 		fetchpriority={priority ? "high" : undefined}
