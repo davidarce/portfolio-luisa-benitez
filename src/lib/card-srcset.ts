@@ -1,6 +1,7 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
+import { conHuella } from './asset-version';
 
 // Medido en el build, no estimado: la tarjeta ocupa el 94% de la pantalla hasta
 // 800px, el 27% por encima, y se topa en 382px a partir de ~1400.
@@ -24,8 +25,8 @@ export async function cardSrcset(img: string): Promise<string | undefined> {
 			// El original entra en la lista: cuando la fuente es más estrecha que
 			// la mayor variante posible, es la única candidata que llega.
 			const natural = (await sharp(join('public', img)).metadata()).width ?? 0;
-			const entradas = anchos.map((w) => `${dir}/srcset/${w}.webp ${w}w`);
-			if (natural && !anchos.includes(natural)) entradas.push(`${img} ${natural}w`);
+			const entradas = anchos.map((w) => `${conHuella(`${dir}/srcset/${w}.webp`)} ${w}w`);
+			if (natural && !anchos.includes(natural)) entradas.push(`${conHuella(img)} ${natural}w`);
 			valor = entradas.join(', ');
 		}
 	}

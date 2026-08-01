@@ -2,6 +2,7 @@
 import { getLocaleFromUrl } from "../i18n";
 import { localizedPath } from "../i18n/routing";
 import { CARD_SIZES, cardSrcset } from "../lib/card-srcset";
+import { conHuella } from "../lib/asset-version";
 
 interface Props {
 	id: string;
@@ -69,7 +70,7 @@ const href = localizedPath(locale, `/${page}/${id}`);
 		}
 	</div>
 	<img
-		src={img}
+		src={conHuella(img)}
 		srcset={srcset}
 		sizes={srcset ? CARD_SIZES : undefined}
 		alt={img_alt || ""}

@@ -1,4 +1,5 @@
 ---
+import { conHuella } from "../lib/asset-version";
 import Icon from "./Icon.astro";
 import { getMediaSize, posterPath } from "../lib/mediaDimensions";
 import { getTranslation, type Locale } from "../i18n";
@@ -34,8 +35,8 @@ const media = await Promise.all(
 				<li class="viewer-slide">
 					{m.isVideo ? (
 						<video
-							src={`${m.src}#t=1`}
-							poster={posterPath(m.src)}
+							src={`${conHuella(m.src)}#t=1`}
+							poster={conHuella(posterPath(m.src))}
 							aria-label={fill(t.viewer.altVideo, i)}
 							width={m.size?.width}
 							height={m.size?.height}
@@ -57,7 +58,7 @@ const media = await Promise.all(
 						</button>
 					) : (
 						<img
-							src={m.src}
+							src={conHuella(m.src)}
 							alt={fill(t.viewer.altImage, i)}
 							loading="lazy"
 							width={m.size?.width}

@@ -1,4 +1,5 @@
 ---
+import { conHuella } from "../lib/asset-version";
 import type { CollectionEntry } from "astro:content";
 
 import ContactCTA from "./ContactCTA.astro";
@@ -43,7 +44,7 @@ const fill = (tpl: string, i: number) =>
 <BaseLayout
 	title={`${entry.data.title} | Luisa Benítez`}
 	description={description ?? entry.data.title}
-	image={`/assets/og/${collection}/${entry.id}.jpg`}
+	image={conHuella(`/assets/og/${collection}/${entry.id}.jpg`)}
 	imageAlt={entry.data.img_alt ?? entry.data.title}
 >
 	<div class="stack gap-20">
@@ -87,8 +88,8 @@ const fill = (tpl: string, i: number) =>
 										>
 											{isVideo ? (
 												<video
-													src={`${img}#t=1`}
-													poster={posterPath(img)}
+													src={`${conHuella(img)}#t=1`}
+													poster={conHuella(posterPath(img))}
 													aria-label={fill(t.viewer.altVideo, i)}
 													loop
 													muted
@@ -97,7 +98,7 @@ const fill = (tpl: string, i: number) =>
 												/>
 											) : (
 												<img
-													src={img}
+													src={conHuella(img)}
 													alt={fill(t.viewer.altImage, i)}
 													loading={i === 0 ? "eager" : "lazy"}
 													fetchpriority={i === 0 ? "high" : undefined}
