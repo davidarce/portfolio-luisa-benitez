@@ -78,6 +78,21 @@ export const es = {
 		skipToContent: 'Saltar al contenido',
 		languageLabel: 'Cambiar de idioma',
 	},
+	viewer: {
+		label: 'Visor de galería',
+		/** Distinta de `label`: con el mismo texto en las dos, VoiceOver lo lee dos veces seguidas al entrar. */
+		rail: 'Fotos y vídeos del proyecto',
+		close: 'Cerrar el visor',
+		previous: 'Anterior',
+		next: 'Siguiente',
+		/** Se rellena en el cliente: {current} y {total}. */
+		position: '{current} de {total}',
+		openImage: 'Ampliar la imagen {n} de {total}',
+		openVideo: 'Ampliar el vídeo {n} de {total}',
+		altImage: 'Imagen {n} de {total}: {title}',
+		altVideo: 'Vídeo {n} de {total}: {title}',
+		/** Mitigación de WCAG 2.2.2 tras quitar `controls` del grid. */
+	},
 	collections: {
 		campaigns: {
 			heading: 'Campañas',

@@ -83,11 +83,9 @@ export function createGalleryLoader(config: GalleryConfig) {
         ? jsonData.find(item => item.id === slug || item.img?.includes(slug))
         : jsonData[slug]?.[0];
 
-      // Determine if it has a gallery (more than 1 item or 1 item that is not the main video/img)
-      // If it has only 1 video and that video is the main preview, then no gallery.
-      // Actually, if it has > 1 items in 'images', it's a gallery.
-      // If it has 1 item and that item is used as the preview video, then it's just that video.
-      const hasGallery = images.length > 1;
+      // `> 0` y no `> 1`: un proyecto de un solo vídeo también tiene ficha, que
+      // es donde viven los créditos. Con `> 1` esas seis tarjetas no enlazaban.
+      const hasGallery = images.length > 0;
 
       return {
         id: slug,

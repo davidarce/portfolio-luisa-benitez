@@ -73,6 +73,18 @@ export const en: Translation = {
 		skipToContent: 'Skip to content',
 		languageLabel: 'Switch language',
 	},
+	viewer: {
+		label: 'Gallery viewer',
+		rail: 'Project photos and videos',
+		close: 'Close the viewer',
+		previous: 'Previous',
+		next: 'Next',
+		position: '{current} of {total}',
+		openImage: 'Expand image {n} of {total}',
+		openVideo: 'Expand video {n} of {total}',
+		altImage: 'Image {n} of {total}: {title}',
+		altVideo: 'Video {n} of {total}: {title}',
+	},
 	collections: {
 		campaigns: {
 			heading: 'Campaigns',
