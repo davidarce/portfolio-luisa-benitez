@@ -68,6 +68,7 @@ const media = await Promise.all(
 			))
 		}
 	</ul>
+	<div class="viewer-progreso" data-viewer-progreso hidden><span></span></div>
 	<div class="viewer-bar">
 		<p class="viewer-counter" aria-hidden="true"></p>
 		<p class="viewer-announcer sr-only" role="status"></p>
@@ -95,8 +96,10 @@ const media = await Promise.all(
 		width: 100vw;
 		height: 100vh;
 		height: 100dvh;
-		background: var(--gray-999);
-		color: var(--gray-0);
+		/* Siempre oscuro, no el color del tema: en claro el blanco rodeaba la foto
+		   y competía con ella. Es lo que hace cualquier visor a pantalla completa. */
+		background: #000;
+		color: #fff;
 		overflow: hidden;
 		/* En los DOS ejes y en el diálogo, no sólo en el carril: un arrastre vertical
 		   se encadena al fondo en iOS si sólo se contiene el eje x. */
@@ -216,6 +219,50 @@ const media = await Promise.all(
 	html.viewer-open {
 		overflow: hidden;
 	}
+
+	.viewer-sound {
+		position: absolute;
+		right: 1rem;
+		bottom: 5rem;
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border: 0;
+		border-radius: 999rem;
+		background: rgb(0 0 0 / 0.55);
+		color: #fff;
+		cursor: pointer;
+	}
+
+	.viewer-sound svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.viewer-sound[hidden] {
+		display: none;
+	}
+
+	.viewer-progreso {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 4rem;
+		height: 3px;
+		background: rgb(255 255 255 / 0.25);
+	}
+
+	.viewer-progreso[hidden] {
+		display: none;
+	}
+
+	.viewer-progreso span {
+		display: block;
+		height: 100%;
+		width: 0;
+		background: #fff;
+	}
 </style>
 
 <script>
@@ -265,6 +312,10 @@ const media = await Promise.all(
 		const movil = window.matchMedia("(max-width: 49.99em)");
 		const sonido = dialog.querySelector<HTMLButtonElement>("[data-viewer-sound]");
 
+		function refrescarProgresoSiExiste() {
+			try { refrescarProgreso(); } catch { /* aún no definida en el primer aplicarModo() */ }
+		}
+
 		function aplicarModo() {
 			const videos = dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]");
 			videos.forEach((v) => {
@@ -272,6 +323,7 @@ const media = await Promise.all(
 				else v.setAttribute("controls", "");
 			});
 			if (sonido) sonido.hidden = !movil.matches || !videos.length;
+			refrescarProgresoSiExiste();
 			dialog.classList.toggle("movil", movil.matches);
 		}
 		aplicarModo();
@@ -288,6 +340,7 @@ const media = await Promise.all(
 			if (!movil.matches) return;
 			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 			videoActivo()?.play().catch(() => {});
+			refrescarProgresoSiExiste();
 		}
 
 		rail.addEventListener("click", (e) => {
@@ -296,6 +349,26 @@ const media = await Promise.all(
 			const v = videoActivo();
 			if (!v) return;
 			v.paused ? v.play().catch(() => {}) : v.pause();
+		});
+
+		const progreso = dialog.querySelector<HTMLElement>("[data-viewer-progreso]");
+		const relleno = progreso?.querySelector<HTMLElement>("span");
+
+		function refrescarProgreso() {
+			const v = videoActivo();
+			if (!progreso || !relleno) return;
+			progreso.hidden = !movil.matches || !v;
+			if (!v || !v.duration) return;
+			relleno.style.width = `${(v.currentTime / v.duration) * 100}%`;
+		}
+
+		dialog.addEventListener("timeupdate", refrescarProgreso, true);
+
+		progreso?.addEventListener("click", (e) => {
+			const v = videoActivo();
+			if (!v || !v.duration) return;
+			const r = progreso.getBoundingClientRect();
+			v.currentTime = ((e.clientX - r.left) / r.width) * v.duration;
 		});
 
 		sonido?.addEventListener("click", () => {
