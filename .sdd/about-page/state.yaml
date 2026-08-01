@@ -1,0 +1,16 @@
+change: about-page
+phase: review
+status: ok
+branch: feat/about-page
+artifacts:
+  - .sdd/about-page/exploration.md
+  - .sdd/about-page/plan.md
+  - .sdd/about-page/measurements.md
+  - .sdd/about-page/review.md
+  - .sdd/about-page/evidence/
+guidance_round: 1
+crit_completed: false
+completed_batches: A,B,C,D,E,F,G,H,I,J
+commit: 7f35b0d
+pull_request: 58
+updated: 2026-07-28
