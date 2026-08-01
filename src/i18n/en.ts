@@ -84,8 +84,6 @@ export const en: Translation = {
 		openVideo: 'Expand video {n} of {total}',
 		altImage: 'Image {n} of {total}: {title}',
 		altVideo: 'Video {n} of {total}: {title}',
-		pauseVideos: 'Pause the videos',
-		playVideos: 'Resume the videos',
 	},
 	collections: {
 		campaigns: {

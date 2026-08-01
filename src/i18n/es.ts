@@ -92,8 +92,6 @@ export const es = {
 		altImage: 'Imagen {n} de {total}: {title}',
 		altVideo: 'Vídeo {n} de {total}: {title}',
 		/** Mitigación de WCAG 2.2.2 tras quitar `controls` del grid. */
-		pauseVideos: 'Pausar los vídeos',
-		playVideos: 'Reanudar los vídeos',
 	},
 	collections: {
 		campaigns: {

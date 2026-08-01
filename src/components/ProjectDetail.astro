@@ -29,9 +29,10 @@ const { entry, collection, locale } = Astro.props;
 const t = getTranslation(locale);
 const description = entry.data.descriptionEn ?? entry.data.description;
 const descriptionIsSpanish = locale === "en" && !entry.data.descriptionEn;
+const piezaUnica = entry.data.images.length === 1;
 
 const total = entry.data.images.length;
-const hasVideo = entry.data.images.some((img) => /\.(mp4|webm|mov)$/i.test(img));
+
 const fill = (tpl: string, i: number) =>
 	tpl
 		.replace("{n}", String(i + 1))
@@ -71,17 +72,7 @@ const fill = (tpl: string, i: number) =>
 						format={entry.data.format}
 						credits={entry.data.credits}
 					/>
-					{hasVideo && (
-						<button
-							type="button"
-							class="pause-videos"
-							data-pause-videos
-							data-label-pause={t.viewer.pauseVideos}
-							data-label-play={t.viewer.playVideos}
-						>
-							{t.viewer.pauseVideos}
-						</button>
-					)}
+					<div class:list={["galeria", { solo: piezaUnica }]}>
 					<Grid variant="small">
 						{
 							entry.data.images.map((img, i) => {
@@ -118,6 +109,7 @@ const fill = (tpl: string, i: number) =>
 							})
 						}
 					</Grid>
+					</div>
 				</div>
 			</main>
 		</div>
@@ -126,58 +118,35 @@ const fill = (tpl: string, i: number) =>
 	<GalleryViewer images={entry.data.images} title={entry.data.title} locale={locale} />
 </BaseLayout>
 
-<script>
-	document.addEventListener("astro:page-load", () => {
-		const prefersReducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches;
-
-		const videos = document.querySelectorAll<HTMLVideoElement>(".gallery-item video");
-		const pauseBtn = document.querySelector<HTMLButtonElement>("[data-pause-videos]");
-		let observers: IntersectionObserver[] = [];
-
-		function rebuildObservers() {
-			if (prefersReducedMotion) return;
-			observers = [...videos].map((video) => {
-				const observer = new IntersectionObserver(
-					(entries) => {
-						for (const entry of entries) {
-							if (entry.isIntersecting) {
-								video.play().catch(() => {});
-							} else {
-								video.pause();
-							}
-						}
-					},
-					{ threshold: 0.25 },
-				);
-				observer.observe(video);
-				return observer;
-			});
-		}
-
-		rebuildObservers();
-
-		// Mitigación de WCAG 2.2.2: pausar sin desconectar deja un control que el
-		// observador deshace en el siguiente scroll, así que hay que hacer las dos cosas.
-		pauseBtn?.addEventListener("click", () => {
-			const paused = pauseBtn.dataset.state === "paused";
-			if (paused) {
-				rebuildObservers();
-			} else {
-				observers.forEach((o) => o.disconnect());
-				observers = [];
-				videos.forEach((v) => v.pause());
-			}
-			pauseBtn.dataset.state = paused ? "" : "paused";
-			pauseBtn.textContent = paused
-				? pauseBtn.dataset.labelPause!
-				: pauseBtn.dataset.labelPlay!;
-		});
-	});
-</script>
 
 <style>
+
+	/* Con una sola pieza la rejilla de tres columnas la dejaba en un tercio del
+	   ancho y pegada a la izquierda. :global porque .grid vive en Grid.astro. */
+	.galeria.solo :global(.grid) {
+		grid-template-columns: 1fr;
+		max-width: 46rem;
+		margin-inline: auto;
+	}
+
+	.galeria.solo :global(.gallery-item),
+	.galeria.solo :global(.gallery-open) {
+		display: flex;
+		justify-content: center;
+		aspect-ratio: auto;
+		background: none;
+		border: 0;
+		box-shadow: none;
+		overflow: visible;
+	}
+
+	.galeria.solo :global(.gallery-item video),
+	.galeria.solo :global(.gallery-item img) {
+		width: auto;
+		height: auto;
+		max-height: 80vh;
+		object-fit: contain;
+	}
 	header {
 		padding-bottom: 2.5rem;
 		border-bottom: 1px solid var(--gray-800);
@@ -251,21 +220,7 @@ const fill = (tpl: string, i: number) =>
 		outline-offset: 3px;
 	}
 
-	.pause-videos {
-		align-self: flex-start;
-		min-height: 44px;
-		padding: 0.5rem 1rem;
-		border: 1px solid var(--gray-800);
-		border-radius: 2rem;
-		background: none;
-		color: var(--gray-0);
-		cursor: pointer;
-	}
 
-	.pause-videos:focus-visible {
-		outline: 2px solid var(--gray-0);
-		outline-offset: 3px;
-	}
 
 	@media (min-width: 50em) {
 		.back-link {
