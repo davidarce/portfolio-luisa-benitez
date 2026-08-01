@@ -291,7 +291,9 @@ const alternates = hasTranslation
 	html,
 	body {
 		min-height: 100%;
-		overflow-x: hidden;
+		/* `clip` y no `hidden`: hidden convierte el elemento en contenedor de
+		   scroll y rompe el `position: sticky` de la cabecera. */
+		overflow-x: clip;
 	}
 
 	body {
