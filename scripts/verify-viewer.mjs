@@ -450,14 +450,13 @@ try {
 	];
 	for (const shot of shotPlan) await captureShot(shot.ctx, shot);
 
+	// Antes se exigía que el fondo difiriera entre temas, como prueba de que el
+	// tema se había aplicado. Ya no vale: el visor es negro a propósito en los dos,
+	// porque en claro el blanco rodeaba la foto. Que el tema se aplica lo garantiza
+	// el abortAssert de captureShot, que es una comprobación más fuerte.
 	check(
-		bg["viewer-390-light-photo.png"] !== bg["viewer-390-dark-photo.png"],
-		"390px: el fondo del visor difiere entre tema claro y oscuro (no son duplicados)",
-		bg,
-	);
-	check(
-		bg["viewer-1440-light-photo.png"] !== bg["viewer-1440-dark-photo.png"],
-		"1440px: el fondo del visor difiere entre tema claro y oscuro (no son duplicados)",
+		Object.values(bg).every((c) => c === "rgb(0, 0, 0)"),
+		"el fondo del visor es negro en los dos temas y en las dos anchuras",
 		bg,
 	);
 	measurements.screenshotBackgrounds = bg;
