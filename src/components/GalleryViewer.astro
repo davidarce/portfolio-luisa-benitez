@@ -260,6 +260,9 @@ const media = await Promise.all(
 		padding-inline: 1rem;
 		touch-action: none;
 		cursor: pointer;
+		/* Sin esto la barra de controles, que se pinta después, se queda el toque:
+		   medido con elementFromPoint sobre el centro de la franja. */
+		z-index: 1;
 	}
 
 	.viewer-progreso::before {
@@ -410,8 +413,12 @@ const media = await Promise.all(
 			const v = videoActivo();
 			if (!v) return;
 			v.muted = !v.muted;
-			sonido.querySelector<HTMLElement>('[data-icono="mudo"]')!.hidden = !v.muted;
-			sonido.querySelector<HTMLElement>('[data-icono="suena"]')!.hidden = v.muted;
+			// Un SVGElement NO tiene la propiedad `hidden`: asignarla no oculta nada.
+			// Medido: `'hidden' in svg` es false. Hay que usar el atributo.
+			const mudo = sonido.querySelector('[data-icono="mudo"]')!;
+			const suena = sonido.querySelector('[data-icono="suena"]')!;
+			mudo.toggleAttribute("hidden", !v.muted);
+			suena.toggleAttribute("hidden", v.muted);
 		});
 
 		// Cerrar deslizando hacia abajo. Solo se toma el gesto cuando es claramente
