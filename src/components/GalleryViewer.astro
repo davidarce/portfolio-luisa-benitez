@@ -28,8 +28,8 @@ const media = await Promise.all(
 );
 ---
 
-<dialog data-gallery-viewer aria-label={t.viewer.label} data-position-template={t.viewer.position}>
-	<ul class="viewer-rail" role="list" tabindex="0" autofocus aria-label={t.viewer.rail}>
+<dialog tabindex="-1" data-gallery-viewer aria-label={t.viewer.label} data-position-template={t.viewer.position}>
+	<ul class="viewer-rail" role="list" tabindex="0" aria-label={t.viewer.rail}>
 		{
 			media.map((m, i) => (
 				<li class="viewer-slide">
@@ -342,6 +342,10 @@ const media = await Promise.all(
 			dialog.showModal();
 			// El scroll va DESPUÉS de showModal(): con el diálogo cerrado, clientWidth vale 0
 			// y el carril se posicionaría siempre en la primera foto.
+			// El foco inicial va al diálogo y no al carril: en Safari el carril
+			// activaba :focus-visible al abrirse y su anillo de 3px, al ocupar todo
+			// el visor, se veía como un marco blanco alrededor de la foto.
+			dialog.focus();
 			rail.scrollTo({ left: startIndex * rail.clientWidth, behavior: "instant" });
 			reproducirActivo();
 		}
