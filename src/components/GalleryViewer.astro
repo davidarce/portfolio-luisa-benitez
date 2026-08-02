@@ -111,6 +111,13 @@ const media = await Promise.all(
 		background: #000;
 	}
 
+	/* Si algo asomara por detrás del diálogo, que sea negro y no el blanco del
+	   tema claro. No reproducido en Chromium; es un seguro para Safari. */
+	:global(html.viewer-open),
+	:global(html.viewer-open body) {
+		background: #000;
+	}
+
 	/* PROHIBIDO en todo este bloque: touch-action: pan-x | none, y user-scalable=no.
 	   Matan el pinch-zoom nativo, que es la única ampliación disponible para baja
 	   visión (WCAG 1.4.4 AA). Si el arrastre vertical se siente raro, NO es aquí. */
@@ -169,6 +176,17 @@ const media = await Promise.all(
 		height: auto;
 		object-fit: contain;
 		border-radius: 0.75rem;
+	}
+
+	/* La barra cubre la franja donde iOS y el escritorio pintan los mandos nativos
+	   del vídeo, y se llevaba el puntero: medido con elementFromPoint. Solo sus
+	   botones deben recibirlo. */
+	.viewer-bar {
+		pointer-events: none;
+	}
+
+	.viewer-bar button {
+		pointer-events: auto;
 	}
 
 	.viewer-bar {
