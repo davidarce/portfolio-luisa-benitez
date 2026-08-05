@@ -19,6 +19,7 @@ interface SortableProject {
 		role: string;
 		order: number;
 		year?: number;
+		pin?: string;
 	};
 }
 
@@ -26,8 +27,22 @@ function roleRank(role: string): number {
 	return role === 'lead-stylist' ? 0 : 1;
 }
 
-export function sortProjects<T extends SortableProject>(entries: T[]): T[] {
+// `pin` gana al orden por rol: es la decisión editorial de David y Luisa sobre
+// un listado concreto, y por eso manda sobre el criterio general.
+function pinRank(pin?: string): number {
+	if (pin === 'first') return -1;
+	if (pin === 'last') return 1;
+	return 0;
+}
+
+export function sortProjects<T extends SortableProject>(
+	entries: T[],
+	{ aplicarPin = true }: { aplicarPin?: boolean } = {},
+): T[] {
 	return [...entries].sort((a, b) => {
+		const pinDiff = aplicarPin ? pinRank(a.data.pin) - pinRank(b.data.pin) : 0;
+		if (pinDiff !== 0) return pinDiff;
+
 		const roleDiff = roleRank(a.data.role) - roleRank(b.data.role);
 		if (roleDiff !== 0) return roleDiff;
 

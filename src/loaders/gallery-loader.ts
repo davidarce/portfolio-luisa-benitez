@@ -22,6 +22,8 @@ interface GalleryEntry {
   images: string[];
   hasGallery: boolean;
   order: number;
+  featured?: boolean;
+  pin?: 'first' | 'last';
   role?: string;
   roleDetail?: string;
   leadStylist?: string;
@@ -100,6 +102,8 @@ export function createGalleryLoader(config: GalleryConfig) {
         images,
         hasGallery,
         order: info?.order || 0,
+        featured: info?.featured,
+        pin: info?.pin,
         role: info?.role,
         roleDetail: info?.roleDetail,
         leadStylist: info?.leadStylist,

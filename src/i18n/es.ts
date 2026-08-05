@@ -19,6 +19,8 @@ export const es = {
 		contact: 'Contacto',
 	},
 	home: {
+		heroAlt:
+			'Luisa Benítez ajustando la cola de un vestido de tul en una sesión de estudio',
 		featuredWorkTitle: 'Trabajos destacados',
 		tagline: 'Estilista y asistente de moda, diseñadora de modas, asesora de imagen y personal shopper',
 	},
@@ -64,16 +66,101 @@ export const es = {
 		eyebrow: 'Sobre mí',
 		bio: [
 			'Si no encuentro la prenda que tengo en la cabeza, la fabrico. He hecho guantes cortando medias y he puesto prendas del revés porque el corte original no caía como yo lo veía. Lo que imagino lo quiero ver, y busco la forma.',
-			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cuatro años trabajando en moda, primero en cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
+			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cinco años trabajando en moda, primero como editora de fotografía de moda en Colombia, luego en pasarela y cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
+	},
+	/**
+	 * Plantilla de impresión /cv (#35): de aquí salen los PDF vía
+	 * scripts/generate-cv.mjs. Los «[PENDIENTE: …]» son datos que debe confirmar
+	 * Luisa (#10) — el PDF no se publica mientras quede alguno. Los recuentos
+	 * se inyectan en `{n}` desde las colecciones para que el CV no pueda
+	 * contradecir a la web.
+	 */
+	cv: {
+		title: 'CV | Luisa Benítez',
+		role: 'Estilista y asesora de imagen',
+		headings: {
+			profile: 'Perfil',
+			experience: 'Experiencia',
+			education: 'Formación',
+			languages: 'Idiomas',
+		},
+		profileText:
+			'Vengo del diseño de modas: me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España. Llevo cinco años trabajando en moda: primero como editora de fotografía de moda en Colombia, luego en pasarela y cine, después como asistente en agencia y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
+		experience: {
+			freelance: {
+				role: 'Estilista independiente',
+				org: 'A Coruña',
+				dates: 'Desde febrero de 2026',
+				summary:
+					'{n} proyectos como estilista principal: editoriales para Mode Magazine, Artego Magazine, pap magazine y Folie Magazine, y estilismo de celebridades para eventos, festivales y televisión.',
+			},
+			agency: {
+				role: 'Asistente de estilismo',
+				org: 'Agencias Saik y Stella Creatives',
+				dates: 'Marzo – agosto de 2025 (por proyectos)',
+				summary:
+					'{n} proyectos asistiendo a la estilista Caterina Ospina: editoriales para Numéro Netherlands, Vogue Adria y GQ México; campañas para YSL, Bruno Magli, Kérastase, Agatha Paris, Alaniz, Redken, GHD, Prime Video y Vogue España; y vestuario de celebridades en eventos.',
+			},
+			runway: {
+				role: 'Estilista y asistente de vestuario',
+				org: 'Mercedes-Benz Fashion Week Madrid',
+				dates: 'Febrero de 2023 – septiembre de 2025',
+				summary:
+					'{n} desfiles: estilismo en Claro Couture y asistencia de vestuario en Ángel Schlesser ({a} temporadas, una en el programa OFF).',
+			},
+			/**
+			 * «Auxiliar de vestuario» y «prácticas» son el cargo y la modalidad
+			 * reales del historial de Luisa — la web acredita el proyecto como
+			 * asistencia de estilismo, pero en el CV no se infla el título.
+			 * Elástica Films produjo «La mitad de Ana»: son el mismo trabajo.
+			 */
+			film: {
+				role: 'Auxiliar de vestuario (prácticas)',
+				org: 'Elástica Films — Cine, «La Mitad de Ana» · Madrid',
+				dates: 'Mayo – julio de 2023',
+				summary: 'Ruta de tiendas, showrooms y compañías de alquiler de vestuario para el largometraje.',
+			},
+			crystal: {
+				role: 'Editora de fotografía de moda (freelance)',
+				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
+				dates: 'Marzo de 2021 – marzo de 2022',
+				summary: 'Marcas del grupo: Gef, Punto Blanco, Baby Fresh y Galax.',
+			},
+		},
+		/**
+		 * Nomenclatura verificada, no «corregir»: Davante (con a) es la marca
+		 * actual de MasterD tras fusionarse con MEDAC en 2025 — Luisa estudió
+		 * cuando aún era MasterD. Y el título de Cesde es exactamente «Técnico
+		 * Laboral como Asistente en Diseño de Modas», un certificado ocupacional:
+		 * inflarlo a grado se nota si Inditex lo verifica.
+		 */
+		education: [
+			{
+				degree: 'Asesoría de Imagen Personal y Corporativa',
+				org: 'MasterD (hoy Davante) — Madrid, España',
+				dates: 'Enero de 2024 – noviembre de 2025',
+			},
+			{
+				degree: 'Estilismo y Personal Shopper',
+				org: 'MasterD — Madrid, España',
+				dates: 'Mayo de 2022 – noviembre de 2023',
+			},
+			{
+				degree: 'Técnico Laboral como Asistente en Diseño de Modas',
+				org: 'Cesde — Medellín, Colombia',
+				dates: 'Enero de 2019 – diciembre de 2020',
+			},
+		],
+		languages: ['Español (nativo)', 'Inglés — B1 (intermedio)'],
 	},
 	common: {
 		downloadCv: 'Descargar CV',
 		newWindowHint: '(se abre en una pestaña nueva)',
 		/** /about y /contact usan la MISMA foto: un solo alt, en un solo sitio. */
-		portraitAlt: 'Luisa Benítez al aire libre, leyendo una revista de moda',
+		portraitAlt: 'Luisa Benítez agachada en una calle al anochecer, con camisa blanca y peto negro',
 		back: 'Volver',
 		skipToContent: 'Saltar al contenido',
 		languageLabel: 'Cambiar de idioma',
