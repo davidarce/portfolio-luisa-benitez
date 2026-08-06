@@ -13,11 +13,14 @@ proyecto al principio o al final de su listado, y corregir título y descripció
 están declarados pero ocultos en la configuración, así que se conservan intactos
 y no aparecen en pantalla. La atribución de cada trabajo se decide fuera del CMS.
 
-**Tampoco puede subir fotos.** Las imágenes del sitio pasan por
-`scripts/optimize-gallery.mjs`, que las convierte a webp de 2048px. Una foto
-subida desde el CMS entraría cruda de cámara y dispararía el peso del sitio, que
-ya roza el límite de tiempo de despliegue. Añadir material sigue siendo tarea de
-David con el script.
+**No debería subir fotos nuevas, aunque el CMS lo permite.** El campo de foto es
+un `widget: image` normal, así que técnicamente sí se puede subir una imagen
+desde ahí; es una convención, no una restricción del propio CMS. Las imágenes
+del sitio pasan por `scripts/optimize-gallery.mjs`, que las convierte a webp de
+2048px, y una foto subida directamente desde el CMS entraría cruda de cámara
+(sin optimizar, mucho más pesada) y quedaría así en el repositorio, empujando el
+peso del sitio hacia el límite de tiempo de despliegue. Añadir material sigue
+siendo tarea de David con el script.
 
 ## Cómo funciona por dentro
 

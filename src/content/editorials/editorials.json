@@ -1,7 +1,7 @@
 {
     "highlighted": [
         {
-            "id": "1",
+            "id": "miguel-herran",
             "title": "Numéro - Miguel Herrán",
             "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
             "img": "/assets/editorials/miguel-herran/index.webp",
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "id": "2",
+            "id": "vogue",
             "title": "Vogue Adria",
             "description": "Editorial para Vogue Adria.",
             "img": "/assets/editorials/vogue/index.webp",
@@ -114,7 +114,7 @@
             ]
         },
         {
-            "id": "3",
+            "id": "martina",
             "title": "Numéro - Martina Cariddi",
             "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
             "img": "/assets/editorials/martina/index.webp",
@@ -174,7 +174,7 @@
             ]
         },
         {
-            "id": "4",
+            "id": "isabeli",
             "title": "Numéro - Isabeli Fontana",
             "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
             "img": "/assets/editorials/isabeli/index.webp",
@@ -241,7 +241,7 @@
             ]
         },
         {
-            "id": "5",
+            "id": "gq",
             "title": "GQ - México",
             "description": "Editorial para GQ México.",
             "img": "/assets/editorials/gq/index.webp",
@@ -272,7 +272,7 @@
             ]
         },
         {
-            "id": "6",
+            "id": "aminata",
             "title": "Mode Magazine - Aminata Sarr",
             "description": "Editorial para Mode Magazine con Aminata Sarr.",
             "img": "/assets/editorials/aminata/index.webp",
@@ -320,7 +320,7 @@
             ]
         },
         {
-            "id": "7",
+            "id": "artego-color-pop-garden",
             "title": "Artego Magazine - Color Pop Garden",
             "description": "Editorial «Color Pop Garden» para Artego Magazine.",
             "img": "/assets/editorials/artego-color-pop-garden/index.webp",
@@ -411,7 +411,7 @@
             ]
         },
         {
-            "id": "8",
+            "id": "pap-the-new-dandy",
             "title": "pap magazine - The New Dandy",
             "description": "Editorial «The New Dandy» para pap magazine.",
             "img": "/assets/editorials/pap-the-new-dandy/index.webp",
@@ -486,7 +486,7 @@
             ]
         },
         {
-            "id": "9",
+            "id": "folie-always-love",
             "title": "Folie Magazine - Always Love",
             "description": "Editorial «Always Love» para Folie Magazine.",
             "img": "/assets/editorials/folie-always-love/index.webp",
@@ -550,7 +550,7 @@
             ]
         },
         {
-            "id": "10",
+            "id": "folie-soft-tension",
             "title": "Folie Magazine - Soft Tension",
             "description": "Editorial «Soft Tension» para Folie Magazine.",
             "img": "/assets/editorials/folie-soft-tension/index.webp",
@@ -600,7 +600,7 @@
             ]
         },
         {
-            "id": "11",
+            "id": "isabel-arbos-model-test",
             "title": "Model Test - Isabel Arbós",
             "description": "Model test con Isabel Arbós.",
             "img": "/assets/editorials/isabel-arbos-model-test/index.webp",

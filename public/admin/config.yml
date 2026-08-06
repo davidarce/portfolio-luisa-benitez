@@ -55,6 +55,17 @@ campos_proyecto: &campos_proyecto
   - { name: leadStylist, widget: hidden, required: false }
   - { name: format, widget: hidden, required: false }
   - { name: credits, widget: hidden, required: false }
+  # No hay copy todavía para ninguno de estos seis, pero el esquema
+  # (content.config.ts) ya los admite y algunas plantillas los consumen. Si no
+  # se declaran aquí, el primer guardado del CMS después de que alguien los
+  # escriba a mano los borraría del JSON, porque una colección "files"
+  # reescribe el fichero entero solo con los campos que conoce.
+  - { name: descriptionEn, widget: hidden, required: false }
+  - { name: roleDetail, widget: hidden, required: false }
+  - { name: year, widget: hidden, required: false }
+  - { name: season, widget: hidden, required: false }
+  - { name: client, widget: hidden, required: false }
+  - { name: publication, widget: hidden, required: false }
 
 collections:
   - name: editoriales

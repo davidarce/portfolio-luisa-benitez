@@ -1,17 +1,25 @@
 import { defineCollection, z } from 'astro:content';
 import { createGalleryLoader } from './loaders/gallery-loader';
 
+// El widget "Sin fijar" del CMS (y cualquier otro select/texto que la usuaria
+// vacíe) escribe `""` en vez de omitir el campo. Zod trata `""` como un
+// string válido, no como "ausente", así que un `.optional()` a secas no basta:
+// hay que normalizar `""` a `undefined` antes de validar. Se aplica a todo
+// campo opcional del esquema, no solo a `pin`, porque el CMS puede vaciar
+// cualquiera de ellos de la misma forma.
+const optional = <T extends z.ZodTypeAny>(schema: T) =>
+	z.preprocess((val) => (val === '' ? undefined : val), schema.optional());
+
 const gallerySchema = z.object({
 	title: z.string(),
-	description: z.string().optional(),
+	description: optional(z.string()),
 	/** Vacía a propósito hoy: la copy de proyecto es de Luisa y no se inventa. Las plantillas hacen `descriptionEn ?? description`. */
-	descriptionEn: z.string().optional(),
+	descriptionEn: optional(z.string()),
 	img: z.string(),
-	img_alt: z.string().optional(),
-	video: z.string().optional(),
+	img_alt: optional(z.string()),
 	cardSize: z.enum(['normal', 'tall', 'wide']).default('normal'),
 	aspectRatio: z.string().default('3 / 4'),
-	objectPosition: z.string().optional(),
+	objectPosition: optional(z.string()),
 	images: z.array(z.string()),
 	// Fuente del orden y la visibilidad de `images`: el CMS edita este campo,
 	// no el sistema de ficheros. Ocultar una foto no la borra del disco.
@@ -37,35 +45,37 @@ const gallerySchema = z.object({
 	featured: z.boolean().optional(),
 
 	// Ancla un proyecto al principio o al final de SU listado, por encima del
-	// orden por rol. Decisión editorial explícita, no automatismo.
-	pin: z.enum(['first', 'last']).optional(),
+	// orden por rol. Decisión editorial explícita, no automatismo. `optional()`
+	// (no `.optional()` a secas) para tragar el "Sin fijar" del CMS, que
+	// escribe `pin: ""` en vez de omitir el campo.
+	pin: optional(z.enum(['first', 'last'])),
 
 	role: z.enum(['lead-stylist', 'assistant-stylist', 'wardrobe-assistant', 'co-stylist']),
-	roleDetail: z.string().optional(),
-	leadStylist: z.string().optional(),
+	roleDetail: optional(z.string()),
+	leadStylist: optional(z.string()),
 
-	year: z.number().optional(),
-	season: z.string().optional(),
-	client: z.string().optional(),
-	publication: z.string().optional(),
-	format: z.enum(['editorial', 'campaign', 'social', 'runway', 'event', 'film', 'model-test']).optional(),
+	year: optional(z.number()),
+	season: optional(z.string()),
+	client: optional(z.string()),
+	publication: optional(z.string()),
+	format: optional(z.enum(['editorial', 'campaign', 'social', 'runway', 'event', 'film', 'model-test'])),
 
 	// Sin placeholders: si el dato no existe todavía, el campo se omite y no se pinta.
 	credits: z
 		.object({
-			photographer: z.string().optional(),
-			director: z.string().optional(),
-			muah: z.string().optional(),
-			makeup: z.string().optional(),
-			hair: z.string().optional(),
-			setDesign: z.string().optional(),
-			stylingTeam: z.string().optional(),
-			video: z.string().optional(),
-			talent: z.string().optional(),
-			talentAgency: z.string().optional(),
-			artDirection: z.string().optional(),
-			production: z.string().optional(),
-			location: z.string().optional(),
+			photographer: optional(z.string()),
+			director: optional(z.string()),
+			muah: optional(z.string()),
+			makeup: optional(z.string()),
+			hair: optional(z.string()),
+			setDesign: optional(z.string()),
+			stylingTeam: optional(z.string()),
+			video: optional(z.string()),
+			talent: optional(z.string()),
+			talentAgency: optional(z.string()),
+			artDirection: optional(z.string()),
+			production: optional(z.string()),
+			location: optional(z.string()),
 		})
 		.optional(),
 });

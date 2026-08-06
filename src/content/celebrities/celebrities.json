@@ -1,7 +1,7 @@
 {
     "highlighted": [
         {
-            "id": "1",
+            "id": "miguel-herran",
             "title": "Miguel Herrán - Chaumet",
             "description": "Estilismo para evento de presentación de colección de joyería de Chaumet by Nature.",
             "img": "/assets/celebrities/miguel-herran/index.webp",
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "id": "2",
+            "id": "aitana",
             "title": "Aitana - YSL",
             "description": "Estilismo para Aitana evento YSL Beauty.",
             "img": "/assets/celebrities/aitana/index.webp",
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "id": "3",
+            "id": "zara",
             "title": "Zara Larsson - Amaze Festival",
             "description": "Estilismo para concierto de Zara Larsson y sus bailarinas en Amaze Festival.",
             "img": "/assets/celebrities/zara/index.webp",
@@ -102,7 +102,7 @@
             ]
         },
         {
-            "id": "4",
+            "id": "aron-piper",
             "title": "Aron Piper - YSL",
             "description": "Estilismo para Aron Piper evento YSL Beauty.",
             "img": "/assets/celebrities/aron-piper/index.webp",
@@ -127,7 +127,7 @@
             ]
         },
         {
-            "id": "5",
+            "id": "maica-supervivientes",
             "title": "Maica Benedicto - Supervivientes",
             "description": "Estilismo para Maica Benedicto en su paso por el plató de Supervivientes.",
             "img": "/assets/celebrities/maica-supervivientes/index.webp",
@@ -180,7 +180,7 @@
             ]
         },
         {
-            "id": "6",
+            "id": "tania-deniz-coachella",
             "title": "Tania Deniz - Coachella",
             "description": "Estilismo para Tania Deniz durante Coachella.",
             "img": "/assets/celebrities/tania-deniz-coachella/index.webp",
@@ -224,7 +224,7 @@
             ]
         },
         {
-            "id": "7",
+            "id": "ruth-basauri-coachella",
             "title": "Ruth Basauri - Coachella",
             "description": "Estilismo para Ruth Basauri durante Coachella.",
             "img": "/assets/celebrities/ruth-basauri-coachella/index.webp",
@@ -259,7 +259,7 @@
             ]
         },
         {
-            "id": "8",
+            "id": "maica-premios-influencers",
             "title": "Maica Benedicto - Influencers Awards",
             "description": "Estilismo para Maica Benedicto en los Influencers Awards.",
             "img": "/assets/celebrities/maica-premios-influencers/index.webp",
@@ -285,7 +285,7 @@
             ]
         },
         {
-            "id": "9",
+            "id": "alex-saint-malaga",
             "title": "Alex Saint - Festival de Málaga",
             "description": "Estilismo para Alex Saint en el Festival de Málaga.",
             "img": "/assets/celebrities/alex-saint-malaga/index.webp",

@@ -13,6 +13,14 @@
 			decide GitHub, y solo las cuentas con permiso de escritura en el
 			repositorio pueden hacerlo.
 		-->
-		<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+		<!--
+			Versión fijada (no "@sveltia/cms/dist/..." a secas): esta página es
+			donde Luisa pega un token de GitHub con permiso de escritura, así que
+			cargar "lo último que haya" en ese momento sin control de versión sería
+			exponer ese token a cualquier cambio que suba el paquete, sin aviso ni
+			revisión. Comprobar periódicamente si hay una versión más reciente y
+			subir el número a mano tras probarla.
+		-->
+		<script src="https://unpkg.com/@sveltia/cms@0.180.1/dist/sveltia-cms.js" type="module"></script>
 	</body>
 </html>
