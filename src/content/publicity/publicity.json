@@ -10,7 +10,40 @@
             "order": 1,
             "role": "assistant-stylist",
             "format": "campaign",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/2.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/3.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/4.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/5.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/6.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/7.webp"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/video-1.mp4"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/video-2.mp4"
+                },
+                {
+                    "file": "/assets/publicity/alaniz-maria-pombo/video-3.mp4"
+                }
+            ]
         },
         {
             "id": "bruno-magli",
@@ -21,7 +54,40 @@
             "cardSize": "normal",
             "order": 2,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/bruno-magli/1.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/2.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/3.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/4.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/5.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/6.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/video-1.mp4"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/video-2.mp4"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/video-3.mp4"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/video-4.mp4"
+                }
+            ]
         },
         {
             "id": "prime-video-zara-larsson",
@@ -33,7 +99,22 @@
             "order": 3,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
-            "featured": true
+            "featured": true,
+            "gallery": [
+                {
+                    "file": "/assets/publicity/prime-video-zara-larsson/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/prime-video-zara-larsson/2.webp"
+                },
+                {
+                    "file": "/assets/publicity/prime-video-zara-larsson/3.webp"
+                },
+                {
+                    "file": "/assets/publicity/prime-video-zara-larsson/4.webp"
+                }
+            ]
         },
         {
             "id": "ysl-aitana",
@@ -43,7 +124,17 @@
             "cardSize": "normal",
             "order": 4,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/ysl-aitana/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/ysl-aitana/video-1.mp4"
+                }
+            ]
         },
         {
             "id": "agatha-paris-maria-pombo",
@@ -54,7 +145,22 @@
             "cardSize": "normal",
             "order": 5,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/agatha-paris-maria-pombo/1.webp"
+                },
+                {
+                    "file": "/assets/publicity/agatha-paris-maria-pombo/2.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/agatha-paris-maria-pombo/video-1.mp4"
+                },
+                {
+                    "file": "/assets/publicity/agatha-paris-maria-pombo/video-2.mp4"
+                }
+            ]
         },
         {
             "id": "gdh-jesus-de-paula",
@@ -65,7 +171,26 @@
             "cardSize": "normal",
             "order": 6,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/gdh-jesus-de-paula/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/gdh-jesus-de-paula/video-1.mp4"
+                },
+                {
+                    "file": "/assets/publicity/gdh-jesus-de-paula/video-2.mp4"
+                },
+                {
+                    "file": "/assets/publicity/gdh-jesus-de-paula/video-3.mp4"
+                },
+                {
+                    "file": "/assets/publicity/gdh-jesus-de-paula/video-4.mp4"
+                }
+            ]
         },
         {
             "id": "kerastase",
@@ -75,7 +200,17 @@
             "cardSize": "normal",
             "order": 7,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase/video-1.mp4"
+                }
+            ]
         },
         {
             "id": "kerastase-lola-lolita",
@@ -85,7 +220,17 @@
             "cardSize": "normal",
             "order": 8,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase-lola-lolita/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase-lola-lolita/kerastase-lola-lolita.mp4"
+                }
+            ]
         },
         {
             "id": "kerastase-nicole-wallace",
@@ -95,7 +240,17 @@
             "cardSize": "normal",
             "order": 9,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase-nicole-wallace/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase-nicole-wallace/kerastase-nicole-wallace.mp4"
+                }
+            ]
         },
         {
             "id": "redken-marina-reche",
@@ -105,7 +260,17 @@
             "cardSize": "normal",
             "order": 10,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/redken-marina-reche/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/redken-marina-reche/video-1.mp4"
+                }
+            ]
         },
         {
             "id": "vogue-spain-maria-pombo",
@@ -115,7 +280,17 @@
             "cardSize": "normal",
             "order": 11,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/vogue-spain-maria-pombo/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/vogue-spain-maria-pombo/vogue-spain-maria-pombo.mp4"
+                }
+            ]
         }
     ]
 }

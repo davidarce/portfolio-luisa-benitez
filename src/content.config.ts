@@ -13,6 +13,22 @@ const gallerySchema = z.object({
 	aspectRatio: z.string().default('3 / 4'),
 	objectPosition: z.string().optional(),
 	images: z.array(z.string()),
+	// Fuente del orden y la visibilidad de `images`: el CMS edita este campo,
+	// no el sistema de ficheros. Ocultar una foto no la borra del disco.
+	gallery: z
+		.array(
+			z.object({
+				// Ruta pública completa (p. ej. "/assets/editorials/slug/1.webp"), la
+				// misma que acaba en el HTML. Así el CMS resuelve la miniatura sin
+				// conocer baseDir/slug/basePath del loader.
+				file: z.string(),
+				hidden: z.boolean().optional(),
+				// Portada elegida a mano. Como mucho una entrada por proyecto la trae;
+				// el loader decide qué hacer si no hay ninguna marcada.
+				cover: z.boolean().optional(),
+			}),
+		)
+		.optional(),
 	hasGallery: z.boolean().default(true),
 	order: z.number().default(0),
 

@@ -8,7 +8,38 @@
             "img_alt": "Desfile Primavera/Verano 26 Rosé Noir Claro Couture",
             "cardSize": "normal",
             "order": 1,
-            "role": "lead-stylist"
+            "role": "lead-stylist",
+            "gallery": [
+                {
+                    "file": "/assets/runway/claro-couture/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/runway/claro-couture/1.webp"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/2.webp"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-1.mp4"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-2.mp4"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-3.mp4"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-4.mp4"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-5.mp4"
+                },
+                {
+                    "file": "/assets/runway/claro-couture/video-6.mp4"
+                }
+            ]
         },
         {
             "id": "angel-schlesser-25-antonte",
@@ -18,7 +49,29 @@
             "img_alt": "Desfile Ángel Schlesser Primavera/Verano 25 Antonte",
             "cardSize": "normal",
             "order": 2,
-            "role": "wardrobe-assistant"
+            "role": "wardrobe-assistant",
+            "gallery": [
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/1.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/video-1.mp4"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/video-2.mp4"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/video-3.mp4"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2025/video-4.mp4"
+                }
+            ]
         },
         {
             "id": "angel-schlesser-24-intersticio",
@@ -28,7 +81,25 @@
             "img_alt": "Colección Ángel Schlesser Primavera/Verano 24 Intersticio",
             "cardSize": "normal",
             "order": 3,
-            "role": "wardrobe-assistant"
+            "role": "wardrobe-assistant",
+            "gallery": [
+                {
+                    "file": "/assets/runway/angel-schlesser-2024/1.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2024/2.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2024/3.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2024/video-1.mp4"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2024/video-2.mp4"
+                }
+            ]
         },
         {
             "id": "angel-schlesser-23-femme",
@@ -38,7 +109,25 @@
             "img_alt": "Desfile Ángel Schlesser",
             "cardSize": "normal",
             "order": 4,
-            "role": "wardrobe-assistant"
+            "role": "wardrobe-assistant",
+            "gallery": [
+                {
+                    "file": "/assets/runway/angel-schlesser-2023/4.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2023/6.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2023/7.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2023/8.webp"
+                },
+                {
+                    "file": "/assets/runway/angel-schlesser-2023/video-1.mp4"
+                }
+            ]
         }
     ]
 }

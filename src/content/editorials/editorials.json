@@ -18,7 +18,40 @@
                 "talent": "Miguel Herrán @miguel.g.herran",
                 "production": "Saik Prod @saikprod",
                 "location": "The Palace Madrid @thepalacemadrid"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/miguel-herran/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/10.webp"
+                }
+            ]
         },
         {
             "id": "2",
@@ -42,7 +75,43 @@
                 "talentAgency": "Uno Models @unomodels",
                 "production": "Saik Prod @saikprod",
                 "location": "Espacio La Candelaria @espacio_lacandelaria"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/vogue/1.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/4.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/vogue/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/video-1.mp4"
+                }
+            ]
         },
         {
             "id": "3",
@@ -63,7 +132,46 @@
                 "talent": "Martina Cariddi @martinacariddi",
                 "production": "Saik Prod @saikprod",
                 "location": "Who Estudio @whoestudio"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/martina/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/martina/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/12.webp"
+                }
+            ]
         },
         {
             "id": "4",
@@ -85,7 +193,52 @@
                 "talent": "Isabeli Fontana @isabelifontana",
                 "talentAgency": "The Lions Management @thelionsmgmt",
                 "production": "Saik Prod @saikprod"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/isabeli/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/isabeli/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/14.webp"
+                }
+            ]
         },
         {
             "id": "5",
@@ -104,7 +257,19 @@
                 "muah": "Antonio Romero @antonioromeromakeup",
                 "talent": "Walid Fiher @w3lidd",
                 "production": "Saik Prod @saikprod"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/gq/1.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/3.webp",
+                    "cover": true
+                }
+            ]
         },
         {
             "id": "6",
@@ -122,7 +287,37 @@
                 "makeup": "@nermosu_",
                 "hair": "@f0urt4zz",
                 "talent": "Aminata Sarr @aminata.sr"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/aminata/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/aminata/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/9.webp"
+                }
+            ]
         },
         {
             "id": "7",
@@ -138,7 +333,82 @@
                 "photographer": "Alex Guerra @aleguerrax",
                 "muah": "Diego Vitaller @muagami_beauty",
                 "talent": "Kamila Iskairova @iskairova_"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/18.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/19.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/20.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/21.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/22.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/23.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/24.webp"
+                }
+            ]
         },
         {
             "id": "8",
@@ -156,7 +426,64 @@
                 "video": "Camilo Andrés @camilo5p",
                 "talent": "Álvaro García Narváez @alvarogarcianarvaez",
                 "talentAgency": "The Road Models @theroadmodels"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/18.webp"
+                }
+            ]
         },
         {
             "id": "9",
@@ -172,7 +499,55 @@
                 "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena",
                 "muah": "Diego Vitaller @muagami_beauty",
                 "talent": "Charlotte Eva @charlotteeeva"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/folie-always-love/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/15.webp"
+                }
+            ]
         },
         {
             "id": "10",
@@ -189,7 +564,40 @@
                 "muah": "Diego Vitaller @muagami_beauty",
                 "talent": "Luca Darblade @luca_darblade",
                 "talentAgency": "Wanted Agency @wantedagency"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/folie-soft-tension/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/10.webp"
+                }
+            ]
         },
         {
             "id": "11",
@@ -206,7 +614,94 @@
                 "muah": "Diego Vitaller @muagami_beauty",
                 "talent": "Isabel Arbós @isabel_arbos",
                 "talentAgency": "Six Management @sixmanagement.es"
-            }
+            },
+            "gallery": [
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/18.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/19.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/21.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/22.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/23.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/25.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/26.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/28.webp"
+                }
+            ]
         }
     ]
 }

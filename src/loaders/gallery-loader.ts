@@ -9,6 +9,12 @@ interface GalleryConfig {
   basePath?: string;
 }
 
+interface GalleryMediaItem {
+  file: string;
+  hidden?: boolean;
+  cover?: boolean;
+}
+
 interface GalleryEntry {
   id: string;
   title: string;
@@ -20,6 +26,7 @@ interface GalleryEntry {
   aspectRatio: string;
   objectPosition?: string;
   images: string[];
+  gallery?: GalleryMediaItem[];
   hasGallery: boolean;
   order: number;
   featured?: boolean;
@@ -62,28 +69,39 @@ export function createGalleryLoader(config: GalleryConfig) {
         return basePath ? `${basePath}${relativePath}` : relativePath;
       };
 
-      // Obtener todas las imágenes y videos excepto index.*
       const allFiles = readdirSync(imagesDir);
-      const images = allFiles
-        .filter(f => /\.(jpg|jpeg|png|webp|mp4|webm|mov)$/i.test(f) && !f.startsWith('index.'))
-        // Orden natural (1, 2, ..., 10, 11) en vez de lexicográfico ('1', '10', '11', '2', ...):
-        // las galerías de más de 9 fotos numeradas como 1.webp, 2.webp... quedarían desordenadas
-        // con un .sort() por defecto, que compara los nombres carácter a carácter.
-        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-        .map(f => getPath(f));
-
-      // Buscar imagen index
-      const indexImage = allFiles.find(f => f.startsWith('index.'));
-      const img = indexImage ? getPath(indexImage) : images[0];
-
-      // Buscar video
-      const videoFile = allFiles.find(f => /\.(mp4|webm|mov)$/i.test(f));
-      const video = videoFile ? getPath(videoFile) : undefined;
 
       // Buscar info en el JSON
       const info = Array.isArray(jsonData)
         ? jsonData.find(item => item.id === slug || item.img?.includes(slug))
         : jsonData[slug]?.[0];
+
+      // La lista de fotos es un dato explícito del JSON (orden + visibilidad),
+      // pensado para que un CMS la edite sin tocar el sistema de ficheros.
+      // Si un proyecto no la tiene todavía, se sigue leyendo el directorio.
+      // `file` ya guarda la ruta pública completa (la resuelve el CMS al
+      // guardar), así que aquí se usa tal cual sin volver a anteponer nada.
+      const gallery: GalleryMediaItem[] | undefined = info?.gallery;
+      const images = gallery
+        ? gallery.filter(item => !item.hidden).map(item => item.file)
+        : allFiles
+            .filter(f => /\.(jpg|jpeg|png|webp|mp4|webm|mov)$/i.test(f) && !f.startsWith('index.'))
+            // Orden natural (1, 2, ..., 10, 11) en vez de lexicográfico ('1', '10', '11', '2', ...):
+            // las galerías de más de 9 fotos numeradas como 1.webp, 2.webp... quedarían desordenadas
+            // con un .sort() por defecto, que compara los nombres carácter a carácter.
+            .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+            .map(f => getPath(f));
+
+      // La portada es un dato explícito (`cover: true` en `gallery`), buscado en
+      // toda la lista y no solo en las visibles: ocultar una foto no le quita
+      // el derecho a seguir siendo portada. Los 36 proyectos la tienen marcada;
+      // si alguno nuevo no la marca, cae a la primera imagen visible.
+      const coverItem = gallery?.find(item => item.cover);
+      const img = coverItem ? coverItem.file : images[0];
+
+      // Buscar video
+      const videoFile = allFiles.find(f => /\.(mp4|webm|mov)$/i.test(f));
+      const video = videoFile ? getPath(videoFile) : undefined;
 
       // `> 0` y no `> 1`: un proyecto de un solo vídeo también tiene ficha, que
       // es donde viven los créditos. Con `> 1` esas seis tarjetas no enlazaban.
@@ -100,6 +118,7 @@ export function createGalleryLoader(config: GalleryConfig) {
         aspectRatio: info?.aspectRatio || '3 / 4',
         objectPosition: info?.objectPosition,
         images,
+        gallery,
         hasGallery,
         order: info?.order || 0,
         featured: info?.featured,
