@@ -193,6 +193,11 @@ export const en: Translation = {
 			photographer: 'Photography',
 			director: 'Direction',
 			muah: 'Hair & Makeup',
+			makeup: 'Makeup',
+			hair: 'Hair',
+			setDesign: 'Set design',
+			stylingTeam: 'Styling team',
+			video: 'Video',
 			talent: 'Talent',
 			talentAgency: 'Agency',
 			artDirection: 'Art Direction',
@@ -202,5 +207,6 @@ export const en: Translation = {
 		format: {
 			'model-test': 'Model test',
 		},
+		onInstagram: 'on Instagram',
 	},
 };

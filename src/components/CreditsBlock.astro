@@ -10,6 +10,11 @@ interface Credits {
 	photographer?: string;
 	director?: string;
 	muah?: string;
+	makeup?: string;
+	hair?: string;
+	setDesign?: string;
+	stylingTeam?: string;
+	video?: string;
 	talent?: string;
 	talentAgency?: string;
 	artDirection?: string;
@@ -58,13 +63,33 @@ const contextLine = [publication, client, year ? String(year) : undefined]
 const creditOrder: (keyof Credits)[] = [
 	"photographer",
 	"director",
+	"video",
+	"artDirection",
+	"setDesign",
+	"stylingTeam",
 	"muah",
+	"makeup",
+	"hair",
 	"talent",
 	"talentAgency",
-	"artDirection",
 	"production",
 	"location",
 ];
+
+/**
+ * Los créditos se escriben «Nombre @alias», que es como se acredita en moda.
+ * Aquí el alias se parte del texto para enlazarlo a Instagram: la gente del
+ * sector busca a sus compañeros por ahí, y un crédito sin enlace obliga a
+ * copiar el nombre a mano.
+ */
+const PATRON_ALIAS = /(@[A-Za-z0-9._]+)/g;
+
+function partirPorAlias(valor: string) {
+	return valor
+		.split(PATRON_ALIAS)
+		.filter(Boolean)
+		.map((parte) => (parte.startsWith("@") ? { alias: parte } : { texto: parte }));
+}
 
 const creditRows = creditOrder
 	.map((key) => ({ key, label: c.labels[key], value: credits?.[key] }))
@@ -94,7 +119,23 @@ const creditRows = creditOrder
 				{creditRows.map(({ key, label, value }) => (
 					<div class="credit-row">
 						<dt class="credit-label">{label}</dt>
-						<dd class="credit-value">{value}</dd>
+						<dd class="credit-value">
+						{partirPorAlias(value).map((parte) =>
+							parte.alias ? (
+								<a
+									class="alias"
+									href={`https://www.instagram.com/${parte.alias.slice(1)}/`}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${parte.alias} ${c.onInstagram} ${t.common.newWindowHint}`}
+								>
+									{parte.alias}
+								</a>
+							) : (
+								parte.texto
+							),
+						)}
+					</dd>
 					</div>
 				))}
 			</dl>
@@ -165,6 +206,20 @@ const creditRows = creditOrder
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
 		color: var(--gray-100);
+	}
+
+	.alias {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: var(--gray-600);
+		text-underline-offset: 0.2em;
+		transition: color var(--theme-transition);
+	}
+
+	.alias:hover,
+	.alias:focus-visible {
+		color: var(--accent-regular);
+		text-decoration-color: currentColor;
 	}
 
 	.credit-value {
