@@ -6,8 +6,6 @@
 # en el JSON y NO esté declarado se pierde al guardar. Por eso están todos, y
 # los que no debe tocar nadie van como `hidden`: se conservan sin mostrarse.
 
-local_backend: true
-
 backend:
   name: github
   repo: davidarce/portfolio-luisa-benitez

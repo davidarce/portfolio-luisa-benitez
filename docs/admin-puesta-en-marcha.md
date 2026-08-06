@@ -73,15 +73,8 @@ en Cloudflare Workers y solo hay que añadir `base_url` a la configuración. Par
 una sola usuaria es montar un servicio para nada, y además quedará obsoleto
 cuando GitHub publique el estándar que tiene en preparación.
 
-## Probarlo en local, sin autenticación
+## Probarlo en local
 
-Con `local_backend: true` en la configuración, el CMS puede leer y escribir los
-ficheros del repositorio en la máquina de desarrollo:
-
-```
-pnpm dlx decap-server     # deja un proxy escuchando en el puerto 8081
-pnpm dev                  # y el sitio en el 4321
-```
-
-Después, `http://localhost:4321/admin/`. Sveltia pedirá elegir la carpeta del
-repositorio; Decap se conecta al proxy directamente.
+Sveltia no usa proxy: ignora la opción `local_backend`. Se abre
+`http://localhost:4321/admin/` y se pulsa **Work with Local Repository**, que
+pide elegir la carpeta del repositorio. Necesita un navegador basado en Chromium.
