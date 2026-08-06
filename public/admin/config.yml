@@ -11,12 +11,12 @@ local_backend: true
 backend:
   name: github
   repo: davidarce/portfolio-luisa-benitez
-  branch: main
-
-# Cada cambio abre una rama y una propuesta en vez de publicar directo. Así
-# Luisa trabaja a su ritmo y se publica cuando alguien lo ha visto. También evita
-# que quince ajustes seguidos disparen quince despliegues de diez minutos.
-publish_mode: editorial_workflow
+  # El CMS escribe en una rama de contenido, NO en main. Sveltia todavía no
+  # soporta el flujo editorial de Decap (lo anuncian para su 1.0), así que sin
+  # esto cada guardado iría directo a producción y dispararía un despliegue de
+  # diez minutos. Con la rama aparte, Luisa trabaja a su ritmo sin desplegar
+  # nada y se publica todo junto con un PR de `contenido` a `main`.
+  branch: contenido
 
 media_folder: public/assets
 public_folder: /assets

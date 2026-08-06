@@ -36,48 +36,42 @@ Cada proyecto lleva en su JSON una lista `gallery` de objetos:
 La ruta se guarda completa, no solo el nombre, porque si no el CMS no sabe dónde
 está la imagen y la muestra como texto en vez de como miniatura.
 
-## Lo que falta para ponerlo en marcha
+## Cómo se publica
 
-### 1. El servicio de autenticación
+**El CMS escribe en la rama `contenido`, no en `main`.** Sveltia todavía no
+soporta el flujo editorial de Decap, así que sin esto cada guardado iría directo
+a producción y dispararía un despliegue de más de diez minutos, con el límite de
+despliegues por hora de GitHub Pages de por medio.
 
-Sveltia CMS necesita un intermediario que haga el baile de OAuth con GitHub. Hay
-uno oficial listo para Cloudflare Workers, que ya usáis para el dominio:
+Con la rama aparte:
 
-<https://github.com/sveltia/sveltia-cms-auth>
+1. Luisa guarda tantos cambios como quiera. **No se despliega nada**, porque el
+   workflow solo se dispara con `main`.
+2. Cuando está conforme, David abre un PR de `contenido` a `main`, lo revisa y lo
+   mergea. Ahí se publica todo junto, en un solo despliegue.
+3. Después conviene poner `contenido` al día con `main`, para que no se separen.
 
-Pasos, todos en cuentas de David:
+## Cómo entra Luisa
 
-1. Crear una **OAuth App** en GitHub (Settings → Developer settings → OAuth Apps).
-   La URL de callback es la del Worker, `https://<worker>.workers.dev/callback`.
-2. Desplegar el Worker con `GITHUB_CLIENT_ID` y `GITHUB_CLIENT_SECRET` como
-   variables de entorno.
-3. Añadir a `public/admin/config.yml`, dentro de `backend`:
+**No hace falta ni OAuth App ni Worker.** Sveltia permite entrar con un token
+personal, y para una sola usuaria es el camino corto.
 
-   ```yaml
-   base_url: https://<worker>.workers.dev
-   ```
+1. Luisa se crea una cuenta de GitHub gratuita.
+2. David la invita como colaboradora del repositorio. En repositorios personales
+   no hay selector de permisos: un colaborador tiene escritura por defecto.
+3. Ella genera el token en **Settings → Developer settings → Personal access
+   tokens → Tokens (classic)**, con el permiso `repo` marcado.
 
-### 2. Quién entra
+   Tiene que ser un token **clásico**: GitHub no admite los nuevos de permisos
+   finos para colaboradores de repositorios ajenos. El token se muestra una sola
+   vez, así que hay que guardarlo al crearlo.
+4. En `luisabenitez.es/admin`, botón **Sign In with Token**, y pegarlo.
 
-Solo pueden guardar las cuentas con permiso de escritura en el repositorio.
-
-Lo recomendable es **invitar a Luisa como colaboradora** con una cuenta suya
-gratuita: los cambios quedan a su nombre y el acceso se revoca en un clic sin
-tocar nada más.
-
-Si en su lugar usa la cuenta de David, funciona igual, pero conviene saber que
-eso le da acceso a **toda** la cuenta de GitHub, no solo a este repositorio, y
-que los commits saldrán firmados por David.
-
-### 3. Publicación
-
-`publish_mode: editorial_workflow` está activado: cada cambio abre una rama y una
-propuesta en vez de publicar directo. Luisa trabaja a su ritmo y se publica
-cuando alguien lo ha revisado.
-
-No es solo prudencia: cada publicación dispara un despliegue de más de diez
-minutos, y GitHub Pages limita cuántos admite por hora. Publicar en cada guardado
-reventaría el despliegue en una tarde de ajustes.
+Si algún día son varias personas y pegar el token molesta, el
+[autenticador oficial](https://github.com/sveltia/sveltia-cms-auth) se despliega
+en Cloudflare Workers y solo hay que añadir `base_url` a la configuración. Para
+una sola usuaria es montar un servicio para nada, y además quedará obsoleto
+cuando GitHub publique el estándar que tiene en preparación.
 
 ## Probarlo en local, sin autenticación
 
