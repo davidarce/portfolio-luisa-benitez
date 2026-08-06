@@ -1,0 +1,326 @@
+---
+/**
+ * Plantilla de impresión del CV (#35): no es contenido del sitio. Va con
+ * noindex, fuera del sitemap (astro.config.mjs) y de la navegación, y sin
+ * BaseLayout — un CV no lleva menú, tema oscuro ni transiciones, y el ATS de
+ * turno agradece un documento de una columna con texto plano.
+ *
+ * Los PDF se generan desde esta página con scripts/generate-cv.mjs. Los
+ * recuentos de proyectos salen de las mismas colecciones que pintan la web:
+ * el CV no puede declarar un reparto de roles distinto del publicado.
+ */
+import "@fontsource/bebas-neue";
+
+import { getCollection } from "astro:content";
+import { profile } from "../../data/profile";
+import { getTranslation } from "../../i18n";
+import { localeStaticPaths } from "../../i18n/routing";
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props;
+const t = getTranslation(locale);
+const cv = t.cv;
+
+const collections = ["editorials", "campaigns", "celebrity-events", "films", "runway"] as const;
+const projects = (await Promise.all(collections.map((c) => getCollection(c)))).flatMap(
+	(entries) => entries.map((entry) => entry.data),
+);
+const runwayProjects = (await getCollection("runway")).map((entry) => entry.data);
+
+// La pasarela tiene su propia entrada en el CV, así que sus proyectos de
+// estilismo se descuentan aquí: si no, Claro Couture se contaría dos veces.
+const runwayLeadCount = runwayProjects.filter((p) => p.role === "lead-stylist").length;
+const leadCount = projects.filter((p) => p.role === "lead-stylist").length - runwayLeadCount;
+const agencyCount = projects.filter(
+	(p) => p.role === "assistant-stylist" && p.leadStylist,
+).length;
+const runwayCount = runwayProjects.length;
+const runwayAssistCount = runwayProjects.filter((p) => p.role === "wardrobe-assistant").length;
+
+const experience = [
+	{ ...cv.experience.freelance, vars: { n: leadCount } },
+	{ ...cv.experience.runway, vars: { n: runwayCount, a: runwayAssistCount } },
+	{ ...cv.experience.agency, vars: { n: agencyCount } },
+	{ ...cv.experience.film, vars: {} },
+	{ ...cv.experience.crystal, vars: {} },
+].map(({ summary, vars, ...rest }) => ({
+	...rest,
+	summary: Object.entries(vars).reduce(
+		(texto, [clave, valor]) => texto.replaceAll(`{${clave}}`, String(valor)),
+		summary,
+	),
+}));
+
+const contactItems = [
+	`${profile.baseCity}, ${t.profile.country}`,
+	profile.email,
+	`${profile.instagram.handle} · ${Astro.site?.host}`,
+	t.profile.travelNote,
+];
+
+/** Parte el texto en tramos para pintar cada «[PENDIENTE: …]» como <mark> imposible de pasar por alto. */
+const pendingParts = (text: string) =>
+	text
+		.split(/(\[PENDIENTE:[^\]]*\])/)
+		.filter(Boolean)
+		.map((part) => ({ text: part, pending: part.startsWith("[PENDIENTE:") }));
+---
+
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>{cv.title}</title>
+	</head>
+	<body>
+		<main class="sheet">
+			<header class="masthead">
+				<h1>{profile.name}</h1>
+				<p class="role">{cv.role}</p>
+				<p class="contact">
+					{
+						contactItems.map((item, i) => (
+							<>
+								{i > 0 && <span class="sep" aria-hidden="true">·</span>}
+								<span>{item}</span>
+							</>
+						))
+					}
+				</p>
+			</header>
+
+			<section>
+				<h2>{cv.headings.profile}</h2>
+				<p class="prose">{cv.profileText}</p>
+			</section>
+
+			<section>
+				<h2>{cv.headings.experience}</h2>
+				{
+					experience.map((job) => (
+						<article class="entry">
+							<p class="entry-head">
+								{/* NBSP final: con título largo Chromium emite la fecha como run aparte
+								    con posición absoluta y el texto extraído del PDF pega «títuloEnero»
+								    (medido). El hueco del flex es visual, no textual: el separador tiene
+								    que ser un carácter dentro del propio run del título. Lo aserta
+								    scripts/generate-cv.mjs. */}
+								<strong class="entry-role">{job.role}&nbsp;</strong>
+								<span class="entry-dates">
+									{pendingParts(job.dates).map((p) =>
+										p.pending ? <mark>{p.text}</mark> : p.text,
+									)}
+								</span>
+							</p>
+							<p class="entry-org">
+								{pendingParts(job.org).map((p) =>
+									p.pending ? <mark>{p.text}</mark> : p.text,
+								)}
+							</p>
+							<p class="prose">{job.summary}</p>
+						</article>
+					))
+				}
+			</section>
+
+			<section>
+				<h2>{cv.headings.education}</h2>
+				{
+					cv.education.map((item) => (
+						<article class="entry">
+							<p class="entry-head">
+								{/* Mismo NBSP que en experiencia: ver el comentario de arriba. */}
+								<strong class="entry-role">{item.degree}&nbsp;</strong>
+								<span class="entry-dates">
+									{pendingParts(item.dates).map((p) =>
+										p.pending ? <mark>{p.text}</mark> : p.text,
+									)}
+								</span>
+							</p>
+							<p class="entry-org">
+								{pendingParts(item.org).map((p) =>
+									p.pending ? <mark>{p.text}</mark> : p.text,
+								)}
+							</p>
+						</article>
+					))
+				}
+			</section>
+
+			<section>
+				<h2>{t.about.sections.services}</h2>
+				<p class="prose">{t.profile.services.join(" · ")}</p>
+			</section>
+
+			<section>
+				<h2>{t.about.sections.featuredIn}</h2>
+				<p class="prose">{profile.featuredIn.join(" · ")}</p>
+			</section>
+
+			<section>
+				<h2>{cv.headings.languages}</h2>
+				<p class="prose">
+					{
+						cv.languages.map((lang, i) => (
+							<>
+								{i > 0 && <span class="sep" aria-hidden="true">·</span>}
+								{pendingParts(lang).map((p) =>
+									p.pending ? <mark>{p.text}</mark> : p.text,
+								)}
+							</>
+						))
+					}
+				</p>
+			</section>
+		</main>
+	</body>
+</html>
+
+<style>
+	/* Documento, no web: siempre tinta sobre blanco, con los valores de la
+	   paleta clara de BaseLayout.astro (gray-0/100/300/800). */
+	:root {
+		--ink: #090b11;
+		--ink-soft: #283044;
+		--ink-mute: #505d84;
+		--hairline: #e3e6ee;
+		--font-brand: "Bebas Neue", sans-serif;
+		--font-body: system-ui, sans-serif;
+	}
+
+	@page {
+		size: A4;
+		margin: 0;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	body {
+		background: #3d4663;
+		font-family: var(--font-body);
+		color: var(--ink);
+		/* Sin ligaduras: «film» ligado sale como «ﬁlm» en el texto del PDF y un ATS que busque esa palabra no la encuentra. */
+		font-variant-ligatures: none;
+	}
+
+	.sheet {
+		width: 210mm;
+		min-height: 297mm;
+		margin: 0 auto;
+		padding: 9mm 17mm 7mm;
+		background: #ffffff;
+		display: flex;
+		flex-direction: column;
+		gap: 3.4mm;
+	}
+
+	/* En pantalla, previsualización de la hoja; al imprimir manda @page. */
+	@media screen {
+		body {
+			padding: 2rem 0;
+		}
+		.sheet {
+			box-shadow: 0 16px 40px rgba(9, 11, 17, 0.35);
+		}
+	}
+
+	@media print {
+		body {
+			background: none;
+			padding: 0;
+		}
+	}
+
+	.masthead {
+		border-bottom: 1px solid var(--ink);
+		padding-bottom: 2.8mm;
+	}
+
+	h1 {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: 30pt;
+		line-height: 0.95;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.role {
+		font-family: var(--font-brand);
+		font-size: 13pt;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-soft);
+		margin-top: 1.5mm;
+	}
+
+	.contact {
+		font-size: 9.5pt;
+		color: var(--ink-soft);
+		margin-top: 2.5mm;
+	}
+
+	.sep {
+		margin: 0 0.5em;
+		color: var(--ink-mute);
+	}
+
+	h2 {
+		font-family: var(--font-brand);
+		font-weight: 400;
+		font-size: 12pt;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink);
+		border-bottom: 1px solid var(--hairline);
+		padding-bottom: 1.2mm;
+		margin-bottom: 2mm;
+	}
+
+	.prose {
+		font-size: 10pt;
+		line-height: 1.4;
+		color: var(--ink-soft);
+	}
+
+	.entry + .entry {
+		margin-top: 2.2mm;
+	}
+
+	.entry-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0 2em;
+	}
+
+	.entry-role {
+		font-size: 10.5pt;
+		font-weight: 650;
+	}
+
+	.entry-dates {
+		font-size: 9pt;
+		color: var(--ink-mute);
+	}
+
+	.entry-org {
+		font-size: 9.5pt;
+		color: var(--ink-mute);
+		margin: 0.4mm 0 0.8mm;
+	}
+
+	/* Chillón a propósito: que un hueco sin rellenar no pueda llegar a imprenta sin verse. */
+	mark {
+		background: #ffe066;
+		color: var(--ink);
+		padding: 0 0.15em;
+		font-weight: 600;
+	}
+</style>

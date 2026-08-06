@@ -32,7 +32,8 @@
             "cardSize": "normal",
             "order": 3,
             "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "featured": true
         },
         {
             "id": "ysl-aitana",

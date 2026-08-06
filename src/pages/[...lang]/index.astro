@@ -2,10 +2,7 @@
 import { getCollection } from "astro:content";
 
 import { Image } from "astro:assets";
-import heroPap from "../../assets/hero/pap-the-new-dandy.webp";
-import heroArtego from "../../assets/hero/artego-color-pop-garden.webp";
-import heroIsabelArbos from "../../assets/hero/isabel-arbos-model-test.webp";
-import heroAitana from "../../assets/hero/aitana-ysl.webp";
+import heroFoto from "../../assets/hero/ia-set-tul.webp";
 
 import Grid from "../../components/Grid.astro";
 import Icon from "../../components/Icon.astro";
@@ -22,34 +19,6 @@ export const getStaticPaths = localeStaticPaths;
 const { locale } = Astro.props;
 const t = getTranslation(locale);
 
-/**
- * Portada: rejilla de 4 fotos reales, elegidas a mano por variedad de color y
- * tipo de encargo (no por nombre de fichero). Se descarta tania-deniz-coachella
- * porque esas fotos llevan un icono de mute quemado en la esquina.
- *
- * Copiadas a src/assets/hero/ (no importadas desde public/) para que pasen
- * por astro:assets: en public/ el mosaico descartado pesaba 632 KB por saltarse el procesado.
- *
- * El nombre y el rol NO se superponen a las fotos (ver <div class="hero-panel">
- * más abajo): así el contraste no depende de la imagen y no hace falta velo.
- */
-const heroTiles = [
-	{
-		src: heroPap,
-		alt: "Editorial PAP Magazine — The New Dandy",
-		position: "50% 8%",
-		// Zoom leve: empuja fuera de encuadre el wordmark "PAP" impreso abajo en la imagen.
-		zoom: 1.2,
-	},
-	{ src: heroArtego, alt: "Editorial Artego — Color Pop Garden", position: "50% 10%", zoom: 1 },
-	{ src: heroIsabelArbos, alt: "Model test — Isabel Arbós", position: "50% 15%", zoom: 1 },
-	{
-		src: heroAitana,
-		alt: "Estilismo de evento — Aitana, YSL Beauty",
-		position: "50% 15%",
-		zoom: 1,
-	},
-] as const;
 
 // La colección "work" (plantilla de Astro) se retiró: la home combina ahora los 5 listados reales.
 const featuredCollections = [
@@ -64,7 +33,12 @@ const allProjects = (
 	await Promise.all(featuredCollections.map((collection) => getCollection(collection)))
 ).flat();
 
-const featuredProjects = sortProjects(allProjects).slice(0, 4);
+// Sin `pin`: ese anclaje es de cada listado, y aquí manda `featured`.
+const ordenados = sortProjects(allProjects, { aplicarPin: false });
+const featuredProjects = [
+	...ordenados.filter((p) => p.data.featured),
+	...ordenados.filter((p) => !p.data.featured),
+].slice(0, 4);
 
 // La sección de contacto vive solo en contact.astro: aquí no se repiten canales ni datos.
 
@@ -87,26 +61,17 @@ if (profile.availableForTravel) {
 	description={t.meta.siteDescription}
 >
 	<div class="stack gap-20">
-		<section class="hero wrapper">
-			<div class="hero-grid">
-				{
-					heroTiles.map((tile) => (
-						<div class="hero-tile">
-							<Image
-								src={tile.src}
-								alt={tile.alt}
-								widths={[280, 420, 600, 800]}
-								sizes="(min-width: 50em) 23vw, 50vw"
-								loading="eager"
-								fetchpriority="high"
-								style={`object-position: ${tile.position}; transform: scale(${tile.zoom});`}
-							/>
-						</div>
-					))
-				}
-			</div>
+		<section class="portada">
+			<Image
+				src={heroFoto}
+				alt={t.home.heroAlt}
+				widths={[900, 1400, 2048]}
+				sizes="100vw"
+				loading="eager"
+				fetchpriority="high"
+			/>
 
-			<div class="hero-panel">
+			<div class="portada-texto wrapper">
 				<p class="eyebrow">{profile.role}</p>
 				<h1 class="headline">{profile.name}</h1>
 				<p class="tagline">{t.home.tagline}</p>
@@ -207,45 +172,40 @@ if (profile.availableForTravel) {
 </BaseLayout>
 
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-	}
-
-	/* Sin degradado de máscara ni velo: el nombre/rol viven en .hero-panel, aparte de las imágenes. */
-	.hero-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		gap: 2px;
-		height: 42vh;
-		height: 42svh;
-		min-height: 18rem;
-		max-height: 28rem;
-		min-width: 0;
-	}
-
-	.hero-tile {
+	/*
+	 * Portada a sangre con una sola foto del set. En móvil el hueco es más alto
+	 * que ancho: ahí se recorta a 6:5, la proporción más estrecha donde caben la
+	 * modelo y Luisa (medido: deja ver el 68% del ancho y hacen falta el 63%), y
+	 * el texto baja debajo. En escritorio la foto ocupa la franja entera y el
+	 * texto va oscuro sobre el ciclorama, sin velo que ensucie la imagen.
+	 */
+	.portada {
 		position: relative;
-		overflow: hidden;
+		display: grid;
 	}
 
-	.hero-tile :global(img) {
-		display: block;
+	.portada :global(picture),
+	.portada > :global(img) {
+		aspect-ratio: 6 / 5;
+	}
+
+	.portada :global(img) {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: 62% 50%;
+		aspect-ratio: 6 / 5;
 	}
 
-	.hero-panel {
+	.portada-texto {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
-		padding: 0.5rem 1.5rem 3rem;
+		gap: 1rem;
+		padding-block: 1.75rem 0;
 		min-width: 0;
 	}
 
-	.hero .eyebrow {
+	.portada-texto .eyebrow {
 		font-family: var(--font-brand);
 		font-size: var(--text-base);
 		letter-spacing: 0.3em;
@@ -253,17 +213,18 @@ if (profile.availableForTravel) {
 		color: var(--gray-100);
 	}
 
-	.hero .headline {
+	.portada-texto .headline {
 		font-family: var(--font-brand);
 		font-weight: 400;
-		font-size: clamp(3.5rem, 15vw, 8rem);
+		font-size: clamp(3rem, 13vw, 6rem);
 		line-height: 0.9;
 		letter-spacing: 0.02em;
 		text-transform: uppercase;
 		color: var(--gray-0);
+		max-width: 8ch;
 	}
 
-	.hero .tagline {
+	.portada-texto .tagline {
 		max-width: 34ch;
 		font-size: var(--text-md);
 		line-height: 1.6;
@@ -287,34 +248,37 @@ if (profile.availableForTravel) {
 	}
 
 	@media (min-width: 50em) {
-		.hero {
-			flex-direction: row;
+		.portada {
+			aspect-ratio: 2.36 / 1;
+			overflow: hidden;
 		}
 
-		.hero-grid {
-			/*
-			 * Se mantiene la rejilla 2×2 en escritorio (no 4×1): medido, 4
-			 * columnas daban lonchas verticales donde no se reconocía nada.
-			 * `height` escala con 58vw para mantener la proporción entre
-			 * breakpoints; el `clamp` evita que crezca sin límite en pantallas anchas.
-			 */
-			flex: 5;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr);
-			height: clamp(26rem, 58vw, 44rem);
-			min-height: 0;
-			max-height: none;
+		.portada :global(img) {
+			position: absolute;
+			inset: 0;
+			aspect-ratio: auto;
+			object-position: 50% 50%;
 		}
 
-		.hero-panel {
-			flex: 6;
+		.portada-texto,
+		.portada-texto .eyebrow,
+		.portada-texto .headline,
+		.portada-texto .tagline,
+		.portada-texto .instagram-link {
+			color: #14161f;
+		}
+
+		.portada-texto {
+			position: relative;
+			height: 100%;
 			justify-content: center;
-			gap: 1.75rem;
-			padding: 3rem 3rem 3rem 4rem;
+			padding-block: 0;
+			gap: 1.25rem;
 		}
 
-		.hero .tagline {
-			font-size: var(--text-lg);
+		.portada-texto .tagline {
+			max-width: 24ch;
+			font-size: var(--text-base);
 		}
 	}
 
@@ -381,7 +345,27 @@ if (profile.availableForTravel) {
 		}
 	}
 
-	/* Alineada a la izquierda, igual que "Trabajos destacados" y .hero-grid, no centrada. */
+	/*
+	 * La rejilla ocupa siempre el ancho completo: lo que cambia con la pantalla
+	 * es el número de columnas, no el margen. Medido, no estimado: con dos
+	 * columnas fijas la tarjeta llegaba a 880px de alto en un portátil (98% de
+	 * la pantalla) y a 1018px a 768px de ancho, más alta que el propio viewport.
+	 */
+	@media (min-width: 40em) {
+		.gallery :global(.grid) {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+	}
+
+	@media (min-width: 75em) {
+		.gallery :global(.grid) {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2.5rem;
+		}
+	}
+
+	/* Alineada a la izquierda, igual que "Trabajos destacados", no centrada. */
 	.about {
 		display: flex;
 		flex-direction: column;

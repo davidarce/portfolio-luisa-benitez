@@ -7,7 +7,7 @@
             "img": "/assets/editorials/miguel-herran/index.webp",
             "img_alt": "Editorial Numéro - Miguel Herrán",
             "cardSize": "normal",
-            "order": 1,
+            "order": 2,
             "role": "assistant-stylist",
             "format": "editorial",
             "leadStylist": "Caterina Ospina"
@@ -19,10 +19,11 @@
             "img": "/assets/editorials/vogue/index.webp",
             "img_alt": "Editorial Vogue Adria",
             "cardSize": "normal",
-            "order": 2,
+            "order": 1,
             "role": "assistant-stylist",
             "format": "editorial",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "pin": "first"
         },
         {
             "id": "3",
@@ -67,9 +68,10 @@
             "img": "/assets/editorials/aminata/index.webp",
             "img_alt": "Editorial Mode Magazine con Aminata Sarr",
             "cardSize": "normal",
-            "order": 6,
+            "order": 11,
             "role": "lead-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "pin": "last"
         },
         {
             "id": "7",
@@ -78,7 +80,7 @@
             "img": "/assets/editorials/artego-color-pop-garden/index.webp",
             "img_alt": "Editorial Artego Magazine - Color Pop Garden",
             "cardSize": "normal",
-            "order": 7,
+            "order": 6,
             "role": "lead-stylist",
             "format": "editorial"
         },
@@ -89,7 +91,7 @@
             "img": "/assets/editorials/pap-the-new-dandy/index.webp",
             "img_alt": "Editorial pap magazine - The New Dandy",
             "cardSize": "normal",
-            "order": 8,
+            "order": 7,
             "role": "lead-stylist",
             "format": "editorial"
         },
@@ -100,7 +102,7 @@
             "img": "/assets/editorials/folie-always-love/index.webp",
             "img_alt": "Editorial Folie Magazine - Always Love",
             "cardSize": "normal",
-            "order": 9,
+            "order": 8,
             "role": "lead-stylist",
             "format": "editorial"
         },
@@ -111,7 +113,7 @@
             "img": "/assets/editorials/folie-soft-tension/index.webp",
             "img_alt": "Editorial Folie Magazine - Soft Tension",
             "cardSize": "normal",
-            "order": 10,
+            "order": 9,
             "role": "lead-stylist",
             "format": "editorial"
         },
@@ -122,7 +124,7 @@
             "img": "/assets/editorials/isabel-arbos-model-test/index.webp",
             "img_alt": "Model test con Isabel Arbós",
             "cardSize": "normal",
-            "order": 11,
+            "order": 10,
             "role": "lead-stylist",
             "format": "model-test"
         }

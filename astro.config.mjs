@@ -28,11 +28,13 @@ export default defineConfig({
       // CADUCIDAD: estas exclusiones desaparecen cuando se retiren las
       // redirecciones. Revisar a partir de agosto de 2027 — ver la cabecera
       // de src/components/RedirectPage.astro.
+      // /cv/ tampoco: es la plantilla de impresión del PDF (noindex), no contenido.
       filter: (page) =>
         !page.includes('/publicity/') &&
         !page.includes('/celebrities/') &&
         !page.includes('/work/') &&
-        !page.endsWith('/about/'),
+        !page.endsWith('/about/') &&
+        !page.endsWith('/cv/'),
     }),
   ],
   devToolbar: {

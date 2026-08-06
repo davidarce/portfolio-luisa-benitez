@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:links": "node scripts/check-locale-links.mjs",
+    "cv": "node scripts/generate-cv.mjs",
     "generate:assets": "node scripts/generate-assets.mjs",
     "optimize:gallery": "node scripts/optimize-gallery.mjs",
     "optimize:video": "node scripts/optimize-video.mjs",

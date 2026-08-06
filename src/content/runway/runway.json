@@ -8,7 +8,7 @@
             "img_alt": "Desfile Primavera/Verano 26 Rosé Noir Claro Couture",
             "cardSize": "normal",
             "order": 1,
-            "role": "wardrobe-assistant"
+            "role": "lead-stylist"
         },
         {
             "id": "angel-schlesser-25-antonte",
@@ -33,7 +33,7 @@
         {
             "id": "angel-schlesser-23-femme",
             "title": "Otoño/Invierno 23.Femme - Ángel Schlesser",
-            "description": "Desfile Otoño/Invierno 23.Femme de Ángel Schlesser en Mercedes-Benz Fashion Week Madrid.",
+            "description": "Desfile Otoño/Invierno 23.Femme de Ángel Schlesser en el programa OFF de Mercedes-Benz Fashion Week Madrid, en el Espacio Larra.",
             "img": "/assets/runway/angel-schlesser-2023/4.webp",
             "img_alt": "Desfile Ángel Schlesser",
             "cardSize": "normal",

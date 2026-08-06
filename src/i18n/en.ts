@@ -18,6 +18,8 @@ export const en: Translation = {
 		contact: 'Contact',
 	},
 	home: {
+		heroAlt:
+			'Luisa Benítez adjusting the train of a tulle gown during a studio shoot',
 		featuredWorkTitle: 'Featured work',
 		tagline: 'Fashion stylist and assistant, fashion designer, image consultant and personal shopper',
 	},
@@ -60,15 +62,82 @@ export const en: Translation = {
 		eyebrow: 'About',
 		bio: [
 			"If I can't find the piece I have in my head, I make it. I've cut up tights to make gloves and turned garments inside out because the original cut didn't fall the way I saw it. What I imagine, I want to see, and I find a way.",
-			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent four years working in fashion, first in film, then as an agency assistant, and now independently. I've worked on editorials for Numéro Netherlands, Vogue Adria, GQ México and Mode Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on four Mercedes-Benz Fashion Week Madrid shows.",
+			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent five years working in fashion, first as a fashion photography editor in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Numéro Netherlands, Vogue Adria, GQ México and Mode Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on four Mercedes-Benz Fashion Week Madrid shows.",
 			"Every brief asks for something different, and I don't treat them the same. An editorial can take maximalism, layers, texture, accessories with weight; a campaign asks for the product to lead and for the styling to step back. I enjoy the freedom of editorial more, but I respect the craft of commercial work and I know when to keep quiet. In both cases I'm after the same thing: that the look reads as the wearer's own, not as a costume.",
 		],
 		sections: { services: 'Services', featuredIn: 'Featured in' },
 	},
+	/** Los marcadores van en español ([PENDIENTE: …]) también aquí: son notas para David, no copy. */
+	cv: {
+		title: 'CV | Luisa Benítez',
+		role: 'Fashion stylist and image consultant',
+		headings: {
+			profile: 'Profile',
+			experience: 'Experience',
+			education: 'Education',
+			languages: 'Languages',
+		},
+		profileText:
+			"I come from fashion design: I trained in Colombia before specialising in styling and image consulting in Spain. I've spent five years working in fashion: first as a fashion photography editor in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Numéro Netherlands, Vogue Adria, GQ México and Mode Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on four Mercedes-Benz Fashion Week Madrid shows.",
+		experience: {
+			freelance: {
+				role: 'Freelance stylist',
+				org: 'A Coruña',
+				dates: 'Since February 2026',
+				summary:
+					'{n} projects as lead stylist: editorials for Mode Magazine, Artego Magazine, pap magazine and Folie Magazine, and celebrity styling for events, festivals and television.',
+			},
+			agency: {
+				role: 'Styling assistant',
+				org: 'Saik and Stella Creatives agencies',
+				dates: 'March – August 2025 (project-based)',
+				summary:
+					'{n} projects assisting stylist Caterina Ospina: editorials for Numéro Netherlands, Vogue Adria and GQ México; campaigns for YSL, Bruno Magli, Kérastase, Agatha Paris, Alaniz, Redken, GHD, Prime Video and Vogue España; and celebrity dressing for events.',
+			},
+			runway: {
+				role: 'Stylist and wardrobe assistant',
+				org: 'Mercedes-Benz Fashion Week Madrid',
+				dates: 'February 2023 – September 2025',
+				summary:
+					'{n} shows: styling for Claro Couture and wardrobe assistance for Ángel Schlesser ({a} seasons, one in the OFF programme).',
+			},
+			film: {
+				role: 'Wardrobe assistant (internship)',
+				org: 'Elástica Films — Film, “La Mitad de Ana” · Madrid',
+				dates: 'May – July 2023',
+				summary: 'Store, showroom and costume-rental circuit for the feature film.',
+			},
+			crystal: {
+				role: 'Fashion photography editor (freelance)',
+				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
+				dates: 'March 2021 – March 2022',
+				summary: 'Group brands: Gef, Punto Blanco, Baby Fresh and Galax.',
+			},
+		},
+		/** «Técnico Laboral» se deja en español entre paréntesis: es el nombre oficial del certificado de Cesde. */
+		education: [
+			{
+				degree: 'Personal and Corporate Image Consulting',
+				org: 'MasterD (now Davante) — Madrid, Spain',
+				dates: 'January 2024 – November 2025',
+			},
+			{
+				degree: 'Styling and Personal Shopping',
+				org: 'MasterD — Madrid, Spain',
+				dates: 'May 2022 – November 2023',
+			},
+			{
+				degree: 'Fashion Design Assistant (Técnico Laboral)',
+				org: 'Cesde — Medellín, Colombia',
+				dates: 'January 2019 – December 2020',
+			},
+		],
+		languages: ['Spanish (native)', 'English — B1 (intermediate)'],
+	},
 	common: {
 		downloadCv: 'Download CV',
 		newWindowHint: '(opens in a new tab)',
-		portraitAlt: 'Luisa Benítez outdoors, reading a fashion magazine',
+		portraitAlt: 'Luisa Benítez crouching on a street at dusk, wearing a white shirt and black pinafore',
 		back: 'Back',
 		skipToContent: 'Skip to content',
 		languageLabel: 'Switch language',

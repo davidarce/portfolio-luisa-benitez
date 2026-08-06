@@ -16,6 +16,14 @@ const gallerySchema = z.object({
 	hasGallery: z.boolean().default(true),
 	order: z.number().default(0),
 
+	// Curaduría manual de la home: sube un proyecto a «Trabajos destacados»
+	// aunque el orden por rol no lo colocaría ahí. No altera los listados.
+	featured: z.boolean().optional(),
+
+	// Ancla un proyecto al principio o al final de SU listado, por encima del
+	// orden por rol. Decisión editorial explícita, no automatismo.
+	pin: z.enum(['first', 'last']).optional(),
+
 	role: z.enum(['lead-stylist', 'assistant-stylist', 'wardrobe-assistant', 'co-stylist']),
 	roleDetail: z.string().optional(),
 	leadStylist: z.string().optional(),
