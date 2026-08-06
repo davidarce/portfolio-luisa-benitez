@@ -38,10 +38,26 @@ interface Props {
 		| "film"
 		| "model-test";
 	credits?: Credits;
+	/**
+	 * La atribución va arriba, junto al título, porque es lo que declara el rol
+	 * de Luisa y no puede quedar escondida. El equipo va al final: medido, el
+	 * bloque entero ocupaba el 79% de la pantalla en móvil y empujaba la primera
+	 * foto a 1,5 pantallas de scroll, en una página cuyo contenido son las fotos.
+	 */
+	parte?: "atribucion" | "equipo";
 }
 
-const { role, roleDetail, leadStylist, year, client, publication, format, credits } =
-	Astro.props;
+const {
+	role,
+	roleDetail,
+	leadStylist,
+	year,
+	client,
+	publication,
+	format,
+	credits,
+	parte = "atribucion",
+} = Astro.props;
 
 const t = getTranslation(getLocaleFromUrl(Astro.url));
 const c = t.credits;
@@ -99,46 +115,51 @@ const creditRows = creditOrder
 	);
 ---
 
-<section class="credits-block" aria-label={roleLabel}>
+<section class:list={["credits-block", parte]} aria-label={parte === "equipo" ? c.heading : roleLabel}>
 	{
-		stylistRows.map(({ label, value }) => (
-			<p class="stylist-line">
-				<span class="stylist-label">{label}:</span> {value}
-			</p>
-		))
+		parte === "atribucion" && (
+			<>
+				{stylistRows.map(({ label, value }) => (
+					<p class="stylist-line">
+						<span class="stylist-label">{label}:</span> {value}
+					</p>
+				))}
+				{roleDetail && <p class="role-detail">{roleDetail}</p>}
+				{formatLabel && <p class="format-tag">{formatLabel}</p>}
+				{contextLine && <p class="context-line">{contextLine}</p>}
+			</>
+		)
 	}
 
-	{roleDetail && <p class="role-detail">{roleDetail}</p>}
-	{formatLabel && <p class="format-tag">{formatLabel}</p>}
-
-	{contextLine && <p class="context-line">{contextLine}</p>}
-
 	{
-		creditRows.length > 0 && (
-			<dl class="credits-list">
-				{creditRows.map(({ key, label, value }) => (
-					<div class="credit-row">
-						<dt class="credit-label">{label}</dt>
-						<dd class="credit-value">
-						{partirPorAlias(value).map((parte) =>
-							parte.alias ? (
-								<a
-									class="alias"
-									href={`https://www.instagram.com/${parte.alias.slice(1)}/`}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`${parte.alias} ${c.onInstagram} ${t.common.newWindowHint}`}
-								>
-									{parte.alias}
-								</a>
-							) : (
-								parte.texto
-							),
-						)}
-					</dd>
-					</div>
-				))}
-			</dl>
+		parte === "equipo" && creditRows.length > 0 && (
+			<>
+				<h2 class="team-heading">{c.heading}</h2>
+				<dl class="credits-list">
+					{creditRows.map(({ key, label, value }) => (
+						<div class="credit-row">
+							<dt class="credit-label">{label}</dt>
+							<dd class="credit-value">
+								{partirPorAlias(value).map((parte) =>
+									parte.alias ? (
+										<a
+											class="alias"
+											href={`https://www.instagram.com/${parte.alias.slice(1)}/`}
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label={`${parte.alias} ${c.onInstagram} ${t.common.newWindowHint}`}
+										>
+											{parte.alias}
+										</a>
+									) : (
+										parte.texto
+									),
+								)}
+							</dd>
+						</div>
+					))}
+				</dl>
+			</>
 		)
 	}
 </section>
@@ -148,9 +169,22 @@ const creditRows = creditOrder
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+	}
+
+	/* Arriba no lleva recuadro: son dos líneas y el marco pesaba más que ellas. */
+	.credits-block.equipo {
 		padding: 1.5rem;
 		border: 1px solid var(--gray-800);
 		border-radius: 1rem;
+	}
+
+	.team-heading {
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--gray-100);
+		margin: 0;
 	}
 
 	.stylist-line {
@@ -188,8 +222,6 @@ const creditRows = creditOrder
 		grid-template-columns: 1fr;
 		gap: 1rem 2rem;
 		margin: 0.5rem 0 0;
-		padding-top: 1rem;
-		border-top: 1px solid var(--gray-800);
 	}
 
 	.credit-row {

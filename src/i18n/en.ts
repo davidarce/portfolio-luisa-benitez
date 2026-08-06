@@ -62,7 +62,7 @@ export const en: Translation = {
 		eyebrow: 'About',
 		bio: [
 			"If I can't find the piece I have in my head, I make it. I've cut up tights to make gloves and turned garments inside out because the original cut didn't fall the way I saw it. What I imagine, I want to see, and I find a way.",
-			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent five years working in fashion, first as a fashion photography editor in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Numéro Netherlands, Vogue Adria, GQ México and Mode Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on four Mercedes-Benz Fashion Week Madrid shows.",
+			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent five years working in fashion, first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and pap magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on Mercedes-Benz Fashion Week Madrid shows.",
 			"Every brief asks for something different, and I don't treat them the same. An editorial can take maximalism, layers, texture, accessories with weight; a campaign asks for the product to lead and for the styling to step back. I enjoy the freedom of editorial more, but I respect the craft of commercial work and I know when to keep quiet. In both cases I'm after the same thing: that the look reads as the wearer's own, not as a costume.",
 		],
 		sections: { services: 'Services', featuredIn: 'Featured in' },
@@ -76,9 +76,18 @@ export const en: Translation = {
 			experience: 'Experience',
 			education: 'Education',
 			languages: 'Languages',
+			portfolio: 'Portfolio',
+			skills: 'Skills',
 		},
+		skills: [
+			'Look building',
+			'Fitting',
+			'Shoot preparation',
+			'Showroom and costume rental',
+			'Coordination with photography and art direction',
+		],
 		profileText:
-			"I come from fashion design: I trained in Colombia before specialising in styling and image consulting in Spain. I've spent five years working in fashion: first as a fashion photography editor in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Numéro Netherlands, Vogue Adria, GQ México and Mode Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on four Mercedes-Benz Fashion Week Madrid shows.",
+			"I come from fashion design: I trained in Colombia before specialising in styling and image consulting in Spain. I've spent five years working in fashion: first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and pap magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on Mercedes-Benz Fashion Week Madrid shows.",
 		experience: {
 			freelance: {
 				role: 'Freelance stylist',
@@ -108,10 +117,11 @@ export const en: Translation = {
 				summary: 'Store, showroom and costume-rental circuit for the feature film.',
 			},
 			crystal: {
-				role: 'Fashion photography editor (freelance)',
+				role: 'Fashion designer — print and colour (freelance)',
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'March 2021 – March 2022',
-				summary: 'Group brands: Gef, Punto Blanco, Baby Fresh and Galax.',
+				summary:
+					'Digital print and colourway visualisation on product photography to decide what went into production without making a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
 			},
 		},
 		/** «Técnico Laboral» se deja en español entre paréntesis: es el nombre oficial del certificado de Cesde. */
@@ -183,6 +193,7 @@ export const en: Translation = {
 		},
 	},
 	credits: {
+		heading: 'Credits',
 		role: {
 			'lead-stylist': 'Stylist',
 			'assistant-stylist': 'Styling Assistant',

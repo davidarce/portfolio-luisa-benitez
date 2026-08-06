@@ -64,6 +64,7 @@ const fill = (tpl: string, i: number) =>
 			<main id="contenido" class="wrapper">
 				<div class="stack gap-10">
 					<CreditsBlock
+						parte="atribucion"
 						role={entry.data.role}
 						roleDetail={entry.data.roleDetail}
 						leadStylist={entry.data.leadStylist}
@@ -111,6 +112,18 @@ const fill = (tpl: string, i: number) =>
 						}
 					</Grid>
 					</div>
+
+					<CreditsBlock
+						parte="equipo"
+						role={entry.data.role}
+						roleDetail={entry.data.roleDetail}
+						leadStylist={entry.data.leadStylist}
+						year={entry.data.year}
+						client={entry.data.client}
+						publication={entry.data.publication}
+						format={entry.data.format}
+						credits={entry.data.credits}
+					/>
 				</div>
 			</main>
 		</div>

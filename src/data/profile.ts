@@ -41,10 +41,13 @@ export const profile = {
 	 * proyecto que lo respalde en src/content/. Si se confirma la
 	 * colaboración y el rol, se restaura junto con el proyecto, no antes.
 	 */
+	// Ordenadas por reconocimiento, no por orden de trabajo: es lo primero que
+	// escanea quien lee, y Vogue y GQ pesan más que cualquier cabecera independiente.
 	featuredIn: [
-		'Numéro Netherlands',
 		'Vogue Adria',
 		'GQ México',
+		'Numéro Netherlands',
+		'pap magazine',
 		'Mode Magazine',
 	],
 } as const;
