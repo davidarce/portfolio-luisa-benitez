@@ -66,7 +66,7 @@ export const es = {
 		eyebrow: 'Sobre mí',
 		bio: [
 			'Si no encuentro la prenda que tengo en la cabeza, la fabrico. He hecho guantes cortando medias y he puesto prendas del revés porque el corte original no caía como yo lo veía. Lo que imagino lo quiero ver, y busco la forma.',
-			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cinco años trabajando en moda, primero como editora de fotografía de moda en Colombia, luego en pasarela y cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
+			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cinco años trabajando en moda, primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y pap magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en desfiles de Mercedes-Benz Fashion Week Madrid.',
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
@@ -86,9 +86,23 @@ export const es = {
 			experience: 'Experiencia',
 			education: 'Formación',
 			languages: 'Idiomas',
+			portfolio: 'Portfolio',
+			skills: 'Competencias',
 		},
+		/**
+		 * Sustituyen a «Servicios» en el CV: la web ya vende servicios a clientes,
+		 * pero un empleador quiere saber qué sabe hacer dentro de un equipo. Sin
+		 * «lookbook» a propósito: no tiene experiencia y es verificable.
+		 */
+		skills: [
+			'Composición de looks',
+			'Fitting',
+			'Preparación de shooting',
+			'Showroom y alquiler de vestuario',
+			'Coordinación con fotografía y dirección de arte',
+		],
 		profileText:
-			'Vengo del diseño de modas: me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España. Llevo cinco años trabajando en moda: primero como editora de fotografía de moda en Colombia, luego en pasarela y cine, después como asistente en agencia y hoy de forma independiente. He trabajado en editoriales para Numéro Netherlands, Vogue Adria, GQ México y Mode Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en cuatro desfiles de Mercedes-Benz Fashion Week Madrid.',
+			'Vengo del diseño de modas: me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España. Llevo cinco años trabajando en moda: primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y pap magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en desfiles de Mercedes-Benz Fashion Week Madrid.',
 		experience: {
 			freelance: {
 				role: 'Estilista independiente',
@@ -123,11 +137,18 @@ export const es = {
 				dates: 'Mayo – julio de 2023',
 				summary: 'Ruta de tiendas, showrooms y compañías de alquiler de vestuario para el largometraje.',
 			},
+			/**
+			 * El cargo del historial era «editora de fotografía de moda», pero
+			 * describe mal el trabajo: no editaba imagen para publicar, montaba
+			 * las propuestas de estampado y color que el equipo de diseño usaba
+			 * para decidir qué se fabricaba. De ahí el título y el resumen.
+			 */
 			crystal: {
-				role: 'Editora de fotografía de moda (freelance)',
+				role: 'Diseñadora de moda — estampados y color (freelance)',
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'Marzo de 2021 – marzo de 2022',
-				summary: 'Marcas del grupo: Gef, Punto Blanco, Baby Fresh y Galax.',
+				summary:
+					'Visualización digital de estampados y color sobre fotografía de producto para decidir qué entraba en producción sin fabricar muestra física. Marcas: Gef, Punto Blanco, Baby Fresh y Galax.',
 			},
 		},
 		/**
@@ -210,6 +231,7 @@ export const es = {
 	},
 	/** `role` cubre los 4 valores del enum `gallerySchema` en src/content.config.ts. */
 	credits: {
+		heading: 'Créditos',
 		role: {
 			'lead-stylist': 'Estilista',
 			'assistant-stylist': 'Asistente Estilismo',

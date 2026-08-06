@@ -55,7 +55,10 @@ const experience = [
 const contactItems = [
 	`${profile.baseCity}, ${t.profile.country}`,
 	profile.email,
-	`${profile.instagram.handle} · ${Astro.site?.host}`,
+	profile.instagram.handle,
+	// Etiquetado a propósito: las ofertas creativas de Inditex piden portfolio
+	// digital, y sin etiqueta la web se lee como un dato de contacto más.
+	`${cv.headings.portfolio}: ${Astro.site?.host}`,
 	t.profile.travelNote,
 ];
 
@@ -150,13 +153,8 @@ const pendingParts = (text: string) =>
 			</section>
 
 			<section>
-				<h2>{t.about.sections.services}</h2>
-				<p class="prose">{t.profile.services.join(" · ")}</p>
-			</section>
-
-			<section>
-				<h2>{t.about.sections.featuredIn}</h2>
-				<p class="prose">{profile.featuredIn.join(" · ")}</p>
+				<h2>{cv.headings.skills}</h2>
+				<p class="prose">{cv.skills.join(" · ")}</p>
 			</section>
 
 			<section>
@@ -212,11 +210,11 @@ const pendingParts = (text: string) =>
 		width: 210mm;
 		min-height: 297mm;
 		margin: 0 auto;
-		padding: 9mm 17mm 7mm;
+		padding: 11mm 17mm 9mm;
 		background: #ffffff;
 		display: flex;
 		flex-direction: column;
-		gap: 3.4mm;
+		gap: 3.6mm;
 	}
 
 	/* En pantalla, previsualización de la hoja; al imprimir manda @page. */
