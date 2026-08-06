@@ -10,7 +10,15 @@
             "order": 2,
             "role": "assistant-stylist",
             "format": "editorial",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "artDirection": "Sergio González @sergiognzalez",
+                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
+                "talent": "Miguel Herrán @miguel.g.herran",
+                "production": "Saik Prod @saikprod",
+                "location": "The Palace Madrid @thepalacemadrid"
+            }
         },
         {
             "id": "2",
@@ -23,7 +31,18 @@
             "role": "assistant-stylist",
             "format": "editorial",
             "leadStylist": "Caterina Ospina",
-            "pin": "first"
+            "pin": "first",
+            "credits": {
+                "photographer": "Javier Biosca @javier_biosca",
+                "video": "Sergio González @sergiognzalez",
+                "makeup": "Alba Córdoba @albaxcordoba",
+                "hair": "Jesús de Paula @jesusdepaula",
+                "setDesign": "Isabel Adell @isadellc (asistente: Alborada MN @alboradamn)",
+                "talent": "Alice McGrath @alice_mcgrath_",
+                "talentAgency": "Uno Models @unomodels",
+                "production": "Saik Prod @saikprod",
+                "location": "Espacio La Candelaria @espacio_lacandelaria"
+            }
         },
         {
             "id": "3",
@@ -35,7 +54,16 @@
             "order": 3,
             "role": "assistant-stylist",
             "format": "editorial",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "stylingTeam": "Verónica Faya @veronicafaya",
+                "makeup": "Cynthia de León @cynthiadeleon_",
+                "hair": "Jesús de Paula @jesusdepaula para Redken",
+                "talent": "Martina Cariddi @martinacariddi",
+                "production": "Saik Prod @saikprod",
+                "location": "Who Estudio @whoestudio"
+            }
         },
         {
             "id": "4",
@@ -47,7 +75,17 @@
             "order": 4,
             "role": "assistant-stylist",
             "format": "editorial",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
+                "makeup": "Iván Gómez @ivangomez",
+                "hair": "Fernando Torrent @torrentfernando",
+                "setDesign": "Isabel Adell @isadellc",
+                "talent": "Isabeli Fontana @isabelifontana",
+                "talentAgency": "The Lions Management @thelionsmgmt",
+                "production": "Saik Prod @saikprod"
+            }
         },
         {
             "id": "5",
@@ -59,7 +97,14 @@
             "order": 5,
             "role": "assistant-stylist",
             "format": "editorial",
-            "leadStylist": "Caterina Ospina"
+            "leadStylist": "Caterina Ospina",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
+                "muah": "Antonio Romero @antonioromeromakeup",
+                "talent": "Walid Fiher @w3lidd",
+                "production": "Saik Prod @saikprod"
+            }
         },
         {
             "id": "6",
@@ -71,7 +116,13 @@
             "order": 11,
             "role": "lead-stylist",
             "format": "editorial",
-            "pin": "last"
+            "pin": "last",
+            "credits": {
+                "photographer": "@shots_cv",
+                "makeup": "@nermosu_",
+                "hair": "@f0urt4zz",
+                "talent": "Aminata Sarr @aminata.sr"
+            }
         },
         {
             "id": "7",
@@ -82,7 +133,12 @@
             "cardSize": "normal",
             "order": 6,
             "role": "lead-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "credits": {
+                "photographer": "Alex Guerra @aleguerrax",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talent": "Kamila Iskairova @iskairova_"
+            }
         },
         {
             "id": "8",
@@ -93,7 +149,14 @@
             "cardSize": "normal",
             "order": 7,
             "role": "lead-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "credits": {
+                "photographer": "Fio Vicente @fio.vicente",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "video": "Camilo Andrés @camilo5p",
+                "talent": "Álvaro García Narváez @alvarogarcianarvaez",
+                "talentAgency": "The Road Models @theroadmodels"
+            }
         },
         {
             "id": "9",
@@ -104,7 +167,12 @@
             "cardSize": "normal",
             "order": 8,
             "role": "lead-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "credits": {
+                "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talent": "Charlotte Eva @charlotteeeva"
+            }
         },
         {
             "id": "10",
@@ -115,7 +183,13 @@
             "cardSize": "normal",
             "order": 9,
             "role": "lead-stylist",
-            "format": "editorial"
+            "format": "editorial",
+            "credits": {
+                "photographer": "Diego G. @diego_v_photo",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talent": "Luca Darblade @luca_darblade",
+                "talentAgency": "Wanted Agency @wantedagency"
+            }
         },
         {
             "id": "11",
@@ -126,7 +200,13 @@
             "cardSize": "normal",
             "order": 10,
             "role": "lead-stylist",
-            "format": "model-test"
+            "format": "model-test",
+            "credits": {
+                "photographer": "Paulo Herrera @pauloherrera.foto",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talent": "Isabel Arbós @isabel_arbos",
+                "talentAgency": "Six Management @sixmanagement.es"
+            }
         }
     ]
 }

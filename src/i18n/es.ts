@@ -220,6 +220,11 @@ export const es = {
 			photographer: 'Fotografía',
 			director: 'Dirección',
 			muah: 'Maquillaje y peluquería',
+			makeup: 'Maquillaje',
+			hair: 'Peluquería',
+			setDesign: 'Escenografía',
+			stylingTeam: 'Equipo de estilismo',
+			video: 'Vídeo',
 			talent: 'Talento',
 			talentAgency: 'Agencia',
 			artDirection: 'Dirección de arte',
@@ -229,6 +234,7 @@ export const es = {
 		format: {
 			'model-test': 'Model test',
 		},
+		onInstagram: 'en Instagram',
 	},
 } as const;
 
