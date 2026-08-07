@@ -1,722 +1,723 @@
 {
-  "highlighted": [
-    {
-      "title": "Numéro - Miguel Herrán",
-      "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
-      "gallery": [
+    "highlighted": [
         {
-          "file": "/assets/editorials/miguel-herran/1.webp",
-          "cover": true
+            "title": "Numéro - Miguel Herrán",
+            "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/miguel-herran/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/10.webp"
+                }
+            ],
+            "id": "miguel-herran",
+            "img": "/assets/editorials/miguel-herran/index.webp",
+            "img_alt": "Editorial Numéro - Miguel Herrán",
+            "cardSize": "normal",
+            "order": 2,
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "artDirection": "Sergio González @sergiognzalez",
+                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
+                "talent": "Miguel Herrán @miguel.g.herran",
+                "production": "Saik Prod @saikprod",
+                "location": "The Palace Madrid @thepalacemadrid"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/2.webp"
+            "title": "Vogue Adria",
+            "description": "Editorial para Vogue Adria.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/vogue/1.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/4.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/vogue/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/vogue/video-1.mp4"
+                }
+            ],
+            "pin": "first",
+            "id": "vogue",
+            "img": "/assets/editorials/vogue/index.webp",
+            "img_alt": "Editorial Vogue Adria",
+            "cardSize": "normal",
+            "order": 1,
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Javier Biosca @javier_biosca",
+                "video": "Sergio González @sergiognzalez",
+                "makeup": "Alba Córdoba @albaxcordoba",
+                "hair": "Jesús de Paula @jesusdepaula",
+                "setDesign": "Isabel Adell @isadellc (asistente: Alborada MN @alboradamn)",
+                "talent": "Alice McGrath @alice_mcgrath_",
+                "talentAgency": "Uno Models @unomodels",
+                "production": "Saik Prod @saikprod",
+                "location": "Espacio La Candelaria @espacio_lacandelaria"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/3.webp"
+            "title": "Numéro - Martina Cariddi",
+            "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/martina/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/martina/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/12.webp"
+                }
+            ],
+            "id": "martina",
+            "img": "/assets/editorials/martina/index.webp",
+            "img_alt": "Editorial Numéro - Martina Cariddi",
+            "cardSize": "normal",
+            "order": 3,
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "stylingTeam": "Verónica Faya @veronicafaya",
+                "makeup": "Cynthia de León @cynthiadeleon_",
+                "hair": "Jesús de Paula @jesusdepaula para Redken",
+                "talent": "Martina Cariddi @martinacariddi",
+                "production": "Saik Prod @saikprod",
+                "location": "Who Estudio @whoestudio"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/4.webp"
+            "title": "Numéro - Isabeli Fontana",
+            "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/isabeli/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/isabeli/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/14.webp"
+                }
+            ],
+            "id": "isabeli",
+            "img": "/assets/editorials/isabeli/index.webp",
+            "img_alt": "Editorial Numéro - Isabeli Fontana",
+            "cardSize": "normal",
+            "order": 4,
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
+                "makeup": "Iván Gómez @ivangomez",
+                "hair": "Fernando Torrent @torrentfernando",
+                "setDesign": "Isabel Adell @isadellc",
+                "talent": "Isabeli Fontana @isabelifontana",
+                "talentAgency": "The Lions Management @thelionsmgmt",
+                "production": "Saik Prod @saikprod"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/5.webp"
+            "title": "GQ - México",
+            "description": "Editorial para GQ México.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/gq/1.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/3.webp",
+                    "cover": true
+                }
+            ],
+            "id": "gq",
+            "img": "/assets/editorials/gq/index.webp",
+            "img_alt": "Editorial GQ México",
+            "cardSize": "normal",
+            "order": 5,
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
+                "muah": "Antonio Romero @antonioromeromakeup",
+                "talent": "Walid Fiher @w3lidd",
+                "production": "Saik Prod @saikprod"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/6.webp"
+            "title": "Artego Magazine - Color Pop Garden",
+            "description": "Editorial «Color Pop Garden» para Artego Magazine.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/18.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/19.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/20.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/21.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/22.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/23.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/24.webp"
+                }
+            ],
+            "id": "artego-color-pop-garden",
+            "img": "/assets/editorials/artego-color-pop-garden/index.webp",
+            "img_alt": "Editorial Artego Magazine - Color Pop Garden",
+            "cardSize": "normal",
+            "order": 6,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Alex Guerra @aleguerrax",
+                "talent": "Kamila Iskairova @iskairova_",
+                "muah": "Diego Vitaller @muagami_beauty"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/7.webp"
+            "title": "pap magazine - The New Dandy",
+            "description": "Editorial «The New Dandy» para pap magazine.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/18.webp"
+                }
+            ],
+            "id": "pap-the-new-dandy",
+            "img": "/assets/editorials/pap-the-new-dandy/index.webp",
+            "img_alt": "Editorial pap magazine - The New Dandy",
+            "cardSize": "normal",
+            "order": 7,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Fio Vicente @fio.vicente",
+                "talent": "Álvaro García Narváez @alvarogarcianarvaez",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "The Road Models @theroadmodels",
+                "video": "Camilo Andrés @camilo5p"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/8.webp"
+            "title": "Folie Magazine - Always Love",
+            "description": "Editorial «Always Love» para Folie Magazine.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/folie-always-love/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-always-love/15.webp"
+                }
+            ],
+            "id": "folie-always-love",
+            "img": "/assets/editorials/folie-always-love/index.webp",
+            "img_alt": "Editorial Folie Magazine - Always Love",
+            "cardSize": "normal",
+            "order": 8,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena",
+                "talent": "Charlotte Eva @charlotteeeva",
+                "muah": "Diego Vitaller @muagami_beauty"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/9.webp"
+            "title": "Folie Magazine - Soft Tension",
+            "description": "Editorial «Soft Tension» para Folie Magazine.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/folie-soft-tension/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/10.webp"
+                }
+            ],
+            "id": "folie-soft-tension",
+            "img": "/assets/editorials/folie-soft-tension/index.webp",
+            "img_alt": "Editorial Folie Magazine - Soft Tension",
+            "cardSize": "normal",
+            "order": 9,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Diego G. @diego_v_photo",
+                "talent": "Luca Darblade @luca_darblade",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "Wanted Agency @wantedagency"
+            }
         },
         {
-          "file": "/assets/editorials/miguel-herran/10.webp"
+            "title": "Mode Magazine - Isabel Arbós",
+            "description": "Editorial para Mode Magazine con Isabel Arbós.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/28.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/2.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
+                    "hidden": true,
+                    "cover": false
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/5.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/6.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/9.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/11.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/16.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/17.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/18.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/19.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/21.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/22.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/23.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/25.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/26.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
+                }
+            ],
+            "id": "isabel-arbos-model-test",
+            "img": "/assets/editorials/isabel-arbos-model-test/index.webp",
+            "img_alt": "Editorial Mode Magazine con Isabel Arbós",
+            "cardSize": "normal",
+            "order": 10,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Paulo Herrera @pauloherrera.foto",
+                "talent": "Isabel Arbós @isabel_arbos",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "Six Management @sixmanagement.es"
+            }
+        },
+        {
+            "title": "Mode Magazine - Aminata Sarr",
+            "description": "Editorial para Mode Magazine con Aminata Sarr.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/aminata/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/aminata/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/9.webp"
+                }
+            ],
+            "pin": "last",
+            "id": "aminata",
+            "img": "/assets/editorials/aminata/index.webp",
+            "img_alt": "Editorial Mode Magazine con Aminata Sarr",
+            "cardSize": "normal",
+            "order": 11,
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "@shots_cv",
+                "talent": "Aminata Sarr @aminata.sr",
+                "hair": "@f0urt4zz",
+                "makeup": "@nermosu_"
+            }
         }
-      ],
-      "id": "miguel-herran",
-      "img": "/assets/editorials/miguel-herran/index.webp",
-      "img_alt": "Editorial Numéro - Miguel Herrán",
-      "cardSize": "normal",
-      "order": 2,
-      "role": "assistant-stylist",
-      "leadStylist": "Caterina Ospina",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Sergio González @sergiognzalez",
-        "artDirection": "Sergio González @sergiognzalez",
-        "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
-        "talent": "Miguel Herrán @miguel.g.herran",
-        "production": "Saik Prod @saikprod",
-        "location": "The Palace Madrid @thepalacemadrid"
-      }
-    },
-    {
-      "title": "Vogue Adria",
-      "description": "Editorial para Vogue Adria.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/vogue/1.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/2.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/3.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/4.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/vogue/5.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/6.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/7.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/8.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/9.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/10.webp"
-        },
-        {
-          "file": "/assets/editorials/vogue/video-1.mp4"
-        }
-      ],
-      "pin": "first",
-      "id": "vogue",
-      "img": "/assets/editorials/vogue/index.webp",
-      "img_alt": "Editorial Vogue Adria",
-      "cardSize": "normal",
-      "order": 1,
-      "role": "assistant-stylist",
-      "leadStylist": "Caterina Ospina",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Javier Biosca @javier_biosca",
-        "video": "Sergio González @sergiognzalez",
-        "makeup": "Alba Córdoba @albaxcordoba",
-        "hair": "Jesús de Paula @jesusdepaula",
-        "setDesign": "Isabel Adell @isadellc (asistente: Alborada MN @alboradamn)",
-        "talent": "Alice McGrath @alice_mcgrath_",
-        "talentAgency": "Uno Models @unomodels",
-        "production": "Saik Prod @saikprod",
-        "location": "Espacio La Candelaria @espacio_lacandelaria"
-      }
-    },
-    {
-      "title": "Numéro - Martina Cariddi",
-      "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/martina/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/martina/2.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/3.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/4.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/5.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/6.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/7.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/8.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/9.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/10.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/11.webp"
-        },
-        {
-          "file": "/assets/editorials/martina/12.webp"
-        }
-      ],
-      "id": "martina",
-      "img": "/assets/editorials/martina/index.webp",
-      "img_alt": "Editorial Numéro - Martina Cariddi",
-      "cardSize": "normal",
-      "order": 3,
-      "role": "assistant-stylist",
-      "leadStylist": "Caterina Ospina",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Sergio González @sergiognzalez",
-        "stylingTeam": "Verónica Faya @veronicafaya",
-        "makeup": "Cynthia de León @cynthiadeleon_",
-        "hair": "Jesús de Paula @jesusdepaula para Redken",
-        "talent": "Martina Cariddi @martinacariddi",
-        "production": "Saik Prod @saikprod",
-        "location": "Who Estudio @whoestudio"
-      }
-    },
-    {
-      "title": "Numéro - Isabeli Fontana",
-      "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/isabeli/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/isabeli/2.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/3.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/4.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/5.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/6.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/7.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/8.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/9.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/10.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/11.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/12.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/13.webp"
-        },
-        {
-          "file": "/assets/editorials/isabeli/14.webp"
-        }
-      ],
-      "id": "isabeli",
-      "img": "/assets/editorials/isabeli/index.webp",
-      "img_alt": "Editorial Numéro - Isabeli Fontana",
-      "cardSize": "normal",
-      "order": 4,
-      "role": "assistant-stylist",
-      "leadStylist": "Caterina Ospina",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Juankr @juankr_",
-        "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
-        "makeup": "Iván Gómez @ivangomez",
-        "hair": "Fernando Torrent @torrentfernando",
-        "setDesign": "Isabel Adell @isadellc",
-        "talent": "Isabeli Fontana @isabelifontana",
-        "talentAgency": "The Lions Management @thelionsmgmt",
-        "production": "Saik Prod @saikprod"
-      }
-    },
-    {
-      "title": "GQ - México",
-      "description": "Editorial para GQ México.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/gq/1.webp"
-        },
-        {
-          "file": "/assets/editorials/gq/2.webp"
-        },
-        {
-          "file": "/assets/editorials/gq/3.webp",
-          "cover": true
-        }
-      ],
-      "id": "gq",
-      "img": "/assets/editorials/gq/index.webp",
-      "img_alt": "Editorial GQ México",
-      "cardSize": "normal",
-      "order": 5,
-      "role": "assistant-stylist",
-      "leadStylist": "Caterina Ospina",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Juankr @juankr_",
-        "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
-        "muah": "Antonio Romero @antonioromeromakeup",
-        "talent": "Walid Fiher @w3lidd",
-        "production": "Saik Prod @saikprod"
-      }
-    },
-    {
-      "title": "Artego Magazine - Color Pop Garden",
-      "description": "Editorial «Color Pop Garden» para Artego Magazine.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/2.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/3.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/4.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/5.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/6.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/7.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/8.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/9.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/10.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/11.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/12.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/13.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/14.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/15.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/16.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/17.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/18.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/19.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/20.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/21.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/22.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/23.webp"
-        },
-        {
-          "file": "/assets/editorials/artego-color-pop-garden/24.webp"
-        }
-      ],
-      "id": "artego-color-pop-garden",
-      "img": "/assets/editorials/artego-color-pop-garden/index.webp",
-      "img_alt": "Editorial Artego Magazine - Color Pop Garden",
-      "cardSize": "normal",
-      "order": 6,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Alex Guerra @aleguerrax",
-        "talent": "Kamila Iskairova @iskairova_",
-        "muah": "Diego Vitaller @muagami_beauty"
-      }
-    },
-    {
-      "title": "pap magazine - The New Dandy",
-      "description": "Editorial «The New Dandy» para pap magazine.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/2.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/3.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/4.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/5.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/6.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/7.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/8.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/9.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/10.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/11.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/12.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/13.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/14.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/15.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/16.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/17.webp"
-        },
-        {
-          "file": "/assets/editorials/pap-the-new-dandy/18.webp"
-        }
-      ],
-      "id": "pap-the-new-dandy",
-      "img": "/assets/editorials/pap-the-new-dandy/index.webp",
-      "img_alt": "Editorial pap magazine - The New Dandy",
-      "cardSize": "normal",
-      "order": 7,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Fio Vicente @fio.vicente",
-        "talent": "Álvaro García Narváez @alvarogarcianarvaez",
-        "muah": "Diego Vitaller @muagami_beauty",
-        "talentAgency": "The Road Models @theroadmodels",
-        "video": "Camilo Andrés @camilo5p"
-      }
-    },
-    {
-      "title": "Folie Magazine - Always Love",
-      "description": "Editorial «Always Love» para Folie Magazine.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/folie-always-love/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/2.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/3.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/4.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/5.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/6.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/7.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/8.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/9.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/10.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/11.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/12.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/13.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/14.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-always-love/15.webp"
-        }
-      ],
-      "id": "folie-always-love",
-      "img": "/assets/editorials/folie-always-love/index.webp",
-      "img_alt": "Editorial Folie Magazine - Always Love",
-      "cardSize": "normal",
-      "order": 8,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena",
-        "talent": "Charlotte Eva @charlotteeeva",
-        "muah": "Diego Vitaller @muagami_beauty"
-      }
-    },
-    {
-      "title": "Folie Magazine - Soft Tension",
-      "description": "Editorial «Soft Tension» para Folie Magazine.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/folie-soft-tension/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/2.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/3.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/4.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/5.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/6.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/7.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/8.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/9.webp"
-        },
-        {
-          "file": "/assets/editorials/folie-soft-tension/10.webp"
-        }
-      ],
-      "id": "folie-soft-tension",
-      "img": "/assets/editorials/folie-soft-tension/index.webp",
-      "img_alt": "Editorial Folie Magazine - Soft Tension",
-      "cardSize": "normal",
-      "order": 9,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Diego G. @diego_v_photo",
-        "talent": "Luca Darblade @luca_darblade",
-        "muah": "Diego Vitaller @muagami_beauty",
-        "talentAgency": "Wanted Agency @wantedagency"
-      }
-    },
-    {
-      "title": "Mode Magazine - Isabel Arbós",
-      "description": "Editorial para Mode Magazine con Isabel Arbós.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/28.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/2.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
-          "hidden": true,
-          "cover": false
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/5.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/6.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/9.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/11.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/13.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/14.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/16.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/17.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/18.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/19.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/21.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/22.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/23.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/25.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/26.webp",
-          "hidden": true
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
-        },
-        {
-          "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
-        }
-      ],
-      "id": "isabel-arbos-model-test",
-      "img": "/assets/editorials/isabel-arbos-model-test/index.webp",
-      "img_alt": "Editorial Mode Magazine con Isabel Arbós",
-      "cardSize": "normal",
-      "order": 10,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "Paulo Herrera @pauloherrera.foto",
-        "talent": "Isabel Arbós @isabel_arbos",
-        "muah": "Diego Vitaller @muagami_beauty",
-        "talentAgency": "Six Management @sixmanagement.es"
-      }
-    },
-    {
-      "title": "Mode Magazine - Aminata Sarr",
-      "description": "Editorial para Mode Magazine con Aminata Sarr.",
-      "gallery": [
-        {
-          "file": "/assets/editorials/aminata/1.webp",
-          "cover": true
-        },
-        {
-          "file": "/assets/editorials/aminata/2.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/3.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/4.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/5.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/6.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/7.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/8.webp"
-        },
-        {
-          "file": "/assets/editorials/aminata/9.webp"
-        }
-      ],
-      "pin": "last",
-      "id": "aminata",
-      "img": "/assets/editorials/aminata/index.webp",
-      "img_alt": "Editorial Mode Magazine con Aminata Sarr",
-      "cardSize": "normal",
-      "order": 11,
-      "role": "lead-stylist",
-      "format": "editorial",
-      "credits": {
-        "photographer": "@shots_cv",
-        "talent": "Aminata Sarr @aminata.sr",
-        "hair": "@f0urt4zz",
-        "makeup": "@nermosu_"
-      }
-    }
-  ]
+    ]
 }
