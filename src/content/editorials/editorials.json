@@ -45,12 +45,12 @@
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "location": "The Palace Madrid @thepalacemadrid",
-                "production": "Saik Prod @saikprod",
-                "talent": "Miguel Herrán @miguel.g.herran",
-                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
+                "photographer": "Sergio González @sergiognzalez",
                 "artDirection": "Sergio González @sergiognzalez",
-                "photographer": "Sergio González @sergiognzalez"
+                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
+                "talent": "Miguel Herrán @miguel.g.herran",
+                "production": "Saik Prod @saikprod",
+                "location": "The Palace Madrid @thepalacemadrid"
             }
         },
         {
@@ -102,15 +102,15 @@
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "location": "Espacio La Candelaria @espacio_lacandelaria",
-                "production": "Saik Prod @saikprod",
-                "talentAgency": "Uno Models @unomodels",
-                "talent": "Alice McGrath @alice_mcgrath_",
-                "setDesign": "Isabel Adell @isadellc (asistente: Alborada MN @alboradamn)",
-                "hair": "Jesús de Paula @jesusdepaula",
-                "makeup": "Alba Córdoba @albaxcordoba",
+                "photographer": "Javier Biosca @javier_biosca",
                 "video": "Sergio González @sergiognzalez",
-                "photographer": "Javier Biosca @javier_biosca"
+                "makeup": "Alba Córdoba @albaxcordoba",
+                "hair": "Jesús de Paula @jesusdepaula",
+                "setDesign": "Isabel Adell @isadellc (asistente: Alborada MN @alboradamn)",
+                "talent": "Alice McGrath @alice_mcgrath_",
+                "talentAgency": "Uno Models @unomodels",
+                "production": "Saik Prod @saikprod",
+                "location": "Espacio La Candelaria @espacio_lacandelaria"
             }
         },
         {
@@ -164,13 +164,13 @@
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "location": "Who Estudio @whoestudio",
-                "production": "Saik Prod @saikprod",
-                "talent": "Martina Cariddi @martinacariddi",
-                "hair": "Jesús de Paula @jesusdepaula para Redken",
-                "makeup": "Cynthia de León @cynthiadeleon_",
+                "photographer": "Sergio González @sergiognzalez",
                 "stylingTeam": "Verónica Faya @veronicafaya",
-                "photographer": "Sergio González @sergiognzalez"
+                "makeup": "Cynthia de León @cynthiadeleon_",
+                "hair": "Jesús de Paula @jesusdepaula para Redken",
+                "talent": "Martina Cariddi @martinacariddi",
+                "production": "Saik Prod @saikprod",
+                "location": "Who Estudio @whoestudio"
             }
         },
         {
@@ -230,14 +230,14 @@
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "production": "Saik Prod @saikprod",
-                "talentAgency": "The Lions Management @thelionsmgmt",
-                "talent": "Isabeli Fontana @isabelifontana",
-                "setDesign": "Isabel Adell @isadellc",
-                "hair": "Fernando Torrent @torrentfernando",
-                "makeup": "Iván Gómez @ivangomez",
+                "photographer": "Juankr @juankr_",
                 "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
-                "photographer": "Juankr @juankr_"
+                "makeup": "Iván Gómez @ivangomez",
+                "hair": "Fernando Torrent @torrentfernando",
+                "setDesign": "Isabel Adell @isadellc",
+                "talent": "Isabeli Fontana @isabelifontana",
+                "talentAgency": "The Lions Management @thelionsmgmt",
+                "production": "Saik Prod @saikprod"
             }
         },
         {
@@ -264,11 +264,11 @@
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "production": "Saik Prod @saikprod",
-                "talent": "Walid Fiher @w3lidd",
-                "muah": "Antonio Romero @antonioromeromakeup",
+                "photographer": "Juankr @juankr_",
                 "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
-                "photographer": "Juankr @juankr_"
+                "muah": "Antonio Romero @antonioromeromakeup",
+                "talent": "Walid Fiher @w3lidd",
+                "production": "Saik Prod @saikprod"
             }
         },
         {
@@ -357,9 +357,9 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "muah": "Diego Vitaller @muagami_beauty",
+                "photographer": "Alex Guerra @aleguerrax",
                 "talent": "Kamila Iskairova @iskairova_",
-                "photographer": "Alex Guerra @aleguerrax"
+                "muah": "Diego Vitaller @muagami_beauty"
             }
         },
         {
@@ -430,11 +430,11 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "video": "Camilo Andrés @camilo5p",
-                "talentAgency": "The Road Models @theroadmodels",
-                "muah": "Diego Vitaller @muagami_beauty",
+                "photographer": "Fio Vicente @fio.vicente",
                 "talent": "Álvaro García Narváez @alvarogarcianarvaez",
-                "photographer": "Fio Vicente @fio.vicente"
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "The Road Models @theroadmodels",
+                "video": "Camilo Andrés @camilo5p"
             }
         },
         {
@@ -496,9 +496,9 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "muah": "Diego Vitaller @muagami_beauty",
+                "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena",
                 "talent": "Charlotte Eva @charlotteeeva",
-                "photographer": "Leticia Díaz de la Morena @leticiadiazdelamorena"
+                "muah": "Diego Vitaller @muagami_beauty"
             }
         },
         {
@@ -545,10 +545,10 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "talentAgency": "Wanted Agency @wantedagency",
-                "muah": "Diego Vitaller @muagami_beauty",
+                "photographer": "Diego G. @diego_v_photo",
                 "talent": "Luca Darblade @luca_darblade",
-                "photographer": "Diego G. @diego_v_photo"
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "Wanted Agency @wantedagency"
             }
         },
         {
@@ -556,23 +556,27 @@
             "description": "Editorial para Mode Magazine con Isabel Arbós.",
             "gallery": [
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
-                    "cover": false
+                    "file": "/assets/editorials/isabel-arbos-model-test/28.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/2.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
+                    "hidden": true,
+                    "cover": false
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/5.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/5.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/6.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/6.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
@@ -581,13 +585,15 @@
                     "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/9.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/9.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/11.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/11.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
@@ -602,44 +608,52 @@
                     "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/16.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/16.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/17.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/17.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/18.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/18.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/19.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/19.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/21.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/21.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/22.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/22.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/23.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/23.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/25.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/25.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/26.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/26.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/28.webp",
-                    "cover": true
+                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
                 }
             ],
             "id": "isabel-arbos-model-test",
@@ -650,10 +664,10 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "talentAgency": "Six Management @sixmanagement.es",
-                "muah": "Diego Vitaller @muagami_beauty",
+                "photographer": "Paulo Herrera @pauloherrera.foto",
                 "talent": "Isabel Arbós @isabel_arbos",
-                "photographer": "Paulo Herrera @pauloherrera.foto"
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "Six Management @sixmanagement.es"
             }
         },
         {
@@ -698,10 +712,10 @@
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "makeup": "@nermosu_",
-                "hair": "@f0urt4zz",
+                "photographer": "@shots_cv",
                 "talent": "Aminata Sarr @aminata.sr",
-                "photographer": "@shots_cv"
+                "hair": "@f0urt4zz",
+                "makeup": "@nermosu_"
             }
         }
     ]
