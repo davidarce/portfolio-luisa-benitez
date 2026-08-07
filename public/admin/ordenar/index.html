@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Ordenar fotos</title>
+		<style>
+			:root {
+				color-scheme: dark;
+				--fondo: #0d1017;
+				--panel: #161a25;
+				--borde: #2a3040;
+				--texto: #e8eaf0;
+				--suave: #99a0b0;
+				--acento: #7cff6b;
+				--aviso: #ffd166;
+				--error: #ff8a8a;
+			}
+			* { box-sizing: border-box; }
+			body {
+				margin: 0;
+				background: var(--fondo);
+				color: var(--texto);
+				font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+			}
+			header {
+				position: sticky;
+				top: 0;
+				z-index: 10;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem 1rem;
+				align-items: center;
+				padding: 0.9rem 1.5rem;
+				background: var(--panel);
+				border-bottom: 1px solid var(--borde);
+			}
+			h1 { font-size: 1rem; margin: 0; font-weight: 600; }
+			select, input, button { font: inherit; }
+			select, input[type="password"] {
+				background: var(--fondo);
+				color: var(--texto);
+				border: 1px solid var(--borde);
+				border-radius: 8px;
+				padding: 0.5rem 0.75rem;
+			}
+			select { max-width: 24rem; }
+			.contador { color: var(--suave); font-size: 0.9rem; }
+			.derecha { margin-left: auto; display: flex; align-items: center; gap: 0.75rem; }
+			.estado { font-size: 0.88rem; color: var(--suave); }
+			.estado.ok { color: var(--acento); }
+			.estado.mal { color: var(--error); }
+			.guardar {
+				background: var(--acento);
+				color: #06210a;
+				border: 0;
+				border-radius: 8px;
+				padding: 0.55rem 1.1rem;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			.guardar[disabled] { opacity: 0.4; cursor: default; }
+			main { padding: 1.5rem; }
+			.rejilla {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 1rem;
+			}
+			.tarjeta {
+				position: relative;
+				border: 1px solid var(--borde);
+				border-radius: 10px;
+				overflow: hidden;
+				background: var(--panel);
+				cursor: grab;
+				outline: 2px solid transparent;
+				transition: outline-color 0.12s, opacity 0.12s;
+			}
+			.tarjeta:active { cursor: grabbing; }
+			.tarjeta img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 3 / 4;
+				object-fit: cover;
+				pointer-events: none;
+			}
+			.tarjeta.arrastrando { opacity: 0.35; }
+			.tarjeta.destino { outline-color: var(--acento); }
+			.tarjeta.oculta img { opacity: 0.25; filter: grayscale(1); }
+			.numero {
+				position: absolute; top: 6px; left: 6px;
+				background: rgba(0, 0, 0, 0.7);
+				border-radius: 6px; padding: 1px 7px;
+				font-size: 0.8rem; font-variant-numeric: tabular-nums;
+			}
+			.marca {
+				position: absolute; top: 6px; right: 6px;
+				background: var(--acento); color: #06210a;
+				border-radius: 6px; padding: 1px 7px;
+				font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+			}
+			.acciones { display: flex; border-top: 1px solid var(--borde); }
+			.acciones button {
+				flex: 1; background: none; border: 0;
+				border-right: 1px solid var(--borde);
+				color: var(--suave); font-size: 0.82rem;
+				padding: 0.45rem 0; cursor: pointer;
+			}
+			.acciones button:last-child { border-right: 0; }
+			.acciones button:hover { background: #1e2333; color: var(--texto); }
+			.acciones button.activo { color: var(--acento); font-weight: 600; }
+			.entrada {
+				max-width: 34rem;
+				margin: 6rem auto;
+				padding: 2rem;
+				background: var(--panel);
+				border: 1px solid var(--borde);
+				border-radius: 12px;
+			}
+			.entrada h2 { margin-top: 0; font-size: 1.1rem; }
+			.entrada p { color: var(--suave); font-size: 0.92rem; }
+			.entrada input { width: 100%; margin: 0.75rem 0; }
+			.oculto { display: none; }
+		</style>
+	</head>
+	<body>
+		<section class="entrada" id="entrada">
+			<h2>Ordenar fotos</h2>
+			<p>
+				Pega aquí tu token de GitHub. Se guarda solo en este navegador y no se
+				envía a ningún sitio que no sea GitHub.
+			</p>
+			<input type="password" id="token" placeholder="ghp_..." autocomplete="off" />
+			<button class="guardar" id="entrar">Entrar</button>
+			<p class="estado mal" id="errorEntrada"></p>
+		</section>
+
+		<div id="app" class="oculto">
+			<header>
+				<h1>Ordenar fotos</h1>
+				<select id="proyecto"></select>
+				<span class="contador" id="contador"></span>
+				<span class="derecha">
+					<span class="estado" id="estado"></span>
+					<button class="guardar" id="guardar" disabled>Guardar</button>
+				</span>
+			</header>
+			<main><div class="rejilla" id="rejilla"></div></main>
+		</div>
+
+		<script type="module">
+			const REPO = 'davidarce/portfolio-luisa-benitez';
+			const RAMA = 'contenido';
+			const COLECCIONES = [
+				['Editoriales', 'src/content/editorials/editorials.json'],
+				['Campañas', 'src/content/publicity/publicity.json'],
+				['Celebridades y eventos', 'src/content/celebrities/celebrities.json'],
+				['Runway', 'src/content/runway/runway.json'],
+				['Cine', 'src/content/films/films.json'],
+			];
+
+			const $ = (id) => document.getElementById(id);
+			let token = localStorage.getItem('token-ordenar') || '';
+			// Por fichero: { datos, sha }. El sha es la versión que leímos de GitHub;
+			// si alguien guarda antes que nosotros, GitHub rechaza el envío y avisamos
+			// en vez de pisar su trabajo.
+			const ficheros = new Map();
+			let actual = null;
+			let sucio = false;
+			let arrastrada = null;
+
+			async function api(ruta, opciones = {}) {
+				const r = await fetch(`https://api.github.com/repos/${REPO}/${ruta}`, {
+					...opciones,
+					headers: {
+						Authorization: `Bearer ${token}`,
+						Accept: 'application/vnd.github+json',
+						...(opciones.headers || {}),
+					},
+				});
+				if (!r.ok) throw new Error(`${r.status} ${(await r.text()).slice(0, 160)}`);
+				return r.json();
+			}
+
+			const deBase64 = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64), (c) => c.charCodeAt(0)));
+			const aBase64 = (txt) => btoa(String.fromCharCode(...new TextEncoder().encode(txt)));
+
+			async function cargar() {
+				ficheros.clear();
+				for (const [etiqueta, ruta] of COLECCIONES) {
+					const r = await api(`contents/${ruta}?ref=${RAMA}`);
+					ficheros.set(ruta, {
+						etiqueta,
+						sha: r.sha,
+						datos: JSON.parse(deBase64(r.content.replace(/\n/g, ''))),
+					});
+				}
+			}
+
+			function proyectos() {
+				const salida = [];
+				for (const [ruta, f] of ficheros) {
+					for (const p of f.datos.highlighted) salida.push({ ruta, etiqueta: f.etiqueta, p });
+				}
+				return salida;
+			}
+
+			function montarSelector() {
+				const s = $('proyecto');
+				s.replaceChildren();
+				let grupo = null;
+				for (const { ruta, etiqueta, p } of proyectos()) {
+					if (!grupo || grupo.label !== etiqueta) {
+						grupo = document.createElement('optgroup');
+						grupo.label = etiqueta;
+						s.append(grupo);
+					}
+					const o = document.createElement('option');
+					o.value = `${ruta}::${p.id}`;
+					o.textContent = `${p.title} (${(p.gallery || []).length})`;
+					grupo.append(o);
+				}
+			}
+
+			function elegir(valor) {
+				const [ruta, id] = valor.split('::');
+				actual = { ruta, p: ficheros.get(ruta).datos.highlighted.find((x) => x.id === id) };
+				pintar();
+			}
+
+			function pintar() {
+				const fotos = actual.p.gallery || [];
+				$('rejilla').replaceChildren();
+				fotos.forEach((foto, i) => {
+					const t = document.createElement('div');
+					t.className = 'tarjeta' + (foto.hidden ? ' oculta' : '');
+					t.draggable = true;
+					t.dataset.i = i;
+					t.innerHTML = `
+						<span class="numero">${i + 1}</span>
+						${foto.cover ? '<span class="marca">PORTADA</span>' : ''}
+						<img src="${foto.file}" alt="" loading="lazy">
+						<div class="acciones">
+							<button data-accion="ocultar" class="${foto.hidden ? 'activo' : ''}">${foto.hidden ? 'Oculta' : 'Ocultar'}</button>
+							<button data-accion="portada" class="${foto.cover ? 'activo' : ''}">Portada</button>
+						</div>`;
+					$('rejilla').append(t);
+				});
+				$('contador').textContent = `${fotos.filter((f) => !f.hidden).length} visibles de ${fotos.length}`;
+			}
+
+			function marcarSucio() {
+				sucio = true;
+				$('guardar').disabled = false;
+				$('estado').textContent = 'sin guardar';
+				$('estado').className = 'estado';
+			}
+
+			$('rejilla').addEventListener('click', (e) => {
+				const btn = e.target.closest('button');
+				if (!btn) return;
+				const i = Number(btn.closest('.tarjeta').dataset.i);
+				const fotos = actual.p.gallery;
+				if (btn.dataset.accion === 'ocultar') {
+					if (fotos[i].hidden) delete fotos[i].hidden;
+					else fotos[i].hidden = true;
+				} else {
+					const yaEra = fotos[i].cover;
+					// La portada es única.
+					fotos.forEach((f) => delete f.cover);
+					if (!yaEra) fotos[i].cover = true;
+				}
+				pintar();
+				marcarSucio();
+			});
+
+			$('rejilla').addEventListener('dragstart', (e) => {
+				const t = e.target.closest('.tarjeta');
+				if (!t) return;
+				arrastrada = Number(t.dataset.i);
+				t.classList.add('arrastrando');
+				e.dataTransfer.effectAllowed = 'move';
+				// Sin esto el navegador no llega a disparar el soltado.
+				e.dataTransfer.setData('text/plain', String(arrastrada));
+			});
+
+			$('rejilla').addEventListener('dragover', (e) => {
+				e.preventDefault();
+				e.dataTransfer.dropEffect = 'move';
+				const t = e.target.closest('.tarjeta');
+				if (!t) return;
+				document.querySelectorAll('.destino').forEach((x) => x.classList.remove('destino'));
+				t.classList.add('destino');
+			});
+
+			$('rejilla').addEventListener('drop', (e) => {
+				e.preventDefault();
+				const t = e.target.closest('.tarjeta');
+				if (!t || arrastrada === null) return;
+				const destino = Number(t.dataset.i);
+				const [movida] = actual.p.gallery.splice(arrastrada, 1);
+				actual.p.gallery.splice(destino, 0, movida);
+				arrastrada = null;
+				pintar();
+				marcarSucio();
+			});
+
+			$('rejilla').addEventListener('dragend', () => {
+				document.querySelectorAll('.arrastrando, .destino').forEach((x) =>
+					x.classList.remove('arrastrando', 'destino'),
+				);
+				arrastrada = null;
+			});
+
+			$('proyecto').addEventListener('change', (e) => {
+				if (sucio && !confirm('Tienes cambios sin guardar. ¿Seguir sin guardarlos?')) {
+					return;
+				}
+				sucio = false;
+				$('guardar').disabled = true;
+				$('estado').textContent = '';
+				elegir(e.target.value);
+			});
+
+			$('guardar').addEventListener('click', async () => {
+				const f = ficheros.get(actual.ruta);
+				$('guardar').disabled = true;
+				$('estado').textContent = 'guardando...';
+				$('estado').className = 'estado';
+				try {
+					// Se reescribe el fichero entero a partir de lo que leímos, así que
+					// todos los demás campos viajan intactos: aquí solo se toca `gallery`.
+					const texto = JSON.stringify(f.datos, null, 4) + '\n';
+					const r = await api(`contents/${actual.ruta}`, {
+						method: 'PUT',
+						body: JSON.stringify({
+							message: `Ordenar fotos de ${actual.p.title}`,
+							content: aBase64(texto),
+							sha: f.sha,
+							branch: RAMA,
+						}),
+					});
+					f.sha = r.content.sha;
+					sucio = false;
+					$('estado').textContent = 'guardado';
+					$('estado').className = 'estado ok';
+				} catch (err) {
+					$('guardar').disabled = false;
+					const conflicto = /409|does not match/i.test(err.message);
+					$('estado').textContent = conflicto
+						? 'alguien guardó antes: recarga la página'
+						: 'no se pudo guardar';
+					$('estado').className = 'estado mal';
+					console.error(err);
+				}
+			});
+
+			window.addEventListener('beforeunload', (e) => {
+				if (sucio) e.preventDefault();
+			});
+
+			async function arrancar() {
+				await cargar();
+				montarSelector();
+				elegir($('proyecto').value);
+				$('entrada').classList.add('oculto');
+				$('app').classList.remove('oculto');
+			}
+
+			$('entrar').addEventListener('click', async () => {
+				token = $('token').value.trim();
+				$('errorEntrada').textContent = '';
+				try {
+					await arrancar();
+					localStorage.setItem('token-ordenar', token);
+				} catch (err) {
+					$('errorEntrada').textContent = 'No se pudo entrar. Revisa el token.';
+					console.error(err);
+				}
+			});
+
+			if (token) {
+				arrancar().catch(() => {
+					localStorage.removeItem('token-ordenar');
+				});
+			}
+		</script>
+	</body>
+</html>
