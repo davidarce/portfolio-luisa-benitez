@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 
@@ -9,26 +9,30 @@ const BACKGROUND = '#090b11';
 // `assets` es la carpeta real y `out` la ruta pública: la Fase 2 renombró las
 // categorías sin mover los datos.
 const COLLECTIONS = [
-	{ assets: 'editorials', out: 'editorials' },
-	{ assets: 'publicity', out: 'campaigns' },
-	{ assets: 'celebrities', out: 'celebrity-events' },
-	{ assets: 'films', out: 'films' },
-	{ assets: 'runway', out: 'runway' },
+	{ assets: 'editorials', out: 'editorials', json: 'src/content/editorials/editorials.json' },
+	{ assets: 'publicity', out: 'campaigns', json: 'src/content/publicity/publicity.json' },
+	{ assets: 'celebrities', out: 'celebrity-events', json: 'src/content/celebrities/celebrities.json' },
+	{ assets: 'films', out: 'films', json: 'src/content/films/films.json' },
+	{ assets: 'runway', out: 'runway', json: 'src/content/runway/runway.json' },
 ];
 
-// El slug de la URL es el nombre de la carpeta, no el `id` del JSON, y en
-// editoriales no coinciden. Misma elección de imagen que gallery-loader.ts:
-// index.* manda y si no, la primera; si divergieran, al compartir saldría una
-// foto distinta de la que se ve al entrar.
-function imagenDeOrigen(carpeta) {
-	const ficheros = readdirSync(carpeta);
-	const index = ficheros.find((f) => /^index\.(jpe?g|png|webp)$/i.test(f));
-	if (index) return join(carpeta, index);
+const JSON_POR_COLECCION = Object.fromEntries(
+	COLLECTIONS.map(({ assets, json }) => [
+		assets,
+		JSON.parse(readFileSync(json, 'utf8')).highlighted ?? [],
+	]),
+);
 
-	const primera = ficheros
-		.filter((f) => /\.(jpe?g|png|webp)$/i.test(f) && !f.startsWith('index.'))
-		.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))[0];
-	return primera ? join(carpeta, primera) : null;
+// La portada la decide el JSON, no el disco: es la entrada marcada `cover` en
+// `gallery`. Antes se buscaba un fichero `index.*`, y desde que la portada es
+// un dato eso divergía en cuanto alguien la cambiaba desde el CMS: la tarjeta
+// mostraba una foto y al compartir el enlace salía otra.
+function portadaDeclarada(coleccion, slug) {
+	const proyecto = (JSON_POR_COLECCION[coleccion] ?? []).find((p) => p.id === slug);
+	const marcada = proyecto?.gallery?.find((g) => g.cover);
+	if (!marcada) return null;
+	const fichero = join('public', marcada.file.replace(/^\//, ''));
+	return existsSync(fichero) ? fichero : null;
 }
 
 const force = process.argv.includes('--force');
@@ -49,7 +53,7 @@ for (const { assets, out } of COLLECTIONS) {
 		.map((d) => d.name);
 
 	for (const slug of slugs) {
-		const origen = imagenDeOrigen(join(base, slug));
+		const origen = portadaDeclarada(assets, slug);
 		const destino = join('public/assets/og', out, `${slug}.jpg`);
 
 		if (!origen) {
