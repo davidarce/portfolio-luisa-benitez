@@ -1,0 +1,144 @@
+# Configuración de Sveltia CMS. La página vive en /admin y no hace nada sin
+# iniciar sesión en GitHub: los cambios se guardan como commits en el repositorio.
+#
+# CUIDADO al tocar este fichero: en una colección de tipo "files", el CMS
+# reescribe el JSON entero con los campos declarados aquí. Un campo que exista
+# en el JSON y NO esté declarado se pierde al guardar. Por eso están todos, y
+# los que no debe tocar nadie van como `hidden`: se conservan sin mostrarse.
+
+backend:
+  name: github
+  repo: davidarce/portfolio-luisa-benitez
+  # El CMS escribe en una rama de contenido, NO en main. Sveltia todavía no
+  # soporta el flujo editorial de Decap (lo anuncian para su 1.0), así que sin
+  # esto cada guardado iría directo a producción y dispararía un despliegue de
+  # diez minutos. Con la rama aparte, Luisa trabaja a su ritmo sin desplegar
+  # nada y se publica todo junto con un PR de `contenido` a `main`.
+  branch: contenido
+
+media_folder: public/assets
+public_folder: /assets
+
+locale: es
+
+# El rol, la estilista principal y los créditos NO se editan desde aquí. La
+# atribución de cada trabajo se decide fuera del CMS: un clic accidental no
+# puede convertir una asistencia en un estilismo propio.
+campos_proyecto: &campos_proyecto
+  - { name: title, label: Título, widget: string }
+  - { name: description, label: Descripción, widget: text, required: false }
+  - name: gallery
+    label: Fotos y vídeos
+    label_singular: foto
+    widget: list
+    collapsed: false
+    summary: '{{fields.file}}'
+    fields:
+      - { name: file, label: Foto, widget: image }
+      - { name: hidden, label: Ocultar del portfolio, widget: boolean, required: false, default: false }
+      - { name: cover, label: Usar como portada, widget: boolean, required: false, default: false }
+  - { name: featured, label: Destacar en la portada del sitio, widget: boolean, required: false }
+  - name: pin
+    label: Fijar en el listado
+    widget: select
+    required: false
+    options:
+      - { label: 'Sin fijar', value: '' }
+      - { label: 'Al principio', value: first }
+      - { label: 'Al final', value: last }
+  - { name: id, widget: hidden }
+  - { name: img, widget: hidden, required: false }
+  - { name: img_alt, widget: hidden }
+  - { name: cardSize, widget: hidden }
+  - { name: order, widget: hidden }
+  - { name: role, widget: hidden }
+  - { name: leadStylist, widget: hidden, required: false }
+  - { name: format, widget: hidden, required: false }
+  - { name: credits, widget: hidden, required: false }
+  # No hay copy todavía para ninguno de estos seis, pero el esquema
+  # (content.config.ts) ya los admite y algunas plantillas los consumen. Si no
+  # se declaran aquí, el primer guardado del CMS después de que alguien los
+  # escriba a mano los borraría del JSON, porque una colección "files"
+  # reescribe el fichero entero solo con los campos que conoce.
+  - { name: descriptionEn, widget: hidden, required: false }
+  - { name: roleDetail, widget: hidden, required: false }
+  - { name: year, widget: hidden, required: false }
+  - { name: season, widget: hidden, required: false }
+  - { name: client, widget: hidden, required: false }
+  - { name: publication, widget: hidden, required: false }
+
+collections:
+  - name: editoriales
+    label: Editoriales
+    files:
+      - name: lista
+        label: Editoriales
+        file: src/content/editorials/editorials.json
+        fields:
+          - name: highlighted
+            label: Proyectos
+            label_singular: proyecto
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields: *campos_proyecto
+
+  - name: campanas
+    label: Campañas
+    files:
+      - name: lista
+        label: Campañas
+        file: src/content/publicity/publicity.json
+        fields:
+          - name: highlighted
+            label: Proyectos
+            label_singular: proyecto
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields: *campos_proyecto
+
+  - name: celebridades
+    label: Celebridades y eventos
+    files:
+      - name: lista
+        label: Celebridades y eventos
+        file: src/content/celebrities/celebrities.json
+        fields:
+          - name: highlighted
+            label: Proyectos
+            label_singular: proyecto
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields: *campos_proyecto
+
+  - name: pasarela
+    label: Runway
+    files:
+      - name: lista
+        label: Runway
+        file: src/content/runway/runway.json
+        fields:
+          - name: highlighted
+            label: Proyectos
+            label_singular: proyecto
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields: *campos_proyecto
+
+  - name: cine
+    label: Cine
+    files:
+      - name: lista
+        label: Cine
+        file: src/content/films/films.json
+        fields:
+          - name: highlighted
+            label: Proyectos
+            label_singular: proyecto
+            widget: list
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields: *campos_proyecto

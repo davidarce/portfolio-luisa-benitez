@@ -8,7 +8,25 @@
             "img_alt": "La Mitad de Ana",
             "cardSize": "normal",
             "order": 1,
-            "role": "assistant-stylist"
+            "role": "assistant-stylist",
+            "gallery": [
+                {
+                    "file": "/assets/films/la-mitad-de-ana/1.webp"
+                },
+                {
+                    "file": "/assets/films/la-mitad-de-ana/2.webp"
+                },
+                {
+                    "file": "/assets/films/la-mitad-de-ana/3.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/films/la-mitad-de-ana/4.webp"
+                },
+                {
+                    "file": "/assets/films/la-mitad-de-ana/5.webp"
+                }
+            ]
         }
     ]
 }
