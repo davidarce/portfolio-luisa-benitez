@@ -34,7 +34,10 @@ export const profile = {
 	 * prometer una descarga que daría 404. Al añadir los ficheros, rellenar:
 	 *   { es: '/cv/luisa-benitez-cv-es.pdf', en: '/cv/luisa-benitez-cv-en.pdf' }
 	 */
-	cvPath: undefined as { es: string; en: string } | undefined,
+	cvPath: {
+		es: '/cv/luisa-benitez-cv-es.pdf',
+		en: '/cv/luisa-benitez-cv-en.pdf',
+	} as { es: string; en: string } | undefined,
 
 	/**
 	 * TODO(H-5 / #12): "Fucking Young" fuera — es el único de la lista sin
