@@ -54,12 +54,11 @@ const experience = [
 
 const contactItems = [
 	`${profile.baseCity}, ${t.profile.country}`,
-	profile.email,
-	profile.instagram.handle,
-	// Etiquetado a propósito: las ofertas creativas de Inditex piden portfolio
-	// digital, y sin etiqueta la web se lee como un dato de contacto más.
+	// Etiquetados: sin etiqueta, el correo y el alias de Instagram se confunden
+	// entre sí porque los dos empiezan por arroba o la llevan dentro.
+	`${t.channels.email}: ${profile.email}`,
+	`${t.channels.instagram}: ${profile.instagram.handle}`,
 	`${cv.headings.portfolio}: ${Astro.site?.host}`,
-	t.profile.travelNote,
 ];
 
 /** Parte el texto en tramos para pintar cada «[PENDIENTE: …]» como <mark> imposible de pasar por alto. */
