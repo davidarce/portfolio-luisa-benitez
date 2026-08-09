@@ -138,8 +138,7 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/1.webp",
-                    "cover": true
+                    "file": "/assets/celebrities/maica-supervivientes/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/2.webp"
@@ -160,7 +159,8 @@
                     "file": "/assets/celebrities/maica-supervivientes/7.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/8.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/8.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/9.webp"
@@ -175,7 +175,8 @@
                     "file": "/assets/celebrities/maica-supervivientes/12.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/13.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/13.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/14.webp"
