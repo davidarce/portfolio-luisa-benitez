@@ -242,8 +242,17 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/1.webp",
+                    "file": "/assets/celebrities/ruth-basauri-coachella/5.webp",
                     "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/7.webp"
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/6.webp"
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/ruth-basauri-coachella/2.webp"
@@ -253,15 +262,6 @@
                 },
                 {
                     "file": "/assets/celebrities/ruth-basauri-coachella/4.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/5.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/6.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/7.webp"
                 }
             ]
         },
