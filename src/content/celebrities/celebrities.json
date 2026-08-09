@@ -39,8 +39,7 @@
             "gallery": [
                 {
                     "file": "/assets/celebrities/aitana/index.webp",
-                    "hidden": true,
-                    "cover": true
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/aitana/1.webp"
@@ -49,7 +48,8 @@
                     "file": "/assets/celebrities/aitana/2.webp"
                 },
                 {
-                    "file": "/assets/celebrities/aitana/3.webp"
+                    "file": "/assets/celebrities/aitana/3.webp",
+                    "cover": true
                 }
             ]
         },
