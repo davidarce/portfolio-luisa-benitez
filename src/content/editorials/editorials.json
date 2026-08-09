@@ -298,10 +298,11 @@
             "gallery": [
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/1.webp",
-                    "cover": true
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/2.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/2.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/3.webp"
@@ -319,13 +320,17 @@
                     "file": "/assets/editorials/artego-color-pop-garden/7.webp"
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/8.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/8.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/9.webp"
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/artego-color-pop-garden/15.webp"
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/11.webp"
@@ -340,22 +345,22 @@
                     "file": "/assets/editorials/artego-color-pop-garden/14.webp"
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/15.webp"
-                },
-                {
                     "file": "/assets/editorials/artego-color-pop-garden/16.webp"
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/17.webp"
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/18.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/18.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/19.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/19.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/20.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/20.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/artego-color-pop-garden/21.webp"
@@ -367,7 +372,8 @@
                     "file": "/assets/editorials/artego-color-pop-garden/23.webp"
                 },
                 {
-                    "file": "/assets/editorials/artego-color-pop-garden/24.webp"
+                    "file": "/assets/editorials/artego-color-pop-garden/24.webp",
+                    "hidden": true
                 }
             ],
             "id": "artego-color-pop-garden",
