@@ -9,7 +9,7 @@ const cache = new Map<string, string>();
 // huella del contenido convierte cada cambio en una URL nueva, como ya hace Astro
 // con /_astro/. Sin esto hay que purgar Cloudflare a mano cada vez.
 export function conHuella(ruta: string): string {
-	if (!ruta.startsWith('/assets/')) return ruta;
+	if (!ruta.startsWith('/assets/') && !ruta.startsWith('/cv/')) return ruta;
 	if (cache.has(ruta)) return cache.get(ruta)!;
 
 	const fichero = join('public', ruta);

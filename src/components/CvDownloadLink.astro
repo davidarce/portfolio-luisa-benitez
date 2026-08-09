@@ -1,5 +1,6 @@
 ---
 // Vive en un componente propio (no inline por página) para centralizar `cvPath[locale]` (#39, no #10).
+import { conHuella } from "../lib/asset-version";
 import { profile } from "../data/profile";
 import { getLocaleFromUrl, getTranslation } from "../i18n";
 
@@ -9,8 +10,14 @@ const t = getTranslation(locale);
 
 {
 	profile.cvPath && (
-		<a class="cv" href={profile.cvPath[locale]}>
+		<a
+			class="cv"
+			href={conHuella(profile.cvPath[locale])}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
 			{t.common.downloadCv} <span class="arrow" aria-hidden="true">&rarr;</span>
+			<span class="sr-only"> {t.common.newWindowHint}</span>
 		</a>
 	)
 }
