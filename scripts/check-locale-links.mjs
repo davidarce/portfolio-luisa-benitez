@@ -15,7 +15,9 @@ const EN_DIR = path.join(DIST_DIR, "en");
 // completo ("/en" exacto o algo que empiece por "/en/"), nunca como prefijo de
 // caracteres — si no, "/encargos/".startsWith("/en") colaría en silencio. Por
 // eso "/en" exacto vive en ALLOWED_ABSOLUTE_EXACT y no aquí.
-const ALLOWED_ABSOLUTE_PREFIXES = ["/en/", "/_astro/", "/assets/"];
+// `/cv/` va aquí porque son ficheros, no páginas: el PDF inglés ya es el suyo
+// (luisa-benitez-cv-en.pdf) y no existe ni tiene sentido una copia bajo /en/.
+const ALLOWED_ABSOLUTE_PREFIXES = ["/en/", "/_astro/", "/assets/", "/cv/"];
 
 const ALLOWED_ABSOLUTE_EXACT = new Set([
 	"/en", // sin barra final, también válido (p.ej. enlace a la home EN)
