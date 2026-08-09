@@ -63,8 +63,7 @@
                     "file": "/assets/publicity/bruno-magli/2.webp"
                 },
                 {
-                    "file": "/assets/publicity/bruno-magli/3.webp",
-                    "cover": true
+                    "file": "/assets/publicity/bruno-magli/3.webp"
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/4.webp"
@@ -94,7 +93,8 @@
                     "file": "/assets/publicity/bruno-magli/8.webp"
                 },
                 {
-                    "file": "/assets/publicity/bruno-magli/9.webp"
+                    "file": "/assets/publicity/bruno-magli/9.webp",
+                    "cover": true
                 }
             ]
         },
