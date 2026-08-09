@@ -176,6 +176,12 @@
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/13.webp"
+                },
+                {
+                    "file": "/assets/celebrities/maica-supervivientes/14.webp"
+                },
+                {
+                    "file": "/assets/celebrities/maica-supervivientes/15.webp"
                 }
             ]
         },
@@ -304,6 +310,116 @@
                 },
                 {
                     "file": "/assets/celebrities/alex-saint-malaga/3.webp"
+                }
+            ]
+        },
+        {
+            "id": "maica-benedicto-paris",
+            "title": "Maica Benedicto - París",
+            "description": "Estilismo para Maica Benedicto durante su estancia en París.",
+            "img": "/assets/celebrities/maica-benedicto-paris/1.webp",
+            "img_alt": "Maica Benedicto en París",
+            "cardSize": "normal",
+            "order": 10,
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maica-benedicto-paris/1.webp",
+                    "cover": true
+                }
+            ]
+        },
+        {
+            "id": "maica-telecinco",
+            "title": "Maica Benedicto - Telecinco",
+            "description": "Estilismo para Maica Benedicto en su aparición en Telecinco.",
+            "img": "/assets/celebrities/maica-telecinco/index.webp",
+            "img_alt": "Maica Benedicto en Telecinco",
+            "cardSize": "normal",
+            "order": 11,
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maica-telecinco/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/maica-telecinco/video-1.mp4"
+                }
+            ]
+        },
+        {
+            "id": "zara-larsson-midnight-sun-tour",
+            "title": "Zara Larsson - Midnight Sun Tour",
+            "description": "Estilismo para Zara Larsson y su equipo durante el Midnight Sun Tour.",
+            "img": "/assets/celebrities/zara-larsson-midnight-sun-tour/1.webp",
+            "img_alt": "Zara Larsson en el Midnight Sun Tour",
+            "cardSize": "normal",
+            "order": 12,
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/2.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/3.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/4.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/5.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/6.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/7.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/video-1.mp4"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/video-2.mp4"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/video-3.mp4"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/video-4.mp4"
+                },
+                {
+                    "file": "/assets/celebrities/zara-larsson-midnight-sun-tour/video-5.mp4"
+                }
+            ]
+        },
+        {
+            "id": "maria-pombo-netflix",
+            "title": "María Pombo - Netflix",
+            "description": "Estilismo para María Pombo en evento de Netflix.",
+            "img": "/assets/celebrities/maria-pombo-netflix/1.webp",
+            "img_alt": "María Pombo en evento de Netflix",
+            "cardSize": "normal",
+            "order": 13,
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maria-pombo-netflix/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/maria-pombo-netflix/video-1.mp4"
                 }
             ]
         }
