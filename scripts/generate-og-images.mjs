@@ -16,6 +16,8 @@ const COLLECTIONS = [
 	{ assets: 'runway', out: 'runway', json: 'src/content/runway/runway.json' },
 ];
 
+const JSON_POR_COLECCION_RUTA = Object.fromEntries(COLLECTIONS.map(({ assets, json }) => [assets, json]));
+
 const JSON_POR_COLECCION = Object.fromEntries(
 	COLLECTIONS.map(({ assets, json }) => [
 		assets,
@@ -61,7 +63,15 @@ for (const { assets, out } of COLLECTIONS) {
 			continue;
 		}
 
-		if (!force && existsSync(destino) && statSync(destino).mtimeMs >= statSync(origen).mtimeMs) {
+		// Se compara también con el JSON: al cambiar la portada desde el CMS, el
+		// fichero de origen es otro pero su fecha es antigua, así que mirando solo
+		// las imágenes esto se daba por hecho y la imagen para compartir se
+		// quedaba con la portada vieja.
+		const fuenteMs = Math.max(
+			statSync(origen).mtimeMs,
+			statSync(JSON_POR_COLECCION_RUTA[assets]).mtimeMs,
+		);
+		if (!force && existsSync(destino) && statSync(destino).mtimeMs >= fuenteMs) {
 			saltadas++;
 			continue;
 		}

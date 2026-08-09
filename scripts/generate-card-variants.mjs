@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { basename, join } from 'node:path';
 import sharp from 'sharp';
 
 // Medidos en el build con Chromium, no estimados: hasta 800px la tarjeta ocupa
@@ -8,6 +8,30 @@ import sharp from 'sharp';
 const WIDTHS = [400, 600, 800, 1100, 1500];
 
 const COLLECTIONS = ['editorials', 'publicity', 'celebrities', 'films', 'runway'];
+
+// La portada la declara el JSON, no el disco. Buscar un fichero `index.*` era lo
+// de antes, y desde que la portada es un dato producía variantes de una foto
+// distinta de la que pinta la tarjeta: el navegador elegía una variante y
+// enseñaba la portada vieja en la mayoría de tamaños.
+const JSON_POR_COLECCION = {
+	editorials: 'src/content/editorials/editorials.json',
+	publicity: 'src/content/publicity/publicity.json',
+	celebrities: 'src/content/celebrities/celebrities.json',
+	films: 'src/content/films/films.json',
+	runway: 'src/content/runway/runway.json',
+};
+
+const PORTADAS = Object.fromEntries(
+	Object.entries(JSON_POR_COLECCION).map(([col, ruta]) => [
+		col,
+		Object.fromEntries(
+			JSON.parse(readFileSync(ruta, 'utf8')).highlighted.map((p) => [
+				p.id,
+				p.gallery?.find((g) => g.cover)?.file,
+			]),
+		),
+	]),
+);
 
 const force = process.argv.includes('--force');
 
@@ -23,7 +47,8 @@ for (const col of COLLECTIONS) {
 		if (!slug.isDirectory()) continue;
 
 		const dir = join(base, slug.name);
-		const origen = readdirSync(dir).find((f) => /^index\.(webp|jpe?g|png)$/i.test(f));
+		const declarada = PORTADAS[col]?.[slug.name];
+		const origen = declarada ? basename(declarada) : undefined;
 		if (!origen) {
 			sinOrigen.push(`${col}/${slug.name}`);
 			continue;

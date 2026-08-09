@@ -87,11 +87,11 @@
                     "file": "/assets/runway/angel-schlesser-2024/1.webp"
                 },
                 {
-                    "file": "/assets/runway/angel-schlesser-2024/2.webp"
+                    "file": "/assets/runway/angel-schlesser-2024/2.webp",
+                    "cover": true
                 },
                 {
-                    "file": "/assets/runway/angel-schlesser-2024/3.webp",
-                    "cover": true
+                    "file": "/assets/runway/angel-schlesser-2024/3.webp"
                 },
                 {
                     "file": "/assets/runway/angel-schlesser-2024/video-1.mp4"
@@ -112,14 +112,14 @@
             "role": "wardrobe-assistant",
             "gallery": [
                 {
-                    "file": "/assets/runway/angel-schlesser-2023/4.webp"
+                    "file": "/assets/runway/angel-schlesser-2023/4.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/runway/angel-schlesser-2023/6.webp"
                 },
                 {
-                    "file": "/assets/runway/angel-schlesser-2023/7.webp",
-                    "cover": true
+                    "file": "/assets/runway/angel-schlesser-2023/7.webp"
                 },
                 {
                     "file": "/assets/runway/angel-schlesser-2023/8.webp"

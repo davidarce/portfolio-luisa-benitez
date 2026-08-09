@@ -39,8 +39,7 @@
             "gallery": [
                 {
                     "file": "/assets/celebrities/aitana/index.webp",
-                    "hidden": true,
-                    "cover": true
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/aitana/1.webp"
@@ -49,7 +48,8 @@
                     "file": "/assets/celebrities/aitana/2.webp"
                 },
                 {
-                    "file": "/assets/celebrities/aitana/3.webp"
+                    "file": "/assets/celebrities/aitana/3.webp",
+                    "cover": true
                 }
             ]
         },
@@ -138,8 +138,7 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/1.webp",
-                    "cover": true
+                    "file": "/assets/celebrities/maica-supervivientes/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/2.webp"
@@ -148,7 +147,8 @@
                     "file": "/assets/celebrities/maica-supervivientes/3.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/4.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/4.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/5.webp"
@@ -160,10 +160,12 @@
                     "file": "/assets/celebrities/maica-supervivientes/7.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/8.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/8.webp",
+                    "cover": true
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/9.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/9.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/10.webp"
@@ -175,7 +177,8 @@
                     "file": "/assets/celebrities/maica-supervivientes/12.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/13.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/13.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/14.webp"
@@ -197,11 +200,20 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/tania-deniz-coachella/1.webp",
+                    "file": "/assets/celebrities/tania-deniz-coachella/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/tania-deniz-coachella/2.webp",
                     "cover": true
                 },
                 {
-                    "file": "/assets/celebrities/tania-deniz-coachella/2.webp"
+                    "file": "/assets/celebrities/tania-deniz-coachella/7.webp"
+                },
+                {
+                    "file": "/assets/celebrities/tania-deniz-coachella/9.webp"
+                },
+                {
+                    "file": "/assets/celebrities/tania-deniz-coachella/10.webp"
                 },
                 {
                     "file": "/assets/celebrities/tania-deniz-coachella/3.webp"
@@ -210,22 +222,13 @@
                     "file": "/assets/celebrities/tania-deniz-coachella/4.webp"
                 },
                 {
-                    "file": "/assets/celebrities/tania-deniz-coachella/5.webp"
-                },
-                {
                     "file": "/assets/celebrities/tania-deniz-coachella/6.webp"
-                },
-                {
-                    "file": "/assets/celebrities/tania-deniz-coachella/7.webp"
                 },
                 {
                     "file": "/assets/celebrities/tania-deniz-coachella/8.webp"
                 },
                 {
-                    "file": "/assets/celebrities/tania-deniz-coachella/9.webp"
-                },
-                {
-                    "file": "/assets/celebrities/tania-deniz-coachella/10.webp"
+                    "file": "/assets/celebrities/tania-deniz-coachella/5.webp"
                 }
             ]
         },
@@ -241,8 +244,17 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/1.webp",
+                    "file": "/assets/celebrities/ruth-basauri-coachella/5.webp",
                     "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/7.webp"
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/6.webp"
+                },
+                {
+                    "file": "/assets/celebrities/ruth-basauri-coachella/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/ruth-basauri-coachella/2.webp"
@@ -252,15 +264,6 @@
                 },
                 {
                     "file": "/assets/celebrities/ruth-basauri-coachella/4.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/5.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/6.webp"
-                },
-                {
-                    "file": "/assets/celebrities/ruth-basauri-coachella/7.webp"
                 }
             ]
         },
@@ -276,11 +279,11 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/maica-premios-influencers/1.webp",
+                    "file": "/assets/celebrities/maica-premios-influencers/2.webp",
                     "cover": true
                 },
                 {
-                    "file": "/assets/celebrities/maica-premios-influencers/2.webp"
+                    "file": "/assets/celebrities/maica-premios-influencers/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/maica-premios-influencers/3.webp"
@@ -302,14 +305,14 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/alex-saint-malaga/1.webp",
-                    "cover": true
+                    "file": "/assets/celebrities/alex-saint-malaga/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/alex-saint-malaga/2.webp"
                 },
                 {
-                    "file": "/assets/celebrities/alex-saint-malaga/3.webp"
+                    "file": "/assets/celebrities/alex-saint-malaga/3.webp",
+                    "cover": true
                 }
             ]
         },

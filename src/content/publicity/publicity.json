@@ -57,14 +57,23 @@
             "leadStylist": "Caterina Ospina",
             "gallery": [
                 {
+                    "file": "/assets/publicity/bruno-magli/7.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/8.webp"
+                },
+                {
                     "file": "/assets/publicity/bruno-magli/1.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/9.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/2.webp"
                 },
                 {
-                    "file": "/assets/publicity/bruno-magli/3.webp",
-                    "cover": true
+                    "file": "/assets/publicity/bruno-magli/3.webp"
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/4.webp"
@@ -86,15 +95,6 @@
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/video-4.mp4"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/7.webp"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/8.webp"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/9.webp"
                 }
             ]
         },
@@ -276,8 +276,7 @@
             "gallery": [
                 {
                     "file": "/assets/publicity/redken-marina-reche/index.webp",
-                    "hidden": true,
-                    "cover": true
+                    "hidden": true
                 },
                 {
                     "file": "/assets/publicity/redken-marina-reche/video-1.mp4"
@@ -286,10 +285,12 @@
                     "file": "/assets/publicity/redken-marina-reche/1.webp"
                 },
                 {
-                    "file": "/assets/publicity/redken-marina-reche/2.webp"
+                    "file": "/assets/publicity/redken-marina-reche/2.webp",
+                    "cover": true
                 },
                 {
-                    "file": "/assets/publicity/redken-marina-reche/3.webp"
+                    "file": "/assets/publicity/redken-marina-reche/3.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/publicity/redken-marina-reche/4.webp"
