@@ -87,11 +87,11 @@
                     "file": "/assets/runway/angel-schlesser-2024/1.webp"
                 },
                 {
-                    "file": "/assets/runway/angel-schlesser-2024/2.webp"
+                    "file": "/assets/runway/angel-schlesser-2024/2.webp",
+                    "cover": true
                 },
                 {
-                    "file": "/assets/runway/angel-schlesser-2024/3.webp",
-                    "cover": true
+                    "file": "/assets/runway/angel-schlesser-2024/3.webp"
                 },
                 {
                     "file": "/assets/runway/angel-schlesser-2024/video-1.mp4"
