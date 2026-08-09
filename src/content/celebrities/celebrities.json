@@ -303,14 +303,14 @@
             "format": "event",
             "gallery": [
                 {
-                    "file": "/assets/celebrities/alex-saint-malaga/1.webp",
-                    "cover": true
+                    "file": "/assets/celebrities/alex-saint-malaga/1.webp"
                 },
                 {
                     "file": "/assets/celebrities/alex-saint-malaga/2.webp"
                 },
                 {
-                    "file": "/assets/celebrities/alex-saint-malaga/3.webp"
+                    "file": "/assets/celebrities/alex-saint-malaga/3.webp",
+                    "cover": true
                 }
             ]
         },
