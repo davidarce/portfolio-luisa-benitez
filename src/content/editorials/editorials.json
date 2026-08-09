@@ -527,10 +527,6 @@
             "description": "Editorial «Soft Tension» para Folie Magazine.",
             "gallery": [
                 {
-                    "file": "/assets/editorials/folie-soft-tension/1.webp",
-                    "cover": true
-                },
-                {
                     "file": "/assets/editorials/folie-soft-tension/2.webp"
                 },
                 {
@@ -540,7 +536,8 @@
                     "file": "/assets/editorials/folie-soft-tension/4.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/5.webp"
+                    "file": "/assets/editorials/folie-soft-tension/5.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/editorials/folie-soft-tension/6.webp"
@@ -555,7 +552,11 @@
                     "file": "/assets/editorials/folie-soft-tension/9.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/10.webp"
+                    "file": "/assets/editorials/folie-soft-tension/10.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/1.webp"
                 }
             ],
             "id": "folie-soft-tension",
