@@ -63,7 +63,15 @@ for (const col of COLLECTIONS) {
 		for (const w of WIDTHS) {
 			if (w > natural) continue;
 			const destino = join(destDir, `${w}.webp`);
-			if (!force && existsSync(destino) && statSync(destino).mtimeMs >= statSync(src).mtimeMs) {
+			// Como en generate-og-images.mjs: al cambiar la portada desde el CMS el
+			// fichero de origen es otro pero su fecha es antigua, así que mirando
+			// solo las imágenes esto se daba por hecho y la tarjeta se quedaba con
+			// las miniaturas de la portada anterior.
+			const fuenteMs = Math.max(
+				statSync(src).mtimeMs,
+				statSync(JSON_POR_COLECCION[col]).mtimeMs,
+			);
+			if (!force && existsSync(destino) && statSync(destino).mtimeMs >= fuenteMs) {
 				saltadas++;
 				continue;
 			}
