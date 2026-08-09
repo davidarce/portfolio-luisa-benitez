@@ -57,7 +57,17 @@
             "leadStylist": "Caterina Ospina",
             "gallery": [
                 {
+                    "file": "/assets/publicity/bruno-magli/7.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/8.webp"
+                },
+                {
                     "file": "/assets/publicity/bruno-magli/1.webp"
+                },
+                {
+                    "file": "/assets/publicity/bruno-magli/9.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/2.webp"
@@ -85,16 +95,6 @@
                 },
                 {
                     "file": "/assets/publicity/bruno-magli/video-4.mp4"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/7.webp"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/8.webp"
-                },
-                {
-                    "file": "/assets/publicity/bruno-magli/9.webp",
-                    "cover": true
                 }
             ]
         },
