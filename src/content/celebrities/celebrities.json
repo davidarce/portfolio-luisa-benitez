@@ -147,7 +147,8 @@
                     "file": "/assets/celebrities/maica-supervivientes/3.webp"
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/4.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/4.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/5.webp"
@@ -163,7 +164,8 @@
                     "cover": true
                 },
                 {
-                    "file": "/assets/celebrities/maica-supervivientes/9.webp"
+                    "file": "/assets/celebrities/maica-supervivientes/9.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/celebrities/maica-supervivientes/10.webp"
