@@ -582,15 +582,49 @@
                     "cover": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/2.webp"
+                    "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabel-arbos-model-test/2.webp",
+                    "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/1.webp",
                     "hidden": true,
                     "cover": false
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/4.webp"
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/5.webp",
@@ -601,33 +635,12 @@
                     "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/8.webp"
-                },
-                {
                     "file": "/assets/editorials/isabel-arbos-model-test/9.webp",
                     "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/10.webp"
-                },
-                {
                     "file": "/assets/editorials/isabel-arbos-model-test/11.webp",
                     "hidden": true
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/12.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/13.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/14.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/15.webp"
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/16.webp",
@@ -646,9 +659,6 @@
                     "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/20.webp"
-                },
-                {
                     "file": "/assets/editorials/isabel-arbos-model-test/21.webp",
                     "hidden": true
                 },
@@ -661,21 +671,12 @@
                     "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/isabel-arbos-model-test/24.webp"
-                },
-                {
                     "file": "/assets/editorials/isabel-arbos-model-test/25.webp",
                     "hidden": true
                 },
                 {
                     "file": "/assets/editorials/isabel-arbos-model-test/26.webp",
                     "hidden": true
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/27.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabel-arbos-model-test/3.webp"
                 }
             ],
             "id": "isabel-arbos-model-test",
