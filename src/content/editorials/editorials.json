@@ -702,28 +702,31 @@
                     "cover": true
                 },
                 {
-                    "file": "/assets/editorials/aminata/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/aminata/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/aminata/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/aminata/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/aminata/6.webp"
+                    "file": "/assets/editorials/aminata/8.webp"
                 },
                 {
                     "file": "/assets/editorials/aminata/7.webp"
                 },
                 {
-                    "file": "/assets/editorials/aminata/8.webp"
+                    "file": "/assets/editorials/aminata/6.webp"
                 },
                 {
                     "file": "/assets/editorials/aminata/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/2.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/aminata/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/aminata/4.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/editorials/aminata/5.webp",
+                    "hidden": true
                 }
             ],
             "pin": "last",
