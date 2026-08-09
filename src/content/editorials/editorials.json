@@ -245,14 +245,14 @@
             "description": "Editorial para GQ México.",
             "gallery": [
                 {
-                    "file": "/assets/editorials/gq/1.webp"
+                    "file": "/assets/editorials/gq/1.webp",
+                    "cover": true
                 },
                 {
                     "file": "/assets/editorials/gq/2.webp"
                 },
                 {
-                    "file": "/assets/editorials/gq/3.webp",
-                    "cover": true
+                    "file": "/assets/editorials/gq/3.webp"
                 }
             ],
             "id": "gq",
