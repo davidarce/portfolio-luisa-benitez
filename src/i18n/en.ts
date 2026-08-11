@@ -132,17 +132,17 @@ export const en: Translation = {
 		education: [
 			{
 				degree: 'Personal and Corporate Image Consulting',
-				org: 'MasterD (now Davante) — Madrid, Spain',
+				org: 'MasterD, Escuela Profesional CreaDiseño (now Davante) — Madrid, Spain',
 				dates: 'January 2024 – November 2025',
 			},
 			{
 				degree: 'Styling and Personal Shopping',
-				org: 'MasterD — Madrid, Spain',
+				org: 'MasterD, Escuela Profesional CreaDiseño — Madrid, Spain',
 				dates: 'May 2022 – November 2023',
 			},
 			{
 				degree: 'Fashion Design (Técnico Laboral)',
-				org: 'Cesde — Medellín, Colombia',
+				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'January 2019 – December 2020',
 			},
 		],

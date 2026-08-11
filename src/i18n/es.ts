@@ -165,17 +165,17 @@ export const es = {
 		education: [
 			{
 				degree: 'Asesoría de Imagen Personal y Corporativa',
-				org: 'MasterD (hoy Davante) — Madrid, España',
+				org: 'MasterD, Escuela Profesional CreaDiseño (hoy Davante) — Madrid, España',
 				dates: 'Enero de 2024 – noviembre de 2025',
 			},
 			{
 				degree: 'Estilismo y Personal Shopper',
-				org: 'MasterD — Madrid, España',
+				org: 'MasterD, Escuela Profesional CreaDiseño — Madrid, España',
 				dates: 'Mayo de 2022 – noviembre de 2023',
 			},
 			{
 				degree: 'Diseño de Modas (Técnico Laboral)',
-				org: 'Cesde — Medellín, Colombia',
+				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'Enero de 2019 – diciembre de 2020',
 			},
 		],
