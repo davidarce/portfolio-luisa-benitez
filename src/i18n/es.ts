@@ -157,10 +157,8 @@ export const es = {
 		},
 		/**
 		 * Nomenclatura verificada, no «corregir»: Davante (con a) es la marca
-		 * actual de MasterD tras fusionarse con MEDAC en 2025 — Luisa estudió
-		 * cuando aún era MasterD. Y el título de Cesde es exactamente «Técnico
-		 * Laboral como Asistente en Diseño de Modas», un certificado ocupacional:
-		 * inflarlo a grado se nota si Inditex lo verifica.
+		 * actual de MasterD tras fusionarse con MEDAC en 2025: Luisa estudió
+		 * cuando aún era MasterD, así que se nombran las dos.
 		 */
 		education: [
 			{
@@ -174,7 +172,7 @@ export const es = {
 				dates: 'Mayo de 2022 – noviembre de 2023',
 			},
 			{
-				degree: 'Diseño de Modas (Técnico Laboral)',
+				degree: 'Diseño de Modas',
 				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'Enero de 2019 – diciembre de 2020',
 			},
