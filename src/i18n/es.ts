@@ -97,6 +97,8 @@ export const es = {
 		 */
 		skills: [
 			'Composición de looks',
+			'Creación de moodboards',
+			'Fichas técnicas de producto',
 			'Fitting',
 			'Preparación de shooting',
 			'Showroom y alquiler de vestuario',
@@ -107,10 +109,10 @@ export const es = {
 		experience: {
 			freelance: {
 				role: 'Estilista independiente',
-				org: 'A Coruña',
+				org: 'Madrid',
 				dates: 'Desde febrero de 2026',
 				summary:
-					'{n} proyectos como estilista principal: editoriales para Mode Magazine, Artego Magazine, Pap Magazine y Folie Magazine, y estilismo de celebridades para eventos, festivales y televisión.',
+					'{n} proyectos como estilista principal: editoriales para Artego Magazine, Pap Magazine, Folie Magazine y Mode Magazine, y estilismo de celebridades para eventos, festivales y televisión.',
 			},
 			agency: {
 				role: 'Asistente de estilismo',
@@ -137,7 +139,7 @@ export const es = {
 				org: 'Elástica Films — Cine, «La Mitad de Ana» · Madrid',
 				dates: 'Mayo – julio de 2023',
 				summary:
-					'Pruebas de vestuario y vestuario de actores y figuración, y ruta de tiendas, showrooms y empresas de alquiler para el largometraje.',
+					'Pruebas de vestuario, vestir a actores y figuración, y ruta de tiendas, showrooms y alquiler.',
 			},
 			/**
 			 * El cargo del historial era «editora de fotografía de moda», pero
@@ -150,7 +152,7 @@ export const es = {
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'Marzo de 2021 – marzo de 2022',
 				summary:
-					'Visualización digital de estampados y color sobre fotografía de producto para decidir qué entraba en producción sin fabricar muestra física. Marcas: Gef, Punto Blanco, Baby Fresh y Galax.',
+					'Fichas técnicas y visualización digital de estampados y color sobre fotografía de producto, para decidir qué se fabricaba sin muestra física. Marcas: Gef, Punto Blanco, Baby Fresh y Galax.',
 			},
 		},
 		/**
@@ -211,7 +213,7 @@ export const es = {
 			description: 'Campañas y colaboraciones de marca en las que ha trabajado Luisa Benítez',
 		},
 		celebrityEvents: {
-			heading: 'Celebridades y eventos',
+			heading: 'Celebridades',
 			title: 'Celebridades y eventos | Luisa Benítez',
 			description: 'Celebridades y eventos en los que ha trabajado Luisa Benítez',
 		},

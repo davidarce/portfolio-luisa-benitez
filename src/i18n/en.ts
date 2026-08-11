@@ -82,6 +82,8 @@ export const en: Translation = {
 		},
 		skills: [
 			'Look building',
+			'Moodboard creation',
+			'Product tech packs',
 			'Fitting',
 			'Shoot preparation',
 			'Showroom and costume rental',
@@ -92,10 +94,10 @@ export const en: Translation = {
 		experience: {
 			freelance: {
 				role: 'Freelance stylist',
-				org: 'A Coruña',
+				org: 'Madrid',
 				dates: 'Since February 2026',
 				summary:
-					'{n} projects as lead stylist: editorials for Mode Magazine, Artego Magazine, Pap Magazine and Folie Magazine, and celebrity styling for events, festivals and television.',
+					'{n} projects as lead stylist: editorials for Artego Magazine, Pap Magazine, Folie Magazine and Mode Magazine, and celebrity styling for events, festivals and television.',
 			},
 			agency: {
 				role: 'Styling assistant',
@@ -116,14 +118,14 @@ export const en: Translation = {
 				org: 'Elástica Films — Film, “La Mitad de Ana” · Madrid',
 				dates: 'May – July 2023',
 				summary:
-					'Fittings and dressing actors and extras, plus the store, showroom and costume-rental circuit for the feature film.',
+					'Fittings, dressing actors and extras, and the store, showroom and rental circuit.',
 			},
 			crystal: {
 				role: 'Fashion designer — print and colour (freelance)',
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'March 2021 – March 2022',
 				summary:
-					'Digital print and colourway visualisation on product photography to decide what went into production without making a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
+					'Tech packs and digital print and colourway visualisation on product photography, to decide what got made without a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
 			},
 		},
 		/** «Técnico Laboral» se deja en español entre paréntesis: es el nombre oficial del certificado de Cesde. */
@@ -174,7 +176,7 @@ export const en: Translation = {
 			description: 'Brand campaigns and collaborations Luisa Benítez has worked on',
 		},
 		celebrityEvents: {
-			heading: 'Celebrity & Events',
+			heading: 'Celebrities',
 			title: 'Celebrity & Events | Luisa Benítez',
 			description: 'Celebrity and event projects Luisa Benítez has worked on',
 		},
