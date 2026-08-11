@@ -104,8 +104,7 @@
                 {
                     "file": "/assets/celebrities/maica-telecinco/video-1.mp4"
                 }
-            ],
-            "featured": true
+            ]
         },
         {
             "id": "tania-deniz-coachella",
@@ -275,7 +274,8 @@
                     "file": "/assets/celebrities/aitana/3.webp",
                     "cover": true
                 }
-            ]
+            ],
+            "featured": true
         },
         {
             "id": "zara",
