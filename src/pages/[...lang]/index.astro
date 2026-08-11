@@ -258,6 +258,26 @@ if (profile.availableForTravel) {
 			overflow: hidden;
 		}
 
+		/*
+		 * Velo claro solo por la izquierda. El contraste del nombre ya era de
+		 * 10:1, pero el fondo variaba 137 puntos de claro a oscuro bajo el texto
+		 * (ciclorama y tul alternándose) y eso es lo que cansa la vista. Aclara
+		 * en vez de oscurecer porque el texto es oscuro, y se desvanece antes de
+		 * llegar a la modelo para no tocar la foto.
+		 */
+		.portada::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background: linear-gradient(
+				to right,
+				rgb(236 236 233 / 0.82) 0%,
+				rgb(236 236 233 / 0.62) 22%,
+				rgb(236 236 233 / 0) 42%
+			);
+		}
+
 		.portada :global(img) {
 			position: absolute;
 			inset: 0;
@@ -275,10 +295,19 @@ if (profile.availableForTravel) {
 
 		.portada-texto {
 			position: relative;
+			z-index: 1;
 			height: 100%;
 			justify-content: center;
 			padding-block: 0;
 			gap: 1.25rem;
+			/*
+			 * Se sale del contenedor centrado del sitio y se pega al borde: dentro
+			 * del wrapper el texto caía sobre la cola del vestido, que es donde se
+			 * perdía. Aquí manda la foto, no la retícula.
+			 */
+			max-width: none;
+			margin-inline: 0;
+			padding-inline: clamp(1.5rem, 4vw, 4.5rem);
 		}
 
 		.portada-texto .tagline {

@@ -11,7 +11,7 @@ export const en: Translation = {
 		home: 'Home',
 		editorial: 'Editorial',
 		campaigns: 'Campaigns',
-		celebrityEvents: 'Celebrity & Events',
+		celebrityEvents: 'Celebrities',
 		films: 'Film & TV',
 		runway: 'Runway',
 		about: 'About',
@@ -61,9 +61,10 @@ export const en: Translation = {
 			'Luisa Benítez, fashion stylist based in A Coruña. Editorials for Numéro Netherlands, Vogue Adria and GQ México, brand campaigns and image consulting.',
 		eyebrow: 'About',
 		bio: [
+			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent five years working in fashion, first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and Pap Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, on Mercedes-Benz Fashion Week Madrid shows, and with celebrities such as Zara Larsson, Aitana and Miguel Herrán at events and premieres.",
 			"If I can't find the piece I have in my head, I make it. I've cut up tights to make gloves and turned garments inside out because the original cut didn't fall the way I saw it. What I imagine, I want to see, and I find a way.",
-			"I come from fashion design. I trained in Colombia before specialising in styling and image consulting in Spain, and it left me with a particular way of looking at clothes: I understand how a garment is built, not just how it looks. I've spent five years working in fashion, first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and pap magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on Mercedes-Benz Fashion Week Madrid shows.",
 			"Every brief asks for something different, and I don't treat them the same. An editorial can take maximalism, layers, texture, accessories with weight; a campaign asks for the product to lead and for the styling to step back. I enjoy the freedom of editorial more, but I respect the craft of commercial work and I know when to keep quiet. In both cases I'm after the same thing: that the look reads as the wearer's own, not as a costume.",
+			"I move with the same ease across womenswear and menswear. I care about the detail, I keep the set relaxed, and every brief ends up with something that wasn't in the plan.",
 		],
 		sections: { services: 'Services', featuredIn: 'Featured in' },
 	},
@@ -81,64 +82,67 @@ export const en: Translation = {
 		},
 		skills: [
 			'Look building',
+			'Moodboard creation',
+			'Product tech packs',
 			'Fitting',
 			'Shoot preparation',
 			'Showroom and costume rental',
 			'Coordination with photography and art direction',
 		],
 		profileText:
-			"I come from fashion design: I trained in Colombia before specialising in styling and image consulting in Spain. I've spent five years working in fashion: first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and pap magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on Mercedes-Benz Fashion Week Madrid shows.",
+			"I come from fashion design: I trained in Colombia before specialising in styling and image consulting in Spain. I've spent five years working in fashion: first in fashion design in Colombia, then in runway and film, then as an agency assistant, and now independently. I've worked on editorials for Vogue Adria, GQ México, Numéro Netherlands and Pap Magazine, on campaigns for Bruno Magli, Alaniz, Agatha Paris and YSL, and on Mercedes-Benz Fashion Week Madrid shows.",
 		experience: {
 			freelance: {
 				role: 'Freelance stylist',
-				org: 'A Coruña',
+				org: 'Madrid',
 				dates: 'Since February 2026',
 				summary:
-					'{n} projects as lead stylist: editorials for Mode Magazine, Artego Magazine, pap magazine and Folie Magazine, and celebrity styling for events, festivals and television.',
+					'{n} projects as lead stylist: editorials for Artego Magazine, Pap Magazine, Folie Magazine and Mode Magazine, and celebrity styling for events, festivals and television.',
 			},
 			agency: {
 				role: 'Styling assistant',
-				org: 'Saik and Stella Creatives agencies',
+				org: 'Saik Spain and Stella Creatives London agencies',
 				dates: 'March – August 2025 (project-based)',
 				summary:
 					'{n} projects assisting stylist Caterina Ospina: editorials for Numéro Netherlands, Vogue Adria and GQ México; campaigns for YSL, Bruno Magli, Kérastase, Agatha Paris, Alaniz, Redken, GHD, Prime Video and Vogue España; and celebrity dressing for events.',
 			},
 			runway: {
 				role: 'Stylist and wardrobe assistant',
-				org: 'Mercedes-Benz Fashion Week Madrid',
+				org: 'Mercedes-Benz Fashion Week Madrid · Premios Nacionales a la Moda ANDE',
 				dates: 'February 2023 – September 2025',
 				summary:
-					'{n} shows: styling for Claro Couture and wardrobe assistance for Ángel Schlesser ({a} seasons, one in the OFF programme).',
+					'5 shows: stylist for Claro Couture, and wardrobe assistant at the Premios Nacionales a la Moda ANDE and for Ángel Schlesser (3 seasons).',
 			},
 			film: {
 				role: 'Wardrobe assistant (internship)',
 				org: 'Elástica Films — Film, “La Mitad de Ana” · Madrid',
 				dates: 'May – July 2023',
-				summary: 'Store, showroom and costume-rental circuit for the feature film.',
+				summary:
+					'Fittings, dressing actors and extras, and the store, showroom and rental circuit.',
 			},
 			crystal: {
 				role: 'Fashion designer — print and colour (freelance)',
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'March 2021 – March 2022',
 				summary:
-					'Digital print and colourway visualisation on product photography to decide what went into production without making a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
+					'Tech packs and digital print and colourway visualisation on product photography, to decide what got made without a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
 			},
 		},
 		/** «Técnico Laboral» se deja en español entre paréntesis: es el nombre oficial del certificado de Cesde. */
 		education: [
 			{
 				degree: 'Personal and Corporate Image Consulting',
-				org: 'MasterD (now Davante) — Madrid, Spain',
+				org: 'MasterD, Escuela Profesional CreaDiseño (now Davante) — Madrid, Spain',
 				dates: 'January 2024 – November 2025',
 			},
 			{
 				degree: 'Styling and Personal Shopping',
-				org: 'MasterD — Madrid, Spain',
+				org: 'MasterD, Escuela Profesional CreaDiseño — Madrid, Spain',
 				dates: 'May 2022 – November 2023',
 			},
 			{
-				degree: 'Fashion Design Assistant (Técnico Laboral)',
-				org: 'Cesde — Medellín, Colombia',
+				degree: 'Fashion Design (Técnico Laboral)',
+				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'January 2019 – December 2020',
 			},
 		],
@@ -172,7 +176,7 @@ export const en: Translation = {
 			description: 'Brand campaigns and collaborations Luisa Benítez has worked on',
 		},
 		celebrityEvents: {
-			heading: 'Celebrity & Events',
+			heading: 'Celebrities',
 			title: 'Celebrity & Events | Luisa Benítez',
 			description: 'Celebrity and event projects Luisa Benítez has worked on',
 		},

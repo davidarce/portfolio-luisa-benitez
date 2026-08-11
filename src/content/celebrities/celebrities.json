@@ -331,7 +331,7 @@
             "img": "/assets/celebrities/alex-saint-malaga/index.webp",
             "img_alt": "Alex Saint en el Festival de Málaga",
             "cardSize": "normal",
-            "role": "lead-stylist",
+            "role": "assistant-stylist",
             "format": "event",
             "gallery": [
                 {
@@ -344,7 +344,8 @@
                     "file": "/assets/celebrities/alex-saint-malaga/3.webp",
                     "cover": true
                 }
-            ]
+            ],
+            "leadStylist": "Caterina Ospina"
         },
         {
             "id": "maria-pombo-netflix",

@@ -12,7 +12,7 @@ export const es = {
 		home: 'Inicio',
 		editorial: 'Editorial',
 		campaigns: 'Campañas',
-		celebrityEvents: 'Celebridades y eventos',
+		celebrityEvents: 'Celebridades',
 		films: 'Cine',
 		runway: 'Runway',
 		about: 'Sobre mí',
@@ -65,9 +65,10 @@ export const es = {
 			'Luisa Benítez, estilista de moda en A Coruña. Editoriales para Numéro Netherlands, Vogue Adria y GQ México, campañas de marca, celebridades y asesoría de imagen.',
 		eyebrow: 'Sobre mí',
 		bio: [
+			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cinco años trabajando en moda, primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y Pap Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, en desfiles de Mercedes-Benz Fashion Week Madrid, y con celebridades como Zara Larsson, Aitana o Miguel Herrán en eventos y presentaciones.',
 			'Si no encuentro la prenda que tengo en la cabeza, la fabrico. He hecho guantes cortando medias y he puesto prendas del revés porque el corte original no caía como yo lo veía. Lo que imagino lo quiero ver, y busco la forma.',
-			'Vengo del diseño de modas. Me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España, y eso me dejó una manera concreta de mirar la ropa: entiendo cómo está construida una prenda, no solo cómo se ve. Llevo cinco años trabajando en moda, primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia, y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y pap magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en desfiles de Mercedes-Benz Fashion Week Madrid.',
 			'Cada encargo pide algo distinto y no los trato igual. Una editorial admite maximalismo, capas, accesorios que pesan; una campaña pide que el producto sea el protagonista y que el estilismo sepa apartarse. Disfruto más la libertad de lo editorial, pero respeto el oficio de lo comercial y sé cuándo callarme. En los dos casos busco lo mismo: que el look se vea llevado como propio y no como un disfraz.',
+			'Me muevo con la misma soltura en moda femenina y masculina. Cuido el detalle, en el set trabajo sin tensión, y cada encargo acaba llevándose algo que no estaba en el guion.',
 		],
 		sections: { services: 'Servicios', featuredIn: 'Publicaciones' },
 	},
@@ -96,34 +97,36 @@ export const es = {
 		 */
 		skills: [
 			'Composición de looks',
+			'Creación de moodboards',
+			'Fichas técnicas de producto',
 			'Fitting',
 			'Preparación de shooting',
 			'Showroom y alquiler de vestuario',
 			'Coordinación con fotografía y dirección de arte',
 		],
 		profileText:
-			'Vengo del diseño de modas: me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España. Llevo cinco años trabajando en moda: primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y pap magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en desfiles de Mercedes-Benz Fashion Week Madrid.',
+			'Vengo del diseño de modas: me formé en Colombia antes de especializarme en estilismo y asesoría de imagen en España. Llevo cinco años trabajando en moda: primero en diseño de moda en Colombia, luego en pasarela y cine, después como asistente en agencia y hoy de forma independiente. He trabajado en editoriales para Vogue Adria, GQ México, Numéro Netherlands y Pap Magazine, en campañas para Bruno Magli, Alaniz, Agatha Paris e YSL, y en desfiles de Mercedes-Benz Fashion Week Madrid.',
 		experience: {
 			freelance: {
 				role: 'Estilista independiente',
-				org: 'A Coruña',
+				org: 'Madrid',
 				dates: 'Desde febrero de 2026',
 				summary:
-					'{n} proyectos como estilista principal: editoriales para Mode Magazine, Artego Magazine, pap magazine y Folie Magazine, y estilismo de celebridades para eventos, festivales y televisión.',
+					'{n} proyectos como estilista principal: editoriales para Artego Magazine, Pap Magazine, Folie Magazine y Mode Magazine, y estilismo de celebridades para eventos, festivales y televisión.',
 			},
 			agency: {
 				role: 'Asistente de estilismo',
-				org: 'Agencias Saik y Stella Creatives',
+				org: 'Agencias Saik Spain y Stella Creatives London',
 				dates: 'Marzo – agosto de 2025 (por proyectos)',
 				summary:
 					'{n} proyectos asistiendo a la estilista Caterina Ospina: editoriales para Numéro Netherlands, Vogue Adria y GQ México; campañas para YSL, Bruno Magli, Kérastase, Agatha Paris, Alaniz, Redken, GHD, Prime Video y Vogue España; y vestuario de celebridades en eventos.',
 			},
 			runway: {
 				role: 'Estilista y asistente de vestuario',
-				org: 'Mercedes-Benz Fashion Week Madrid',
+				org: 'Mercedes-Benz Fashion Week Madrid · Premios Nacionales a la Moda ANDE',
 				dates: 'Febrero de 2023 – septiembre de 2025',
 				summary:
-					'{n} desfiles: estilismo en Claro Couture y asistencia de vestuario en Ángel Schlesser ({a} temporadas, una en el programa OFF).',
+					'5 desfiles: estilista en Claro Couture, y asistente de vestuario en los Premios Nacionales a la Moda ANDE y en Ángel Schlesser (3 temporadas).',
 			},
 			/**
 			 * «Auxiliar de vestuario» y «prácticas» son el cargo y la modalidad
@@ -135,7 +138,8 @@ export const es = {
 				role: 'Auxiliar de vestuario (prácticas)',
 				org: 'Elástica Films — Cine, «La Mitad de Ana» · Madrid',
 				dates: 'Mayo – julio de 2023',
-				summary: 'Ruta de tiendas, showrooms y compañías de alquiler de vestuario para el largometraje.',
+				summary:
+					'Pruebas de vestuario, vestir a actores y figuración, y ruta de tiendas, showrooms y alquiler.',
 			},
 			/**
 			 * El cargo del historial era «editora de fotografía de moda», pero
@@ -148,7 +152,7 @@ export const es = {
 				org: 'Grupo Crystal S.A.S — Medellín, Colombia',
 				dates: 'Marzo de 2021 – marzo de 2022',
 				summary:
-					'Visualización digital de estampados y color sobre fotografía de producto para decidir qué entraba en producción sin fabricar muestra física. Marcas: Gef, Punto Blanco, Baby Fresh y Galax.',
+					'Fichas técnicas y visualización digital de estampados y color sobre fotografía de producto, para decidir qué se fabricaba sin muestra física. Marcas: Gef, Punto Blanco, Baby Fresh y Galax.',
 			},
 		},
 		/**
@@ -161,17 +165,17 @@ export const es = {
 		education: [
 			{
 				degree: 'Asesoría de Imagen Personal y Corporativa',
-				org: 'MasterD (hoy Davante) — Madrid, España',
+				org: 'MasterD, Escuela Profesional CreaDiseño (hoy Davante) — Madrid, España',
 				dates: 'Enero de 2024 – noviembre de 2025',
 			},
 			{
 				degree: 'Estilismo y Personal Shopper',
-				org: 'MasterD — Madrid, España',
+				org: 'MasterD, Escuela Profesional CreaDiseño — Madrid, España',
 				dates: 'Mayo de 2022 – noviembre de 2023',
 			},
 			{
-				degree: 'Técnico Laboral como Asistente en Diseño de Modas',
-				org: 'Cesde — Medellín, Colombia',
+				degree: 'Diseño de Modas (Técnico Laboral)',
+				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'Enero de 2019 – diciembre de 2020',
 			},
 		],
@@ -209,7 +213,7 @@ export const es = {
 			description: 'Campañas y colaboraciones de marca en las que ha trabajado Luisa Benítez',
 		},
 		celebrityEvents: {
-			heading: 'Celebridades y eventos',
+			heading: 'Celebridades',
 			title: 'Celebridades y eventos | Luisa Benítez',
 			description: 'Celebridades y eventos en los que ha trabajado Luisa Benítez',
 		},
