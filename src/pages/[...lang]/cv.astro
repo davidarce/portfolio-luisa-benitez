@@ -35,12 +35,13 @@ const leadCount = projects.filter((p) => p.role === "lead-stylist").length - run
 const agencyCount = projects.filter(
 	(p) => p.role === "assistant-stylist" && p.leadStylist,
 ).length;
-const runwayCount = runwayProjects.length;
-const runwayAssistCount = runwayProjects.filter((p) => p.role === "wardrobe-assistant").length;
 
 const experience = [
 	{ ...cv.experience.freelance, vars: { n: leadCount } },
-	{ ...cv.experience.runway, vars: { n: runwayCount, a: runwayAssistCount } },
+	// Sin `{n}` aquí: fueron 5 desfiles y la web enseña 4, porque del quinto no
+	// hay material. El portfolio es una selección de lo que tiene fotos; el CV
+	// cuenta la experiencia. Los demás recuentos sí salen de las colecciones.
+	{ ...cv.experience.runway, vars: {} },
 	{ ...cv.experience.agency, vars: { n: agencyCount } },
 	{ ...cv.experience.film, vars: {} },
 	{ ...cv.experience.crystal, vars: {} },

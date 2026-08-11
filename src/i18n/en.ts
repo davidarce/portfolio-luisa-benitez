@@ -108,10 +108,10 @@ export const en: Translation = {
 			},
 			runway: {
 				role: 'Stylist and wardrobe assistant',
-				org: 'Mercedes-Benz Fashion Week Madrid',
+				org: 'Mercedes-Benz Fashion Week Madrid · Premios Nacionales a la Moda ANDE',
 				dates: 'February 2023 – September 2025',
 				summary:
-					'{n} shows: styling for Claro Couture and wardrobe assistance for Ángel Schlesser ({a} seasons, one in the OFF programme).',
+					'5 shows: stylist for Claro Couture and wardrobe assistant for Ángel Schlesser (3 seasons) and the Premios Nacionales a la Moda ANDE.',
 			},
 			film: {
 				role: 'Wardrobe assistant (internship)',

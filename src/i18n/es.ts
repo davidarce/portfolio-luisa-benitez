@@ -123,10 +123,10 @@ export const es = {
 			},
 			runway: {
 				role: 'Estilista y asistente de vestuario',
-				org: 'Mercedes-Benz Fashion Week Madrid',
+				org: 'Mercedes-Benz Fashion Week Madrid · Premios Nacionales a la Moda ANDE',
 				dates: 'Febrero de 2023 – septiembre de 2025',
 				summary:
-					'{n} desfiles: estilismo en Claro Couture y asistencia de vestuario en Ángel Schlesser ({a} temporadas, una en el programa OFF).',
+					'5 desfiles: estilista en Claro Couture y asistente de vestuario en Ángel Schlesser (3 temporadas) y en los Premios Nacionales a la Moda ANDE.',
 			},
 			/**
 			 * «Auxiliar de vestuario» y «prácticas» son el cargo y la modalidad
