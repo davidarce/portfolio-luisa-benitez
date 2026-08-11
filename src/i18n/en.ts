@@ -128,7 +128,6 @@ export const en: Translation = {
 					'Tech packs and digital print and colourway visualisation on product photography, to decide what got made without a physical sample. Brands: Gef, Punto Blanco, Baby Fresh and Galax.',
 			},
 		},
-		/** «Técnico Laboral» se deja en español entre paréntesis: es el nombre oficial del certificado de Cesde. */
 		education: [
 			{
 				degree: 'Personal and Corporate Image Consulting',
@@ -141,7 +140,7 @@ export const en: Translation = {
 				dates: 'May 2022 – November 2023',
 			},
 			{
-				degree: 'Fashion Design (Técnico Laboral)',
+				degree: 'Fashion Design',
 				org: 'Cesde, Centro de Estudios Especializados — Medellín, Colombia',
 				dates: 'January 2019 – December 2020',
 			},
