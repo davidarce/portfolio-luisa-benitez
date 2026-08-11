@@ -16,7 +16,8 @@
 		"og": "node scripts/generate-og-images.mjs",
 		"variants": "node scripts/generate-card-variants.mjs",
 		"verify:viewer": "node scripts/verify-viewer.mjs",
-		"verify:portadas": "node scripts/verify-portadas.mjs"
+		"verify:portadas": "node scripts/verify-portadas.mjs",
+		"verify:videos": "node scripts/verify-videos.mjs"
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.2.1",
