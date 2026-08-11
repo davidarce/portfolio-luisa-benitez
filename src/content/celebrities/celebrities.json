@@ -23,8 +23,7 @@
                 {
                     "file": "/assets/celebrities/maica-premios-influencers/4.webp"
                 }
-            ],
-            "featured": true
+            ]
         },
         {
             "id": "maica-supervivientes",
@@ -105,7 +104,8 @@
                 {
                     "file": "/assets/celebrities/maica-telecinco/video-1.mp4"
                 }
-            ]
+            ],
+            "featured": true
         },
         {
             "id": "tania-deniz-coachella",
