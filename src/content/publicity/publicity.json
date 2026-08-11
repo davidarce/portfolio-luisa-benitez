@@ -7,7 +7,6 @@
             "img": "/assets/publicity/alaniz-maria-pombo/1.webp",
             "img_alt": "Campaña Alaniz María Pombo",
             "cardSize": "normal",
-            "order": 1,
             "role": "assistant-stylist",
             "format": "campaign",
             "leadStylist": "Caterina Ospina",
@@ -52,7 +51,6 @@
             "img": "/assets/publicity/bruno-magli/1.webp",
             "img_alt": "Campaña Bruno Magli",
             "cardSize": "normal",
-            "order": 2,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -105,7 +103,6 @@
             "img": "/assets/publicity/prime-video-zara-larsson/1.webp",
             "img_alt": "Campaña Prime Video Zara Larsson",
             "cardSize": "normal",
-            "order": 3,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "featured": true,
@@ -134,7 +131,6 @@
             "description": "Campaña para YSL con Aitana.",
             "img_alt": "Campaña YSL Aitana",
             "cardSize": "normal",
-            "order": 4,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -155,7 +151,6 @@
             "img": "/assets/publicity/agatha-paris-maria-pombo/1.webp",
             "img_alt": "Campaña Agatha Paris María Pombo",
             "cardSize": "normal",
-            "order": 5,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -181,7 +176,6 @@
             "img": "/assets/publicity/gdh-jesus-de-paula/index.webp",
             "img_alt": "Campaña GHD Jesús de Paula",
             "cardSize": "normal",
-            "order": 6,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -210,7 +204,6 @@
             "description": "Campaña para Kérastase.",
             "img_alt": "Campaña Kérastase",
             "cardSize": "normal",
-            "order": 7,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -230,7 +223,6 @@
             "description": "Campaña para Kérastase con Lola Lolita.",
             "img_alt": "Campaña Kérastase Lola Lolita",
             "cardSize": "normal",
-            "order": 8,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -250,7 +242,6 @@
             "description": "Campaña para Kérastase con Nicole Wallace.",
             "img_alt": "Campaña Kérastase Nicole Wallace",
             "cardSize": "normal",
-            "order": 9,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -270,7 +261,6 @@
             "description": "Campaña para Redken con Marina Reche.",
             "img_alt": "Campaña Redken Marina Reche",
             "cardSize": "normal",
-            "order": 10,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [
@@ -303,7 +293,6 @@
             "description": "Campaña de Clarins con María Pombo para Vogue Spain.",
             "img_alt": "Campaña Clarins con María Pombo para Vogue Spain",
             "cardSize": "normal",
-            "order": 11,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "gallery": [

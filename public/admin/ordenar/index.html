@@ -110,6 +110,20 @@
 			.acciones button:last-child { border-right: 0; }
 			.acciones button:hover { background: #1e2333; color: var(--texto); }
 			.acciones button.activo { color: var(--acento); font-weight: 600; }
+			.tarjeta .titulo {
+				padding: 0.5rem 0.6rem;
+				font-size: 0.85rem;
+				line-height: 1.3;
+				border-top: 1px solid var(--borde);
+				color: var(--texto);
+			}
+			.tarjeta .rol {
+				display: block;
+				margin-top: 0.15rem;
+				font-size: 0.75rem;
+				color: var(--suave);
+			}
+
 			.entrada {
 				max-width: 34rem;
 				margin: 6rem auto;
@@ -138,8 +152,13 @@
 
 		<div id="app" class="oculto">
 			<header>
-				<h1>Ordenar fotos</h1>
+				<h1 id="titulo">Ordenar fotos</h1>
+				<select id="modo">
+					<option value="fotos">Fotos de un proyecto</option>
+					<option value="proyectos">Orden de los proyectos</option>
+				</select>
 				<select id="proyecto"></select>
+				<select id="coleccion" class="oculto"></select>
 				<span class="contador" id="contador"></span>
 				<span class="derecha">
 					<span class="estado" id="estado"></span>
@@ -167,6 +186,8 @@
 			// en vez de pisar su trabajo.
 			const ficheros = new Map();
 			let actual = null;
+			let modo = 'fotos';
+			let rutaColeccion = null;
 			let sucio = false;
 			let arrastrada = null;
 
@@ -223,6 +244,18 @@
 				}
 			}
 
+			function montarColecciones() {
+				const s = $('coleccion');
+				s.replaceChildren();
+				for (const [etiqueta, ruta] of COLECCIONES) {
+					const o = document.createElement('option');
+					o.value = ruta;
+					o.textContent = etiqueta;
+					s.append(o);
+				}
+				rutaColeccion = COLECCIONES[0][1];
+			}
+
 			function elegir(valor) {
 				const [ruta, id] = valor.split('::');
 				actual = { ruta, p: ficheros.get(ruta).datos.highlighted.find((x) => x.id === id) };
@@ -230,6 +263,7 @@
 			}
 
 			function pintar() {
+				if (modo === 'proyectos') return pintarProyectos();
 				const fotos = actual.p.gallery || [];
 				$('rejilla').replaceChildren();
 				fotos.forEach((foto, i) => {
@@ -250,6 +284,33 @@
 				$('contador').textContent = `${fotos.filter((f) => !f.hidden).length} visibles de ${fotos.length}`;
 			}
 
+			// Los proyectos se pintan igual que las fotos, con su portada, porque la
+			// tarea es la misma: mirar y arrastrar. El orden del array es el orden de
+			// la página, así que lo que ve aquí es lo que verá el visitante.
+			function pintarProyectos() {
+				const lista = ficheros.get(rutaColeccion).datos.highlighted;
+				$('rejilla').replaceChildren();
+				lista.forEach((p, i) => {
+					const portada = p.gallery?.find((g) => g.cover)?.file || p.img;
+					const t = document.createElement('div');
+					t.className = 'tarjeta';
+					t.draggable = true;
+					t.dataset.i = i;
+					t.innerHTML = `
+						<span class="numero">${i + 1}</span>
+						${p.featured ? '<span class="marca">EN LA HOME</span>' : ''}
+						<img src="${portada}" alt="" loading="lazy">
+						<p class="titulo">${p.title}
+							<span class="rol">${p.role === 'lead-stylist' ? 'Estilista' : 'Asistente'}</span>
+						</p>
+						<div class="acciones">
+							<button data-accion="home" class="${p.featured ? 'activo' : ''}">${p.featured ? 'En la home' : 'Poner en la home'}</button>
+						</div>`;
+					$('rejilla').append(t);
+				});
+				$('contador').textContent = `${lista.length} proyectos`;
+			}
+
 			function marcarSucio() {
 				sucio = true;
 				$('guardar').disabled = false;
@@ -261,6 +322,14 @@
 				const btn = e.target.closest('button');
 				if (!btn) return;
 				const i = Number(btn.closest('.tarjeta').dataset.i);
+				if (modo === 'proyectos') {
+					const p = ficheros.get(rutaColeccion).datos.highlighted[i];
+					if (p.featured) delete p.featured;
+					else p.featured = true;
+					pintar();
+					marcarSucio();
+					return;
+				}
 				const fotos = actual.p.gallery;
 				if (btn.dataset.accion === 'ocultar') {
 					if (fotos[i].hidden) delete fotos[i].hidden;
@@ -299,8 +368,11 @@
 				const t = e.target.closest('.tarjeta');
 				if (!t || arrastrada === null) return;
 				const destino = Number(t.dataset.i);
-				const [movida] = actual.p.gallery.splice(arrastrada, 1);
-				actual.p.gallery.splice(destino, 0, movida);
+				const lista = modo === 'proyectos'
+					? ficheros.get(rutaColeccion).datos.highlighted
+					: actual.p.gallery;
+				const [movida] = lista.splice(arrastrada, 1);
+				lista.splice(destino, 0, movida);
 				arrastrada = null;
 				pintar();
 				marcarSucio();
@@ -311,6 +383,38 @@
 					x.classList.remove('arrastrando', 'destino'),
 				);
 				arrastrada = null;
+			});
+
+			function avisarSiSucio() {
+				return !sucio || confirm('Tienes cambios sin guardar. ¿Seguir sin guardarlos?');
+			}
+
+			$('modo').addEventListener('change', (e) => {
+				if (!avisarSiSucio()) {
+					e.target.value = modo;
+					return;
+				}
+				sucio = false;
+				$('guardar').disabled = true;
+				$('estado').textContent = '';
+				modo = e.target.value;
+				const proyectos = modo === 'proyectos';
+				$('titulo').textContent = proyectos ? 'Ordenar proyectos' : 'Ordenar fotos';
+				$('proyecto').classList.toggle('oculto', proyectos);
+				$('coleccion').classList.toggle('oculto', !proyectos);
+				pintar();
+			});
+
+			$('coleccion').addEventListener('change', (e) => {
+				if (!avisarSiSucio()) {
+					e.target.value = rutaColeccion;
+					return;
+				}
+				sucio = false;
+				$('guardar').disabled = true;
+				$('estado').textContent = '';
+				rutaColeccion = e.target.value;
+				pintar();
 			});
 
 			$('proyecto').addEventListener('change', (e) => {
@@ -324,7 +428,8 @@
 			});
 
 			$('guardar').addEventListener('click', async () => {
-				const f = ficheros.get(actual.ruta);
+				const ruta = modo === 'proyectos' ? rutaColeccion : actual.ruta;
+				const f = ficheros.get(ruta);
 				$('guardar').disabled = true;
 				$('estado').textContent = 'guardando...';
 				$('estado').className = 'estado';
@@ -332,10 +437,12 @@
 					// Se reescribe el fichero entero a partir de lo que leímos, así que
 					// todos los demás campos viajan intactos: aquí solo se toca `gallery`.
 					const texto = JSON.stringify(f.datos, null, 4) + '\n';
-					const r = await api(`contents/${actual.ruta}`, {
+					const r = await api(`contents/${ruta}`, {
 						method: 'PUT',
 						body: JSON.stringify({
-							message: `Ordenar fotos de ${actual.p.title}`,
+							message: modo === 'proyectos'
+								? `Ordenar los proyectos de ${$('coleccion').selectedOptions[0].textContent}`
+								: `Ordenar fotos de ${actual.p.title}`,
 							content: aBase64(texto),
 							sha: f.sha,
 							branch: RAMA,
@@ -363,6 +470,7 @@
 			async function arrancar() {
 				await cargar();
 				montarSelector();
+				montarColecciones();
 				elegir($('proyecto').value);
 				$('entrada').classList.add('oculto');
 				$('app').classList.remove('oculto');

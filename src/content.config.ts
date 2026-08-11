@@ -38,17 +38,10 @@ const gallerySchema = z.object({
 		)
 		.optional(),
 	hasGallery: z.boolean().default(true),
-	order: z.number().default(0),
 
-	// Curaduría manual de la home: sube un proyecto a «Trabajos destacados»
-	// aunque el orden por rol no lo colocaría ahí. No altera los listados.
+	// Sube un proyecto a «Trabajos destacados» de la home. El orden de los
+	// listados no se toca aquí: lo decide la posición en el array del JSON.
 	featured: z.boolean().optional(),
-
-	// Ancla un proyecto al principio o al final de SU listado, por encima del
-	// orden por rol. Decisión editorial explícita, no automatismo. `optional()`
-	// (no `.optional()` a secas) para tragar el "Sin fijar" del CMS, que
-	// escribe `pin: ""` en vez de omitir el campo.
-	pin: optional(z.enum(['first', 'last'])),
 
 	role: z.enum(['lead-stylist', 'assistant-stylist', 'wardrobe-assistant', 'co-stylist']),
 	roleDetail: optional(z.string()),

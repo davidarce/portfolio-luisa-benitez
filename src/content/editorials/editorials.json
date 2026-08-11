@@ -1,59 +1,6 @@
 {
     "highlighted": [
         {
-            "title": "Numéro - Miguel Herrán",
-            "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
-            "gallery": [
-                {
-                    "file": "/assets/editorials/miguel-herran/1.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/10.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/6.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/miguel-herran/7.webp"
-                }
-            ],
-            "id": "miguel-herran",
-            "img": "/assets/editorials/miguel-herran/index.webp",
-            "img_alt": "Editorial Numéro - Miguel Herrán",
-            "cardSize": "normal",
-            "order": 2,
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "format": "editorial",
-            "credits": {
-                "photographer": "Sergio González @sergiognzalez",
-                "artDirection": "Sergio González @sergiognzalez",
-                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
-                "talent": "Miguel Herrán @miguel.g.herran",
-                "production": "Saik Prod @saikprod",
-                "location": "The Palace Madrid @thepalacemadrid"
-            }
-        },
-        {
             "title": "Vogue Adria",
             "description": "Editorial para Vogue Adria.",
             "gallery": [
@@ -92,12 +39,10 @@
                     "file": "/assets/editorials/vogue/video-1.mp4"
                 }
             ],
-            "pin": "first",
             "id": "vogue",
             "img": "/assets/editorials/vogue/index.webp",
             "img_alt": "Editorial Vogue Adria",
             "cardSize": "normal",
-            "order": 1,
             "role": "assistant-stylist",
             "leadStylist": "Caterina Ospina",
             "format": "editorial",
@@ -111,185 +56,6 @@
                 "talentAgency": "Uno Models @unomodels",
                 "production": "Saik Prod @saikprod",
                 "location": "Espacio La Candelaria @espacio_lacandelaria"
-            }
-        },
-        {
-            "title": "Numéro - Martina Cariddi",
-            "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
-            "gallery": [
-                {
-                    "file": "/assets/editorials/martina/1.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/editorials/martina/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/6.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/10.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/11.webp"
-                },
-                {
-                    "file": "/assets/editorials/martina/12.webp"
-                }
-            ],
-            "id": "martina",
-            "img": "/assets/editorials/martina/index.webp",
-            "img_alt": "Editorial Numéro - Martina Cariddi",
-            "cardSize": "normal",
-            "order": 3,
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "format": "editorial",
-            "credits": {
-                "photographer": "Sergio González @sergiognzalez",
-                "stylingTeam": "Verónica Faya @veronicafaya",
-                "makeup": "Cynthia de León @cynthiadeleon_",
-                "hair": "Jesús de Paula @jesusdepaula para Redken",
-                "talent": "Martina Cariddi @martinacariddi",
-                "production": "Saik Prod @saikprod",
-                "location": "Who Estudio @whoestudio"
-            }
-        },
-        {
-            "title": "Numéro - Isabeli Fontana",
-            "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
-            "gallery": [
-                {
-                    "file": "/assets/editorials/isabeli/1.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/editorials/isabeli/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/6.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/10.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/11.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/12.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/13.webp"
-                },
-                {
-                    "file": "/assets/editorials/isabeli/14.webp"
-                }
-            ],
-            "id": "isabeli",
-            "img": "/assets/editorials/isabeli/index.webp",
-            "img_alt": "Editorial Numéro - Isabeli Fontana",
-            "cardSize": "normal",
-            "order": 4,
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "format": "editorial",
-            "credits": {
-                "photographer": "Juankr @juankr_",
-                "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
-                "makeup": "Iván Gómez @ivangomez",
-                "hair": "Fernando Torrent @torrentfernando",
-                "setDesign": "Isabel Adell @isadellc",
-                "talent": "Isabeli Fontana @isabelifontana",
-                "talentAgency": "The Lions Management @thelionsmgmt",
-                "production": "Saik Prod @saikprod"
-            }
-        },
-        {
-            "title": "GQ - México",
-            "description": "Editorial para GQ México.",
-            "gallery": [
-                {
-                    "file": "/assets/editorials/gq/1.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/editorials/gq/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/6.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/10.webp"
-                }
-            ],
-            "id": "gq",
-            "img": "/assets/editorials/gq/index.webp",
-            "img_alt": "Editorial GQ México",
-            "cardSize": "normal",
-            "order": 5,
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "format": "editorial",
-            "credits": {
-                "photographer": "Juankr @juankr_",
-                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
-                "muah": "Antonio Romero @antonioromeromakeup",
-                "talent": "Walid Fiher @w3lidd",
-                "production": "Saik Prod @saikprod"
             }
         },
         {
@@ -380,7 +146,6 @@
             "img": "/assets/editorials/artego-color-pop-garden/index.webp",
             "img_alt": "Editorial Artego Magazine - Color Pop Garden",
             "cardSize": "normal",
-            "order": 6,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
@@ -453,7 +218,6 @@
             "img": "/assets/editorials/pap-the-new-dandy/index.webp",
             "img_alt": "Editorial pap magazine - The New Dandy",
             "cardSize": "normal",
-            "order": 7,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
@@ -519,7 +283,6 @@
             "img": "/assets/editorials/folie-always-love/index.webp",
             "img_alt": "Editorial Folie Magazine - Always Love",
             "cardSize": "normal",
-            "order": 8,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
@@ -569,7 +332,6 @@
             "img": "/assets/editorials/folie-soft-tension/index.webp",
             "img_alt": "Editorial Folie Magazine - Soft Tension",
             "cardSize": "normal",
-            "order": 9,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
@@ -689,7 +451,6 @@
             "img": "/assets/editorials/isabel-arbos-model-test/index.webp",
             "img_alt": "Editorial Mode Magazine con Isabel Arbós",
             "cardSize": "normal",
-            "order": 10,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
@@ -697,6 +458,234 @@
                 "talent": "Isabel Arbós @isabel_arbos",
                 "muah": "Diego Vitaller @muagami_beauty",
                 "talentAgency": "Six Management @sixmanagement.es"
+            }
+        },
+        {
+            "title": "Numéro - Miguel Herrán",
+            "description": "Editorial para Numéro Netherlands con Miguel Herrán.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/miguel-herran/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/miguel-herran/7.webp"
+                }
+            ],
+            "id": "miguel-herran",
+            "img": "/assets/editorials/miguel-herran/index.webp",
+            "img_alt": "Editorial Numéro - Miguel Herrán",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "artDirection": "Sergio González @sergiognzalez",
+                "muah": "Fernando Torrent @torrentfernando para YSL Beauty",
+                "talent": "Miguel Herrán @miguel.g.herran",
+                "production": "Saik Prod @saikprod",
+                "location": "The Palace Madrid @thepalacemadrid"
+            }
+        },
+        {
+            "title": "Numéro - Martina Cariddi",
+            "description": "Editorial para Numéro Netherlands con Martina Cariddi.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/martina/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/martina/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/martina/12.webp"
+                }
+            ],
+            "id": "martina",
+            "img": "/assets/editorials/martina/index.webp",
+            "img_alt": "Editorial Numéro - Martina Cariddi",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Sergio González @sergiognzalez",
+                "stylingTeam": "Verónica Faya @veronicafaya",
+                "makeup": "Cynthia de León @cynthiadeleon_",
+                "hair": "Jesús de Paula @jesusdepaula para Redken",
+                "talent": "Martina Cariddi @martinacariddi",
+                "production": "Saik Prod @saikprod",
+                "location": "Who Estudio @whoestudio"
+            }
+        },
+        {
+            "title": "Numéro - Isabeli Fontana",
+            "description": "Editorial para Numéro Netherlands con Isabeli Fontana.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/isabeli/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/isabeli/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/isabeli/14.webp"
+                }
+            ],
+            "id": "isabeli",
+            "img": "/assets/editorials/isabeli/index.webp",
+            "img_alt": "Editorial Numéro - Isabeli Fontana",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Gema Balsalobre @gemabalsalobre1",
+                "makeup": "Iván Gómez @ivangomez",
+                "hair": "Fernando Torrent @torrentfernando",
+                "setDesign": "Isabel Adell @isadellc",
+                "talent": "Isabeli Fontana @isabelifontana",
+                "talentAgency": "The Lions Management @thelionsmgmt",
+                "production": "Saik Prod @saikprod"
+            }
+        },
+        {
+            "title": "GQ - México",
+            "description": "Editorial para GQ México.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/gq/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/gq/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/10.webp"
+                }
+            ],
+            "id": "gq",
+            "img": "/assets/editorials/gq/index.webp",
+            "img_alt": "Editorial GQ México",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
+                "muah": "Antonio Romero @antonioromeromakeup",
+                "talent": "Walid Fiher @w3lidd",
+                "production": "Saik Prod @saikprod"
             }
         },
         {
@@ -735,12 +724,10 @@
                     "hidden": true
                 }
             ],
-            "pin": "last",
             "id": "aminata",
             "img": "/assets/editorials/aminata/index.webp",
             "img_alt": "Editorial Mode Magazine con Aminata Sarr",
             "cardSize": "normal",
-            "order": 11,
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
