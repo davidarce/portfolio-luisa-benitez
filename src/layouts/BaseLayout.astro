@@ -50,6 +50,12 @@ const alternates = hasTranslation
 		/>
 		<ClientRouter />
 		<script is:inline>
+			// Va envuelto en una función: con ClientRouter este script se vuelve a
+			// ejecutar en cada navegación, y en el ámbito global el segundo `const`
+			// reventaba con "Identifier already declared". El error mataba lo que
+			// venía después, incluidos los escuchadores de astro:before-swap que
+			// pausan el vídeo al cambiar de página.
+			(() => {
 			// This code is inlined in the head to make it instant & blocking.
 			const getThemePreference = () => {
 				if (
@@ -93,6 +99,7 @@ const alternates = hasTranslation
 					video.pause();
 				});
 			});
+			})();
 		</script>
 	</head>
 	<body>
