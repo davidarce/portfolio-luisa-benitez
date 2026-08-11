@@ -59,6 +59,80 @@
             }
         },
         {
+            "title": "pap magazine - The New Dandy",
+            "description": "Editorial «The New Dandy» para pap magazine.",
+            "gallery": [
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/1.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/5.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/6.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/10.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/11.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/12.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/13.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/14.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/15.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/16.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/17.webp"
+                },
+                {
+                    "file": "/assets/editorials/pap-the-new-dandy/18.webp"
+                }
+            ],
+            "id": "pap-the-new-dandy",
+            "img": "/assets/editorials/pap-the-new-dandy/index.webp",
+            "img_alt": "Editorial pap magazine - The New Dandy",
+            "cardSize": "normal",
+            "role": "lead-stylist",
+            "format": "editorial",
+            "credits": {
+                "photographer": "Fio Vicente @fio.vicente",
+                "talent": "Álvaro García Narváez @alvarogarcianarvaez",
+                "muah": "Diego Vitaller @muagami_beauty",
+                "talentAgency": "The Road Models @theroadmodels",
+                "video": "Camilo Andrés @camilo5p"
+            }
+        },
+        {
             "title": "Artego Magazine - Color Pop Garden",
             "description": "Editorial «Color Pop Garden» para Artego Magazine.",
             "gallery": [
@@ -155,77 +229,53 @@
             }
         },
         {
-            "title": "pap magazine - The New Dandy",
-            "description": "Editorial «The New Dandy» para pap magazine.",
+            "title": "Folie Magazine - Soft Tension",
+            "description": "Editorial «Soft Tension» para Folie Magazine.",
             "gallery": [
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/1.webp",
+                    "file": "/assets/editorials/folie-soft-tension/2.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/3.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/4.webp"
+                },
+                {
+                    "file": "/assets/editorials/folie-soft-tension/5.webp",
                     "cover": true
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/2.webp"
+                    "file": "/assets/editorials/folie-soft-tension/6.webp"
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/3.webp"
+                    "file": "/assets/editorials/folie-soft-tension/7.webp"
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/4.webp"
+                    "file": "/assets/editorials/folie-soft-tension/8.webp"
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/5.webp"
+                    "file": "/assets/editorials/folie-soft-tension/9.webp"
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/6.webp"
+                    "file": "/assets/editorials/folie-soft-tension/10.webp",
+                    "hidden": true
                 },
                 {
-                    "file": "/assets/editorials/pap-the-new-dandy/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/10.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/11.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/12.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/13.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/14.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/15.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/16.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/17.webp"
-                },
-                {
-                    "file": "/assets/editorials/pap-the-new-dandy/18.webp"
+                    "file": "/assets/editorials/folie-soft-tension/1.webp"
                 }
             ],
-            "id": "pap-the-new-dandy",
-            "img": "/assets/editorials/pap-the-new-dandy/index.webp",
-            "img_alt": "Editorial pap magazine - The New Dandy",
+            "id": "folie-soft-tension",
+            "img": "/assets/editorials/folie-soft-tension/index.webp",
+            "img_alt": "Editorial Folie Magazine - Soft Tension",
             "cardSize": "normal",
             "role": "lead-stylist",
             "format": "editorial",
             "credits": {
-                "photographer": "Fio Vicente @fio.vicente",
-                "talent": "Álvaro García Narváez @alvarogarcianarvaez",
+                "photographer": "Diego G. @diego_v_photo",
+                "talent": "Luca Darblade @luca_darblade",
                 "muah": "Diego Vitaller @muagami_beauty",
-                "talentAgency": "The Road Models @theroadmodels",
-                "video": "Camilo Andrés @camilo5p"
+                "talentAgency": "Wanted Agency @wantedagency"
             }
         },
         {
@@ -292,53 +342,54 @@
             }
         },
         {
-            "title": "Folie Magazine - Soft Tension",
-            "description": "Editorial «Soft Tension» para Folie Magazine.",
+            "title": "GQ - México",
+            "description": "Editorial para GQ México.",
             "gallery": [
                 {
-                    "file": "/assets/editorials/folie-soft-tension/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/folie-soft-tension/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/folie-soft-tension/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/folie-soft-tension/5.webp",
+                    "file": "/assets/editorials/gq/1.webp",
                     "cover": true
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/6.webp"
+                    "file": "/assets/editorials/gq/2.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/7.webp"
+                    "file": "/assets/editorials/gq/3.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/8.webp"
+                    "file": "/assets/editorials/gq/4.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/9.webp"
+                    "file": "/assets/editorials/gq/5.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/10.webp",
-                    "hidden": true
+                    "file": "/assets/editorials/gq/6.webp"
                 },
                 {
-                    "file": "/assets/editorials/folie-soft-tension/1.webp"
+                    "file": "/assets/editorials/gq/7.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/8.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/9.webp"
+                },
+                {
+                    "file": "/assets/editorials/gq/10.webp"
                 }
             ],
-            "id": "folie-soft-tension",
-            "img": "/assets/editorials/folie-soft-tension/index.webp",
-            "img_alt": "Editorial Folie Magazine - Soft Tension",
+            "id": "gq",
+            "img": "/assets/editorials/gq/index.webp",
+            "img_alt": "Editorial GQ México",
             "cardSize": "normal",
-            "role": "lead-stylist",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
             "format": "editorial",
             "credits": {
-                "photographer": "Diego G. @diego_v_photo",
-                "talent": "Luca Darblade @luca_darblade",
-                "muah": "Diego Vitaller @muagami_beauty",
-                "talentAgency": "Wanted Agency @wantedagency"
+                "photographer": "Juankr @juankr_",
+                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
+                "muah": "Antonio Romero @antonioromeromakeup",
+                "talent": "Walid Fiher @w3lidd",
+                "production": "Saik Prod @saikprod"
             }
         },
         {
@@ -634,57 +685,6 @@
                 "setDesign": "Isabel Adell @isadellc",
                 "talent": "Isabeli Fontana @isabelifontana",
                 "talentAgency": "The Lions Management @thelionsmgmt",
-                "production": "Saik Prod @saikprod"
-            }
-        },
-        {
-            "title": "GQ - México",
-            "description": "Editorial para GQ México.",
-            "gallery": [
-                {
-                    "file": "/assets/editorials/gq/1.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/editorials/gq/2.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/3.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/4.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/5.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/6.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/7.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/8.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/9.webp"
-                },
-                {
-                    "file": "/assets/editorials/gq/10.webp"
-                }
-            ],
-            "id": "gq",
-            "img": "/assets/editorials/gq/index.webp",
-            "img_alt": "Editorial GQ México",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "format": "editorial",
-            "credits": {
-                "photographer": "Juankr @juankr_",
-                "stylingTeam": "Verónica Faya @veronicaonfaya y Gema Balsalobre @gemabalsalobre1",
-                "muah": "Antonio Romero @antonioromeromakeup",
-                "talent": "Walid Fiher @w3lidd",
                 "production": "Saik Prod @saikprod"
             }
         },
