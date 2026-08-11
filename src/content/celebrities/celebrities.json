@@ -1,6 +1,31 @@
 {
     "highlighted": [
         {
+            "id": "maica-premios-influencers",
+            "title": "Maica Benedicto - Influencers Awards",
+            "description": "Estilismo para Maica Benedicto en los Influencers Awards.",
+            "img": "/assets/celebrities/maica-premios-influencers/index.webp",
+            "img_alt": "Maica Benedicto en los Influencers Awards",
+            "cardSize": "normal",
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maica-premios-influencers/2.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/maica-premios-influencers/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/maica-premios-influencers/3.webp"
+                },
+                {
+                    "file": "/assets/celebrities/maica-premios-influencers/4.webp"
+                }
+            ]
+        },
+        {
             "id": "maica-supervivientes",
             "title": "Maica Benedicto - Supervivientes",
             "description": "Estilismo para Maica Benedicto en su paso por el plató de Supervivientes.",
@@ -62,6 +87,26 @@
             ]
         },
         {
+            "id": "maica-telecinco",
+            "title": "Maica Benedicto - Telecinco",
+            "description": "Estilismo para Maica Benedicto en su aparición en Telecinco.",
+            "img": "/assets/celebrities/maica-telecinco/index.webp",
+            "img_alt": "Maica Benedicto en Telecinco",
+            "cardSize": "normal",
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maica-telecinco/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/maica-telecinco/video-1.mp4"
+                }
+            ]
+        },
+        {
             "id": "tania-deniz-coachella",
             "title": "Tania Deniz - Coachella",
             "description": "Estilismo para Tania Deniz durante Coachella.",
@@ -105,6 +150,22 @@
             ]
         },
         {
+            "id": "maica-benedicto-paris",
+            "title": "Maica Benedicto - París",
+            "description": "Estilismo para Maica Benedicto durante su estancia en París.",
+            "img": "/assets/celebrities/maica-benedicto-paris/1.webp",
+            "img_alt": "Maica Benedicto en París",
+            "cardSize": "normal",
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/maica-benedicto-paris/1.webp",
+                    "cover": true
+                }
+            ]
+        },
+        {
             "id": "ruth-basauri-coachella",
             "title": "Ruth Basauri - Coachella",
             "description": "Estilismo para Ruth Basauri durante Coachella.",
@@ -135,211 +196,6 @@
                 },
                 {
                     "file": "/assets/celebrities/ruth-basauri-coachella/4.webp"
-                }
-            ]
-        },
-        {
-            "id": "maica-premios-influencers",
-            "title": "Maica Benedicto - Influencers Awards",
-            "description": "Estilismo para Maica Benedicto en los Influencers Awards.",
-            "img": "/assets/celebrities/maica-premios-influencers/index.webp",
-            "img_alt": "Maica Benedicto en los Influencers Awards",
-            "cardSize": "normal",
-            "role": "lead-stylist",
-            "format": "event",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/maica-premios-influencers/2.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/celebrities/maica-premios-influencers/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/maica-premios-influencers/3.webp"
-                },
-                {
-                    "file": "/assets/celebrities/maica-premios-influencers/4.webp"
-                }
-            ]
-        },
-        {
-            "id": "alex-saint-malaga",
-            "title": "Alex Saint - Festival de Málaga",
-            "description": "Estilismo para Alex Saint en el Festival de Málaga.",
-            "img": "/assets/celebrities/alex-saint-malaga/index.webp",
-            "img_alt": "Alex Saint en el Festival de Málaga",
-            "cardSize": "normal",
-            "role": "lead-stylist",
-            "format": "event",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/alex-saint-malaga/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/alex-saint-malaga/2.webp"
-                },
-                {
-                    "file": "/assets/celebrities/alex-saint-malaga/3.webp",
-                    "cover": true
-                }
-            ]
-        },
-        {
-            "id": "maica-benedicto-paris",
-            "title": "Maica Benedicto - París",
-            "description": "Estilismo para Maica Benedicto durante su estancia en París.",
-            "img": "/assets/celebrities/maica-benedicto-paris/1.webp",
-            "img_alt": "Maica Benedicto en París",
-            "cardSize": "normal",
-            "role": "lead-stylist",
-            "format": "event",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/maica-benedicto-paris/1.webp",
-                    "cover": true
-                }
-            ]
-        },
-        {
-            "id": "maica-telecinco",
-            "title": "Maica Benedicto - Telecinco",
-            "description": "Estilismo para Maica Benedicto en su aparición en Telecinco.",
-            "img": "/assets/celebrities/maica-telecinco/index.webp",
-            "img_alt": "Maica Benedicto en Telecinco",
-            "cardSize": "normal",
-            "role": "lead-stylist",
-            "format": "event",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/maica-telecinco/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/celebrities/maica-telecinco/video-1.mp4"
-                }
-            ]
-        },
-        {
-            "id": "miguel-herran",
-            "title": "Miguel Herrán - Chaumet",
-            "description": "Estilismo para evento de presentación de colección de joyería de Chaumet by Nature.",
-            "img": "/assets/celebrities/miguel-herran/index.webp",
-            "img_alt": "Miguel Herrán en evento Chaumet",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "format": "event",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/miguel-herran/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/celebrities/miguel-herran/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/miguel-herran/2.webp"
-                }
-            ]
-        },
-        {
-            "id": "zara",
-            "title": "Zara Larsson - Amaze Festival",
-            "description": "Estilismo para concierto de Zara Larsson y sus bailarinas en Amaze Festival.",
-            "img": "/assets/celebrities/zara/index.webp",
-            "img_alt": "Zara Larsson en evento Amaze Festival",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "format": "event",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/zara/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/2.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/3.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/4.webp",
-                    "cover": true
-                },
-                {
-                    "file": "/assets/celebrities/zara/5.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/6.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/7.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/8.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/9.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/10.webp"
-                },
-                {
-                    "file": "/assets/celebrities/zara/11.webp"
-                }
-            ]
-        },
-        {
-            "id": "aitana",
-            "title": "Aitana - YSL",
-            "description": "Estilismo para Aitana evento YSL Beauty.",
-            "img": "/assets/celebrities/aitana/index.webp",
-            "img_alt": "Aitana en evento YSL Beauty",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "format": "event",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/aitana/index.webp",
-                    "hidden": true
-                },
-                {
-                    "file": "/assets/celebrities/aitana/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/aitana/2.webp"
-                },
-                {
-                    "file": "/assets/celebrities/aitana/3.webp",
-                    "cover": true
-                }
-            ]
-        },
-        {
-            "id": "aron-piper",
-            "title": "Aron Piper - YSL",
-            "description": "Estilismo para Aron Piper evento YSL Beauty.",
-            "img": "/assets/celebrities/aron-piper/index.webp",
-            "img_alt": "Aron Piper en evento YSL Beauty",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "format": "event",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/celebrities/aron-piper/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/celebrities/aron-piper/1.webp"
-                },
-                {
-                    "file": "/assets/celebrities/aron-piper/2.webp"
                 }
             ]
         },
@@ -394,6 +250,102 @@
             ]
         },
         {
+            "id": "aitana",
+            "title": "Aitana - YSL",
+            "description": "Estilismo para Aitana evento YSL Beauty.",
+            "img": "/assets/celebrities/aitana/index.webp",
+            "img_alt": "Aitana en evento YSL Beauty",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/aitana/index.webp",
+                    "hidden": true
+                },
+                {
+                    "file": "/assets/celebrities/aitana/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/aitana/2.webp"
+                },
+                {
+                    "file": "/assets/celebrities/aitana/3.webp",
+                    "cover": true
+                }
+            ]
+        },
+        {
+            "id": "zara",
+            "title": "Zara Larsson - Amaze Festival",
+            "description": "Estilismo para concierto de Zara Larsson y sus bailarinas en Amaze Festival.",
+            "img": "/assets/celebrities/zara/index.webp",
+            "img_alt": "Zara Larsson en evento Amaze Festival",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/zara/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/2.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/3.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/4.webp",
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/zara/5.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/6.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/7.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/8.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/9.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/10.webp"
+                },
+                {
+                    "file": "/assets/celebrities/zara/11.webp"
+                }
+            ]
+        },
+        {
+            "id": "alex-saint-malaga",
+            "title": "Alex Saint - Festival de Málaga",
+            "description": "Estilismo para Alex Saint en el Festival de Málaga.",
+            "img": "/assets/celebrities/alex-saint-malaga/index.webp",
+            "img_alt": "Alex Saint en el Festival de Málaga",
+            "cardSize": "normal",
+            "role": "lead-stylist",
+            "format": "event",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/alex-saint-malaga/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/alex-saint-malaga/2.webp"
+                },
+                {
+                    "file": "/assets/celebrities/alex-saint-malaga/3.webp",
+                    "cover": true
+                }
+            ]
+        },
+        {
             "id": "maria-pombo-netflix",
             "title": "María Pombo - Netflix",
             "description": "Estilismo para María Pombo en evento de Netflix.",
@@ -410,6 +362,54 @@
                 },
                 {
                     "file": "/assets/celebrities/maria-pombo-netflix/video-1.mp4"
+                }
+            ]
+        },
+        {
+            "id": "miguel-herran",
+            "title": "Miguel Herrán - Chaumet",
+            "description": "Estilismo para evento de presentación de colección de joyería de Chaumet by Nature.",
+            "img": "/assets/celebrities/miguel-herran/index.webp",
+            "img_alt": "Miguel Herrán en evento Chaumet",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/miguel-herran/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/miguel-herran/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/miguel-herran/2.webp"
+                }
+            ]
+        },
+        {
+            "id": "aron-piper",
+            "title": "Aron Piper - YSL",
+            "description": "Estilismo para Aron Piper evento YSL Beauty.",
+            "img": "/assets/celebrities/aron-piper/index.webp",
+            "img_alt": "Aron Piper en evento YSL Beauty",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "format": "event",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/celebrities/aron-piper/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/celebrities/aron-piper/1.webp"
+                },
+                {
+                    "file": "/assets/celebrities/aron-piper/2.webp"
                 }
             ]
         }
