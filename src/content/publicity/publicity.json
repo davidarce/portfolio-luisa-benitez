@@ -42,7 +42,8 @@
                 {
                     "file": "/assets/publicity/alaniz-maria-pombo/video-3.mp4"
                 }
-            ]
+            ],
+            "featured": true
         },
         {
             "id": "bruno-magli",
