@@ -23,7 +23,8 @@
                 {
                     "file": "/assets/celebrities/maica-premios-influencers/4.webp"
                 }
-            ]
+            ],
+            "featured": true
         },
         {
             "id": "maica-supervivientes",
