@@ -126,25 +126,6 @@
             ]
         },
         {
-            "id": "ysl-aitana",
-            "title": "YSL - Aitana",
-            "description": "Campaña para YSL con Aitana.",
-            "img_alt": "Campaña YSL Aitana",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/publicity/ysl-aitana/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/publicity/ysl-aitana/video-1.mp4"
-                }
-            ]
-        },
-        {
             "id": "agatha-paris-maria-pombo",
             "title": "Agatha Paris - María Pombo",
             "description": "Campaña para Agatha Paris con María Pombo.",
@@ -166,6 +147,63 @@
                 },
                 {
                     "file": "/assets/publicity/agatha-paris-maria-pombo/video-2.mp4"
+                }
+            ]
+        },
+        {
+            "id": "ysl-aitana",
+            "title": "YSL - Aitana",
+            "description": "Campaña para YSL con Aitana.",
+            "img_alt": "Campaña YSL Aitana",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/ysl-aitana/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/ysl-aitana/video-1.mp4"
+                }
+            ]
+        },
+        {
+            "id": "kerastase-nicole-wallace",
+            "title": "Kérastase - Nicole Wallace",
+            "description": "Campaña para Kérastase con Nicole Wallace.",
+            "img_alt": "Campaña Kérastase Nicole Wallace",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase-nicole-wallace/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase-nicole-wallace/kerastase-nicole-wallace.mp4"
+                }
+            ]
+        },
+        {
+            "id": "kerastase-lola-lolita",
+            "title": "Kérastase - Lola Lolita",
+            "description": "Campaña para Kérastase con Lola Lolita.",
+            "img_alt": "Campaña Kérastase Lola Lolita",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase-lola-lolita/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase-lola-lolita/kerastase-lola-lolita.mp4"
                 }
             ]
         },
@@ -195,63 +233,6 @@
                 },
                 {
                     "file": "/assets/publicity/gdh-jesus-de-paula/video-4.mp4"
-                }
-            ]
-        },
-        {
-            "id": "kerastase",
-            "title": "Kérastase",
-            "description": "Campaña para Kérastase.",
-            "img_alt": "Campaña Kérastase",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/publicity/kerastase/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/publicity/kerastase/video-1.mp4"
-                }
-            ]
-        },
-        {
-            "id": "kerastase-lola-lolita",
-            "title": "Kérastase - Lola Lolita",
-            "description": "Campaña para Kérastase con Lola Lolita.",
-            "img_alt": "Campaña Kérastase Lola Lolita",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/publicity/kerastase-lola-lolita/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/publicity/kerastase-lola-lolita/kerastase-lola-lolita.mp4"
-                }
-            ]
-        },
-        {
-            "id": "kerastase-nicole-wallace",
-            "title": "Kérastase - Nicole Wallace",
-            "description": "Campaña para Kérastase con Nicole Wallace.",
-            "img_alt": "Campaña Kérastase Nicole Wallace",
-            "cardSize": "normal",
-            "role": "assistant-stylist",
-            "leadStylist": "Caterina Ospina",
-            "gallery": [
-                {
-                    "file": "/assets/publicity/kerastase-nicole-wallace/index.webp",
-                    "hidden": true,
-                    "cover": true
-                },
-                {
-                    "file": "/assets/publicity/kerastase-nicole-wallace/kerastase-nicole-wallace.mp4"
                 }
             ]
         },
@@ -303,6 +284,25 @@
                 },
                 {
                     "file": "/assets/publicity/vogue-spain-maria-pombo/vogue-spain-maria-pombo.mp4"
+                }
+            ]
+        },
+        {
+            "id": "kerastase",
+            "title": "Kérastase",
+            "description": "Campaña para Kérastase.",
+            "img_alt": "Campaña Kérastase",
+            "cardSize": "normal",
+            "role": "assistant-stylist",
+            "leadStylist": "Caterina Ospina",
+            "gallery": [
+                {
+                    "file": "/assets/publicity/kerastase/index.webp",
+                    "hidden": true,
+                    "cover": true
+                },
+                {
+                    "file": "/assets/publicity/kerastase/video-1.mp4"
                 }
             ]
         }
