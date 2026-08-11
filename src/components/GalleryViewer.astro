@@ -381,7 +381,6 @@ const media = await Promise.all(
 				if (v !== videoActivo()) v.pause();
 			});
 			if (!movil.matches) return;
-			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 			videoActivo()?.play().catch(() => {});
 			refrescarProgresoSiExiste();
 		}
@@ -534,7 +533,11 @@ const media = await Promise.all(
 						if (!active || entry.intersectionRatio > active.ratio) {
 							active = { i, ratio: entry.intersectionRatio };
 						}
-						if (video && !reducedMotion) video.play().catch(() => {});
+						// Sin mirar `reducedMotion`: esa preferencia frena el movimiento
+						// que nadie ha pedido, y aquí el visor se abre con un clic
+						// explícito sobre ese vídeo. Respetarla aquí lo dejaba parado
+						// en el segundo 0, con sus controles a la vista, y parecía roto.
+						if (video) video.play().catch(() => {});
 					} else {
 						video?.pause();
 					}
