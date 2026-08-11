@@ -50,7 +50,7 @@ export const profile = {
 		'Vogue Adria',
 		'GQ México',
 		'Numéro Netherlands',
-		'pap magazine',
-		'Mode Magazine',
+		'Pap Magazine',
+		'Folie Magazine',
 	],
 } as const;

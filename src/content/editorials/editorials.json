@@ -59,8 +59,8 @@
             }
         },
         {
-            "title": "pap magazine - The New Dandy",
-            "description": "Editorial «The New Dandy» para pap magazine.",
+            "title": "Pap Magazine - The New Dandy",
+            "description": "Editorial «The New Dandy» para Pap Magazine.",
             "gallery": [
                 {
                     "file": "/assets/editorials/pap-the-new-dandy/1.webp",
@@ -120,7 +120,7 @@
             ],
             "id": "pap-the-new-dandy",
             "img": "/assets/editorials/pap-the-new-dandy/index.webp",
-            "img_alt": "Editorial pap magazine - The New Dandy",
+            "img_alt": "Editorial Pap Magazine - The New Dandy",
             "cardSize": "normal",
             "role": "lead-stylist",
             "format": "editorial",

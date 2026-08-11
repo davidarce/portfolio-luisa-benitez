@@ -58,7 +58,9 @@ const contactItems = [
 	// entre sí porque los dos empiezan por arroba o la llevan dentro.
 	`${t.channels.email}: ${profile.email}`,
 	`${t.channels.instagram}: ${profile.instagram.handle}`,
-	`${cv.headings.portfolio}: ${Astro.site?.host}`,
+	// Espacio duro: la línea se partía justo entre la etiqueta y el dominio, y
+	// «Portfolio:» solo, al final de un renglón, no dice nada.
+	`${cv.headings.portfolio}:\u00A0${Astro.site?.host}`,
 ];
 
 /** Parte el texto en tramos para pintar cada «[PENDIENTE: …]» como <mark> imposible de pasar por alto. */
