@@ -5,7 +5,6 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Grid from "../../../components/Grid.astro";
 import Card from "../../../components/Card.astro";
 import Hero from "../../../components/Hero.astro";
-import { sortProjects } from "../../../lib/sort-projects";
 import { getTranslation } from "../../../i18n";
 import { localeStaticPaths } from "../../../i18n/routing";
 
@@ -14,7 +13,7 @@ export const getStaticPaths = localeStaticPaths;
 const { locale } = Astro.props;
 const t = getTranslation(locale);
 
-const runway = sortProjects(await getCollection("runway"));
+const runway = await getCollection("runway");
 ---
 
 <BaseLayout

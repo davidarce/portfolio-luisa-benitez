@@ -1,4 +1,5 @@
 import { readdirSync, existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 
 interface GalleryConfig {
   baseDir: string;
@@ -26,9 +27,7 @@ interface GalleryEntry {
   images: string[];
   gallery?: GalleryMediaItem[];
   hasGallery: boolean;
-  order: number;
   featured?: boolean;
-  pin?: 'first' | 'last';
   role?: string;
   roleDetail?: string;
   leadStylist?: string;
@@ -53,29 +52,31 @@ export function createGalleryLoader(config: GalleryConfig) {
       return [];
     }
 
-    // Caso: Con subcarpetas de galerías (celebrities, editorials)
-    const dirs = readdirSync(baseDir, { withFileTypes: true })
-      .filter(d => d.isDirectory());
+    // Se itera el JSON, no el directorio: **el orden del array es el orden de la
+    // página**, que es lo que Luisa arrastra en /admin/ordenar. Leyendo el
+    // directorio salía orden alfabético de carpeta y hacía falta reordenar
+    // después con reglas que ella no podía ver ni cambiar.
+    const entradas: any[] = Array.isArray(jsonData) ? jsonData : Object.values(jsonData).flat();
 
-    return dirs
-      .map(dir => {
-        const slug = dir.name;
+    // Una carpeta de fotos sin entrada en el JSON no se publica: borrar la fila
+    // desde el CMS saca el proyecto del portfolio y el directorio se queda en
+    // disco. Se avisa porque es la diferencia entre "lo quité" y "se perdió".
+    const conEntrada = new Set(entradas.map(e => e.id));
+    for (const dir of readdirSync(baseDir, { withFileTypes: true })) {
+      if (dir.isDirectory() && !conEntrada.has(dir.name)) {
+        console.warn(
+          `[gallery-loader] "${dir.name}" en ${baseDir} no tiene entrada en ${jsonPath}: se omite del portfolio.`,
+        );
+      }
+    }
 
-        // Emparejamiento exacto: `id` ya es el slug del directorio (migrado
-        // desde los antiguos "1".."11"), nada de `includes` sobre `img`, que
-        // era ambiguo entre proyectos con slugs que se contienen unos a otros
-        // (p. ej. "kerastase" en "kerastase-lola-lolita").
-        const info = Array.isArray(jsonData)
-          ? jsonData.find(item => item.id === slug)
-          : jsonData[slug]?.[0];
+    return entradas
+      .map(info => {
+        const slug = info.id;
 
-        // Borrar la fila del CMS saca el proyecto del portfolio, pero el
-        // directorio de fotos se queda en disco. Sin esta comprobación el
-        // loader fabricaría una entrada sin `role` (obligatorio) y el build
-        // moriría en la validación del esquema.
-        if (!info) {
+        if (!existsSync(join(baseDir, slug))) {
           console.warn(
-            `[gallery-loader] "${slug}" en ${baseDir} no tiene entrada en ${jsonPath}: se omite del portfolio.`,
+            `[gallery-loader] "${slug}" está en ${jsonPath} pero no existe ${baseDir}/${slug}: se omite.`,
           );
           return null;
         }

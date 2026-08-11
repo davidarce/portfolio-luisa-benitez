@@ -10,7 +10,6 @@ import Card from "../../components/Card.astro";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { profile } from "../../data/profile";
-import { sortProjects } from "../../lib/sort-projects";
 import { getTranslation } from "../../i18n";
 import { localeStaticPaths } from "../../i18n/routing";
 
@@ -29,16 +28,22 @@ const featuredCollections = [
 	"films",
 ] as const;
 
-const allProjects = (
-	await Promise.all(featuredCollections.map((collection) => getCollection(collection)))
-).flat();
+const porColeccion = await Promise.all(
+	featuredCollections.map((collection) => getCollection(collection)),
+);
 
-// Sin `pin`: ese anclaje es de cada listado, y aquí manda `featured`.
-const ordenados = sortProjects(allProjects, { aplicarPin: false });
-const featuredProjects = [
-	...ordenados.filter((p) => p.data.featured),
-	...ordenados.filter((p) => !p.data.featured),
-].slice(0, 4);
+// Mandan los que Luisa marca como destacados. El resto se rellena tomando uno
+// de cada sección por turnos: cogiendo los primeros de la lista saldrían cuatro
+// editoriales seguidas, y la portada del sitio es justo donde conviene enseñar
+// que hace cosas distintas.
+const marcados = porColeccion.flat().filter((p) => p.data.featured);
+const porTurnos = [];
+for (let i = 0; porTurnos.length < 4; i++) {
+	const fila = porColeccion.map((c) => c.filter((p) => !p.data.featured)[i]).filter(Boolean);
+	if (!fila.length) break;
+	porTurnos.push(...fila);
+}
+const featuredProjects = [...marcados, ...porTurnos].slice(0, 4);
 
 // La sección de contacto vive solo en contact.astro: aquí no se repiten canales ni datos.
 
