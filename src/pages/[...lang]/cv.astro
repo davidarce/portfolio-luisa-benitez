@@ -12,6 +12,7 @@
 import "@fontsource/bebas-neue";
 
 import { getCollection } from "astro:content";
+import { conHuella } from "../../lib/asset-version";
 import { profile } from "../../data/profile";
 import { getTranslation } from "../../i18n";
 import { localeStaticPaths } from "../../i18n/routing";
@@ -175,6 +176,9 @@ const pendingParts = (text: string) =>
 				</p>
 			</section>
 		</main>
+		<a class="descargar" href={conHuella(profile.cvPath![locale])} download>
+			{t.common.downloadCv}
+		</a>
 	</body>
 </html>
 
@@ -219,13 +223,78 @@ const pendingParts = (text: string) =>
 		gap: 3.6mm;
 	}
 
-	/* En pantalla, previsualización de la hoja; al imprimir manda @page. */
-	@media screen {
+	.descargar {
+		display: none;
+	}
+
+	/*
+	 * En pantalla ancha, previsualización de la hoja tal cual saldrá impresa.
+	 * Al imprimir manda @page, así que nada de esto llega al PDF.
+	 */
+	@media screen and (min-width: 46rem) {
 		body {
-			padding: 2rem 0;
+			padding: 2rem 0 4rem;
 		}
 		.sheet {
 			box-shadow: 0 16px 40px rgba(9, 11, 17, 0.35);
+		}
+		.descargar {
+			display: block;
+			width: fit-content;
+			margin: 1.5rem auto 0;
+			color: #ffffff;
+			font-family: var(--font-brand);
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			text-decoration: none;
+		}
+	}
+
+	/*
+	 * En móvil la hoja A4 se queda en el 63% del alto de la pantalla y el texto
+	 * sale diminuto: un folio mide 1:1.41 y un móvil actual 1:2.2. Aquí se
+	 * abandona el papel y se usa el ancho completo con tipografía de lectura.
+	 * El PDF no se entera: se genera con los estilos de impresión.
+	 */
+	@media screen and (max-width: 45.99rem) {
+		body {
+			background: var(--paper, #ffffff);
+			padding: 0;
+		}
+
+		.sheet {
+			width: 100%;
+			min-height: 0;
+			padding: 1.5rem 1.25rem 3rem;
+			gap: 1.75rem;
+			font-size: 16px;
+		}
+
+		.descargar {
+			display: block;
+			position: sticky;
+			bottom: 1rem;
+			z-index: 2;
+			width: calc(100% - 2.5rem);
+			margin: 0 auto;
+			padding: 0.9rem 1rem;
+			border-radius: 10px;
+			background: var(--ink);
+			color: #ffffff;
+			font-family: var(--font-brand);
+			font-size: 1rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			text-align: center;
+			text-decoration: none;
+			box-shadow: 0 6px 20px rgb(9 11 17 / 0.28);
+		}
+	}
+
+	@media screen {
+		.descargar:focus-visible {
+			outline: 2px solid var(--ink);
+			outline-offset: 3px;
 		}
 	}
 
