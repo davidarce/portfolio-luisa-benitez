@@ -43,7 +43,13 @@ const gallerySchema = z.object({
 	// listados no se toca aquí: lo decide la posición en el array del JSON.
 	featured: z.boolean().optional(),
 
-	role: z.enum(['lead-stylist', 'assistant-stylist', 'wardrobe-assistant', 'co-stylist']),
+	role: z.enum([
+		'lead-stylist',
+		'assistant-stylist',
+		'wardrobe-assistant',
+		'wardrobe-aux',
+		'co-stylist',
+	]),
 	roleDetail: optional(z.string()),
 	leadStylist: optional(z.string()),
 

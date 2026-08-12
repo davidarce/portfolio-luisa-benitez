@@ -201,6 +201,7 @@ export const en: Translation = {
 			'lead-stylist': 'Stylist',
 			'assistant-stylist': 'Styling Assistant',
 			'wardrobe-assistant': 'Wardrobe Assistant',
+			'wardrobe-aux': 'Wardrobe Assistant',
 			'co-stylist': 'Co-Stylist',
 		},
 		labels: {

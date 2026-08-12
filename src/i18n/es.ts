@@ -238,6 +238,7 @@ export const es = {
 			'lead-stylist': 'Estilista',
 			'assistant-stylist': 'Asistente Estilismo',
 			'wardrobe-assistant': 'Asistente de Vestuario',
+			'wardrobe-aux': 'Auxiliar de Vestuario',
 			'co-stylist': 'Coestilista',
 		},
 		labels: {

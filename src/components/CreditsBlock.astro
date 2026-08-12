@@ -23,7 +23,12 @@ interface Credits {
 }
 
 interface Props {
-	role: "lead-stylist" | "assistant-stylist" | "wardrobe-assistant" | "co-stylist";
+	role:
+		| "lead-stylist"
+		| "assistant-stylist"
+		| "wardrobe-assistant"
+		| "wardrobe-aux"
+		| "co-stylist";
 	roleDetail?: string;
 	leadStylist?: string;
 	year?: number;
