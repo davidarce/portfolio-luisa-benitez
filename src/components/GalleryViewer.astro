@@ -44,6 +44,11 @@ const media = await Promise.all(
 							muted
 							playsinline
 							controls
+							{/*
+							 * Sigue en `none` para no descargar vídeo a quien no lo abre:
+							 * medido, `metadata` se traía los 2,5 MB enteros. La carga la
+							 * fuerza `load()` al abrir el visor, que es cuando hace falta.
+							 */}
 							preload="none"
 							data-viewer-video
 						/>
@@ -380,8 +385,19 @@ const media = await Promise.all(
 			dialog.querySelectorAll<HTMLVideoElement>("[data-viewer-video]").forEach((v) => {
 				if (v !== videoActivo()) v.pause();
 			});
+			// `play()` en los dos tamaños, y `load()` solo si el navegador lo
+			// rechaza. Con `preload="none"` Safari no descargaba nada por su cuenta:
+			// el vídeo se quedaba en readyState 0, los mandos nativos salían sin
+			// duración y el primer clic no hacía nada. Al recargar parecía
+			// arreglado, pero era la caché del intento anterior.
+			//
+			// El respaldo va en el `catch` y no antes: `load()` reinicia el vídeo y
+			// cancelaría el `play()` que sí iba a funcionar (medido).
+			const activo = videoActivo();
+			activo?.play().catch(() => {
+				if (activo.readyState === 0) activo.load();
+			});
 			if (!movil.matches) return;
-			videoActivo()?.play().catch(() => {});
 			refrescarProgresoSiExiste();
 		}
 
