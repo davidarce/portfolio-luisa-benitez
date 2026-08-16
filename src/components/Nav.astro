@@ -65,7 +65,7 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 				{
 					activeLink && activeLink.href !== homeHref && (
 						<span class="mobile-page-label">
-							| {activeLink.label}
+							{activeLink.label}
 						</span>
 					)
 				}
@@ -269,7 +269,27 @@ const activeLink = textLinks.find((link) => isCurrentPage(link.href));
 		font-size: var(--text-md);
 		color: var(--gray-100);
 		font-weight: 400;
-		margin-left: 0.25rem;
+		/*
+		 * El separador es un borde y no el carácter «|» que había: como texto se
+		 * quedaba solo al final de un renglón y la sección bajaba a la siguiente
+		 * («| ⏎ Celebridades» en un iPhone). Además un lector de pantalla lo leía
+		 * como «barra vertical».
+		 */
+		margin-left: 0.5rem;
+		padding-left: 0.5rem;
+		border-left: 1px solid currentColor;
+		/*
+		 * Sin partir y sin encogerse: el nombre y la sección comparten fila, y
+		 * dejando que el flex la comprimiera salía «Celebrida…». El nombre ya se
+		 * reparte en dos renglones, así que el hueco que necesita esto es suyo.
+		 * Medido a 320px, el ancho más estrecho que se maneja: quedan 8px hasta
+		 * el botón del menú.
+		 */
+		white-space: nowrap;
+		flex-shrink: 0;
+		/* Red de seguridad por si algún día entra una sección de nombre largo. */
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.menu-button {
