@@ -3,7 +3,7 @@
 // sigue pintando algo, solo que la foto equivocada, y se descubrió tarde y por
 // casualidad. Salidas: 0 todo bien, 1 hay desajustes, 2 error de entorno.
 
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import sharp from 'sharp';
 
@@ -59,14 +59,20 @@ for (const { assets, og, json } of COLECCIONES) {
 		}
 		const referencia = await huella(origen);
 
-		const variante = join('public/assets', assets, proyecto.id, 'srcset/400.webp');
-		if (existsSync(variante)) {
-			comprobadas++;
-			const d = distancia(referencia, await huella(variante));
-			if (d > UMBRAL) {
-				fallos.push(
-					`${assets}/${proyecto.id}: la miniatura de la tarjeta no es la portada (${d.toFixed(1)})`,
-				);
+		// TODAS las variantes, no solo la de 400: la de 1100 se quedó apuntando a
+		// otra foto porque no se podía regenerar (más ancha que el original) y
+		// nadie la borraba. Comprobando solo una, este verificador daba luz verde
+		// mientras un móvil en vertical enseñaba la portada anterior.
+		const dirVariantes = join('public/assets', assets, proyecto.id, 'srcset');
+		if (existsSync(dirVariantes)) {
+			for (const fichero of readdirSync(dirVariantes)) {
+				comprobadas++;
+				const d = distancia(referencia, await huella(join(dirVariantes, fichero)));
+				if (d > UMBRAL) {
+					fallos.push(
+						`${assets}/${proyecto.id}: la miniatura ${fichero} no es la portada (${d.toFixed(1)})`,
+					);
+				}
 			}
 		}
 
