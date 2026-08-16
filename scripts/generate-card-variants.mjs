@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import sharp from 'sharp';
 
@@ -37,6 +37,7 @@ const force = process.argv.includes('--force');
 
 let escritas = 0;
 let saltadas = 0;
+let borradas = 0;
 const sinOrigen = [];
 
 for (const col of COLLECTIONS) {
@@ -60,8 +61,21 @@ for (const col of COLLECTIONS) {
 		// `index-400.webp` suelto en la carpeta lo recogería como foto de galería.
 		const destDir = join(dir, 'srcset');
 
+		// Las variantes más anchas que el original no se pueden regenerar, y si
+		// la portada anterior era más grande se quedaban en disco apuntando a
+		// OTRA foto. El `srcset` las seguía ofreciendo, así que un móvil en
+		// vertical (que pide ~1100px) enseñaba la portada vieja mientras el
+		// escritorio enseñaba la nueva. Se borran, y el srcset se queda sin
+		// ellas: es mejor servir la mayor disponible que una foto equivocada.
 		for (const w of WIDTHS) {
-			if (w > natural) continue;
+			if (w > natural) {
+				const huerfana = join(destDir, `${w}.webp`);
+				if (existsSync(huerfana)) {
+					rmSync(huerfana);
+					borradas++;
+				}
+				continue;
+			}
 			const destino = join(destDir, `${w}.webp`);
 			// Como en generate-og-images.mjs: al cambiar la portada desde el CMS el
 			// fichero de origen es otro pero su fecha es antigua, así que mirando
@@ -82,7 +96,10 @@ for (const col of COLLECTIONS) {
 	}
 }
 
-console.log(`[variantes] ${escritas} generada(s), ${saltadas} sin cambios.`);
+console.log(
+	`[variantes] ${escritas} generada(s), ${saltadas} sin cambios` +
+		(borradas ? `, ${borradas} huérfana(s) borrada(s).` : '.'),
+);
 if (sinOrigen.length) {
 	console.error(`[variantes] ${sinOrigen.length} sin index.*:`);
 	sinOrigen.forEach((s) => console.error(`     ${s}`));
