@@ -47,8 +47,8 @@ const featuredProjects = [...marcados, ...porTurnos].slice(0, 4);
 
 // La sección de contacto vive solo en contact.astro: aquí no se repiten canales ni datos.
 
-/** Idéntico a about.astro: dos pares fijos + "Disponibilidad" si el dato existe. */
-const aboutDetails: { label: string; value: string }[] = [
+/** Dos pares fijos + "Disponibilidad" si el dato existe, y el correo al final. */
+const aboutDetails: { label: string; value: string; href?: string }[] = [
 	{ label: t.details.base, value: `${profile.baseCity}, ${t.profile.country}` },
 	{ label: t.details.languages, value: t.profile.languages.join(", ") },
 ];
@@ -59,6 +59,15 @@ if (profile.availableForTravel) {
 		value: t.profile.travelNote,
 	});
 }
+
+// El correo cierra el bloque: decir «disponible para viajar» y no decir cómo se
+// le escribe dejaba a medias a quien baja la home entera (6,7 pantallas en
+// móvil) y no encuentra ni un enlace de contacto en todo el contenido.
+aboutDetails.push({
+	label: t.channels.email,
+	value: profile.email,
+	href: `mailto:${profile.email}`,
+});
 ---
 
 <BaseLayout
@@ -161,10 +170,12 @@ if (profile.availableForTravel) {
 
 						<dl class="details rule">
 							{
-								aboutDetails.map(({ label, value }) => (
+								aboutDetails.map(({ label, value, href }) => (
 									<div>
 										<dt class="detail-label">{label}</dt>
-										<dd class="detail-value">{value}</dd>
+										<dd class="detail-value">
+											{href ? <a href={href}>{value}</a> : value}
+										</dd>
 									</div>
 								))
 							}
@@ -520,6 +531,21 @@ if (profile.availableForTravel) {
 		font-size: var(--text-base);
 		line-height: 1.4;
 		color: var(--gray-50);
+	}
+
+	/* Subrayado: sin él el correo parecía un dato más y no se veía que se pulsa. */
+	.detail-value a {
+		color: var(--gray-0);
+		text-decoration: underline;
+		text-decoration-color: var(--accent-regular);
+		text-underline-offset: 0.25em;
+		text-decoration-thickness: 1px;
+		transition: color var(--theme-transition);
+	}
+
+	.detail-value a:hover,
+	.detail-value a:focus-visible {
+		color: var(--accent-regular);
 	}
 
 	@media (min-width: 50em) {

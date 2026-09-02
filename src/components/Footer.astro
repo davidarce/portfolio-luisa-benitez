@@ -32,11 +32,16 @@ const socials: { label: string; href: string; icon: keyof typeof iconPaths; exte
 						target={external ? '_blank' : undefined}
 						rel={external ? 'noopener noreferrer' : undefined}
 					>
-						<span class="sr-only">
-							{label}
-							{external && ` ${t.common.newWindowHint}`}
-						</span>
 						<Icon icon={icon} />
+						{/*
+						 * El nombre a la vista y no en `sr-only`: un avión de papel no se
+						 * lee como «email», y estos dos iconos eran la única salida de
+						 * contacto al final de la home.
+						 */}
+						<span class="social-label">
+							{label}
+							{external && <span class="sr-only"> {t.common.newWindowHint}</span>}
+						</span>
 					</a>
 				))
 			}
@@ -83,10 +88,17 @@ const socials: { label: string; href: string; icon: keyof typeof iconPaths; exte
 
 	.social {
 		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 		padding: var(--icon-padding);
 		color: var(--gray-0);
 		text-decoration: none;
 		transition: color var(--theme-transition);
+	}
+
+	.social-label {
+		font-size: var(--text-sm);
+		letter-spacing: 0.02em;
 	}
 
 	.social:hover,
