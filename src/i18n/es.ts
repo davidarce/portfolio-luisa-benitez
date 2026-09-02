@@ -35,6 +35,7 @@ export const es = {
 	},
 	channels: {
 		email: 'Email',
+		phone: 'Teléfono',
 		instagram: 'Instagram',
 		linkedin: 'LinkedIn',
 		/** Valor del canal de LinkedIn: la URL no se enseña, se enseña esto. */

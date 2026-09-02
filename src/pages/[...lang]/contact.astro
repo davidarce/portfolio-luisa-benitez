@@ -16,11 +16,17 @@ const { locale } = Astro.props;
 const t = getTranslation(locale);
 
 /** Los canales son las vías de contacto: mismo bloque, misma jerarquía. */
-const channels: { label: string; value: string; href: string; external?: boolean }[] = [
+const channels: { label: string; value: string; href?: string; external?: boolean }[] = [
 	{
 		label: t.channels.email,
 		value: profile.email,
 		href: `mailto:${profile.email}`,
+	},
+	// Sin `href`: se enseña el número pero no se marca ni abre WhatsApp al
+	// tocarlo. Decisión de David, para no invitar a llamadas comerciales.
+	{
+		label: t.channels.phone,
+		value: profile.phone,
 	},
 	{
 		label: t.channels.instagram,
@@ -75,17 +81,21 @@ const details: { label: string; value: string }[] = [
 					channels.map(({ label, value, href, external }) => (
 						<li>
 							<span class="channel-label">{label}</span>
-							<a
-								class="channel-value"
-								href={href}
-								target={external ? "_blank" : undefined}
-								rel={external ? "noopener noreferrer" : undefined}
-							>
-								{value}
-								{external && (
-									<span class="sr-only"> {t.common.newWindowHint}</span>
-								)}
-							</a>
+							{href ? (
+								<a
+									class="channel-value"
+									href={href}
+									target={external ? "_blank" : undefined}
+									rel={external ? "noopener noreferrer" : undefined}
+								>
+									{value}
+									{external && (
+										<span class="sr-only"> {t.common.newWindowHint}</span>
+									)}
+								</a>
+							) : (
+								<span class="channel-value sin-enlace">{value}</span>
+							)}
 						</li>
 					))
 				}
@@ -197,6 +207,16 @@ const details: { label: string; value: string }[] = [
 		letter-spacing: 0.25em;
 		text-transform: uppercase;
 		color: var(--gray-100);
+	}
+
+	/*
+	 * El subrayado de `.channel-value` es la marca de que algo se puede pulsar.
+	 * El teléfono no lleva enlace, así que sin esto prometía una acción que no
+	 * existe: se toca y no pasa nada.
+	 */
+	.channel-value.sin-enlace,
+	:global(.theme-dark) .channel-value.sin-enlace {
+		background-image: none;
 	}
 
 	.channel-value {

@@ -33,6 +33,7 @@ export const en: Translation = {
 	},
 	channels: {
 		email: 'Email',
+		phone: 'Phone',
 		instagram: 'Instagram',
 		linkedin: 'LinkedIn',
 		linkedinValue: 'Professional profile',
