@@ -20,6 +20,14 @@ export const profile = {
 
 	email: 'luisa@luisabenitez.es',
 
+	/**
+	 * Con prefijo internacional a propósito: el sitio es bilingüe y la
+	 * candidatura es para una empresa global, así que «600…» a secas obligaría a
+	 * adivinar el país. Se pinta como texto, sin `tel:` ni enlace a WhatsApp:
+	 * decisión de David, para no invitar a llamadas comerciales.
+	 */
+	phone: '+34 600 49 23 21',
+
 	instagram: {
 		handle: '@luisabeniteza',
 		url: 'https://instagram.com/luisabeniteza/',
